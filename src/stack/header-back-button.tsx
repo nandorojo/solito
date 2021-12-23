@@ -57,9 +57,9 @@ export function HeaderBackButton({
           nextRouter.replace(path, undefined, { shallow: true })
         }
       }
+    } else {
+      navigation.goBack()
     }
-
-    navigation.goBack()
   }
 
   return <ReactNavigationHeaderBackButton {...props} onPress={back} />
