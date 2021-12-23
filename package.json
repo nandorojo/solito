@@ -1,0 +1,24 @@
+{
+  "name": "takato",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "devDependencies": {
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/drawer": "^6.1.8",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "@types/react": "^17.0.38",
+    "@types/react-native": "^0.66.9",
+    "expo-module-scripts": "^2.0.0",
+    "next": "^12.0.7",
+    "react": "^17.0.2"
+  },
+  "license": "MIT"
+}
