@@ -12,6 +12,8 @@ A library dedicated to unifying React Native with Next.js, primarily focused on 
 
 ## Installation
 
+> Coming soon 😈
+
 ```sh
 yarn add solito
 ```
