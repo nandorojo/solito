@@ -1,1 +1,1 @@
-export * from "./header-back-button";
+export * from './header-back-button'
