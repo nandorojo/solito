@@ -1,7 +1,7 @@
 # `createNextDrawerNavigator`
 
 ```tsx
-import { createNextDrawerNavigator } from 'takato/drawer'
+import { createNextDrawerNavigator } from 'solito/drawer'
 ```
 
 A fork of the React Navigation `createDrawerNavigator`.
@@ -21,7 +21,7 @@ Be sure that you have configured your `NavigationContainer` with `linking`, so t
 `./navigation/drawer.tsx`
 
 ```tsx
-import { createNextDrawerNavigator } from 'takato/drawer'
+import { createNextDrawerNavigator } from 'solito/drawer'
 
 import HomeStack from 'pages/home'
 import ProfileStack from 'pages/profile'
@@ -80,7 +80,7 @@ export default function App() {
 Recall the drawer we created in the previous example:
 
 ```tsx
-import { createNextDrawerNavigator } from 'takato/drawer'
+import { createNextDrawerNavigator } from 'solito/drawer'
 
 import HomeStack from 'pages/home'
 import ProfileStack from 'pages/profile'
@@ -128,7 +128,7 @@ To get around this, we are going to split our `drawer.tsx` file into two files: 
 This file is the same as our example from above. It will get used on any non-Web platforms.
 
 ```tsx
-import { createNextDrawerNavigator } from 'takato/drawer'
+import { createNextDrawerNavigator } from 'solito/drawer'
 
 import { HomeStack } from 'screens/home'
 import { ProfileStack } from 'screens/profile'
@@ -152,7 +152,7 @@ export { Drawer }
 Because this file ends with `.web.tsx`, it will replace the `drawer.tsx` file on Web.
 
 ```tsx
-import { createNextDrawerNavigator } from 'takato/drawer'
+import { createNextDrawerNavigator } from 'solito/drawer'
 
 const { Navigator, Screen } = createNextDrawerNavigator()
 

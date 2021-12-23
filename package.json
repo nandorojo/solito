@@ -1,5 +1,5 @@
 {
-  "name": "takato",
+  "name": "solito",
   "version": "0.0.0",
   "scripts": {
     "build": "expo-module build",
@@ -18,6 +18,7 @@
     "@types/react-native": "^0.66.9",
     "eslint-config-nando": "^1.1.0",
     "expo-module-scripts": "^2.0.0",
+    "gitmoji-cli": "^4.7.0",
     "next": "^12.0.7",
     "react": "^17.0.2"
   },

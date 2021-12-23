@@ -1,11 +1,11 @@
-# takato
+# solito
 
 Put a description of your Unimodule here
 
 # API documentation
 
-- [Documentation for the master branch](https://github.com/expo/expo/blob/master/docs/pages/versions/unversioned/sdk/takato.md)
-- [Documentation for the latest stable release](https://docs.expo.io/versions/latest/sdk/takato/)
+- [Documentation for the master branch](https://github.com/expo/expo/blob/master/docs/pages/versions/unversioned/sdk/solito.md)
+- [Documentation for the latest stable release](https://docs.expo.io/versions/latest/sdk/solito/)
 
 # Installation in managed Expo projects
 
@@ -18,12 +18,9 @@ For bare React Native projects, you must ensure that you have [installed and con
 ### Add the package to your npm dependencies
 
 ```
-npm install takato
+npm install solito
 ```
-
-
-
 
 # Contributing
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).
+Contributions are very welcome! Please refer to guidelines described in the [contributing guide](https://github.com/expo/expo#contributing).
