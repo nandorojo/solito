@@ -2,6 +2,8 @@
 
 A library dedicated to unifying React Native with Next.js, primarily focused on navigation.
 
+> This is still a bit experimental, I'd say.
+
 ## Docs & Examples
 
 - 📚 [Documentation (coming soon)](#)
