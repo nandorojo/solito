@@ -1,4 +1,4 @@
-# `solito`
+# Readme
 
 A library to help unify React Native with Next.js, primarily focused on Navigation.
 
