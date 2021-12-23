@@ -1,1 +1,1 @@
-export * from "./create-next-bottom-tabs";
+export * from './create-next-bottom-tabs'

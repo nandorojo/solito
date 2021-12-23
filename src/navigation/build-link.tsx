@@ -8,17 +8,14 @@
 import {
   getPathFromState,
   NavigationHelpers,
-  //   NavigationHelpersContext,
   NavigationProp,
-  ParamListBase
+  ParamListBase,
 } from '@react-navigation/core'
-import * as React from 'react'
-
-import { LinkingOptions } from '@react-navigation/native'
-
+import type { LinkingOptions } from '@react-navigation/native'
 // this is scary...
-// but react navigation doesn't expose LinkingContext 😬
+// @ts-expect-error but react navigation doesn't expose LinkingContext 😬
 import LinkingContext from '@react-navigation/native/lib/module/LinkingContext'
+import * as React from 'react'
 
 type NavigationObject =
   | NavigationHelpers<ParamListBase>
@@ -43,9 +40,9 @@ const getRootStateForNavigate = (
       routes: [
         {
           ...parentState.routes[parentState.index],
-          state: state
-        }
-      ]
+          state,
+        },
+      ],
     })
   }
 
@@ -61,8 +58,11 @@ export function useBuildLink() {
   const linking = React.useContext(LinkingContext)
 
   const buildLink = React.useCallback(
-    (navigation: any, name: string, params?: object) => {
-      const { options } = (linking as { options?: LinkingOptions<{}> }) || {}
+    (navigation: NavigationObject, name: string, params?: object) => {
+      const { options } =
+        (linking as {
+          options?: LinkingOptions<ReactNavigation.RootParamList>
+        }) || {}
 
       //   if (options?.enabled === false) {
       //     return undefined
@@ -71,13 +71,13 @@ export function useBuildLink() {
       const state = navigation
         ? getRootStateForNavigate(navigation, {
             index: 0,
-            routes: [{ name, params }]
+            routes: [{ name, params }],
           })
         : // If we couldn't find a navigation object in context, we're at root
           // So we'll construct a basic state object to use
           {
             index: 0,
-            routes: [{ name, params }]
+            routes: [{ name, params }],
           }
 
       const path = options?.getPathFromState

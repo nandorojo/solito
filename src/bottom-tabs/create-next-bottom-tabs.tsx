@@ -1,23 +1,24 @@
 // https://reactnavigation.org/docs/custom-navigators/#type-checking-navigators
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {
+  BottomTabNavigationOptions,
+  BottomTabNavigationEventMap,
+  BottomTabNavigationConfig,
+} from '@react-navigation/bottom-tabs/lib/typescript/src/types'
 import {
   createNavigatorFactory,
   DefaultNavigatorOptions,
   ParamListBase,
   TabNavigationState,
   TabRouterOptions,
-} from "@react-navigation/native";
-import { useRouter } from "next/router";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  BottomTabNavigationOptions,
-  BottomTabNavigationEventMap,
-  BottomTabNavigationConfig,
-} from "@react-navigation/bottom-tabs/lib/typescript/src/types";
-import { useBuildLink } from "../navigation/build-link";
-import { Children, useCallback, cloneElement } from "react";
+} from '@react-navigation/native'
+import { useRouter } from 'next/router'
+import React, { Children, useCallback, cloneElement } from 'react'
 
-const { Navigator } = createBottomTabNavigator();
+import { useBuildLink } from '../navigation/build-link'
+
+const { Navigator } = createBottomTabNavigator()
 
 type Props = DefaultNavigatorOptions<
   ParamListBase,
@@ -27,9 +28,9 @@ type Props = DefaultNavigatorOptions<
 > &
   TabRouterOptions &
   BottomTabNavigationConfig & {
-    Component?: React.ComponentType<any>;
-    pageProps?: any;
-  };
+    Component?: React.ComponentType<any>
+    pageProps?: any
+  }
 
 function BottomTabNavigator({
   screenListeners,
@@ -38,15 +39,15 @@ function BottomTabNavigator({
   pageProps = {},
   ...props
 }: Props) {
-  const nextRouter = useRouter();
-  const buildLink = useBuildLink();
+  const nextRouter = useRouter()
+  const buildLink = useBuildLink()
 
   const nextComponentChild = useCallback(
     (props) => {
-      return Component && <Component {...pageProps} {...props} />;
+      return Component && <Component {...pageProps} {...props} />
     },
     [Component, pageProps]
-  );
+  )
 
   return (
     <Navigator
@@ -54,14 +55,14 @@ function BottomTabNavigator({
       screenListeners={({ navigation, route }) => ({
         ...screenListeners,
         tabPress(e) {
-          if (screenListeners && "tabPress" in screenListeners) {
-            screenListeners.tabPress?.(e);
+          if (screenListeners && 'tabPress' in screenListeners) {
+            screenListeners.tabPress?.(e)
           }
           if (!e.defaultPrevented && nextRouter) {
-            e.preventDefault();
-            const linkTo = buildLink(navigation, route.name);
+            e.preventDefault()
+            const linkTo = buildLink(navigation, route.name)
 
-            nextRouter.push(linkTo);
+            nextRouter.push(linkTo)
           }
         },
       })}
@@ -72,13 +73,13 @@ function BottomTabNavigator({
             component: undefined,
             getComponent: undefined,
             children: nextComponentChild,
-          });
+          })
         }
 
-        return child;
+        return child
       })}
     </Navigator>
-  );
+  )
 }
 
 export const createNextTabNavigator = createNavigatorFactory<
@@ -86,4 +87,4 @@ export const createNextTabNavigator = createNavigatorFactory<
   BottomTabNavigationOptions,
   BottomTabNavigationEventMap,
   typeof BottomTabNavigator
->(BottomTabNavigator);
+>(BottomTabNavigator)

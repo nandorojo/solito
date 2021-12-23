@@ -18,9 +18,33 @@
     "@types/react-native": "^0.66.9",
     "eslint-config-nando": "^1.1.0",
     "expo-module-scripts": "^2.0.0",
-    "gitmoji-cli": "^4.7.0",
-    "next": "^12.0.7",
-    "react": "^17.0.2"
+    "next": "^12.0.7"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nandorojo/solito/issues"
+  },
+  "homepage": "https://github.com/nandorojo/solito.git#readme",
+  "main": "build/index.js",
+  "react-native": "src/index.tsx",
+  "source": "src/index.tsx",
+  "types": "build/index.d.ts",
+  "files": [
+    "!**/__tests__",
+    "src",
+    "build",
+    "bottom-tabs",
+    "drawer",
+    "link",
+    "stack"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "email": "fernando@wearptos.com",
+    "name": "Fernando Rojo",
+    "url": "https://fernandotherojo.co"
+  }
 }

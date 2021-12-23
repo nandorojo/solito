@@ -1,1 +1,1 @@
-export * from "../build/bottom-tabs";
+export * from '../build/bottom-tabs'

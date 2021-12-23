@@ -1,6 +1,6 @@
-# solito
+# `solito`
 
-Put a description of your Unimodule here
+A library to help unify React Native with Next.js. Primarily focused on navigation. Built to turn a solo developer into a team that ships on 3 platforms.
 
 # API documentation
 
@@ -18,9 +18,13 @@ For bare React Native projects, you must ensure that you have [installed and con
 ### Add the package to your npm dependencies
 
 ```
-npm install solito
+yarn add solito
 ```
 
 # Contributing
+
+- Add gitmoji: `yarn global add gitmoji-cli` or `npm i -g gitmoji-cli`
+- Run `yarn`
+- Open the `example` app
 
 Contributions are very welcome! Please refer to guidelines described in the [contributing guide](https://github.com/expo/expo#contributing).
