@@ -36,7 +36,8 @@
     "bottom-tabs",
     "drawer",
     "link",
-    "stack"
+    "stack",
+    "native"
   ],
   "sideEffects": false,
   "publishConfig": {
