@@ -28,7 +28,7 @@ const parseNextPath = (from: Parameters<NextRouter['push']>[0]) => {
           path += `${key}=${query[key]}&`
         }
       }
-      if (path.endsWith('&')) {
+      if (path.endsWith('&') || path.endsWith('?')) {
         path = path.slice(0, -1)
       }
     }

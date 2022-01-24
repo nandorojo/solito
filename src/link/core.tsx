@@ -1,10 +1,10 @@
-import { useLinkProps } from '@react-navigation/native'
 import NextLink from 'next/link'
 import React from 'react'
 import type { ComponentProps, ComponentType } from 'react'
 import { Platform } from 'react-native'
 
 import { parseNextPath } from '../router/parse-next-path'
+import { useLinkProps } from './use-link-props'
 
 export type LinkCoreProps = {
   children: React.ReactNode
