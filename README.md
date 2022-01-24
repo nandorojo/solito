@@ -2,7 +2,7 @@
 
 A library dedicated to unifying React Native with Next.js, primarily focused on navigation.
 
-> This is still a bit experimental, I'd say.
+> This is still experimental.
 
 ## Docs & Examples
 
@@ -12,7 +12,7 @@ A library dedicated to unifying React Native with Next.js, primarily focused on 
 
 ## Installation
 
-> Coming soon 😈
+> Coming soon, probably 😈
 
 ```sh
 yarn add solito
