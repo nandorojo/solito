@@ -1,0 +1,101 @@
+---
+id: link
+title: Link
+sidebar_label: <Link />
+---
+
+```ts
+import { Link } from 'solito'
+```
+
+A drop-in replacement for [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link). It follows the exact same API.
+
+```jsx
+<Link href="/" />
+```
+
+## Configuration
+
+Before a `Link` can work on iOS and Android, you'll need to properly configure your `linking` config with React Navigation.
+
+See their docs:
+
+- [Configuring links](https://reactnavigation.org/docs/configuring-links/) for in-app routing
+- [Deep linking](https://reactnavigation.org/docs/deep-linking/) for handling inbound links into your app
+
+## Wrapper components
+
+You can easily create wrapper components for your links:
+
+```jsx
+export const ArtistLink = ({ slug }) => (
+  <Link href={`/artists/${slug}`} as={`/@${slug}`} shallow>
+    <View />
+  </Link>
+)
+```
+
+## Children recommendation
+
+You shouldn't render a `Pressable` or `Touchable` as a child of a `Link` component. Doing so can mess with the press events on Web and cause issues with `next/router`.
+
+```tsx
+// 🚨 this is bad, it uses Pressable
+<Link href="/">
+  <Pressable />
+</Link>
+```
+
+```tsx
+// ✅ this is good, it uses a View
+<Link href="/">
+  <View />
+</Link>
+```
+
+### Workarounds
+
+#### Disable the pressable
+
+Sometimes, this can be tough to get around. What if you want to wrap a `Button` with a Link?
+
+Techincally, if the child touchable is `disabled`, then it won't capture touch events, so that is fine.
+
+```tsx
+// ✅ this is okay, since it's disabled
+<Link href="/">
+  <Pressable disabled />
+</Link>
+```
+
+However, this might throw of your styling or interaction events. Chances are, you don't want to disable the button altogether. So what else can we do?
+
+#### Use Dripsy's `as` prop
+
+If you're using Dripsy, you can utilize the `as` prop and forward it down to your pressable:
+
+```tsx
+import { Pressable, View } from 'dripsy'
+import { Link } from 'solito'
+
+// your button component
+const Button = ({ as, props }) => <Pressable as={as} {...props} />
+
+export const ButtonLink = () => (
+  <Link href="/">
+    <Button as={View} />
+  </Link>
+)
+```
+
+#### Create a custom `Link` component
+
+If you're using something like `MotiPressable`, where none of the above solutions are viable, you can create a custom `Link` component.
+
+In order to preserve accessibility on Web for links, we'll need to utilize a few tricks.
+
+See the [custom link] guide.
+
+## Text Link
+
+If you need to render a text node in your link, reference the [`<TextLink />`](/usage/link-text) docs.

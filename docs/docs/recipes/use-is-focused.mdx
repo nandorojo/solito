@@ -1,0 +1,89 @@
+---
+title: useIsFocused
+sidebar_label: useIsFocused()
+---
+
+Since `useIsFocused()` only applicable on Native, you can replace it with a custom function on Web.
+
+## Create your exports
+
+**`hooks/use-is-focused.ts`**
+
+```ts
+export { useIsFocused } from '@react-navigation/native'
+```
+
+**`hooks/use-is-focused.web.ts`**
+
+```ts
+export function useIsFocused() {
+  return true
+}
+```
+
+On Web, screens are always focused when they're mounted.
+
+## Import your file
+
+```ts
+import { useIsFocused } from 'hooks/use-is-focused'
+```
+
+## Custom Web Logic
+
+In the above example, we always return `true` on Web.
+
+One exception might be if there is a shallow routed modal on top of a screen.
+
+For example, say that you have an `EditArtist` modal that shows when the URL contains a query param like `/@djkhaled?showsEditModal=true`.
+
+If you want to implement this logic, you could do it yourself on Web using a combination of React Context and checking query params with `useRouter` from `next/router`.
+
+If you stick to the pattern of always including the word `modal` in the URL, you can use the `useRouter` hook to check if the URL contains the query param:
+
+```ts
+import { useContext } from 'react'
+import { useRouter } from 'next/router'
+import { ModalScreenContext } from 'context/modal-screen' // implement this yourself
+
+export function useIsFocused() {
+  const { query } = useRouter()
+  const isModalScreen = useContext(ModalScreenContext)
+
+  if (!isModalScreen) {
+    const isThereAModalVisible =
+      query &&
+      Object.keys(query).some((key) => key.toLowerCase().includes('modal'))
+
+    return !isThereAModalVisible
+  }
+
+  return true
+}
+```
+
+For reference, your `context/modal-screen` could be as simple as this:
+
+```ts
+import { createContext } from 'react'
+
+export const ModalScreenContext = createContext(false)
+```
+
+Then, your actual Next.js page could look something like this:
+
+```tsx
+import { ModalScreenContext } from 'context/modal-screen'
+
+export default function ArtistPage({ router }) {
+  return (
+    <>
+      <ArtistScreen />
+
+      <ModalScreenContext.Provider value={true}>
+        {!!router?.query?.showsEditModal && <EditShowsModal />}
+      </ModalScreenContext.Provider>
+    </>
+  )
+}
+```

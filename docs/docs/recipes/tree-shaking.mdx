@@ -1,0 +1,38 @@
+---
+title: Tree Shaking
+---
+
+Every time you use React Navigation code, you can replace it with an empty function to use on Web.
+
+This will avoid importing unused code on Web, and prevent unnecessary errors from not having a parent context.
+
+In order to do so, we will re-export each module we use the `react-navigation` package, and give it a no-op on Web.
+
+## Create a platform-specific module
+
+Say you want to use `useScrollToTop()`. Create a file and re-export `useScrollToTop` from `react-navigation` for Native and give it a no-op on Web.
+
+#### `hooks/use-scroll-to-top.ts`
+
+```tsx
+export { useScrollToTop } from '@react-native/native'
+```
+
+Next, make the same file with a `.web.ts` extension:
+
+#### `hooks/use-scroll-to-top.web.ts`
+
+```tsx
+/**
+ * @deprecated you are importing from the wrong file.
+ */
+export function useScrollToTop() {
+  // no-op
+}
+```
+
+Next, replace your imports from `@react-native/native` with `hooks/use-scroll-to-top`:
+
+```tsx
+import { useScrollToTop } from 'hooks/use-scroll-to-top'
+```
