@@ -5,7 +5,7 @@ sidebar_label: <Link />
 ---
 
 ```ts
-import { Link } from 'solito'
+import { Link } from 'solito/link'
 ```
 
 A drop-in replacement for [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link). It follows the exact same API.
@@ -13,6 +13,22 @@ A drop-in replacement for [Next.js' `<Link />` component](https://nextjs.org/doc
 ```jsx
 <Link href="/" />
 ```
+
+## Props
+
+### `viewProps`
+
+Props used by the underlying `View`.
+
+```tsx
+<Link viewProps={{ style: { height: 100 } }} href="/">
+  <View />
+</Link>
+```
+
+### Next.js props
+
+It also supports the props from [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link), besides `passHref`.
 
 ## Configuration
 
