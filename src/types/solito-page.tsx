@@ -8,10 +8,20 @@ interface SolitoPageOptions extends SolitoCustomPageOptions {
   previousPagePath?: string | null
 }
 
+type NavigationOptions =
+  | SolitoPageOptions
+  | ((router?: AppProps['router']) => SolitoPageOptions)
+
 type SolitoPage<P = {}, IP = P> = NextPage<P, IP> & {
-  navigationOptions?:
-    | SolitoPageOptions
-    | ((router?: AppProps['router']) => SolitoPageOptions)
+  navigationOptions?: NavigationOptions
+}
+
+export type SolitoAppProps<P = {}> = AppProps<P> & {
+  navigationOptions?: NavigationOptions
+  getLayout?: (
+    page: React.ReactNode,
+    options?: NavigationOptions
+  ) => React.ReactNode
 }
 
 export { SolitoPage, SolitoPageOptions, SolitoCustomPageOptions }
