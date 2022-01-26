@@ -69,7 +69,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/nandorojo/moti',
+            href: 'https://github.com/nandorojo/solito',
             label: 'GitHub',
             position: 'right',
           },
