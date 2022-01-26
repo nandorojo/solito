@@ -43,6 +43,11 @@ const sidebars = {
       ],
       label: 'Recipes',
     },
+    {
+      type: 'category',
+      items: ['typescript/navigation-options', 'typescript/next-replacements'],
+      label: 'TypeScript',
+    },
     'resources',
     'community',
   ],
