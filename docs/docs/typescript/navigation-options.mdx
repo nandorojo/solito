@@ -1,0 +1,70 @@
+---
+title: Navigation Options
+---
+
+You may want to implement a consistent header on Web across pages. For this use case, check out the [custom layout](#) and [Web Header](#) tutorials.
+
+What those tutorials don't touch on is getting the types right.
+
+Solito's `SolitoPage` type comes with an optional `navigationOptions` property.
+
+```tsx
+const ArtistsPage: SolitoPage = () => {
+  return <></>
+}
+
+ArtistsPage.navigationOptions = (router) => {
+  return {
+    // you can set your own options here
+  }
+}
+```
+
+So, where do the types for `navigationOptions` come from?
+
+Rather than restrict you to some type we I came up with, I decided to let you set your own `navigationOptions` type.
+
+Simply add this inside of any typescript file:
+
+```tsx
+// src/types.ts
+
+type MyOptions = {
+  title: string
+}
+
+declare module 'solito' {
+  interface SolitoCustomNavigationOptions extends MyOptions {}
+}
+```
+
+And now, you will get autocomplete for `title` inside of any solito page's `navigationOptions`.
+
+## With React Navigation types
+
+If you plan on using React Navigation's `Header` inside of `_app.tsx`, then you could use the header's props as your options:
+
+```tsx
+import { Header } from '@react-navigation/elements'
+import type { SolitoAppProps } from 'solito'
+
+type HeaderProps = React.ComponentProps<typeof Header>
+
+declare module 'solito' {
+  interface SolitoCustomNavigationOptions extends HeaderProps {}
+}
+
+export default function App({ Component, pageProps, router }: SolitoAppProps) {
+  const navigationOptions =
+    typeof Component.navigationOptions === 'function'
+      ? Component.navigationOptions(router)
+      : Component.navigationOptions
+
+  return (
+    <>
+      <Header {...navigationOptions} />
+      <Component {...pageProps} />
+    </>
+  )
+}
+```

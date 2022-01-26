@@ -2,26 +2,28 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
-interface SolitoCustomPageOptions {}
+interface SolitoCustomNavigationOptions {}
 
-interface SolitoPageOptions extends SolitoCustomPageOptions {
+interface SolitoNavigationOptions extends SolitoCustomNavigationOptions {
   previousPagePath?: string | null
 }
 
 type NavigationOptions =
-  | SolitoPageOptions
-  | ((router?: AppProps['router']) => SolitoPageOptions)
+  | SolitoNavigationOptions
+  | ((router?: AppProps['router']) => SolitoNavigationOptions)
 
 type SolitoPage<P = {}, IP = P> = NextPage<P, IP> & {
   navigationOptions?: NavigationOptions
 }
 
-export type SolitoAppProps<P = {}> = AppProps<P> & {
-  navigationOptions?: NavigationOptions
+export type SolitoAppProps<P = {}> = Omit<AppProps<P>, 'Component'> & {
   getLayout?: (
     page: React.ReactNode,
     options?: NavigationOptions
   ) => React.ReactNode
+  Component: AppProps<P>['Component'] & {
+    navigationOptions?: NavigationOptions
+  }
 }
 
-export { SolitoPage, SolitoPageOptions, SolitoCustomPageOptions }
+export { SolitoPage, SolitoNavigationOptions, SolitoCustomNavigationOptions }
