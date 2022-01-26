@@ -14,6 +14,10 @@ type NavigationOptions =
 
 type SolitoPage<P = {}, IP = P> = NextPage<P, IP> & {
   navigationOptions?: NavigationOptions
+  getLayout?: (
+    page: React.ReactNode,
+    options?: NavigationOptions
+  ) => React.ReactNode
 }
 
 export type SolitoAppProps<P = {}> = Omit<AppProps<P>, 'Component'> & {
