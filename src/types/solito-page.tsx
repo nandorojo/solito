@@ -17,12 +17,12 @@ type SolitoPage<P = {}, IP = P> = NextPage<P, IP> & {
 }
 
 export type SolitoAppProps<P = {}> = Omit<AppProps<P>, 'Component'> & {
-  getLayout?: (
-    page: React.ReactNode,
-    options?: NavigationOptions
-  ) => React.ReactNode
   Component: AppProps<P>['Component'] & {
     navigationOptions?: NavigationOptions
+    getLayout?: (
+      page: React.ReactNode,
+      options?: NavigationOptions
+    ) => React.ReactNode
   }
 }
 
