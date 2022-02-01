@@ -3,3 +3,160 @@ id: use-router
 title: useRouter
 sidebar_label: useRouter()
 ---
+
+```ts
+import { useRouter } from 'solito/router'
+```
+
+This hook lets you navigate from one screen to another across platforms, using nothing but URLs and Next.js `Url` objects.
+
+## Usage
+
+```tsx
+const { push, replace, back, parseNextPath } = useRouter()
+
+const onPress = () => {
+  push('/')
+}
+const onGoBack = () => {
+  back()
+}
+```
+
+## Returns
+
+### `push`
+
+Follows the exact same API as `push` returned by [Next.js `useRouter` hook](https://nextjs.org/docs/api-reference/next/router#router-object).
+
+#### Basic example
+
+```ts
+const { push } = useRouter()
+
+const onOpenArtist = () => {
+  push('/artists/drake')
+
+  // or, you can do:
+  push({
+    pathname: '/artists/[slug]',
+    query: {
+      slug: 'drake',
+    },
+  })
+}
+```
+
+#### Passing query parameters
+
+Use the `query` object to pass any query parameters to the next screen.
+
+```tsx
+const { push } = useRouter()
+
+const onOpenArtist = () => {
+  push({
+    pathname: '/artists/drake',
+    query: {
+      initialOfferAmount: 500000,
+    },
+  })
+}
+```
+
+`solito` will automatically stringify this into a URL for you on Native, making it easy for React Navigation.
+
+### `replace`
+
+Just like `push()`, this follows the exact same API as Next.js `useRouter().replace`.
+
+It takes the exact same arguments as [`push`](#push).
+
+```tsx
+const { replace } = useRouter()
+
+const onOpenArtist = () => {
+  replace({
+    pathname: '/artists/drake',
+    query: {
+      initialOfferAmount: 500000,
+    },
+  })
+}
+```
+
+#### Limitation
+
+On iOS and Android, this function doesn't call actually `replace()`. Instead, it calls [`linkTo` from React Navigaton](https://reactnavigation.org/docs/use-link-to/).
+
+This is because React Navigation doesn't currently offer an API to `replace` a current route with a URL.
+
+If this is a big need for you, please open an issue.
+
+### `parseNextPath`
+
+This function is used under the hood by `push` and `replace` to turn a Next.js Url object (or string) into a valid URL string. It's exposed in case you're doing something special.
+
+It takes a Next.js `Url` object (or a string) and returns a stringified URL.
+
+It's useful if you want to provide stable keys to lists of URLs, for instance.
+
+#### API
+
+```ts
+parseNextPath(url: string | Url): string
+```
+
+#### Arguments
+
+It has a single argument, which is either a string or a `Url` object. A `Url` object is the same as the first argument for [`push`](#push).
+
+#### Returns
+
+`string`
+
+#### Usage
+
+Imagine this example:
+
+```ts
+const href = parseNextPath({
+  pathname: '/artists/[slug]',
+  query: {
+    slug: 'drake',
+  },
+})
+```
+
+Here, `href` will become `/artists/drake`.
+
+If you add other query parameters, they will be added to the end of the URL:
+
+```ts
+const href = parseNextPath({
+  pathname: '/artists/[slug]',
+  query: {
+    slug: 'drake',
+    initialOfferAmount: 500_000,
+  },
+})
+```
+
+In this case, `parseNextPath` will return `/artists/drake?initialOfferAmount=500000`.
+
+#### Basic example
+
+```tsx
+const { parseNextPath } = useRouter()
+
+return artists.map((artist) => {
+  const href = parseNextPath({
+    pathname: '/artists/[slug]',
+    query: {
+      slug: artist.slug,
+    },
+  })
+
+  return <Artist href={href} />
+})
+```
