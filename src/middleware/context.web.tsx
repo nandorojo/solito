@@ -10,9 +10,4 @@ export const MiddlewareContext = createContext<MiddlewareContextType>({
       )
     }
   },
-  useLinkProps() {
-    throw new Error(
-      '[solito] useLinkProps should not be called on Web. Is next/router defined?'
-    )
-  },
 })
