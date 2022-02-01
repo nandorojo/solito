@@ -30,7 +30,7 @@ function LinkCore({
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const linkProps = useLinkProps({
-    to: parseNextPath(href),
+    to: parseNextPath(as || href),
   })
   return (
     <Component {...componentProps} {...linkProps}>
