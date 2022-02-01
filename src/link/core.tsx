@@ -3,8 +3,8 @@ import React from 'react'
 import type { ComponentProps, ComponentType } from 'react'
 import { Platform } from 'react-native'
 
-import { parseNextPath } from '../router/parse-next-path'
-import { useLinkProps } from './use-link-props'
+import { parseNextPath } from '../router'
+import { useLinkTo } from '../router/use-link-to'
 
 export type LinkCoreProps = {
   children: React.ReactNode
@@ -29,11 +29,18 @@ function LinkCore({
     )
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const linkProps = useLinkProps({
-    to: parseNextPath(as || href),
-  })
+  const linkTo = useLinkTo()
   return (
-    <Component {...componentProps} {...linkProps}>
+    <Component
+      accessibilityRole="link"
+      {...componentProps}
+      onPress={(e?: any) => {
+        componentProps?.onPress?.(e)
+        if (!e?.defaultPrevented) {
+          linkTo(parseNextPath(as || href))
+        }
+      }}
+    >
       {children}
     </Component>
   )
