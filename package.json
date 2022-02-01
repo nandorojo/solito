@@ -26,8 +26,6 @@
   },
   "homepage": "https://github.com/nandorojo/solito.git#readme",
   "main": "build/index.js",
-  "react-native": "src/index.ts",
-  "source": "src/index.ts",
   "types": "build/index.d.ts",
   "files": [
     "!**/__tests__",
