@@ -1,8 +1,9 @@
-import { useLinkTo, NavigationContext } from '@react-navigation/native'
 import { useRouter as useNextRouter, NextRouter } from 'next/router'
-import { useCallback, useContext } from 'react'
+import { useCallback } from 'react'
 
 import { parseNextPath } from './parse-next-path'
+import { useLinkTo } from './use-link-to'
+import { useNavigation } from './use-navigation'
 
 // copied from next/router to appease typescript error
 // if we don't manually write this here, then we get some ReturnType error on build
@@ -16,7 +17,7 @@ interface TransitionOptions {
 export function useRouter() {
   const linkTo = useLinkTo()
   const router = useNextRouter()
-  const navigation = useContext(NavigationContext)
+  const navigation = useNavigation()
 
   return {
     push: useCallback(
@@ -28,7 +29,6 @@ export function useRouter() {
         if (router) {
           router.push(url, as, options)
         } else {
-          // TODO should as be preferred over url here?
           const to = parseNextPath(as || url)
 
           if (to) {
@@ -45,7 +45,6 @@ export function useRouter() {
         options?: TransitionOptions
       ) => {
         if (router) {
-          // TODO should as be preferred over url here?
           router.replace(url, as, options)
         } else {
           const to = parseNextPath(as || url)
