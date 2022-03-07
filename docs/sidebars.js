@@ -31,7 +31,12 @@ const sidebars = {
     // },
     {
       type: 'category',
-      items: ['usage/link', 'usage/text-link', 'usage/use-router'],
+      items: [
+        'usage/link',
+        'usage/text-link',
+        'usage/use-router',
+        'usage/params',
+      ],
       label: 'API',
     },
     {
