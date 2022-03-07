@@ -1,0 +1,205 @@
+---
+id: params
+title: Screen Parameters
+sidebar_label: Screen Parameters
+---
+
+```tsx
+import { createParam } from 'solito'
+
+const { useParam } = createParam()
+```
+
+A hook that lets you read screen parameters on Next.js and Native. It also lets you update the parameter, using query parameters on Web, and React state on iOS/Android.
+
+## Usage
+
+```tsx
+import { createParam } from 'solito'
+
+type Query = { username: string }
+
+const { useParam } = createParam<Query>()
+
+export const UserName = () => {
+  const [username, setUsername] = useParam('username')
+
+  return <Text>{username}</Text>
+}
+```
+
+You'll `useParam` this instead of `useRoute` from React Navigation, and instead of `useRoute().query` from Next.js.
+
+## Expo + Next.js Query Params State
+
+A typical use-case on web for maintaining React State is your URL's query parameters. It lets users refresh pages & share links without losing their spot in your app.
+
+URL-as-state is especially useful on Next.js, since `next/router` will re-render your page with shallow navigation.
+
+This gist lets you leverage the power of URL-as-state, while providing a fallback to React state for usage in React Native apps.
+
+It's essentially a replacement for `useState`.
+
+First, create the schema for your query parameters:
+
+```ts
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+```
+
+> The values of `Query` must be primitives, such as strings/booleans/numbers, since you can't use nested fields in a URL with next router.
+
+Next, we're going to generate our `useParam` function:
+
+```ts
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+
+const { useParam } = createParams<Query>()
+```
+
+This usage of a factory is similar to `react-navigation`'s `createStackNavigator`. It allows us to have great TypeScript safety.
+
+## Usage
+
+Now that we've created our `useParam` function, call it in your component:
+
+```ts
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+
+const { useParam } = createParams<Query>()
+
+export function App() {
+  const [bookingId, setBookingId] = useParam('bookingId')
+}
+```
+
+Whenever you call `setBookingId`, it will update the query parameter in the URL. To remove the query parameter, call `setBookingId(null)`.
+
+On native, this will function as normal React State.
+
+### Initial value
+
+With React state, we pass an initial value like this:
+
+```ts
+const [selected, setSelected] = useState(true)
+```
+
+With `useParam` we achieve the same thing with the `initial` property:
+
+```ts
+const [template, setTemplate] = useParam('template', {
+  initial: 'story',
+})
+```
+
+However, on web, this might not aways be the initial value. This is because the initial value itself could be set from the URL on the first navigation.
+
+`initial` gets used on web when these two cases are satisfied:
+
+1. the query param (in this case, `template`) is `undefined`
+2. you haven't called the set state function yet (in this case, `setTemplate`)
+
+There is might appear to be an edge case here. What happens if you call `setTemplate(null)`? This will remove the query parameter from the URL, so we're left with an empty state. But it also won't fall back to the `initial` field, since this wouldn't match the React state behavior.
+
+Can we find a way to provide a fallback value on web in this case, to make sure that our URL isn't the only source of truth?
+
+The solution lies with the `parse` field.
+
+### Parsing values
+
+One issue with having state in URLs is, users have an API to inject whatever state they want into your app.
+
+This could break in many ways.
+
+Take our `Query` type we wrote earlier:
+
+```ts
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+```
+
+Our `template` is a **required** field that accepts `square` or `story`.
+
+A naive approach would use it like this:
+
+```ts
+const [template, setTemplate] = useParam('template', {
+  initial: 'story',
+})
+```
+
+There are two problems here: what if the URL doesn't have `template`? Or worse, what if it _does_ have `template`, but it doesn't match one of the types you specified?
+
+Enter `parse`:
+
+```ts
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+
+const { useParam } = createParams<Query>()
+
+const [template, setTemplate] = useParam('template', {
+  initial: 'story',
+  parse: (templateFromUrl) => {
+    if (templateFromUrl === 'story' || templateFromUrl === 'square') {
+      return templateFromUrl
+    }
+    return 'story'
+  },
+})
+```
+
+`parse` is the final piece of the puzzle. It lets you ensure that any state you're using from your URL is "safe".
+
+It's also strictly typesafe, which is an added bonus.
+
+The argument it receives will always be a string
+
+`parse` gets run when this case is satisfied:
+
+1. the query param (in this case, `template`) is not `undefined`
+
+## Types
+
+This hook has great strict types.
+
+The state value it returns will always be `State | undefined`, unless you pass _both_ an `initial` value and `parse`. That way, we know that on both web and native, we're always using values which match our state.
+
+## Stringify
+
+It's possible you'll want to customize the way that the query param is stored in the URL.
+
+If so, you can use the `stringify` property:
+
+```ts
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+
+const { useParam } = createParams<Query>()
+
+const [bookingId, setBookingId] = useParam('bookingId', {
+  stringify: (bookingId) => {
+    // if we call setBookingId('123')
+    // URL will be ?bookingId=artist-123
+    return `artist-${bookingId}`
+  },
+  parse: (bookingIdFromUrl) => {
+    return bookingIdFromUrl.replate('artist-', '')
+  },
+})
+```
