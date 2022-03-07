@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/s.png',
   organizationName: 'nandorojo', // Usually your GitHub org/user name.
   projectName: 'solito', // Usually your repo name.
   scripts: [
@@ -54,7 +54,7 @@ const config = {
         title: 'Solito',
         logo: {
           alt: 'Solito Logo',
-          src: 'img/logo.svg',
+          src: 'img/solito.svg',
         },
         items: [
           {
