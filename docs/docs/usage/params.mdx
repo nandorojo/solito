@@ -33,6 +33,23 @@ Learn how to use `useParam` from [Fernando Rojo](https://twitter.com/fernandothe
 ```tsx
 import { createParam } from 'solito'
 
+// first, generate the hook
+const { useParam } = createParam()
+
+export const UserName = () => {
+  const [username, setUsername] = useParam('username')
+
+  return <Text>{username}</Text>
+}
+```
+
+You'll `useParam` this instead of `useRoute` from React Navigation, and instead of `useRoute().query` from Next.js.
+
+## TypeScript
+
+```tsx
+import { createParam } from 'solito'
+
 type Query = { username: string }
 
 const { useParam } = createParam<Query>()
@@ -44,7 +61,65 @@ export const UserName = () => {
 }
 ```
 
-You'll `useParam` this instead of `useRoute` from React Navigation, and instead of `useRoute().query` from Next.js.
+## Create custom hooks
+
+Rather than writing `useParam` directly into your components, you should wrap them into your own hooks.
+
+For example, create your own `useUsername` hook:
+
+```tsx
+import { createParam } from 'solito'
+
+type Query = { username: string }
+
+const { useParam } = createParam<Query>()
+
+export const useUsername = () => {
+  const [username, setUsername] = useParam('username')
+
+  return {
+    username,
+    setUsername,
+  }
+}
+```
+
+And if you want to get all the parameters for a given screen, you could do this:
+
+```tsx
+import { createParam } from 'solito'
+
+type UserScreenParams = { username: string; referredBy?: string }
+
+const { useParam } = createParam<UserScreenParams>()
+
+export const useUserScreenParams = () => {
+  const [username] = useParam('username')
+  const [referredBy] = useParam('referredBy')
+
+  return {
+    username,
+    referredBy,
+  }
+}
+```
+
+Then, use the hook in your screen:
+
+```tsx
+export const User = () => {
+  const { username, referredBy } = useUserScreenParams()
+
+  // You can fetch the user here
+  const user = useUser({ username })
+
+  return (
+    <View>
+      <Text>{username}</Text>
+    </View>
+  )
+}
+```
 
 ## Compare to React Navigation Usage
 
