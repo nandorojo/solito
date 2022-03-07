@@ -321,13 +321,13 @@ The argument it receives will always be a string
 
 1. the query param (in this case, `template`) is not `undefined`
 
-## Types
+### Strict Types
 
 This hook has great strict types.
 
 The state value it returns will always be `State | undefined`, unless you pass _both_ an `initial` value and `parse`. That way, we know that on both web and native, we're always using values which match our state.
 
-## Stringify
+### Stringify
 
 It's possible you'll want to customize the way that the query param is stored in the URL.
 
