@@ -10,9 +10,9 @@ There are many discussions and threads I've written about how I got to this libr
 
 ## Docs & Examples
 
-- 📚 [Documentation (coming soon)](#)
-- 🦄 [Installation](#Installation)
-- 🐬 [Examples](#)
+- 📚 [Documentation](https://solito.dev)
+- 🦄 [Installation](https://solito.dev/install)
+- 🐬 [Examples (coming soon)](#)
 
 ## Installation
 
