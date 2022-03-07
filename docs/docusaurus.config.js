@@ -50,19 +50,24 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      ogImage: 'img/og.png',
+      colorMode: {
+        defaultMode: 'dark',
+        respectPrefersColorScheme: false,
+      },
       navbar: {
-        title: 'Solito',
+        title: '',
         logo: {
           alt: 'Solito Logo',
           src: 'img/solito.svg',
         },
         items: [
-          {
-            to: '/',
-            activeBasePath: '/',
-            label: 'Docs',
-            position: 'left',
-          },
+          // {
+          //   to: '/',
+          //   activeBasePath: '/',
+          //   label: 'Docs',
+          //   position: 'left',
+          // },
           {
             href: 'https://twitter.com/fernandotherojo',
             label: 'Twitter',
