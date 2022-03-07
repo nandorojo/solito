@@ -10,7 +10,21 @@ import { createParam } from 'solito'
 const { useParam } = createParam()
 ```
 
-A hook that lets you read screen parameters on Next.js and Native. It also lets you update the parameter, using query parameters on Web, and React state on iOS/Android.
+`useParam` is a hook that lets you read screen parameters on from both Next.js and React Navigation. It also lets you update the parameter, using query parameters on Web, and React state on iOS/Android.
+
+## Video
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/0lnbdRweJtA?start=1156"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+Learn how to use `useParam` from [Fernando Rojo](https://twitter.com/fernandotherojo), creator of Solito, in his Next.js talk.
 
 ## Usage
 
@@ -29,6 +43,64 @@ export const UserName = () => {
 ```
 
 You'll `useParam` this instead of `useRoute` from React Navigation, and instead of `useRoute().query` from Next.js.
+
+## Compare to React Navigation Usage
+
+Let's compare what this hook does compared to React Navigation, to help you easily migrate.
+
+### Before, with React Navigation
+
+```ts
+import { useRoute } from '@react-navigation'
+
+const useUsername = () => {
+  const route = useRoute()
+  const username = route.params.username
+  return username
+}
+```
+
+### After, with Solito
+
+```tsx
+import { createParam } from 'solito'
+
+const { useParam } = createParam()
+
+export const useUsername = () => {
+  const [username] = useParam('username')
+
+  return username
+}
+```
+
+## Compare to Next.js Usage
+
+### Before, with Next.js
+
+```ts
+import { useRouter } from 'next/router'
+
+const useUsername = () => {
+  const router = useRouter()
+  const username = router?.query.username
+  return username
+}
+```
+
+### After, with Solito
+
+```tsx
+import { createParam } from 'solito'
+
+const { useParam } = createParam()
+
+export const useUsername = () => {
+  const [username] = useParam('username')
+
+  return username
+}
+```
 
 ## Expo + Next.js Query Params State
 
