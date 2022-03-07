@@ -157,6 +157,6 @@ return artists.map((artist) => {
     },
   })
 
-  return <Artist href={href} />
+  return <Artist href={href} key={artist.slug} />
 })
 ```
