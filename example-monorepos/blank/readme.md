@@ -69,4 +69,5 @@ Follow Fernando Rojo on Twitter: [@FernandoTheRojo](https://twitter.com/fernando
 
 See my talk about this topic at Next.js Conf 2021:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0lnbdRweJtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<a href="https://www.youtube.com/watch?v=0lnbdRweJtA"><img width="1332" alt="image" src="https://user-images.githubusercontent.com/13172299/157299915-b633e083-f271-48c6-a262-7b7eef765be5.png">
+</a>
