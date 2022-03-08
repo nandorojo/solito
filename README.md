@@ -2,9 +2,11 @@
 
 A library dedicated to unifying React Native with Next.js, primarily focused on navigation.
 
-Solito is a replacement for my popular `expo-next-react-navigation` library. Consider it the next-generation version. You can still use both in an app. But for all future use cases, I recommend solito over `expo-next-react-navigation`.
+```sh
+yarn add solito
+```
 
-There are many discussions and threads I've written about how I got to this library.
+Solito is a replacement for my popular `expo-next-react-navigation` library. Consider this the next-generation version, with a brand new API and approach.
 
 ## Docs & Examples
 
@@ -12,19 +14,9 @@ There are many discussions and threads I've written about how I got to this libr
 - 🦄 [Installation](https://solito.dev/install)
 - 🐬 [Examples](https://github.com/nandorojo/solito/tree/master/example-monorepos/blank)
 
-## Installation
-
-```sh
-yarn add solito
-```
-
 ## Why
 
 Watch Fernando Rojo's [talk from Next.js Conf 2021](https://www.youtube.com/watch?v=0lnbdRweJtA) to learn more about using React Native with Next.js.
-
-## But I want to try it now...
-
-Feel free. I'm doing that myself. 😎 Just know that it's sTiLl iN aLpHA.
 
 ## Contributing
 
