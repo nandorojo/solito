@@ -133,7 +133,7 @@ export function createParam<
     ParsedType
   > {
     const {
-      parse,
+      parse = (value?: string | string[]) => value,
       initial,
       stringify = (value: ParsedType) => `${value}`,
       paramsToClearOnSetState,
@@ -194,10 +194,8 @@ export function createParam<
       let state: ParsedType
       if (webParam === undefined && !hasSetState.current) {
         state = initialValue.current as any
-      } else if (stableParse) {
-        state = stableParse?.(webParam)
       } else {
-        state = webParam as any
+        state = stableParse(webParam) as ParsedType
       }
       return state
     }, [stableParse, webParam])
