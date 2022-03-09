@@ -1,7 +1,15 @@
+const path = require('path')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   webpack5: true,
+  webpack(config) {
+    // alias "solito" to the root of this monorepo's src folder
+    // config.resolve.alias['solito'] = path.join(__dirname, '../../../../src')
+
+    return config
+  },
 }
 
 const { withExpo } = require('@expo/next-adapter')
