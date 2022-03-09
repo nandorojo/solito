@@ -40,6 +40,7 @@ const sidebars = {
         'usage/use-link',
       ],
       label: 'API',
+      collapsed: false,
     },
     {
       type: 'category',
