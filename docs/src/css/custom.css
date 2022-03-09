@@ -29,6 +29,7 @@
   --ifm-navbar-background-color: var(--ifm-background-color);
 
   --ifm-navbar-shadow: 0 0 0 1px var(--ifm-border-color);
+  --ifm-container-width-xl: 1140px;
   /* background-color */
 
   /* --ifm-color-primary: #ff0059;
@@ -76,7 +77,8 @@ h4,
 h5,
 h6,
 p,
-a {
+a,
+li {
   font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
