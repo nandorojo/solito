@@ -26,3 +26,10 @@
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+[data-theme='light'] .shiki.min-dark {
+  display: none;
+}
+
+[data-theme='dark'] .shiki.min-light {
+  display: none;
+}

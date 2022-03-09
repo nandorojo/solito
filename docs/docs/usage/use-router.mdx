@@ -4,7 +4,7 @@ title: useRouter
 sidebar_label: useRouter()
 ---
 
-```ts
+```ts twoslash import
 import { useRouter } from 'solito/router'
 ```
 
@@ -12,7 +12,10 @@ This hook lets you navigate from one screen to another across platforms, using n
 
 ## Usage
 
-```tsx
+```tsx twoslash main
+import { useRouter } from 'solito/router'
+// ---cut---
+
 const { push, replace, back, parseNextPath } = useRouter()
 
 const onPress = () => {
@@ -31,7 +34,10 @@ Follows the exact same API as `push` returned by [Next.js `useRouter` hook](http
 
 #### Basic example
 
-```ts
+```tsx twoslash
+import { useRouter } from 'solito/router'
+// ---cut---
+
 const { push } = useRouter()
 
 const onOpenArtist = () => {
@@ -51,7 +57,10 @@ const onOpenArtist = () => {
 
 Use the `query` object to pass any query parameters to the next screen.
 
-```tsx
+```tsx twoslash
+import { useRouter } from 'solito/router'
+// ---cut---
+
 const { push } = useRouter()
 
 const onOpenArtist = () => {
@@ -72,7 +81,10 @@ Just like `push()`, this follows the exact same API as Next.js `useRouter().repl
 
 It takes the exact same arguments as [`push`](#push).
 
-```tsx
+```tsx twoslash
+import { useRouter } from 'solito/router'
+// ---cut---
+
 const { replace } = useRouter()
 
 const onOpenArtist = () => {
@@ -107,6 +119,19 @@ It's useful if you want to provide stable keys to lists of URLs, for instance.
 parseNextPath(url: string | Url): string
 ```
 
+```ts twoslash
+import { useRouter } from 'solito/router'
+import type Router from 'next/router'
+
+type Url = Parameters<typeof Router.push>[0]
+const { parseNextPath } = useRouter()
+// ---cut---
+
+const path = parseNextPath({
+  pathname: '/artists',
+})
+```
+
 #### Arguments
 
 It has a single argument, which is either a string or a `Url` object. A `Url` object is the same as the first argument for [`push`](#push).
@@ -119,7 +144,12 @@ It has a single argument, which is either a string or a `Url` object. A `Url` ob
 
 Imagine this example:
 
-```ts
+```ts twoslash
+import { useRouter } from 'solito/router'
+// ---cut---
+
+const { parseNextPath } = useRouter()
+
 const href = parseNextPath({
   pathname: '/artists/[slug]',
   query: {
@@ -132,7 +162,12 @@ Here, `href` will become `/artists/drake`.
 
 If you add other query parameters, they will be added to the end of the URL:
 
-```ts
+```ts twoslash
+import { useRouter } from 'solito/router'
+// ---cut---
+
+const { parseNextPath } = useRouter()
+
 const href = parseNextPath({
   pathname: '/artists/[slug]',
   query: {
@@ -142,14 +177,20 @@ const href = parseNextPath({
 })
 ```
 
-In this case, `parseNextPath` will return `/artists/drake?initialOfferAmount=500000`.
+In this case, `href` is `/artists/drake?initialOfferAmount=500000`.
 
 #### Basic example
 
-```tsx
+```tsx twoslash
+import { useRouter } from 'solito/router'
+const artists = [{ slug: '' }]
+
+const Artist = ({ href }: { href: string }) => <></>
+// ---cut---
+
 const { parseNextPath } = useRouter()
 
-return artists.map((artist) => {
+const list = artists.map((artist) => {
   const href = parseNextPath({
     pathname: '/artists/[slug]',
     query: {

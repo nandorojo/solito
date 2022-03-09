@@ -4,7 +4,7 @@ title: Screen Parameters
 sidebar_label: useParam()
 ---
 
-```tsx
+```tsx twoslash
 import { createParam } from 'solito'
 
 const { useParam } = createParam()
@@ -32,8 +32,9 @@ Learn how to use `useParam` from [Fernando Rojo](https://twitter.com/fernandothe
 
 ## Quick look
 
-```tsx
+```tsx twoslash
 import { createParam } from 'solito'
+import { Text } from 'react-native'
 
 // first, generate the hook
 const { useParam } = createParam()
@@ -49,8 +50,10 @@ You'll `useParam` this instead of `useRoute().params` from React Navigation, and
 
 ## TypeScript
 
-```tsx
+```tsx twoslash
 import { createParam } from 'solito'
+import { Text } from 'react-native'
+// ---cut---
 
 type Query = { username: string }
 
@@ -69,7 +72,7 @@ Rather than writing `useParam` directly into your components, you should wrap th
 
 For example, create your own `useUsername` hook:
 
-```tsx
+```tsx twoslash
 import { createParam } from 'solito'
 
 type Query = { username: string }
@@ -88,7 +91,7 @@ export const useUsername = () => {
 
 And if you want to get all the parameters for a given screen, you could do this:
 
-```tsx
+```tsx twoslash
 import { createParam } from 'solito'
 
 type UserScreenParams = { username: string; referredBy?: string }
@@ -129,19 +132,19 @@ Let's compare what this hook does compared to React Navigation, to help you easi
 
 ### Before, with React Navigation
 
-```ts
-import { useRoute } from '@react-navigation'
+```js twoslash
+import { useRoute } from '@react-navigation/native'
 
 const useUsername = () => {
   const route = useRoute()
-  const username = route.params.username
+  const username = route.params?.username
   return username
 }
 ```
 
 ### After, with Solito
 
-```tsx
+```tsx twoslash
 import { createParam } from 'solito'
 
 const { useParam } = createParam()
@@ -157,7 +160,7 @@ export const useUsername = () => {
 
 ### Before, with Next.js
 
-```ts
+```ts twoslash
 import { useRouter } from 'next/router'
 
 const useUsername = () => {
@@ -169,7 +172,7 @@ const useUsername = () => {
 
 ### After, with Solito
 
-```tsx
+```tsx twoslash
 import { createParam } from 'solito'
 
 const { useParam } = createParam()
@@ -193,7 +196,7 @@ It's essentially a replacement for `useState`.
 
 First, create the schema for your query parameters:
 
-```ts
+```ts twoslash
 type Query = {
   bookingId: string
   template: 'story' | 'square'
@@ -204,13 +207,15 @@ type Query = {
 
 Next, we're going to generate our `useParam` function:
 
-```ts
+```ts twoslash
+import { createParam } from 'solito'
+
 type Query = {
   bookingId: string
   template: 'story' | 'square'
 }
 
-const { useParam } = createParams<Query>()
+const { useParam } = createParam<Query>()
 ```
 
 This usage of a factory is similar to `react-navigation`'s `createStackNavigator`. It allows us to have great TypeScript safety.
@@ -219,13 +224,16 @@ This usage of a factory is similar to `react-navigation`'s `createStackNavigator
 
 Now that we've created our `useParam` function, call it in your component:
 
-```ts
+```ts twoslash
+import { createParam } from 'solito'
+// ---cut---
+
 type Query = {
   bookingId: string
   template: 'story' | 'square'
 }
 
-const { useParam } = createParams<Query>()
+const { useParam } = createParam<Query>()
 
 export function App() {
   const [bookingId, setBookingId] = useParam('bookingId')
@@ -240,13 +248,26 @@ On native, this will function as normal React State.
 
 With React state, we pass an initial value like this:
 
-```ts
+```ts twoslash
+import { useState } from 'react'
+// ---cut---
+
 const [selected, setSelected] = useState(true)
 ```
 
 With `useParam` we achieve the same thing with the `initial` property:
 
-```ts
+```ts twoslash
+import { createParam } from 'solito'
+
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+
+const { useParam } = createParam<Query>()
+// ---cut---
+
 const [template, setTemplate] = useParam('template', {
   initial: 'story',
 })
@@ -273,7 +294,7 @@ This could break in many ways.
 
 Take our `Query` type we wrote earlier:
 
-```ts
+```ts twoslash
 type Query = {
   bookingId: string
   template: 'story' | 'square'
@@ -284,7 +305,17 @@ Our `template` is a **required** field that accepts `square` or `story`.
 
 A naive approach would use it like this:
 
-```ts
+```ts twoslash
+import { createParam } from 'solito'
+
+type Query = {
+  bookingId: string
+  template: 'story' | 'square'
+}
+
+const { useParam } = createParam<Query>()
+// ---cut---
+
 const [template, setTemplate] = useParam('template', {
   initial: 'story',
 })
@@ -294,13 +325,16 @@ There are two problems here: what if the URL doesn't have `template`? Or worse, 
 
 Enter `parse`:
 
-```ts
+```ts twoslash
+import { createParam } from 'solito'
+// ---cut---
+
 type Query = {
   bookingId: string
   template: 'story' | 'square'
 }
 
-const { useParam } = createParams<Query>()
+const { useParam } = createParam<Query>()
 
 const [template, setTemplate] = useParam('template', {
   initial: 'story',
@@ -341,7 +375,7 @@ type Query = {
   template: 'story' | 'square'
 }
 
-const { useParam } = createParams<Query>()
+const { useParam } = createParam<Query>()
 
 const [bookingId, setBookingId] = useParam('bookingId', {
   stringify: (bookingId) => {
@@ -350,7 +384,12 @@ const [bookingId, setBookingId] = useParam('bookingId', {
     return `artist-${bookingId}`
   },
   parse: (bookingIdFromUrl) => {
-    return bookingIdFromUrl.replate('artist-', '')
+    // remember that URL params can be arrays!
+    if (Array.isArray(bookingIdFromUrl)) {
+      return bookingIdFromUrl[0]?.replace('artist-', '')
+    }
+    return bookingIdFromUrl?.replace('artist-', '')
   },
+  initial: '',
 })
 ```

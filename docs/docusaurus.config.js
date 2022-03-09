@@ -25,25 +25,26 @@ const config = {
   presets: [
     [
       'classic',
+      // '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           routeBasePath: '/', // disable landing page
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/nandorojo/solito/tree/main/docs',
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   // Please change this to your repo.
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        // },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
+    ],
+
+    [
+      'docusaurus-preset-shiki-twoslash',
+      {
+        themes: ['min-dark', 'min-light'],
+      },
     ],
   ],
 

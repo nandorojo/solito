@@ -6,7 +6,9 @@ Imagine you want users to enter the URL `/@drake`, and for it to redirect to the
 
 Next.js lets you handle this easily with redirects and rewrites inside of `next.config.js`
 
-```js
+```js twoslash
+// next.config.js
+
 module.exports = {
   async rewrites() {
     return [
@@ -23,25 +25,25 @@ The issue is, this won't work out of the box with React Navigation.
 
 In order to achieve the same, we'll need to edit the linking config.
 
-```tsx
-import { NavigationContainer, getStateFromPath } from '@react-navigation/native'
+```tsx twoslash
+import { getStateFromPath, LinkingOptions } from '@react-navigation/native'
 
-const linking = {
+const withRewrites = (unparsedPath: string): string => {
+  if (unparsedPath.startsWith('/@')) {
+    const slug = unparsedPath.replace('/@', '')
+
+    return `artists/${slug}`
+  }
+
+  // you can put other redirects here
+
+  return unparsedPath
+}
+
+const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   // ...your linking config
-
+  prefixes: [],
   getStateFromPath(path, config) {
-    const withRewrites = (unparsedPath: string): string => {
-      if (unparsedPath.startsWith('/@')) {
-        const slug = unparsedPath.replace('/@', '')
-
-        return `artists/${slug}`
-      }
-
-      // you can put other redirects here
-
-      return unparsedPath
-    }
-
     const finalPath = withRewrites(path)
 
     return getStateFromPath(finalPath, config)

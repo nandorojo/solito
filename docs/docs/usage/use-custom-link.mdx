@@ -1,0 +1,107 @@
+---
+title: useLink()
+---
+
+```ts
+import { useLink } from 'solito/link'
+```
+
+A low-level hook that lets you create your own accessible Link component.
+
+This is inspired by `useLinkProps` from React Navigation.
+
+## Usage
+
+```tsx
+const linkProps = useLink({
+  href,
+  as,
+  shallow,
+})
+```
+
+## Arguments
+
+- `href`: **required** The URL to link to. Either a `string` or `Url` object.
+- `as`: The URL to link to. Either a `string` or `Url` object.
+- `shallow`: `boolean`
+
+See the Next.js [Link API](https://nextjs.org/docs/api-reference/next/link) for more details about these props.
+
+## Returns
+
+The hook returns the following values:
+
+- `href`: `string`
+- `onClick`?: `function` that only exists on Web.
+- `onPress`?: `function` that only exists on Native.
+- `accessibiltyRole`: `string`
+
+You should spread these values directly onto your component:
+
+```tsx twoslash
+import { useLink } from 'solito/link'
+import { Pressable } from 'react-native'
+type Props = any
+// ---cut---
+
+const MyLink = ({ href, as, ...props }: Props) => {
+  const linkProps = useLink({
+    href,
+    as,
+  })
+
+  return <Pressable {...props} {...linkProps} />
+}
+```
+
+## Full Example
+
+Here is an example of `useLink`, together with `MotiPressable`, to let you create animated links / buttons.
+
+```tsx twoslash
+import { MotiPressable } from 'moti/interactions'
+import { useLink, useLinkProps } from 'solito/link'
+
+type MotiLinkProps = useLinkProps &
+  Omit<React.ComponentProps<typeof MotiPressable>, keyof useLinkProps>
+
+export function MotiLink({
+  as,
+  href,
+  shallow,
+  children,
+  ...motiPressableProps
+}: MotiLinkProps) {
+  const linkProps = useLink({
+    as,
+    href,
+    shallow,
+  })
+
+  return (
+    <MotiPressable {...motiPressableProps} {...linkProps}>
+      {children}
+    </MotiPressable>
+  )
+}
+```
+
+You can now use `MotiLink` as if it were `MotiPressable`, along with the props for our link:
+
+```tsx
+<MotiLink
+  animate={({ pressed }) => {
+    'worklet'
+
+    return {
+      scale: pressed ? 0.9 : 1,
+    }
+  }}
+  href="/artists/drake"
+  as="/@drake"
+  shallow
+>
+  <Text>Drake</Text>
+</MotiLink>
+```

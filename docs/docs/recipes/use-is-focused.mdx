@@ -9,13 +9,13 @@ Since `useIsFocused()` only applicable on Native, you can replace it with a cust
 
 **`hooks/use-is-focused.ts`**
 
-```ts
+```ts twoslash
 export { useIsFocused } from '@react-navigation/native'
 ```
 
 **`hooks/use-is-focused.web.ts`**
 
-```ts
+```ts twoslash
 export function useIsFocused() {
   return true
 }
@@ -41,10 +41,17 @@ If you want to implement this logic, you could do it yourself on Web using a com
 
 If you stick to the pattern of always including the word `modal` in the URL, you can use the `useRouter` hook to check if the URL contains the query param:
 
-```ts
+```ts twoslash
+// @filename: context/modal-screen.ts
+import { createContext } from 'react'
+export const ModalScreenContext = createContext(false)
+
+// @filename: use-is-focused.tsx
+// ---cut---
+
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
-import { ModalScreenContext } from 'context/modal-screen' // implement this yourself
+import { ModalScreenContext } from './context/modal-screen' // implement this yourself
 
 export function useIsFocused() {
   const { query } = useRouter()
@@ -64,7 +71,7 @@ export function useIsFocused() {
 
 For reference, your `context/modal-screen` could be as simple as this:
 
-```ts
+```ts twoslash
 import { createContext } from 'react'
 
 export const ModalScreenContext = createContext(false)
