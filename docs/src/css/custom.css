@@ -14,6 +14,30 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+
+  --ifm-color-primary: #002aff;
+  --ifm-color-primary-dark: #0026e6;
+  --ifm-color-primary-darker: #0024d9;
+  --ifm-color-primary-darkest: #001db3;
+  --ifm-color-primary-light: #1a3fff;
+  --ifm-color-primary-lighter: #264aff;
+  --ifm-color-primary-lightest: #4d6aff;
+
+  /* --ifm-color-primary: #ff0059;
+  --ifm-color-primary-dark: #e60050;
+  --ifm-color-primary-darker: #d9004c;
+  --ifm-color-primary-darkest: #b3003e;
+  --ifm-color-primary-light: #ff1a6a;
+  --ifm-color-primary-lighter: #ff2672;
+  --ifm-color-primary-lightest: #ff4d8b;
+
+  --ifm-color-primary: #6600ff;
+  --ifm-color-primary-dark: #5c00e6;
+  --ifm-color-primary-darker: #5700d9;
+  --ifm-color-primary-darkest: #4700b3;
+  --ifm-color-primary-light: #751aff;
+  --ifm-color-primary-lighter: #7d26ff;
+  --ifm-color-primary-lightest: #944dff; */
 }
 
 .docusaurus-highlight-code-line {
@@ -21,6 +45,15 @@
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+[data-theme='dark'] {
+  --ifm-color-primary: #00ccff;
+  --ifm-color-primary-dark: #00b8e6;
+  --ifm-color-primary-darker: #00add9;
+  --ifm-color-primary-darkest: #008fb3;
+  --ifm-color-primary-light: #1ad1ff;
+  --ifm-color-primary-lighter: #26d4ff;
+  --ifm-color-primary-lightest: #4ddbff;
 }
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {

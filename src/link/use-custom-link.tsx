@@ -3,9 +3,9 @@ import { GestureResponderEvent, Platform } from 'react-native'
 import { useRouter } from '../router'
 import { LinkCoreProps } from './core'
 
-export type useLinkProps = Pick<LinkCoreProps, 'as' | 'shallow' | 'href'>
+export type UseLinkProps = Pick<LinkCoreProps, 'as' | 'shallow' | 'href'>
 
-export function useLink({ href, as, shallow }: useLinkProps) {
+export function useLink({ href, as, shallow }: UseLinkProps) {
   const { push, parseNextPath } = useRouter()
 
   // https://github.com/react-navigation/react-navigation/blob/main/packages/native/src/useLinkProps.tsx#L64

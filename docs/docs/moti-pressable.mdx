@@ -17,10 +17,10 @@ Here is an example of how you can create an accessible, implemented with `MotiPr
 
 ```tsx twoslash
 import { MotiPressable } from 'moti/interactions'
-import { useLink, useLinkProps } from 'solito/link'
+import { useLink, UseLinkProps } from 'solito/link'
 
-type MotiLinkProps = useLinkProps &
-  Omit<React.ComponentProps<typeof MotiPressable>, keyof useLinkProps>
+type MotiLinkProps = UseLinkProps &
+  Omit<React.ComponentProps<typeof MotiPressable>, keyof UseLinkProps>
 
 export function MotiLink({
   as,

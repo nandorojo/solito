@@ -61,10 +61,10 @@ Here is an example of `useLink`, together with `MotiPressable`, to let you creat
 
 ```tsx twoslash
 import { MotiPressable } from 'moti/interactions'
-import { useLink, useLinkProps } from 'solito/link'
+import { useLink, UseLinkProps } from 'solito/link'
 
-type MotiLinkProps = useLinkProps &
-  Omit<React.ComponentProps<typeof MotiPressable>, keyof useLinkProps>
+type MotiLinkProps = UseLinkProps &
+  Omit<React.ComponentProps<typeof MotiPressable>, keyof UseLinkProps>
 
 export function MotiLink({
   as,
@@ -86,6 +86,8 @@ export function MotiLink({
   )
 }
 ```
+
+> This code snippet is the entire source code for Solito's [Moti integration](/moti-pressable) 🤯
 
 You can now use `MotiLink` as if it were `MotiPressable`, along with the props for our link:
 
