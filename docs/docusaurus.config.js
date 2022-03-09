@@ -1,6 +1,5 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
 const lightCodeTheme = require('prism-react-renderer/themes/github')
 const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
@@ -12,7 +11,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/s.png',
+  favicon: 'img/favicon.png',
   organizationName: 'nandorojo', // Usually your GitHub org/user name.
   projectName: 'solito', // Usually your repo name.
   scripts: [
@@ -57,7 +56,7 @@ const config = {
         respectPrefersColorScheme: false,
       },
       navbar: {
-        title: '',
+        title: 'by fernando rojo',
         logo: {
           alt: 'Solito Logo',
           src: 'img/solito.svg',

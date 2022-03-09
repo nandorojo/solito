@@ -38,8 +38,7 @@ export function useLink({ href, as, shallow }: UseLinkProps) {
 
   return {
     accessibilityRole: 'link' as const,
-    onPress: Platform.select({ web: undefined, default: onPress }),
+    onPress,
     href: parseNextPath(as || href),
-    onClick: Platform.select({ web: onPress }),
   }
 }

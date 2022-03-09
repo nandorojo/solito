@@ -1,0 +1,63 @@
+---
+title: <MotiLink />
+---
+
+```ts
+import { MotiLink } from 'solito/moti'
+```
+
+[`moti`](https://moti.fyi) is a popular animation library for React Native, powered by Reanimated 2. It works on iOS, Android and Web.
+
+Solito provides a first-class support Moti integration with `MotiLink`. It works just like the regular `Link`, plus all the great Moti animation features.
+
+Under the hood, `MotiLink` uses [`MotiPressable`](https://moti.fyi/interactions/overview).
+
+## Usage
+
+You can animate based on `hovered` and `pressed` states, without triggering any re-renders:
+
+```tsx
+const ButtonLink = ({ children, href, as }) => (
+  <MotiLink
+    href={href}
+    as={as}
+    animate={({ hovered, pressed }) => {
+      'worklet'
+
+      return {
+        scale: pressed ? 0.9 : hovered ? 1.1 : 1,
+      }
+    }}
+  >
+    {children}
+  </MotiLink>
+)
+```
+
+Or, you could do a simple fade-in animation:
+
+```tsx
+<MotiLink href="/users/fernando" from={{ opacity: 0 }} animate={{ opacity: 1 }}>
+  {children}
+</MotiLink>
+```
+
+Whatever a `MotiView`/`MotiPressable` component supports, you can do with `MotiLink`.
+
+## Props
+
+Firstly, this component supports the following props from [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link):
+
+- `href` (required)
+- `as`
+- `shallow`
+
+This component also accepts all props of `MotiPressable`:
+
+- [`MotiPressable` props](https://moti.fyi/interactions/overview)
+
+## Prerequisites
+
+To use `MotiLink`, you first need to install Moti and Reanimated 2. Please refer to the [Moti installation steps](https://moti.fyi/install).
+
+You can also reference/clone the [Solito starter app](https://github.com/solito/tree/master/monorepo-examples/blank) which has Moti and Solito configured for you.

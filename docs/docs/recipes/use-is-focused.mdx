@@ -31,6 +31,8 @@ import { useIsFocused } from 'hooks/use-is-focused'
 
 ## Custom Web Logic
 
+> This section is a little more advanced. It's relevant if you're using modals with Next Router.
+
 In the above example, we always return `true` on Web.
 
 One exception might be if there is a shallow routed modal on top of a screen.
@@ -39,7 +41,51 @@ For example, say that you have an `EditArtist` modal that shows when the URL con
 
 If you want to implement this logic, you could do it yourself on Web using a combination of React Context and checking query params with `useRouter` from `next/router`.
 
+### Create a context
+
+First, in a file called `context/modal-screen` create your `ModalScreenContext`. This will let screens detect if they are a modal or not.
+
+```ts twoslash
+import { createContext } from 'react'
+
+export const ModalScreenContext = createContext(false)
+```
+
+Then, your actual Next.js page could look something like this:
+
+```tsx
+// pages/artist/[slug].tsx
+import { ModalScreenContext } from 'context/modal-screen'
+import { useRouter } from 'next/router'
+
+export default function ArtistPage() {
+  const router = useRouter()
+
+  return (
+    <>
+      <ArtistScreen />
+
+      <ModalScreenContext.Provider value={true}>
+        {router?.query?.showsEditModal && <EditArtistModal />}
+      </ModalScreenContext.Provider>
+    </>
+  )
+}
+```
+
+Notice that the `EditArtistModal` is wrapped with the `ModalScreenContext.Provider`, and the `value` is `true`.
+
+This means that any component inside of `EditArtistModal` will know it is a modal, whereas every component inside of `ArtistScreen` will know it is _not_ a modal.
+
+### Use the context
+
 If you stick to the pattern of always including the word `modal` in the URL, you can use the `useRouter` hook to check if the URL contains the query param:
+
+The logic for `useIsFocused` should now be this: your hook is focused if one of these conditions is true:
+
+1. the hook is inside of a (mounted) modal, or
+2. the hook is not a modal, and there is no modal mounted
+   a. Why? If this hook is not in a modal, but a modal is mounted, then that means that this hook is underneath the modal, and thus not focused.
 
 ```ts twoslash
 // @filename: context/modal-screen.ts
@@ -51,46 +97,22 @@ export const ModalScreenContext = createContext(false)
 
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
-import { ModalScreenContext } from './context/modal-screen' // implement this yourself
+import { ModalScreenContext } from './context/modal-screen'
 
 export function useIsFocused() {
   const { query } = useRouter()
   const isModalScreen = useContext(ModalScreenContext)
 
-  if (!isModalScreen) {
-    const isThereAModalVisible =
-      query &&
-      Object.keys(query).some((key) => key.toLowerCase().includes('modal'))
-
-    return !isThereAModalVisible
+  if (isModalScreen) {
+    return true
   }
 
-  return true
+  const isThereAModalVisible =
+    query &&
+    Object.keys(query).some((key) => key.toLowerCase().includes('modal'))
+
+  return !isThereAModalVisible
 }
 ```
 
-For reference, your `context/modal-screen` could be as simple as this:
-
-```ts twoslash
-import { createContext } from 'react'
-
-export const ModalScreenContext = createContext(false)
-```
-
-Then, your actual Next.js page could look something like this:
-
-```tsx
-import { ModalScreenContext } from 'context/modal-screen'
-
-export default function ArtistPage({ router }) {
-  return (
-    <>
-      <ArtistScreen />
-
-      <ModalScreenContext.Provider value={true}>
-        {!!router?.query?.showsEditModal && <EditShowsModal />}
-      </ModalScreenContext.Provider>
-    </>
-  )
-}
-```
+To use this as a repeatable method, it's important that you always use the word `modal` as a query param to denote that a modal is open.

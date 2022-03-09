@@ -25,7 +25,7 @@
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "solito": "^0.0.20"
+    "solito": "^0.0.21"
   },
   "browserslist": {
     "production": [

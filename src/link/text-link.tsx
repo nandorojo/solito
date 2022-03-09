@@ -6,7 +6,13 @@ import { LinkCore, LinkCoreProps } from './core'
 type TextLinkProps = LinkCoreProps & { textProps?: TextProps }
 
 function TextLink({ textProps, ...props }: TextLinkProps) {
-  return <LinkCore {...props} Component={Text} componentProps={textProps} />
+  return (
+    <LinkCore
+      {...props}
+      Component={Text}
+      componentProps={{ selectable: false, ...textProps }}
+    />
+  )
 }
 
 export { TextLink }

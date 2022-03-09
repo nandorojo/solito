@@ -33,16 +33,17 @@ See the Next.js [Link API](https://nextjs.org/docs/api-reference/next/link) for 
 The hook returns the following values:
 
 - `href`: `string`
-- `onClick`?: `function` that only exists on Web.
-- `onPress`?: `function` that only exists on Native.
+- `onPress`: `function`
 - `accessibiltyRole`: `string`
 
 You should spread these values directly onto your component:
 
 ```tsx twoslash
-import { useLink } from 'solito/link'
+import { useLink, UseLinkProps } from 'solito/link'
 import { Pressable } from 'react-native'
-type Props = any
+type Props = UseLinkProps & {
+  children: React.ReactNode
+}
 // ---cut---
 
 const MyLink = ({ href, as, ...props }: Props) => {
@@ -57,37 +58,27 @@ const MyLink = ({ href, as, ...props }: Props) => {
 
 ## Full Example
 
-Here is an example of `useLink`, together with `MotiPressable`, to let you create animated links / buttons.
+Here is an example of `useLink`, together with `MotiPressable` from [`moti`](https://moti.fyi).
 
 ```tsx twoslash
-import { MotiPressable } from 'moti/interactions'
+import { MotiPressableProps, MotiPressable } from 'moti/interactions'
 import { useLink, UseLinkProps } from 'solito/link'
 
-type MotiLinkProps = UseLinkProps &
-  Omit<React.ComponentProps<typeof MotiPressable>, keyof UseLinkProps>
+export type MotiLinkProps = UseLinkProps &
+  Omit<
+    MotiPressableProps,
+    // ignore props that will be overridden by useLink
+    keyof UseLinkProps | keyof ReturnType<typeof useLink>
+  >
 
-export function MotiLink({
-  as,
-  href,
-  shallow,
-  children,
-  ...motiPressableProps
-}: MotiLinkProps) {
-  const linkProps = useLink({
-    as,
-    href,
-    shallow,
-  })
+export const MotiLink = (props: MotiLinkProps) => {
+  const linkProps = useLink(props)
 
-  return (
-    <MotiPressable {...motiPressableProps} {...linkProps}>
-      {children}
-    </MotiPressable>
-  )
+  return <MotiPressable {...props} {...linkProps} />
 }
 ```
 
-> This code snippet is the entire source code for Solito's [Moti integration](/moti-pressable) 🤯
+> This code snippet is the source code for Solito's [Moti integration](/usage/moti-link) 🤯
 
 You can now use `MotiLink` as if it were `MotiPressable`, along with the props for our link:
 
@@ -102,7 +93,6 @@ You can now use `MotiLink` as if it were `MotiPressable`, along with the props f
   }}
   href="/artists/drake"
   as="/@drake"
-  shallow
 >
   <Text>Drake</Text>
 </MotiLink>
