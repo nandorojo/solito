@@ -30,4 +30,8 @@ export type SolitoAppProps<P = {}> = Omit<AppProps<P>, 'Component'> & {
   }
 }
 
-export { SolitoPage, SolitoNavigationOptions, SolitoCustomNavigationOptions }
+export type {
+  SolitoPage,
+  SolitoNavigationOptions,
+  SolitoCustomNavigationOptions,
+}
