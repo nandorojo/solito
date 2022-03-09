@@ -28,7 +28,7 @@
   --ifm-background-color: white;
   --ifm-navbar-background-color: var(--ifm-background-color);
 
-  --ifm-navbar-shadow: 0 0 0 1px var(--ifm-navbar-border-color);
+  --ifm-navbar-shadow: 0 0 0 1px var(--ifm-border-color);
   /* background-color */
 
   /* --ifm-color-primary: #ff0059;
