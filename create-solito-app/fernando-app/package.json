@@ -1,0 +1,18 @@
+{
+  "name": "fernando-app",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/react": "^17.0.39",
+    "@types/react-native": "^0.67.2",
+    "typescript": "^4.6.2",
+    "eslint": "8.10.0"
+  },
+  "scripts": {
+    "native": "cd apps/expo && expo start",
+    "web": "cd apps/next && yarn next"
+  }
+}

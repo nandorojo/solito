@@ -1,7 +1,9 @@
 {
   "name": "create-solito-app",
+  "version": "0.0.1",
   "devDependencies": {
     "@types/async-retry": "1.4.2",
+    "@types/cross-spawn": "^6.0.2",
     "@types/node": "^12.6.8",
     "@types/prompts": "2.0.1",
     "@types/rimraf": "3.0.0",
@@ -22,5 +24,11 @@
   },
   "engines": {
     "node": ">=12.22.0"
+  },
+  "dependencies": {
+    "ts-node": "^10.7.0"
+  },
+  "scripts": {
+    "start": "ts-node index.ts"
   }
 }

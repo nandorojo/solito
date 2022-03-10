@@ -1,13 +1,20 @@
 #!/usr/bin/env node
 
 // inspired by https://github.com/vercel/next.js/blob/0355e5f63f87db489f36db8d814958cb4c2b828b/packages/create-next-app/helpers/examples.ts#L71
-
 import chalk from 'chalk'
+import Commander from 'commander'
+import fs from 'fs'
 import got from 'got'
 import path from 'path'
+import prompts from 'prompts'
 import { Stream } from 'stream'
 import tar from 'tar'
 import { promisify } from 'util'
+import validateProjectName from 'validate-npm-package-name'
+
+import { install } from './install'
+import { getOnline } from './is-online'
+import packageJson from './package.json'
 const pipeline = promisify(Stream.pipeline)
 
 type RepoInfo = {
@@ -16,6 +23,36 @@ type RepoInfo = {
   branch: string
   filePath: string
 }
+
+let projectPath: string = ''
+
+const program = new Commander.Command(packageJson.name)
+  .version(packageJson.version)
+  .arguments('<project-directory>')
+  .usage(`${chalk.green('<project-directory>')} [options]`)
+  .action((name) => {
+    projectPath = name
+  })
+  .option(
+    '--use-npm',
+    `
+  Explicitly tell the CLI to bootstrap the app using npm
+`
+  )
+  .option(
+    '--use-pnpm',
+    `
+  Explicitly tell the CLI to bootstrap the app using pnpm
+`
+  )
+  .allowUnknownOption()
+  .parse(process.argv)
+
+const packageManager = program.useNpm
+  ? 'npm'
+  : program.usePnpm
+  ? 'pnpm'
+  : 'yarn'
 
 export function downloadAndExtractExample(
   root: string,
@@ -35,7 +72,154 @@ export function downloadAndExtractExample(
 
 async function run() {
   chalk('Creating Solito app...')
-  downloadAndExtractExample(path.resolve(process.cwd(), 'solito'))
+  if (typeof projectPath === 'string') {
+    projectPath = projectPath.trim()
+  }
+  if (!projectPath) {
+    const res = await prompts({
+      type: 'text',
+      name: 'path',
+      message: 'What is your project named?',
+      initial: 'my-solito-app',
+      validate: (name) => {
+        const validation = validateNpmName(path.basename(path.resolve(name)))
+        if (validation.valid) {
+          return true
+        }
+        return 'Invalid project name: ' + validation.problems![0]
+      },
+    })
+
+    if (typeof res.path === 'string') {
+      projectPath = res.path.trim()
+    }
+  }
+
+  if (!projectPath) {
+    console.log()
+    console.log('Please specify the project directory:')
+    console.log(
+      `  ${chalk.cyan(program.name())} ${chalk.green('<project-directory>')}`
+    )
+    console.log()
+    console.log('For example:')
+    console.log(
+      `  ${chalk.cyan(program.name())} ${chalk.green('my-solito-app')}`
+    )
+    console.log()
+    console.log(
+      `Run ${chalk.cyan(`${program.name()} --help`)} to see all options.`
+    )
+    process.exit(1)
+  }
+
+  const resolvedProjectPath = path.resolve(projectPath)
+  const projectName = path.basename(resolvedProjectPath)
+
+  const { valid, problems } = validateNpmName(projectName)
+  if (!valid) {
+    console.error(
+      `Could not create a project called ${chalk.red(
+        `"${projectName}"`
+      )} because of npm naming restrictions:`
+    )
+
+    problems!.forEach((p) => console.error(`    ${chalk.red.bold('*')} ${p}`))
+    process.exit(1)
+  }
+
+  if (fs.existsSync(resolvedProjectPath)) {
+    console.log()
+    console.log(
+      chalk.red('🚨 [solito] error'),
+      `You tried to make a project called ${chalk.underline(
+        chalk.blueBright(projectName)
+      )}, but a folder with that name already exists: 
+${chalk.blueBright(resolvedProjectPath)}
+
+${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
+    )
+    console.log()
+    console.log()
+    process.exit(1)
+  }
+  console.log()
+  console.log(
+    `Creating a new Solito app in ${chalk.blueBright(projectName)}...`
+  )
+  fs.mkdirSync(resolvedProjectPath)
+  console.log(chalk.green(`${projectName} folder created.`))
+
+  try {
+    console.log(`Copying template into ${chalk.blueBright(projectName)}...`)
+    console.log()
+    await downloadAndExtractExample(resolvedProjectPath)
+    const pkg = require(path.resolve(resolvedProjectPath, 'package.json'))
+    pkg.name = projectName
+    fs.writeFileSync(
+      path.resolve(resolvedProjectPath, 'package.json'),
+      JSON.stringify(pkg, null, 2)
+    )
+    console.log(chalk.green(`${projectName} created!`))
+  } catch (e) {
+    console.error('[solito] Failed to download example\n\n', e)
+
+    process.exit(1)
+  }
+
+  const useYarn = packageManager === 'yarn'
+  const isOnline = !useYarn || (await getOnline())
+
+  console.log('Installing packages. This might take a couple of minutes.')
+  console.log()
+  try {
+    await install(resolvedProjectPath, null, { packageManager, isOnline })
+  } catch (e: any) {
+    console.error(
+      '[solito] error installing node_modules with ' + packageManager + '\n',
+      e?.message
+    )
+    process.exit(1)
+  }
+
+  console.log(
+    `${chalk.green('Success!')} Created ${projectName} at ${projectPath}`
+  )
+  console.log('Inside that directory, you can run several commands:')
+  console.log()
+  console.log(chalk.cyan(`  ${packageManager} ${useYarn ? '' : 'run '}web`))
+  console.log('    Starts the development server for the Next.js site.')
+  console.log(chalk.cyan(`  ${packageManager} ${useYarn ? '' : 'run '}native`))
+  console.log('    Starts the development server for the Expo app.')
+  console.log()
+  console.log(chalk.cyan(`  ${packageManager} start`))
+  console.log('    Runs the built app in production mode.')
+  console.log()
+  console.log('We suggest that you begin by typing:')
+  console.log()
+  console.log(chalk.cyan('  cd'), projectName)
+  console.log(
+    `  ${chalk.cyan(`${packageManager} ${useYarn ? '' : 'run '}web`)}`
+  )
+  console.log()
 }
 
 run()
+
+function validateNpmName(name: string): {
+  valid: boolean
+  problems?: string[]
+} {
+  const nameValidation = validateProjectName(name)
+  if (nameValidation.validForNewPackages) {
+    return { valid: true }
+  }
+
+  return {
+    valid: false,
+    problems: [
+      ...(nameValidation.errors || []),
+      ...(nameValidation.warnings || []),
+    ],
+  }
+}
