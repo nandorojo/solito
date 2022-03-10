@@ -40,7 +40,7 @@ While you share your screen code, the skeleton of your product can differ by pla
 
 ## Should I use Solito?
 
-If you're building a Next.js app, there's no reason _not_ to use Solito. After all, it provides all the functionality that you're already getting from `useRouter` and `Link`, plus some useful utilities like `useParam`. Plus, any native-only React Navigation code is tree shaken.
+If you're building a Next.js app, there's no reason not to use Solito. After all, it provides all the functionality that you're already getting from `useRouter` and `Link`, plus some useful utilities like `useParam`. Plus, any native-only React Navigation code is tree shaken.
 
 If you're building a React Native app with React Navigation, your app can be spun into a website in like a day or two. You should use the web's URL mental model to get around screens, rather than screen names. If you use Solito to get around screens and read in `params`, then the moment you want to turn your app into a Next.js site, the hard parts are already done.
 
