@@ -34,7 +34,7 @@ export function install(
   /**
    * (p)npm-specific command-line flags.
    */
-  const npmFlags: string[] = ['--cwd', root]
+  const npmFlags: string[] = []
   /**
    * Yarn-specific command-line flags.
    */

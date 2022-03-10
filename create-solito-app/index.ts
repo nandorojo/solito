@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 // inspired by https://github.com/vercel/next.js/blob/0355e5f63f87db489f36db8d814958cb4c2b828b/packages/create-next-app/helpers/examples.ts#L71
+import * as PackageManager from '@expo/package-manager'
 import chalk from 'chalk'
 import Commander from 'commander'
 import fs from 'fs'
@@ -173,7 +174,11 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
   console.log('Installing packages. This might take a couple of minutes.')
   console.log()
   try {
-    await install(resolvedProjectPath, null, { packageManager, isOnline })
+    await installDependenciesAsync(
+      resolvedProjectPath,
+      useYarn ? 'yarn' : 'npm'
+    )
+    // await install(resolvedProjectPath, null, { packageManager, isOnline })
   } catch (e: any) {
     console.error(
       '[solito] error installing node_modules with ' + packageManager + '\n',
@@ -221,5 +226,18 @@ function validateNpmName(name: string): {
       ...(nameValidation.errors || []),
       ...(nameValidation.warnings || []),
     ],
+  }
+}
+
+export async function installDependenciesAsync(
+  projectRoot: string,
+  packageManager: 'yarn' | 'npm'
+) {
+  const options = { cwd: projectRoot }
+  if (packageManager === 'yarn') {
+    const yarn = new PackageManager.YarnPackageManager(options)
+    await yarn.installAsync()
+  } else {
+    await new PackageManager.NpmPackageManager(options).installAsync()
   }
 }

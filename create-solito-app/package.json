@@ -26,6 +26,7 @@
     "node": ">=12.22.0"
   },
   "dependencies": {
+    "@expo/package-manager": "^0.0.50",
     "ts-node": "^10.7.0"
   },
   "scripts": {
