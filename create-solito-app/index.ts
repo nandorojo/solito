@@ -13,8 +13,6 @@ import tar from 'tar'
 import { promisify } from 'util'
 import validateProjectName from 'validate-npm-package-name'
 
-import { install } from './install'
-import { getOnline } from './is-online'
 import packageJson from './package.json'
 const pipeline = promisify(Stream.pipeline)
 
@@ -179,7 +177,6 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
   }
 
   const useYarn = packageManager === 'yarn'
-  const isOnline = !useYarn || (await getOnline())
 
   console.log('Installing packages. This might take a couple of minutes.')
   console.log()
