@@ -18,6 +18,7 @@ const sidebars = {
   mySidebar: [
     // 'welcome',
     'welcome',
+    'starter',
     'install',
     // {
     //   type: 'ref',
