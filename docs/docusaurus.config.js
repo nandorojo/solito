@@ -51,6 +51,8 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       ogImage: 'img/og.png',
+      twitterImage: 'https://solito.dev/img/og.png',
+      image: 'https://solito.dev/img/og.png',
       colorMode: {
         defaultMode: 'dark',
         respectPrefersColorScheme: false,
