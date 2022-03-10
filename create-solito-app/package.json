@@ -27,10 +27,14 @@
   },
   "dependencies": {
     "@expo/package-manager": "^0.0.50",
-    "ts-node": "^10.7.0"
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
   },
   "scripts": {
     "start": "ts-node index.ts",
     "test": "yarn start create-test-app"
+  },
+  "bin": {
+    "create-solito-app": "./run.js"
   }
 }
