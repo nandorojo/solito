@@ -30,7 +30,13 @@ let projectPath: string = ''
 const program = new Commander.Command(packageJson.name)
   .version(packageJson.version)
   .arguments('<project-directory>')
-  .usage(`${chalk.green('<project-directory>')} [options]`)
+  .usage(
+    `${chalk.green('<project-directory>')} [options]
+  
+Example usage:
+
+${chalk.blueBright(`npx ${packageJson.name} twitter-clone`)}`
+  )
   .action((name) => {
     projectPath = name
   })
@@ -40,11 +46,15 @@ const program = new Commander.Command(packageJson.name)
   Explicitly tell the CLI to bootstrap the app using npm
 `
   )
+  //   .option(
+  //     '--use-pnpm',
+  //     `
+  //   Explicitly tell the CLI to bootstrap the app using pnpm
+  // `
+  //   )
   .option(
-    '--use-pnpm',
-    `
-  Explicitly tell the CLI to bootstrap the app using pnpm
-`
+    `--template <template>, -t <template>`,
+    'Currently, the only option is `blank`, which is set by default.'
   )
   .allowUnknownOption()
   .parse(process.argv)
