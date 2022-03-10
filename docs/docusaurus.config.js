@@ -109,15 +109,15 @@ const config = {
               },
             ],
           },
-          {
-            title: 'About the creator',
-            items: [
-              {
-                label: 'Fernando Rojo',
-                href: 'https://fernandorojo.co',
-              },
-            ],
-          },
+          // {
+          //   title: 'About the creator',
+          //   items: [
+          //     {
+          //       label: 'Fernando Rojo',
+          //       href: 'https://fernandorojo.co',
+          //     },
+          //   ],
+          // },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Fernando Rojo.`,
       },
