@@ -10,7 +10,7 @@ So, where is code _not_ shared? Whenever screens themeselves are <u>rendered</u>
 
 Solito views your screens as primitives that make up your app (and website). It's up to your platform to implement how those screens are displayed. The platform is like the skeleton, ready to render your screens however it wants.
 
-On iOS and Android, you'll implement these shared screens using stacks, tabs, and drawers from React Navigation. You have full freedom to implement these. To a React Native developer, this should be completely familiar.
+On iOS and Android, you'll implement these shared screens using stacks, tabs, and drawers from React Navigation. You have full freedom to organize your navigation and animations. To a React Native developer, this is nothing new.
 
 Meanwhile, on Next.js, you will render your shared screen components inside of your `pages` folder like always.
 
@@ -26,21 +26,21 @@ In the future, React Native may have a [`pages` folder API](https://github.com/E
 
 ## Web vs. Native patterns
 
-It's worth noting the differences between Web and Native navigation patterns. Web navigation is flat: you have one screen mounted at a time. When you change screens, the current one unmounts, and a new one opens. On native, this is not the case. Native screens animate in their transitions from one screen to another.
+It's worth noting the differences between Web and Native navigation patterns. Web navigation is flat: you have one screen mounted at a time. When you navigate from one page to another, the current page unmounts, and a new one renders. On native, this is not the case. Native screens typically animate as they enter. They can be in a stack, tab, drawer, modal, nested stack, and so on.
 
-If you change tabs on a native app, the previous tab remains mounted, preserving its scroll position and state. You often have shared headers across pages. These subtle differences are important to preserve. Cross-platform apps often get a bad rap because they try to make the user experience the exact same on every platform. But this is not the goal. <u>**We need to match our users' expecations based on the platform they're using.**</u>
+If you change tabs on a native app, the previous tab remains mounted, preserving its scroll position and local state. You often have shared headers across pages. These behaviors are important to preserve. Cross-platform apps often get a bad rap because they try to make the user experience the exact same on every platform. They either make an app feel like a mobile website, or a website feel like an app. But this is not the goal. <u>**We need to match our users' expecations based on the platform they're using.**</u>
 
-By using URLs as our source of truth for firing page changes, Solito doesn't get in the way of how you implement your screens. It lets your website have a completely different header, footer, and sidebar UI than your native app. I'll repeat it again: your screens are your primitives, and your platform is your skeleton. In this case, your Web `Layout` component never gets used on iOS/Android, unless you want it to.
+By using URLs as our source of truth for firing page changes, Solito doesn't get in the way of how you implement your screens. It lets your website have a completely different header, footer, and sidebar UI than your native app. Remember: your screens are your primitives, and your platform is your skeleton.
 
 | [BeatGig Website](https://beatgig.com/search) | [BeatGig iOS App](https://apps.apple.com/us/app/beatgig/id1355182285?platform=iphone) |
 | --------------------------------------------- | ------------------------------------------------------------------------------------- |
 | <img src="/img/site.jpg" />                   | <img src="/img/app.PNG" />                                                            |
 
-While you share your screen code, the skeleton of your product can differ by platform. Notice that the artists list is the same, but the naivgation differs between the Website and iOS app. This is the proper abstraction. If you want to make them look identical, you can. But you aren't forced to.
+While you share your screen code, the skeleton of your product can differ by platform. Take a look at the BeatGig website vs. iOS app above. Notice that the artist list is the same, but the navigation layout differs between the Website and iOS app. The website has a typical app header with a drawer menu, while the app has a native header and bottom tabs. This is the proper abstraction. If you want to make both platforms look identical, you can. But you aren't forced to.
 
 ## Should I use Solito?
 
-If you're building a Next.js app, there's no _not_ to use Solito. After all, it provides all the functionality that you're already getting from `useRouter` and `Link`, plus some useful utilities like `useParam`. Plus, any native-only React Navigation code is tree shaken.
+If you're building a Next.js app, there's no reason _not_ to use Solito. After all, it provides all the functionality that you're already getting from `useRouter` and `Link`, plus some useful utilities like `useParam`. Plus, any native-only React Navigation code is tree shaken.
 
 If you're building a React Native app with React Navigation, your app can be spun into a website in like a day or two. You should use the web's URL mental model to get around screens, rather than screen names. If you use Solito to get around screens and read in `params`, then the moment you want to turn your app into a Next.js site, the hard parts are already done.
 
