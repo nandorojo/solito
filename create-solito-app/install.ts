@@ -80,6 +80,7 @@ export function install(
           console.log(chalk.yellow('Falling back to the local Yarn cache.'))
           console.log()
           args.push('--offline')
+          args.push('--cwd', root)
         } else {
           console.log()
         }
@@ -96,6 +97,10 @@ export function install(
     /**
      * Spawn the installation process.
      */
+    console.log('[install]', {
+      command,
+      args,
+    })
     const child = spawn(command, args, {
       stdio: 'inherit',
       env: { ...process.env, ADBLOCK: '1', DISABLE_OPENCOLLECTIVE: '1' },

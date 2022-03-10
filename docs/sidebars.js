@@ -59,6 +59,8 @@ const sidebars = {
       ],
       label: 'TypeScript',
     },
+    'gradual-adoption',
+    'methodology',
     'resources',
     'community',
   ],

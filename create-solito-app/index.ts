@@ -71,7 +71,7 @@ export function downloadAndExtractExample(
 }
 
 async function run() {
-  chalk('Creating Solito app...')
+  console.log(chalk.bold('🧑‍🎤 Creating solito app...'))
   if (typeof projectPath === 'string') {
     projectPath = projectPath.trim()
   }
@@ -145,7 +145,7 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
   }
   console.log()
   console.log(
-    `Creating a new Solito app in ${chalk.blueBright(projectName)}...`
+    `Creating a new solito app in ${chalk.blueBright(projectName)}...`
   )
   fs.mkdirSync(resolvedProjectPath)
   console.log(chalk.green(`${projectName} folder created.`))
