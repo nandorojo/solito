@@ -28,7 +28,7 @@ cd apps/next
 Next, install the peer dependencies.
 
 ```
-yarn add next-transpile-modules next-compose-plugins next-images next-fonts
+yarn add -D next-transpile-modules next-compose-plugins next-images next-fonts
 ```
 
 Then run `yarn` in the root of your monorepo.
