@@ -1,5 +1,9 @@
 # Blank Solito Example Monorepo
 
+```sh
+npx create-solito-app@latest my-solito-app
+```
+
 This monorepo is a blank(ish) starter for an Expo + Next.js app.
 
 While it's pretty barebones, it does a lot of the annoying config for you. The folder structure is opinionated, based on my long experience building for this stack.
