@@ -34,11 +34,11 @@ export function install(
   /**
    * (p)npm-specific command-line flags.
    */
-  const npmFlags: string[] = []
+  const npmFlags: string[] = ['--cwd', root]
   /**
    * Yarn-specific command-line flags.
    */
-  const yarnFlags: string[] = []
+  const yarnFlags: string[] = ['--cwd', root]
   /**
    * Return a Promise that resolves once the installation is finished.
    */
@@ -97,10 +97,6 @@ export function install(
     /**
      * Spawn the installation process.
      */
-    console.log('[install]', {
-      command,
-      args,
-    })
     const child = spawn(command, args, {
       stdio: 'inherit',
       env: { ...process.env, ADBLOCK: '1', DISABLE_OPENCOLLECTIVE: '1' },

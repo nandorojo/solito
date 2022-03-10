@@ -30,6 +30,6 @@
   },
   "scripts": {
     "start": "ts-node index.ts",
-    "test": "start create-test-app"
+    "test": "yarn start create-test-app"
   }
 }

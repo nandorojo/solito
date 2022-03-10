@@ -20,7 +20,7 @@ So, how is this possible? Do the Next.js site and React Native app have to "comm
 
 Solito treats URLs as your central source of truth. Your Next.js app and React Native app don't communicate at all. The live in total isolation. <u>**Solito works by doing this: give me a URL, I'll detect what platform you're using, and then I'll figure out how to navigate to that URL.**</u>
 
-Lets call this [headless navigation](https://github.com/axeldelafosse/expo-next-monorepo-example/pull/1#issuecomment-1011563775). Your screens are your primitives, and they're fully shared across platforms. It's then up to each platform to implement these screens, and ensure that the URLs across platforms map to the same screens.
+Lets call this [headless navigation](https://github.com/axeldelafosse/expo-next-monorepo-example/pull/1#issuecomment-1009185655). Your screens are your primitives, and they're fully shared across platforms. It's then up to each platform to implement these screens, and ensure that the URLs across platforms map to the same screens.
 
 In the future, React Native may have a [`pages` folder API](https://github.com/EvanBacon/expo-auto-navigation-webpack), like Next.js, which would alleviate the burden for developers to map URLs to the same screens across platforms. But this burden, while it exists today, is very minimal.
 
@@ -31,3 +31,7 @@ If you're building a Next.js app, there's no real reason _not_ to use Solito. Af
 If you're building a React Native app, the app you're already building can be spun into a website in like a day or two, max. You should use the web's URL mental model to get around pages, rather than screen names. If you use Solito to get around screens and read in `params`, then the moment you want to turn your app into a Next.js site, the hard parts are already done.
 
 And so, my short answer is, why not use Solito? If you think you'll ever use React Native, or just React Native Web for your website (just like [twitter.com](https://twitter.com)), then I view Solito as the future-proof way to do so. React Native is my go-to framework, [even if I'm only building a website](https://www.youtube.com/watch?v=0lnbdRweJtA&t=22s). And Solito is my go-to to glue it all together.
+
+## Context
+
+My thinking for this methodology was first documented and discussed by the community [here](https://github.com/axeldelafosse/expo-next-monorepo-example/pull/1#issuecomment-1005969004).
