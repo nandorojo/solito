@@ -1,0 +1,49 @@
+---
+title: TextLink
+sidebar_label: <TextLink />
+---
+
+```tsx
+import { TextLink } from 'solito/link'
+```
+
+A drop-in replacement for [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link). It follows the exact same API.
+
+The difference from Solito's [`<Link />`](/usage/link) component is that this component accepts `Text` nodes as children.
+
+```tsx
+<TextLink href="/">Home</Link>
+```
+
+You can also put nested `Text` components inside:
+
+```tsx
+<TextLink href="/">
+  Go <Text>Home</Text>
+</Link>
+```
+
+## Props
+
+### `textProps`
+
+Props used by the underlying `Text` component.
+
+```tsx
+<TextLink textProps={{ style: { color: 'blue' } }} href="/">
+  Link to <Text style={{ fontWeight: 'bold' }}>Home</Text>
+</Link>
+```
+
+### Next.js props
+
+It also supports the props from [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link), besides `passHref`.
+
+## Configuration
+
+Before a `Link` can work on iOS and Android, you'll need to properly configure your `linking` config with React Navigation.
+
+See their docs:
+
+- [Configuring links](https://reactnavigation.org/docs/configuring-links/) for in-app routing
+- [Deep linking](https://reactnavigation.org/docs/deep-linking/) for handling inbound links into your app

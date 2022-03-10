@@ -1,0 +1,47 @@
+{
+  "name": "solito",
+  "version": "0.0.22",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "devDependencies": {
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/drawer": "^6.1.8",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "@types/react": "^17.0.38",
+    "@types/react-native": "^0.66.9",
+    "eslint-config-nando": "^1.1.0",
+    "expo-module-scripts": "^2.0.0",
+    "moti": "^0.17.1",
+    "next": "^12.0.7"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nandorojo/solito/issues"
+  },
+  "homepage": "https://github.com/nandorojo/solito.git#readme",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "!**/__tests__",
+    "src",
+    "build",
+    "link",
+    "router"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "email": "fernando@wearptos.com",
+    "name": "Fernando Rojo",
+    "url": "https://fernandotherojo.co"
+  }
+}

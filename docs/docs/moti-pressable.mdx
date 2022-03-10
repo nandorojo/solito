@@ -1,0 +1,44 @@
+---
+title: Moti Integration
+id: moti-pressable
+---
+
+[`moti`](https://moti.fyi) is a popular animation library for React Native, powered by Reanimated 2. It works on iOS, Android and Web.
+
+One useful component from `moti` is `MotiPressable`. It works just like the `Pressable` from React Native, with the added ability to animate based on hover and pressed states.
+
+If you're using `MotiPressable` for your links, you should pair it with `solito`'s `useLink` hook, instead of the `<Link />` component.
+
+`useLink` is inspired by `useLinkProps` from React Navigation.
+
+## Example
+
+Here is an example of how you can create an accessible, implemented with `MotiPressable`.
+
+```tsx twoslash
+import { MotiPressable } from 'moti/interactions'
+import { useLink, UseLinkProps } from 'solito/link'
+
+type MotiLinkProps = UseLinkProps &
+  Omit<React.ComponentProps<typeof MotiPressable>, keyof UseLinkProps>
+
+export function MotiLink({
+  as,
+  href,
+  shallow,
+  children,
+  ...motiPressableProps
+}: MotiLinkProps) {
+  const linkProps = useLink({
+    as,
+    href,
+    shallow,
+  })
+
+  return (
+    <MotiPressable {...motiPressableProps} {...linkProps}>
+      {children}
+    </MotiPressable>
+  )
+}
+```

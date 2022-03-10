@@ -1,0 +1,8 @@
+node_modules
+build
+
+.expo
+.next
+
+ios
+android
