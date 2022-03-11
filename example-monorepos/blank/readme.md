@@ -4,17 +4,19 @@
 npx create-solito-app@latest my-solito-app
 ```
 
-## 🔦 About
-
-This monorepo is a blank(ish) starter for an Expo + Next.js app.
-
-While it's pretty barebones, it does a lot of the annoying config for you. The folder structure is opinionated, based on my long experience building for this stack.
+👾 [View the website](https://example.solito.dev)
 
 ## ⚡️ Instantly clone & deploy
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnandorojo%2Fsolito%2Ftree%2Fmaster%2Fexample-monorepos%2Fblank&env=ENABLE_ROOT_PATH_BUILD_CACHE&envDescription=Set%20this%20environment%20variable%20to%201%20for%20Turborepo%20to%20cache%20your%20node_modules.&envLink=https%3A%2F%2Ftwitter.com%2Fjaredpalmer%2Fstatus%2F1488954563533189124&project-name=solito-app&repo-name=solito-app&demo-title=Solito%20App%20%E2%9A%A1%EF%B8%8F&demo-description=React%20Native%20%2B%20Next.js%20starter%20with%20Solito.%20Made%20by%20Fernando%20Rojo.&demo-url=https%3A%2F%2Fsolito.dev%2Fstarter&demo-image=https%3A%2F%2Fsolito.dev%2Fimg%2Fog.png)
 
 - Select the folder `apps/next` as the root of your Next.js app on the Vercel setup.
+
+## 🔦 About
+
+This monorepo is a blank(ish) starter for an Expo + Next.js app.
+
+While it's pretty barebones, it does a lot of the annoying config for you. The folder structure is opinionated, based on my long experience building for this stack.
 
 ## 📦 Included packages
 
@@ -23,6 +25,7 @@ While it's pretty barebones, it does a lot of the annoying config for you. The f
 - `dripsy` for theming/design (you can bring your own, too)
 - Expo SDK 44
 - Next.js 12
+- React Navigation 6
 
 ## 🗂 Folder layout
 
