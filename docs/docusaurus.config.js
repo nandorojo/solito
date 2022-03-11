@@ -31,7 +31,7 @@ const config = {
           routeBasePath: '/', // disable landing page
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/nandorojo/solito/tree/main/docs',
+          editUrl: 'https://github.com/nandorojo/solito/tree/master/docs',
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
         },
