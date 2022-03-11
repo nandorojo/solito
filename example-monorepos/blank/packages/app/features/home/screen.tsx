@@ -53,11 +53,8 @@ export function HomeScreen() {
             }
           }}
           transition={{
-            // faster spring transition config
-            type: 'spring',
-            damping: 20,
-            stiffness: 200,
-            mass: 0.5,
+            type: 'timing',
+            duration: 150,
           }}
         >
           <Text
