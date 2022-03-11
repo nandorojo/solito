@@ -9,3 +9,5 @@ android
 
 .test
 create-test-app
+
+.DS_Store

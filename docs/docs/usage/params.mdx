@@ -28,7 +28,7 @@ It also lets you update the parameter, using query parameters on Web, and React 
 
 <br />
 
-Learn how to use `useParam` from [Fernando Rojo](https://twitter.com/fernandotherojo), creator of Solito, in his Next.js talk.
+Learn how to use `useParam` from [Fernando Rojo](https://twitter.com/fernandotherojo), creator of Solito, in his Next.js Conf 2021 talk.
 
 ## Quick look
 
@@ -46,7 +46,7 @@ export const UserName = () => {
 }
 ```
 
-You'll `useParam` this instead of `useRoute().params` from React Navigation, and instead of `useRouter().query` from Next.js.
+You'll use `useParam()` instead of `useRoute().params` from React Navigation, and instead of `useRouter().query` from Next.js.
 
 ## TypeScript
 
@@ -356,6 +356,12 @@ The argument it receives will always be a string
 `parse` gets run when this case is satisfied:
 
 1. the query param (in this case, `template`) is not `undefined`
+
+:::warning
+
+The `parse` function will only run on Web, not on Native. To configure a `parse` function on native, you must use the `parse` option from your [React Navigation linking config](https://reactnavigation.org/docs/configuring-links/#passing-params).
+
+:::
 
 ### Strict Types
 
