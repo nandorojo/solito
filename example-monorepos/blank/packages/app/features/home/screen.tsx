@@ -19,6 +19,7 @@ export function HomeScreen() {
         <P sx={{ textAlign: 'center' }}>
           Solito is made by{' '}
           <Text
+            // @ts-expect-error react-native-web only types
             href="https://twitter.com/fernandotherojo"
             hrefAttrs={{
               target: '_blank',

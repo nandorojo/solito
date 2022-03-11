@@ -1,22 +1,30 @@
-# Blank Solito Example Monorepo
+# Blank Solito Example Monorepo 🕴
 
 ```sh
 npx create-solito-app@latest my-solito-app
 ```
 
+## 🔦 About
+
 This monorepo is a blank(ish) starter for an Expo + Next.js app.
 
 While it's pretty barebones, it does a lot of the annoying config for you. The folder structure is opinionated, based on my long experience building for this stack.
 
-## Included packages
+## ⚡️ Instantly deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnandorojo%2Fsolito%2Ftree%2Fmaster%2Fexample-monorepos%2Fblank&project-name=solito-app)
+
+- Select the folder `apps/next` as the root of your Next.js app on the Vercel setup.
+
+## 📦 Included packages
 
 - `solito` for cross-platform navigation
 - `moti` for animations
-- `dripsy` for theming/design
+- `dripsy` for theming/design (you can bring your own, too)
 - Expo SDK 44
 - Next.js 12
 
-## Folder layout
+## 🗂 Folder layout
 
 - `apps` entry points for each app
 
@@ -31,7 +39,7 @@ While it's pretty barebones, it does a lot of the annoying config for you. The f
 
 You can add other folders inside of `packages/` if you know what you're doing and have a good reason to.
 
-## Start the app
+## 🏁 Start the app
 
 - Install dependencies: `yarn`
 
@@ -40,7 +48,7 @@ You can add other folders inside of `packages/` if you know what you're doing an
 - Expo local dev: `yarn native`
   - Runs `expo start`
 
-## Add new dependencies
+## 🆕 Add new dependencies
 
 ### Pure JS dependencies
 
@@ -67,11 +75,11 @@ yarn
 
 You can also install the native library inside of `packages/app` if you want to get autoimport for that package inside of the `app` folder. However, you need to be careful and install the _exact_ same version in both packages. If the versions mismatch at all, you'll potentially get terrible bugs. This is a classic monorepo issue. I use `lerna-update-wizard` to help with this (you don't need to use Lerna to use that lib).
 
-## About the creator
+## 🎙 About the creator
 
 Follow Fernando Rojo on Twitter: [@FernandoTheRojo](https://twitter.com/fernandotherojo)
 
-## Why use Expo + Next.js?
+## 🧐 Why use Expo + Next.js?
 
 See my talk about this topic at Next.js Conf 2021:
 
