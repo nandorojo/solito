@@ -2,6 +2,11 @@ import { DripsyProvider, makeTheme } from 'dripsy'
 
 const theme = makeTheme({
   // https://www.dripsy.xyz/usage/theming/create
+  text: {
+    p: {
+      fontSize: 16,
+    },
+  },
 })
 
 export function Dripsy({ children }: { children: React.ReactNode }) {

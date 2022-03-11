@@ -390,7 +390,7 @@ const [bookingId, setBookingId] = useParam('bookingId', {
     return `artist-${bookingId}`
   },
   parse: (bookingIdFromUrl) => {
-    // remember that URL params can be arrays!
+    // remember that URL params can be arrays
     if (Array.isArray(bookingIdFromUrl)) {
       return bookingIdFromUrl[0]?.replace('artist-', '')
     }
