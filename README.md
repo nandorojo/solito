@@ -1,5 +1,3 @@
-# Solito
-
 ![og (4)](https://user-images.githubusercontent.com/13172299/158270455-69bf1044-28ec-476c-b9c5-06ea818a2191.png)
 
 
