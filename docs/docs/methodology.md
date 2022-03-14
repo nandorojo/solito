@@ -44,7 +44,7 @@ If you're building a Next.js app, there's no reason not to use Solito. After all
 
 If you're building a React Native app with React Navigation, your app can be spun into a website in like a day or two. You should use the web's URL mental model to get around screens, rather than screen names. If you use Solito to get around screens and read in `params`, then the moment you want to turn your app into a Next.js site, the hard parts are already done.
 
-And so, my short answer is, why not use Solito? If you think you'll ever use React Native, or React Native Web for your website (just like [twitter.com](https://blog.twitter.com/engineering/en_us/topics/infrastructure/2019/buildingfasterwithcomponents)), then Solito is future-proof. React Native is my go-to framework, [even if I'm only building a website](https://www.youtube.com/watch?v=0lnbdRweJtA&t=22s). And Solito glues it all together.
+And so, my short answer is, why not use Solito? If you think you'll ever use React Native, or React Native Web for your website (just [like Twitter does](https://blog.twitter.com/engineering/en_us/topics/infrastructure/2019/buildingfasterwithcomponents)), then Solito is future-proof. React Native is my go-to framework, [even if I'm only building a website](https://www.youtube.com/watch?v=0lnbdRweJtA&t=22s). And Solito glues it all together.
 
 ## Context
 

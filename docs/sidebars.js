@@ -52,18 +52,18 @@ const sidebars = {
       ],
       label: 'Recipes',
     },
-    {
-      type: 'category',
-      items: [
-        // 'typescript/navigation-options',
-        'typescript/next-replacements',
-      ],
-      label: 'TypeScript',
-    },
+    // {
+    //   type: 'category',
+    //   items: [
+    //     // 'typescript/navigation-options',
+    //     'typescript/next-replacements',
+    //   ],
+    //   label: 'TypeScript',
+    // },
     'gradual-adoption',
     'methodology',
     'resources',
-    'community',
+    // 'community',
   ],
 
   // But you can create a sidebar manually
