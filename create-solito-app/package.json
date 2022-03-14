@@ -1,6 +1,6 @@
 {
   "name": "create-solito-app",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "devDependencies": {
     "@types/async-retry": "1.4.2",
     "@types/cross-spawn": "^6.0.2",
