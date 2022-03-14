@@ -18,7 +18,7 @@ To recap, the `<ArtistScreen />` component is the same on iOS, Android and Web. 
 
 So, how is this possible? Do the Next.js site and React Native app have to "communicate" somehow? How can `<Link href="/users/fernando" />` open the same screen on both platforms?
 
-Solito treats URLs as your source of truth. Your Next.js app and React Native app don't communicate at all. They live in total isolation. <u>**Solito works by doing this: give me a URL, I'll detect what platform you're using, and then I'll figure out how to navigate to that URL.**</u>
+Solito treats URLs as your source of truth. Your Next.js app and React Native app don't communicate at all. They live in total isolation. <u>**Solito works by doing this: give me a URL, I'll detect what platform you're using, and then I'll figure out how to navigate to the screen for that URL.**</u>
 
 Lets call this [headless navigation](https://github.com/axeldelafosse/expo-next-monorepo-example/pull/1#issuecomment-1005969004). Your [screens are your primitives](https://github.com/axeldelafosse/expo-next-monorepo-example/pull/1#issuecomment-1009185655), and they're fully shared across platforms. It's then up to each platform to implement these screens, and ensure that the URLs across platforms map to the same screens.
 
