@@ -4,7 +4,9 @@ id: install
 ---
 
 ::: tip
+
 Clone/reference the [starter monorepo](/starter) to have Solito pre-installed for you.
+
 :::
 
 ## Install the package
