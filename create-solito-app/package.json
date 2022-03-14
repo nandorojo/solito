@@ -1,6 +1,6 @@
 {
   "name": "create-solito-app",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "devDependencies": {
     "@types/async-retry": "1.4.2",
     "@types/cross-spawn": "^6.0.2",
@@ -40,8 +40,5 @@
   },
   "bin": {
     "create-solito-app": "./run.js"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }
