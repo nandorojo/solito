@@ -163,10 +163,14 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
     console.log(`Copying template into ${chalk.blueBright(projectName)}...`)
     console.log()
     await downloadAndExtractExample(resolvedProjectPath)
-    const pkg = require(path.resolve(resolvedProjectPath, 'package.json'))
+    const pkg = require(path.resolve(
+      process.cwd(),
+      resolvedProjectPath,
+      'package.json'
+    ))
     pkg.name = projectName
     fs.writeFileSync(
-      path.resolve(resolvedProjectPath, 'package.json'),
+      path.resolve(process.cwd(), resolvedProjectPath, 'package.json'),
       JSON.stringify(pkg, null, 2)
     )
     console.log(chalk.green(`${projectName} created!`))
