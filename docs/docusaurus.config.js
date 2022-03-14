@@ -52,7 +52,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      ogImage: 'img/og.png',
+      ogImage: 'https://solito.dev/img/og.png',
       twitterImage: 'https://solito.dev/img/og.png',
       image: 'https://solito.dev/img/og.png',
       colorMode: {
