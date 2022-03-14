@@ -1,6 +1,6 @@
 {
   "name": "create-solito-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "devDependencies": {
     "@types/async-retry": "1.4.2",
     "@types/cross-spawn": "^6.0.2",
@@ -32,9 +32,13 @@
   },
   "scripts": {
     "start": "ts-node index.ts",
-    "test": "yarn start create-test-app"
+    "test": "yarn start create-test-app",
+    "dev": "ncc build ./index.ts -w -o dist/",
+    "prerelease": "rimraf ./dist/",
+    "release": "ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+    "prepublish": "yarn release"
   },
   "bin": {
-    "create-solito-app": "./run.js"
+    "create-solito-app": "./dist/index.js"
   }
 }
