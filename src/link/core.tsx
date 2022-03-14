@@ -1,10 +1,10 @@
-import NextLink from 'next/link'
 import React from 'react'
 import type { ComponentProps, ComponentType } from 'react'
 import { Platform } from 'react-native'
 
 import { parseNextPath } from '../router'
 import { useLinkTo } from '../router/use-link-to'
+import { NextLink } from './next-link'
 
 export type LinkCoreProps = {
   children: React.ReactNode

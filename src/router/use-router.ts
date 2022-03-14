@@ -1,9 +1,10 @@
-import { useRouter as useNextRouter, NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import { useCallback } from 'react'
 
 import { parseNextPath } from './parse-next-path'
 import { useLinkTo } from './use-link-to'
 import { useNavigation } from './use-navigation'
+import { useNextRouter } from './use-next-router'
 
 // copied from next/router to appease typescript error
 // if we don't manually write this here, then we get some ReturnType error on build
@@ -36,7 +37,7 @@ export function useRouter() {
           }
         }
       },
-      [linkTo, router]
+      [linkTo, router?.push]
     ),
     replace: useCallback(
       (
@@ -54,7 +55,7 @@ export function useRouter() {
           }
         }
       },
-      [linkTo, router]
+      [linkTo, router?.replace]
     ),
     back: useCallback(() => {
       if (router) {
@@ -62,7 +63,7 @@ export function useRouter() {
       } else {
         navigation?.goBack()
       }
-    }, [router, navigation]),
+    }, [router?.back, navigation]),
     parseNextPath,
   }
 }
