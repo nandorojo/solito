@@ -23,9 +23,10 @@ module.exports = {
 
 The issue is, this won't work out of the box with React Navigation.
 
-In order to achieve the same, we'll need to edit the linking config.
+In order to achieve the same, we'll need to edit the [React Navigation linking config](https://reactnavigation.org/docs/configuring-links).
 
 ```tsx twoslash
+import * as Linking from 'expo-linking'
 import { getStateFromPath, LinkingOptions } from '@react-navigation/native'
 
 const withRewrites = (unparsedPath: string): string => {
@@ -42,7 +43,7 @@ const withRewrites = (unparsedPath: string): string => {
 
 const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   // ...your linking config
-  prefixes: [],
+  prefixes: [Linking.createURL('/'), 'https://fernandorojo.co'],
   getStateFromPath(path, config) {
     const finalPath = withRewrites(path)
 
