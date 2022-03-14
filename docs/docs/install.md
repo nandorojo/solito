@@ -3,6 +3,10 @@ title: Installation
 id: install
 ---
 
+::: tip
+Clone/reference the [starter monorepo](/starter) to have Solito pre-installed for you.
+:::
+
 ## Install the package
 
 ```sh
@@ -19,7 +23,7 @@ npm i solito
 
 You'll need `next-transpile-modules` to run this in your Next.js app.
 
-If you're in a monorepo (which is recommended), start by entering the directory of your Next.js app.
+If you're in a monorepo (which is [recommended](/starter)), start by entering the directory of your Next.js app.
 
 ```sh
 cd apps/next
