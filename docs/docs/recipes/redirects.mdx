@@ -33,7 +33,7 @@ const withRewrites = (unparsedPath: string): string => {
   if (unparsedPath.startsWith('/@')) {
     const slug = unparsedPath.replace('/@', '')
 
-    return `artists/${slug}`
+    return `/artists/${slug}`
   }
 
   // you can put other redirects here
