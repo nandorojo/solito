@@ -122,7 +122,7 @@ async function run() {
     process.exit(1)
   }
 
-  const resolvedProjectPath = path.resolve(projectPath)
+  const resolvedProjectPath = path.resolve(process.cwd(), projectPath)
   const projectName = path.basename(resolvedProjectPath)
 
   const { valid, problems } = validateNpmName(projectName)
@@ -163,16 +163,19 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
     console.log(`Copying template into ${chalk.blueBright(projectName)}...`)
     console.log()
     await downloadAndExtractExample(resolvedProjectPath)
-    const pkg = require(path.resolve(
-      process.cwd(),
-      resolvedProjectPath,
-      'package.json'
-    ))
-    pkg.name = projectName
-    fs.writeFileSync(
-      path.resolve(process.cwd(), resolvedProjectPath, 'package.json'),
-      JSON.stringify(pkg, null, 2)
-    )
+    console.log(`Downloaded template into ${chalk.blueBright(projectName)}...`)
+    console.log()
+    console.log('[solito] resolved path!!', resolvedProjectPath)
+    const pkgPath = `${resolvedProjectPath}/package.json`
+    console.log('[solito] package.json path:', pkgPath)
+    // const pkg = require(pkgPath)
+    // console.log(`Found package.json`)
+    // console.log()
+    // pkg.name = projectName
+    // fs.writeFileSync(
+    //   path.resolve(resolvedProjectPath, 'package.json'),
+    //   JSON.stringify(pkg, null, 2)
+    // )
     console.log(chalk.green(`${projectName} created!`))
   } catch (e) {
     console.error('[solito] Failed to download example\n\n', e)
