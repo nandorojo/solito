@@ -1,4 +1,4 @@
-import { Text, useSx, View, H1, P, Row } from 'dripsy'
+import { Text, useSx, View, H1, P, Row, A } from 'dripsy'
 import { TextLink } from 'solito/link'
 import { MotiLink } from 'solito/moti'
 
@@ -18,9 +18,9 @@ export function HomeScreen() {
         </P>
         <P sx={{ textAlign: 'center' }}>
           Solito is made by{' '}
-          <Text
-            // @ts-expect-error react-native-web only types
+          <A
             href="https://twitter.com/fernandotherojo"
+            // @ts-expect-error react-native-web only types
             hrefAttrs={{
               target: '_blank',
               rel: 'noreferrer',
@@ -28,7 +28,7 @@ export function HomeScreen() {
             sx={{ color: 'blue' }}
           >
             Fernando Rojo
-          </Text>
+          </A>
           .
         </P>
       </View>
