@@ -15,7 +15,7 @@ Say you want to use `useScrollToTop()`. Create a file and re-export `useScrollTo
 #### `hooks/use-scroll-to-top.ts`
 
 ```tsx
-export { useScrollToTop } from '@react-native/native'
+export { useScrollToTop } from '@react-navigation/native'
 ```
 
 Next, make the same file with a `.web.ts` extension:
@@ -31,7 +31,7 @@ export function useScrollToTop() {
 }
 ```
 
-Next, replace your imports from `@react-native/native` with `hooks/use-scroll-to-top`:
+Next, replace your imports from `@react-navigation/native` with `hooks/use-scroll-to-top`:
 
 ```tsx
 import { useScrollToTop } from 'hooks/use-scroll-to-top'
