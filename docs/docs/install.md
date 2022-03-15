@@ -3,7 +3,7 @@ title: Installation
 id: install
 ---
 
-::: tip
+:::tip
 
 Clone/reference the [starter monorepo](/starter) to have Solito pre-installed for you.
 
