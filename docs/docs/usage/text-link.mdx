@@ -12,7 +12,7 @@ A drop-in replacement for [Next.js' `<Link />` component](https://nextjs.org/doc
 The difference from Solito's [`<Link />`](/usage/link) component is that this component accepts `Text` nodes as children.
 
 ```tsx
-<TextLink href="/">Home</Link>
+<TextLink href="/">Home</TextLink>
 ```
 
 You can also put nested `Text` components inside:
@@ -20,7 +20,7 @@ You can also put nested `Text` components inside:
 ```tsx
 <TextLink href="/">
   Go <Text>Home</Text>
-</Link>
+</TextLink>
 ```
 
 ## Props
@@ -32,7 +32,7 @@ Props used by the underlying `Text` component.
 ```tsx
 <TextLink textProps={{ style: { color: 'blue' } }} href="/">
   Link to <Text style={{ fontWeight: 'bold' }}>Home</Text>
-</Link>
+</TextLink>
 ```
 
 ### Next.js props
