@@ -49,6 +49,8 @@ const sidebars = {
         'recipes/redirects',
         'recipes/tree-shaking',
         'recipes/use-is-focused',
+        'recipes/scroll-view',
+        'recipes/deep-linking',
       ],
       label: 'Recipes',
     },
