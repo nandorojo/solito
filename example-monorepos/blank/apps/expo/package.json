@@ -26,6 +26,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web"
   },
+  "main": "index.js",
   "version": "1.0.0",
   "private": true,
   "name": "expo-app"
