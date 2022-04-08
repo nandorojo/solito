@@ -8,18 +8,12 @@ const path = require('path')
 const projectRoot = __dirname
 const workspaceRoot = path.resolve(__dirname, '../..')
 
-const config = getDefaultConfig(__dirname)
+const config = getDefaultConfig(projectRoot)
 
 config.watchFolders = [workspaceRoot]
-config.resolver.nodeModulesPath = [
+config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, 'node_modules'),
   path.resolve(workspaceRoot, 'node_modules'),
 ]
-
-config.transformer = {
-  ...config.transformer,
-  minifierPath: require.resolve('metro-minify-esbuild'),
-  minifierConfig: {},
-}
 
 module.exports = config

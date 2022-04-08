@@ -6554,11 +6554,6 @@ metro-inspector-proxy@0.64.0:
     ws "^1.1.5"
     yargs "^15.3.1"
 
-metro-minify-esbuild@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/metro-minify-esbuild/-/metro-minify-esbuild-0.1.0.tgz#0dc105325e65289ba4b8ed1a3a02fb277df109e3"
-  integrity sha512-oYHO+gty2O2/Q5gkqfVVH2RQsnNdiGDtf9YlIzFj2Bn2Fx7kSXfQBufFFloHO62MyKfzcDUWALyCvNiWN/PnSQ==
-
 metro-minify-uglify@0.64.0:
   version "0.64.0"
   resolved "https://registry.yarnpkg.com/metro-minify-uglify/-/metro-minify-uglify-0.64.0.tgz#da6ab4dda030e3211f5924e7f41ed308d466068f"

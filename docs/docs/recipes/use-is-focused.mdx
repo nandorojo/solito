@@ -85,6 +85,7 @@ The logic for `useIsFocused` should now be this: your hook is focused if one of 
 
 1. the hook is inside of a (mounted) modal, or
 2. the hook is not a modal, and there is no modal mounted
+   
    a. Why? If this hook is not in a modal, but a modal is mounted, then that means that this hook is underneath the modal, and thus not focused.
 
 ```ts twoslash
