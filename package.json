@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/nandorojo/solito.git#readme",
   "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "types": "index.d.ts",
   "files": [
     "!**/__tests__",
     "src",
