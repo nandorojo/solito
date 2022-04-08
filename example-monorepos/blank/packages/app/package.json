@@ -8,7 +8,7 @@
     "dripsy": "^3.6.0",
     "expo-linking": "^3.0.0",
     "moti": "0.18.0-alpha.8",
-    "solito": "0.0.22"
+    "solito": "latest"
   },
   "sideEffects": false
 }
