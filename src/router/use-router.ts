@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 
 import { parseNextPath } from './parse-next-path'
 import { useLinkTo } from './use-link-to'
-import { useNavigation } from './use-navigation'
+import { useNavigation, getPathName } from './use-navigation'
 import { useNextRouter } from './use-next-router'
 
 // copied from next/router to appease typescript error
@@ -65,5 +65,6 @@ export function useRouter() {
       }
     }, [router?.back, navigation]),
     parseNextPath,
+    pathname: router ? router.pathname : getPathName(navigation?.getState()),
   }
 }

@@ -28,6 +28,31 @@ const onGoBack = () => {
 
 ## Returns
 
+### `pathname`
+
+Returns the current route. 
+
+- Web: it is the path of the page in `/pages`, the configured `basePath` or `locale` is not included.
+- Native: it is the path that opened the screen.
+
+
+#### Basic example
+
+```tsx twoslash
+import { useRouter } from 'solito/router'
+// ---cut---
+
+const { pathname } = useRouter()
+
+const onOpenArtist = () => {
+  if(pathname === '/artists') {
+
+  } else {
+    
+  }
+}
+```
+
 ### `push`
 
 Follows the exact same API as `push` returned by [Next.js `useRouter` hook](https://nextjs.org/docs/api-reference/next/router#router-object).
