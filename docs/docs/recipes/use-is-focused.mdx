@@ -108,11 +108,11 @@ export function useIsFocused() {
     return true
   }
 
-  const isThereAModalVisible =
-    query &&
-    Object.keys(query).some((key) => key.toLowerCase().includes('modal'))
+  const isThereAModalVisibleOnTopOfMe = 
+    // check if there is a query param with "modal"
+    Object.keys(query ?? {}).some((key) => key.toLowerCase().includes('modal')) 
 
-  return !isThereAModalVisible
+  return Boolean(isThereAModalVisibleOnTopOfMe)
 }
 ```
 
