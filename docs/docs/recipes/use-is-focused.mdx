@@ -102,9 +102,9 @@ import { ModalScreenContext } from './context/modal-screen'
 
 export function useIsFocused() {
   const { query } = useRouter()
-  const isModalScreen = useContext(ModalScreenContext)
+  const iAmAModal = useContext(ModalScreenContext)
 
-  if (isModalScreen) {
+  if (iAmAModal) {
     return true
   }
 
