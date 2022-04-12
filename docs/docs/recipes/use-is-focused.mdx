@@ -37,7 +37,7 @@ In the above example, we always return `true` on Web.
 
 One exception might be if there is a shallow routed modal on top of a screen.
 
-For example, say that you have an `EditArtist` modal that shows when the URL contains a query param like `/@djkhaled?showsEditModal=true`.
+For example, say that you have an `EditArtist` modal that shows when the URL contains a query param like `/artists/drake?showsEditModal=true`.
 
 If you want to implement this logic, you could do it yourself on Web using a combination of React Context and checking query params with `useRouter` from `next/router`.
 
@@ -117,3 +117,18 @@ export function useIsFocused() {
 ```
 
 To use this as a repeatable method, it's important that you always use the word `modal` as a query param to denote that a modal is open.
+
+Finally, you can navigate to this modal screen like so:
+
+```tsx
+<Link href="/artists/drake" query={{ showsEditModal: true }} />
+```
+
+And if you implement some custom modal logic, you might end up having a link with a fancier `as` prop:
+
+
+```tsx
+<Link href="/artists/drake" as="/@drake/edit" query={{ showsEditModal: true }} shallow />
+```
+
+That way, you could put the edit modal as a full page when someone refreshes. But that's for another day...
