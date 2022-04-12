@@ -31,7 +31,7 @@ import { getStateFromPath, LinkingOptions } from '@react-navigation/native'
 
 const withRewrites = (unparsedPath: string): string => {
   if (unparsedPath.startsWith('/@')) {
-    const slug = unparsedPath.replace('/@', '').split('/')[0]
+    const slug = unparsedPath.replace('/@', '').split('?')[0].split('/')[0]
 
     return `/artists/${slug}`
   }
