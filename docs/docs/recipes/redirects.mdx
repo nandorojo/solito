@@ -31,9 +31,10 @@ import { getStateFromPath, LinkingOptions } from '@react-navigation/native'
 
 const withRewrites = (unparsedPath: string): string => {
   if (unparsedPath.startsWith('/@')) {
-    const slug = unparsedPath.replace('/@', '')
+    const slug = unparsedPath.replace('/@', '').split('?')[0].split('/')[0]
+    const rest = unparsedPath.replace(`/@${slug}`, '')
 
-    return `/artists/${slug}`
+    return `/artists/${slug}${rest}`
   }
 
   // you can put other redirects here
