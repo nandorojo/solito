@@ -190,9 +190,7 @@ Components like `ScreenScrollView` are a good pattern to follow in general. Crea
 
 For screens that should use window scrolling, we use a regular old `View` instead of `ScrollView`, **but only on Web**.
 
-We now use this component at the root of screens instead of `ScrollView`.
-
-If you're using `useWindowScrolling={true}`, then you don't `ScreenScrollView` in a `View` that has `flex: 1`.
+If you're using `useWindowScrolling={true}`, don't `ScreenScrollView` in a `View` with `flex: 1`.
 
 ## FlatLists
 
