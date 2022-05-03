@@ -186,7 +186,7 @@ export const useUsername = () => {
 
 ## Motivation
 
-A typical use-case on web for maintaining React State is your URL's query parameters. It lets users refresh pages & share links without losing their spot in your app.
+A typical use-case on Webfor maintaining React State is your URL's query parameters. It lets users refresh pages & share links without losing their spot in your app.
 
 URL-as-state is especially useful on Next.js, since `next/router` will re-render your page with shallow navigation.
 
@@ -275,14 +275,14 @@ const [template, setTemplate] = useParam('template', {
 
 However, on web, this might not aways be the initial value. This is because the initial value itself could be set from the URL on the first navigation.
 
-`initial` gets used on web when these two cases are satisfied:
+`initial` gets used on Webwhen these two cases are satisfied:
 
 1. the query param (in this case, `template`) is `undefined`
 2. you haven't called the set state function yet (in this case, `setTemplate`)
 
 There is might appear to be an edge case here. What happens if you call `setTemplate(null)`? This will remove the query parameter from the URL, so we're left with an empty state. But it also won't fall back to the `initial` field, since this wouldn't match the React state behavior.
 
-Can we find a way to provide a fallback value on web in this case, to make sure that our URL isn't the only source of truth?
+Can we find a way to provide a fallback value on Webin this case, to make sure that our URL isn't the only source of truth?
 
 The solution lies with the `parse` field.
 
@@ -367,7 +367,7 @@ The `parse` function will only run on Web, not on Native. To configure a `parse`
 
 This hook has great strict types.
 
-The state value it returns will always be `State | undefined`, unless you pass _both_ an `initial` value and `parse`. That way, we know that on both web and native, we're always using values which match our state.
+The state value it returns will always be `State | undefined`, unless you pass _both_ an `initial` value and `parse`. That way, we know that on both Weband native, we're always using values which match our state.
 
 ### Stringify
 
