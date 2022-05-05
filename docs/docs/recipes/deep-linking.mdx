@@ -166,7 +166,12 @@ const association = {
       {
         appID: `${TEAM_ID}.${BUNDLE_ID}`,
         // all paths, except for marketing pages
-        paths: ['*', 'NOT /products/*'],
+        paths: [
+          // all paths, except for marketing pages where the URL starts with /products/
+          // order matters! the first matched case will be used
+          'NOT /products/*',
+          '*',
+        ],
       },
     ],
   },
