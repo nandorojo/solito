@@ -14,7 +14,8 @@ While React Navigation's docs cover the part for the Native app, the part you ne
 
 <video
   src="https://user-images.githubusercontent.com/13172299/167017697-05a47c22-f6c7-49f3-a9a6-cdf6903cd13c.mov"
-  style={{ maxWidth: '640px' }}
+  style={{ maxWidth: '300px' }}
+  controls="controls"
 />
 
 ## TLDR
@@ -112,7 +113,7 @@ Notice that `ios` has `applinks:` prefixing the URL.
 
 ### 4. Apple App Site association
 
-In order to get Universal Links to work, Apple requires that your website has a file called `apple-app-site-association` on your URL, to prove that you own that URL.
+In order to get Universal Links to work, Apple requires that your website has a file at the path `/.well-known/apple-app-site-association` on your URL.
 
 #### 1. Create an API route
 
