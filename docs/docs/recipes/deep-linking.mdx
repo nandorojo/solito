@@ -124,6 +124,8 @@ Paste the contents from the code block below. Your `TEAM_ID` is found on AppStor
 Your bundle ID will look something like `com.nandorojo.app`. **It must exactly match the `ios.bundleIdentifier` from your `app.config.js`/`app.json` in `apps/expo`.**
 
 ```ts
+import type { NextApiRequest, NextApiResponse } from 'next'
+
 const BUNDLE_ID = 'YOUR-APPLE-APP-BUNDLE-ID' // replace with your bundle ID
 const TEAM_ID = 'YOUR-APPLE-APP-STORE-TEAM-ID' // replace with your Apple Team ID
 
