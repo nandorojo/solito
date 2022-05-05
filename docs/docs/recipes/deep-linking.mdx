@@ -12,7 +12,10 @@ I will, however, give a brief overview of how you can set up all of it in a sing
 
 While React Navigation's docs cover the part for the Native app, the part you need to do for Web is a bit less documented in the world.
 
-<video src="https://user-images.githubusercontent.com/13172299/167017697-05a47c22-f6c7-49f3-a9a6-cdf6903cd13c.mov" style={{maxWidth: '640px'}} />
+<video
+  src="https://user-images.githubusercontent.com/13172299/167017697-05a47c22-f6c7-49f3-a9a6-cdf6903cd13c.mov"
+  style={{ maxWidth: '640px' }}
+/>
 
 ## TLDR
 
@@ -68,14 +71,14 @@ Your app scheme will let you link into your app. For example, if your scheme is 
 
 ### 3. `associatedDomains` + `intentFilters`
 
-Your `app.json`/`app.config.js` will need to specify the domain you want to receive links from.
-
-For example, imagine you want the app to open from `beatgig.com`. Then in `app.config.js`:
-
 Expo docs:
 
 - [`associatedDomains`](https://docs.expo.dev/versions/latest/config/app/#associateddomains)
 - [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters)
+
+Your `app.json`/`app.config.js` will need to specify the domain you want to receive links from.
+
+For example, imagine you want the app to open from `beatgig.com`. Then in `app.config.js`:
 
 ```js
 const url = 'beatgig.com'
