@@ -22,9 +22,9 @@ And there you go! Right?
 
 ...but if that's all, why is there a whole page dedicated to this?
 
-Well, implementing a `ScrollView` has a few quirks on Web in my experience. This page aims to clarify these quirks and show you how to handle them elegantly.
+`ScrollView` has a few quirks on Web in my experience. This page aims to clarify these quirks and show you how to handle them elegantly.
 
-On Web, we need to implement some tricks to make this work, such as adding `height: 100%` to the `body`. The Solito starter handles all that for you, by using `@expo/next-adapter`, so this isn't something you have to worry about.
+On Web, we need some tricks to for a ScrollView to work as expected, such as adding `height: 100%` to the HTML `body`. The Solito starter handles all that for you with `@expo/next-adapter`, so this isn't something you have to worry about.
 
 However, while the boilerplate is done for you, there are some considerations you need to keep in mind to make `ScrollView` behave the way you want on Web.
 
@@ -190,9 +190,7 @@ Components like `ScreenScrollView` are a good pattern to follow in general. Crea
 
 For screens that should use window scrolling, we use a regular old `View` instead of `ScrollView`, **but only on Web**.
 
-We now use this component at the root of screens instead of `ScrollView`.
-
-If you're using `useWindowScrolling={true}`, then you don't `ScreenScrollView` in a `View` that has `flex: 1`.
+If you're using `useWindowScrolling={true}`, don't wrap `ScreenScrollView` in a `View` with `flex: 1`.
 
 ## FlatLists
 
