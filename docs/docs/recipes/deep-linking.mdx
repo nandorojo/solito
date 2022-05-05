@@ -2,4 +2,240 @@
 title: Deep Linking
 ---
 
-This is a placeholder for a future doc 🥸
+There are many docs out there for setting up Deep Linking in your React Native app. My plan here is not to rewrite them all.
+
+You should reference the extensive docs from React Navigation to set up Deep Linking:
+
+- [React Navigation Deep Linking Guide](https://reactnavigation.org/docs/deep-linking/)
+
+I will, however, give a brief overview of how you can set up all of it in a single codebase.
+
+While React Navigation's docs cover the part for the Native app, the part you need to do for Web is a bit less documented in the world.
+
+## TLDR
+
+1. Set up your React Navigation [linking config](https://reactnavigation.org/docs/configuring-links)
+   a. Make sure you add [prefixes](https://reactnavigation.org/docs/configuring-links#prefixes) correctly
+2. Make sure your `app.json`/`app.config.js` has a [`scheme` property in `apps/expo`](https://reactnavigation.org/docs/deep-linking/#setup-with-expo-projects)
+3. Configure [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (iOS) and [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (Android) in your `app.json`/`app.config.js` in `apps/expo`
+4. **Set up `apple-app-site-association` on your Next.js app.**
+   a. This part is unique to this guide.
+5. Test it out!
+
+_Android instructions for universal linking aren't done yet. I'd accept a PR though._
+
+### 1. Linking config
+
+- [React Navigation Docs](https://reactnavigation.org/docs/configuring-links)
+- [Example linking config](https://github.com/nandorojo/solito/blob/master/example-monorepos/blank/packages/app/provider/navigation/index.tsx)
+  - Note that this example only has one prefix. If you want Universal Links to work (meaning `yourdomain.com` should open your app), be sure to add the correct [prefixes](https://reactnavigation.org/docs/configuring-links#prefixes).
+
+For example, if your website is `beatgig.com`, you might have something like this in your prefixes:
+
+```ts
+import * as Linking from 'expo-linking'
+
+const url = 'beatgig.com'
+
+const config = {
+  prefixes: [
+    Linking.createURL('/'),
+    // https, including subdomains like www.
+    `https://${url}/`,
+    `https://*.${url}/`,
+    // http, including subdomains like www.
+    `http://${url}/`,
+    `http://*.${url}/`,
+  ],
+
+  // ...
+}
+```
+
+### 2. Scheme
+
+2. Make sure your `app.json`/`app.config.js` has a [`scheme` property in `apps/expo`](https://reactnavigation.org/docs/deep-linking/#setup-with-expo-projects)
+
+```js
+export default {
+  scheme: 'solito', // replace with your app scheme
+}
+```
+
+Your app scheme will let you link into your app. For example, if your scheme is `solito`, then `solito:///` will open the app from your iPhone.
+
+### 3. `associatedDomains` + `intentFilters`
+
+Your `app.json`/`app.config.js` will need to specify the domain you want to receive links from.
+
+For example, imagine you want the app to open from `beatgig.com`. Then in `app.config.js`:
+
+Expo docs:
+
+- [`associatedDomains`](https://docs.expo.dev/versions/latest/config/app/#associateddomains)
+- [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters)
+
+```js
+const url = 'beatgig.com'
+
+export default {
+  ios: {
+    // ...other ios properties
+    associatedDomains: [`applinks:${url}`],
+  },
+  android: {
+    // ...other android properties
+    intentFilters: [
+      {
+        action: 'VIEW',
+        autoVerify: true,
+        data: [
+          {
+            scheme: 'https',
+            host: `*.${url}`,
+            pathPrefix: '/',
+          },
+        ],
+        category: ['BROWSABLE', 'DEFAULT'],
+      },
+    ],
+  },
+}
+```
+
+Notice that `ios` has `applinks:` prefixing the URL.
+
+### 4. Apple App Site association
+
+In order to get Universal Links to work, Apple requires that your website has a file called `apple-app-site-association` on your URL, to prove that you own that URL.
+
+#### 1. Create an API route
+
+Create a file at this exact location in your Solito repo:
+
+`apps/next/pages/api/.well-known/apple-app-site-association.ts`
+
+Create the file below, and replace `BUNDLE_ID` with your app's iOS bundle ID. Your `TEAM_ID` is found on AppStore Connect when you click the icon in the top right.
+
+Your bundle ID will look something like `com.nandorojo.app`.
+
+```ts
+const BUNDLE_ID = 'YOUR-APPLE-APP-BUNDLE-ID'
+const TEAM_ID = 'YOUR-APPLE-APP-STORE-TEAM-ID'
+
+const association = {
+  applinks: {
+    apps: [],
+    details: [
+      {
+        appID: `${TEAM_ID}.${BUNDLE_ID}`,
+        paths: [
+          // this makes every path open your app
+          // this is often not desired
+          // see the Apple docs to configure this with granularity
+          '*',
+        ],
+      },
+    ],
+  },
+}
+
+export default (_: NextApiRequest, response: NextApiResponse) => {
+  return response.status(200).send(association)
+}
+```
+
+To see more about how to configure your links, read [Apple's docs](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html).
+
+By default, the above code will make any URL clicked from your phone that matches your domain open the app. To change this, you can edit the `paths` field. For example, you probably don't want someone clicking your marketing page and then deep linking into your app:
+
+```ts
+const BUNDLE_ID = 'YOUR-APPLE-APP-BUNDLE-ID'
+const TEAM_ID = 'YOUR-APPLE-APP-STORE-TEAM-ID'
+
+const association = {
+  applinks: {
+    apps: [],
+    details: [
+      {
+        appID: `${TEAM_ID}.${BUNDLE_ID}`,
+        // all paths, except for marketing pages
+        paths: ['*', 'NOT /products/*'],
+      },
+    ],
+  },
+}
+
+export default (_: NextApiRequest, response: NextApiResponse) => {
+  return response.status(200).send(association)
+}
+```
+
+#### 2. Add a redirect
+
+Finally, Apple expects this file to exist at the exact path `yourdomain.com/.well-known/apple-app-site-association`.
+
+Since the file we created above is an API route, we need to create a `redirect` in `next.config.js`:
+
+`apps/next/next.config.js`
+
+```js
+const nextConfig = {
+  // ...
+  async redirects() {
+    return [
+      {
+        source: '/.well-known/:file',
+        destination: '/api/.well-known/:file',
+        permanent: false,
+      },
+    ]
+  },
+}
+
+// ...
+```
+
+Your final `next.config.js` file might look like this:
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  webpack5: true,
+  async redirects() {
+    return [
+      {
+        source: '/.well-known/:file',
+        destination: '/api/.well-known/:file',
+        permanent: false,
+      },
+    ]
+  },
+}
+
+const { withExpo } = require('@expo/next-adapter')
+const withPlugins = require('next-compose-plugins')
+const withTM = require('next-transpile-modules')([
+  'solito',
+  'dripsy',
+  '@dripsy/core',
+  'moti',
+  '@motify/core',
+  '@motify/components',
+  'app',
+])
+
+module.exports = withPlugins(
+  [withTM, [withExpo, { projectRoot: __dirname }]],
+  nextConfig
+)
+```
+
+### 5. Test your app
+
+First, you'll need to make sure you publish your website on the domain you used.
+
+Once it's live, create a new build of your Expo app with `expo run:ios -d`. Plug your iPhone into your computer to test it out.
+
+Next, try texting yourself a URL, and see if it deep links.
