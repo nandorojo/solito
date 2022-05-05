@@ -2,15 +2,11 @@
 title: Deep Linking
 ---
 
-There are many docs out there for setting up Deep Linking in your React Native app. My plan here is not to rewrite them all.
-
-You should reference the extensive docs from React Navigation to set up Deep Linking:
+Before starting, you should reference the extensive docs from React Navigation for setting up Deep Linking:
 
 - [React Navigation Deep Linking Guide](https://reactnavigation.org/docs/deep-linking/)
 
-I will, however, give a brief overview of how you can set up all of it in a single codebase.
-
-While React Navigation's docs cover the part for the Native app, the part you need to do for Web is a bit less documented in the world.
+While React Navigation's docs cover the setup for the iOS/Android app, this guide aims to be a complete reference for enabling Universal Linking, including the code needed on the website.
 
 ## Video
 
@@ -20,15 +16,15 @@ While React Navigation's docs cover the part for the Native app, the part you ne
   controls="controls"
 />
 
-## TLDR
+## Overview
 
 1. Set up your React Navigation [linking config](https://reactnavigation.org/docs/configuring-links)
-   1. Make sure you add [prefixes](https://reactnavigation.org/docs/configuring-links#prefixes) correctly
-2. Make sure your `app.json`/`app.config.js` has a [`scheme` property in `apps/expo`](https://reactnavigation.org/docs/deep-linking/#setup-with-expo-projects)
+   1. Add [prefixes](https://reactnavigation.org/docs/configuring-links#prefixes) correctly
+2. Confirm your `app.json`/`app.config.js` has a [`scheme` property in `apps/expo`](https://reactnavigation.org/docs/deep-linking/#setup-with-expo-projects)
 3. Configure [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (iOS) and [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (Android) in your `app.json`/`app.config.js` in `apps/expo`
 4. **Set up `apple-app-site-association` on your Next.js app.**
    1. This part is unique to this guide.
-5. Test it out!
+5. Test it out
 
 _Android instructions for universal linking aren't done yet. I'd accept a PR though._
 
@@ -62,7 +58,7 @@ const config = {
 
 ### 2. Scheme
 
-2. Make sure your `app.json`/`app.config.js` has a [`scheme` property in `apps/expo`](https://reactnavigation.org/docs/deep-linking/#setup-with-expo-projects)
+Confirm your `app.json`/`app.config.js` has a [`scheme` property in `apps/expo`](https://reactnavigation.org/docs/deep-linking/#setup-with-expo-projects)
 
 ```js
 export default {
@@ -244,7 +240,7 @@ module.exports = withPlugins(
 
 First, you'll need to make sure you publish your website on the domain you used.
 
-Once it's live, create a new build of your Expo app with `expo run:ios -d`. Plug your iPhone into your computer to test it out.
+Once it's live, create a new build of your Expo app with `expo run:ios -d`. Plug your iPhone into your computer to test it out. You can also build it with EAS, Expo's cloud build service.
 
 Next, try texting yourself a URL, and see if it deep links.
 
