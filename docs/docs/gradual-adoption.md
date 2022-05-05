@@ -8,7 +8,7 @@ Solito is purposefully built to run in isolation between platforms. While Solito
 
 Previous attempts at unifying navigation code between Next.js and React Native involved using React Navigation on Web, together with Next.js Router. This meant two sources of truth and clashing philosophies attempting to work together.
 
-Solito takes a new approach: let each platform do what it does best. Solito uses React Navigation on Native, and Next.js Router on Web. We never mix-and-match the two. In fact, Solito makes sure React Navigation is never imported on Web. If you're wondering how this is possible, I touch on it in the [Methodology](/methodology) section.
+Solito takes a new approach: let each platform do what it does best. Solito uses React Navigation on Native, and Next.js Router on Web. We never mix-and-match the two. In fact, Solito makes sure React Navigation is never imported on Web; conversely, Next.js code is never imported on Native. If you're wondering how this is possible, I touch on it in the [Methodology](/methodology) section.
 
 ## Made for Web developers
 
