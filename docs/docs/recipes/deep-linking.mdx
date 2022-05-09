@@ -22,7 +22,7 @@ While React Navigation's docs cover the setup for the iOS/Android app, this guid
 1. Set up your React Navigation [linking config](https://reactnavigation.org/docs/configuring-links)
    1. Add [prefixes](https://reactnavigation.org/docs/configuring-links#prefixes) correctly
 2. Confirm your `app.json`/`app.config.js` has a [`scheme` property in `apps/expo`](https://reactnavigation.org/docs/deep-linking/#setup-with-expo-projects)
-3. Configure [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (iOS) and [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (Android) in your `app.json`/`app.config.js` in `apps/expo`
+3. Configure [`associatedDomains`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (iOS) and [`intentFilters`](https://docs.expo.dev/versions/latest/config/app/#intentfilters) (Android) in your `app.json`/`app.config.js` in `apps/expo`
 4. **Set up `apple-app-site-association` on your Next.js app.**
    1. This part is unique to this guide.
 5. Test it out
