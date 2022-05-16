@@ -30,10 +30,10 @@
   "types": "index.d.ts",
   "files": [
     "!**/__tests__",
-    "src",
-    "build",
-    "link",
-    "router"
+    "./src",
+    "./build",
+    "./link",
+    "./router"
   ],
   "sideEffects": false,
   "publishConfig": {
