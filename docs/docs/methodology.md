@@ -6,7 +6,7 @@ With gradual adoption in mind, it's useful to know the Solito methodology to nav
 
 The answer: the code for screens is 100% shared. So is the code for navigating **between** screens.
 
-So, where is code _not_ shared? Whenever screens themeselves are <u>rendered</u>.
+So, where is code _not_ shared? Whenever screens themselves are <u>rendered</u>.
 
 Solito views your screens as primitives that make up your app (and website). It's up to your platform to implement how those screens are displayed. The platform is like the skeleton, ready to render your screens however it wants.
 
