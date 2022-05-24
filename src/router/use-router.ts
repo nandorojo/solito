@@ -1,10 +1,10 @@
-import type { NextRouter } from 'next/router'
+import type { NextRouter as NextRouterType } from 'next/router'
 import { useCallback } from 'react'
 
+import { NextRouter } from './next-router'
 import { parseNextPath } from './parse-next-path'
 import { useLinkTo } from './use-link-to'
 import { useNavigation } from './use-navigation'
-import { useNextRouter } from './use-next-router'
 
 // copied from next/router to appease typescript error
 // if we don't manually write this here, then we get some ReturnType error on build
@@ -17,18 +17,17 @@ interface TransitionOptions {
 
 export function useRouter() {
   const linkTo = useLinkTo()
-  const router = useNextRouter()
   const navigation = useNavigation()
 
   return {
     push: useCallback(
       (
-        url: Parameters<NextRouter['push']>[0],
-        as?: Parameters<NextRouter['push']>[1],
+        url: Parameters<NextRouterType['push']>[0],
+        as?: Parameters<NextRouterType['push']>[1],
         options?: TransitionOptions
       ) => {
-        if (router) {
-          router.push(url, as, options)
+        if (NextRouter?.router) {
+          NextRouter.push(url, as, options)
         } else {
           const to = parseNextPath(as || url)
 
@@ -37,16 +36,16 @@ export function useRouter() {
           }
         }
       },
-      [linkTo, router?.push]
+      [linkTo]
     ),
     replace: useCallback(
       (
-        url: Parameters<NextRouter['replace']>[0],
-        as?: Parameters<NextRouter['replace']>[1],
+        url: Parameters<NextRouterType['replace']>[0],
+        as?: Parameters<NextRouterType['replace']>[1],
         options?: TransitionOptions
       ) => {
-        if (router) {
-          router.replace(url, as, options)
+        if (NextRouter?.router) {
+          NextRouter.replace(url, as, options)
         } else {
           const to = parseNextPath(as || url)
 
@@ -55,15 +54,15 @@ export function useRouter() {
           }
         }
       },
-      [linkTo, router?.replace]
+      [linkTo]
     ),
     back: useCallback(() => {
-      if (router) {
-        router.back()
+      if (NextRouter?.router) {
+        NextRouter.back()
       } else {
         navigation?.goBack()
       }
-    }, [router?.back, navigation]),
+    }, [navigation]),
     parseNextPath,
   }
 }
