@@ -1,6 +1,6 @@
 {
   "name": "solito",
-  "version": "0.0.26",
+  "version": "0.0.27-canary",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
