@@ -55,7 +55,7 @@ export function useRouter() {
           const to = parseNextPath(as || url)
 
           if (to) {
-            if (linking.options) {
+            if (linking?.options) {
               // custom logic to create a replace() from a URL on native
               // https://github.com/react-navigation/react-navigation/discussions/10517
               const { options } = linking
