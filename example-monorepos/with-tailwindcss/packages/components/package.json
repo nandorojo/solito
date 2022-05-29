@@ -1,0 +1,13 @@
+{
+  "version": "0.0.0",
+  "name": "components",
+  "exports": {
+    "./typography": "typography.tsx",
+    "./layout": "layout.tsx"
+  },
+  "dependencies": {
+    "solito": "latest",
+    "tailwindcss-react-native": "^1.5.3"
+  },
+  "sideEffects": false
+}
