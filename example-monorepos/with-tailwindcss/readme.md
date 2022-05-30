@@ -10,7 +10,7 @@ npx create-solito-app@latest my-solito-app with-tailwindcss
 
 ## 🔦 About
 
-This monorepo is a starter for an Expo + Next.js app using [TailwindCss-React-Native](https://tailwindcss-react-native.vercel.app) for its styling.
+This monorepo is a starter for an Expo + Next.js app using [tailwindcss-react-native](https://tailwindcss-react-native.vercel.app) for its styling.
 
 > :warning: This example is using the Preview version of React Native Web 0.18
 
@@ -83,8 +83,13 @@ You can also install the native library inside of `packages/app` if you want to 
 
 ## 🎙 About the creator
 
-Follow Fernando Rojo on Twitter: [@FernandoTheRojo](https://twitter.com/fernandotherojo)
-Follow Mark Lawlor on Twitter: [@mark\_\_lawlor](https://twitter.com/mark__lawlor)
+### Fernando Rojo
+
+Follow Fernando Rojo, creator of `solito`, on Twitter: [@FernandoTheRojo](https://twitter.com/fernandotherojo)
+
+### Mark Lawlor
+
+Follow Mark Lawlor, creator of `tailwindcss-react-native`, on Twitter: [@mark\_\_lawlor](https://twitter.com/mark__lawlor)
 
 ## 🧐 Why use Expo + Next.js?
 
