@@ -13,7 +13,6 @@ const withTM = require('next-transpile-modules')([
   '@motify/components',
   'tailwindcss-react-native',
   'app',
-  'components',
 ])
 
 module.exports = withPlugins(
