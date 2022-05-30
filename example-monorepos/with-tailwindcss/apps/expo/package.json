@@ -11,7 +11,7 @@
     "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
-    "tailwindcss-react-native": "*"
+    "tailwindcss-react-native": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

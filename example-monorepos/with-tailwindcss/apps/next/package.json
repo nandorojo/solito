@@ -14,7 +14,7 @@
     "next": "12.1.0",
     "raf": "^3.4.1",
     "react-native-web": "0.0.0-b2a3e86d",
-    "tailwindcss-react-native": "*"
+    "tailwindcss-react-native": "latest"
   },
   "devDependencies": {
     "@types/node": "17.0.21",

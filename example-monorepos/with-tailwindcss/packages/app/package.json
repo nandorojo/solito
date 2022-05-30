@@ -8,7 +8,7 @@
     "expo-linking": "^3.0.0",
     "moti": "canary",
     "solito": "latest",
-    "tailwindcss-react-native": "^1.5.3"
+    "tailwindcss-react-native": "latest"
   },
   "sideEffects": false
 }
