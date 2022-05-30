@@ -22,7 +22,7 @@ export const P = forwardRef<RNText, StyledProps<TextProps>>(function P(
 })
 
 /**
- * You can use this pattern works well when creating different typography components
+ * Or to create components with default styles and props
  */
 export const H1 = forwardRef<RNText, StyledProps<TextProps>>(function H1(
   { className = '', ...props },
@@ -30,7 +30,7 @@ export const H1 = forwardRef<RNText, StyledProps<TextProps>>(function H1(
 ) {
   return (
     <Text
-      accessibilityLevel={3}
+      accessibilityLevel={1}
       accessibilityRole="header"
       className={`text-3xl font-extrabold my-4 ${className}`}
       {...props}
@@ -40,7 +40,7 @@ export const H1 = forwardRef<RNText, StyledProps<TextProps>>(function H1(
 })
 
 /**
- * This more advanced component with custom styles and functionality
+ * This is more advanced component with custom styles and per-platform functionality
  */
 export interface AProps extends TextProps {
   href?: string
@@ -79,7 +79,9 @@ export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
 
 /**
  * Solito's TextLink doesn't quite work with styled(), so you need to wrap it in a function
- * Now you can pass the outputed style to the textProps
+ * to correctly pass the arguments.
+ *
+ * This is a common pattern when working with libraries
  */
 const StyledTextLink = styled(
   ({
@@ -92,7 +94,7 @@ const StyledTextLink = styled(
 )
 
 /**
- * Now we can create our TextLink using StyledTextLink.
+ * Now you can create your TextLink with default styles
  */
 export const TextLink = forwardRef<
   RNText,
