@@ -1,8 +1,8 @@
 import React from 'react'
 import { createParam } from 'solito'
 import { TextLink } from 'solito/link'
-import { View } from 'components/layout'
-import { Text } from 'components/typography'
+import { View } from 'app/design/layout'
+import { Text } from 'app/design/typography'
 
 const { useParam } = createParam<{ id: string }>()
 

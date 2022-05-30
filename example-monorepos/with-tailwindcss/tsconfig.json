@@ -4,7 +4,8 @@
     "noUncheckedIndexedAccess": true,
     "paths": {
       "app/*": ["./packages/app/*"]
-    }
+    },
+    "jsx": "react-jsx"
   },
   "extends": "expo/tsconfig.base"
 }

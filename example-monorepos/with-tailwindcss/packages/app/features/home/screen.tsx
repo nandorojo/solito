@@ -1,6 +1,6 @@
 import React from 'react'
-import { A, H1, P, Text, TextLink } from 'components/typography'
-import { Row, View } from 'components/layout'
+import { A, H1, P, Text, TextLink } from 'app/design/typography'
+import { Row, View } from 'app/design/layout'
 
 import { MotiLink } from 'solito/moti'
 
