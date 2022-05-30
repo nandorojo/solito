@@ -5,10 +5,10 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
-    "components": "*",
     "expo-linking": "^3.0.0",
     "moti": "canary",
-    "solito": "latest"
+    "solito": "latest",
+    "tailwindcss-react-native": "^1.5.3"
   },
   "sideEffects": false
 }
