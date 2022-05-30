@@ -1,4 +1,4 @@
-# Tailwindcss-React-Native Solito Example Monorepo 🕴
+# Solito + Tailwind CSS Example Monorepo 🕴
 
 ```sh
 npx create-solito-app@latest my-solito-app with-tailwindcss
@@ -14,9 +14,13 @@ This monorepo is a starter for an Expo + Next.js app using [tailwindcss-react-na
 
 > :warning: This example is using the Preview version of React Native Web 0.18
 
-The native app uses Babel to automatically compile the styles and output them as `StyleSheet.create` styles, while the web app uses Next.js's inbuilt `PostCSS` feature outputs CSS StyleSheets.
+## 👓 How Tailwind CSS works with Solito
 
-As two different compilation methods are used, the components must be written using the `styled()` higher-order component.
+**iOS and Android** apps use Babel to compile the styles and output them as `StyleSheet.create` objects at build-time.
+
+On the other hand, the web app uses Next.js's inbuilt `PostCSS` feature outputs CSS StyleSheets. On Web, `tailwindcss-react-native` uses actual CSS classnames. This is unlike iOS and Android, where styles are compiled into objects.
+
+Since two different compilation methods are used across platforms, the components must be written using the `styled()` higher-order component. Take a look at the [`/packages/app/design`](/packages/app/design) folder to see how components are created with ease.
 
 ## 📦 Included packages
 
@@ -39,9 +43,9 @@ As two different compilation methods are used, the components must be written us
     - `features` (don't use a `screens` folder. organize by feature.)
     - `provider` (all the providers that wrap the app, and some no-ops for Web.)
     - `navigation` Next.js has a `pages/` folder. React Native doesn't. This folder contains navigation-related code for RN. You may use it for any navigation code, such as custom links.
-  - `components` your apps components
-    - `typography` (components for all the different text styles)
-    - `layout` (components for layouts)
+    - `design` your app's design system. organize this as you please.
+      - `typography` (components for all the different text styles)
+      - `layout` (components for layouts)
 
 You can add other folders inside of `packages/` if you know what you're doing and have a good reason to.
 
