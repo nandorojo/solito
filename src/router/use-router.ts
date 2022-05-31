@@ -85,6 +85,9 @@ export function useRouter() {
               }
             } else {
               // fallback in case the linking context didn't work
+              console.warn(`[solito] replace("${to}") faced an issue. You should still see your new screen, but it probably didn't replace the previous one. This may be due to a breaking change in React Navigation. 
+
+Please open an issue at https://github.com/nandorojo/solito and report how this happened. Thanks! - Fernando Rojo`)
               linkTo(to)
             }
           }
