@@ -9674,9 +9674,9 @@ svgo@^1.0.0:
     util.promisify "~1.0.0"
 
 tailwindcss-react-native@latest:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/tailwindcss-react-native/-/tailwindcss-react-native-1.6.3.tgz#bfac8fd9dd061f939b46ec9e3baf33ddb5251abd"
-  integrity sha512-KUjUZbLzrXwwjMaye0a+dLa8p0VcK+hFeVlznlFVMaMOLlgiTS3cwd+ct47FunqXP6IQW6hUQENX52vvxaeqEA==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-react-native/-/tailwindcss-react-native-1.7.0.tgz#2d33d83c54b28399b2b0e5c5c0491d74c57a3e61"
+  integrity sha512-+U3X7+9NKv6RAfT0N01wDOtsgDxHOopKqJvgRpNvzh0W1om45m4kzBEMMJwCpk+TPiJJO9Brb2pGAxe7WQBAqQ==
   dependencies:
     "@babel/types" "7.18.2"
     "@react-native-community/hooks" "^2.8.1"
