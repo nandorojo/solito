@@ -1,4 +1,3 @@
-import React from 'react'
 import { A, H1, P, Text, TextLink } from 'app/design/typography'
 import { Row, View } from 'app/design/layout'
 
