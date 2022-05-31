@@ -14,37 +14,33 @@ export const Text = styled(RNText)
 /**
  * You can use this pattern to create components with default styles
  */
-export const P = forwardRef<RNText, StyledProps<TextProps>>(function P(
-  { className = '', ...props },
-  ref
-) {
-  return <Text className={`text-base my-4 ${className}`} {...props} ref={ref} />
-})
+export const P = styled(RNText)
+P.defaultProps = {
+  baseClassName: 'text-base text-black my-4',
+}
 
 /**
  * Or to create components with default styles and props
  */
-export const H1 = forwardRef<RNText, StyledProps<TextProps>>(function H1(
-  { className = '', ...props },
-  ref
-) {
-  return (
-    <Text
-      accessibilityLevel={1}
-      accessibilityRole="header"
-      className={`text-3xl font-extrabold my-4 ${className}`}
-      {...props}
-      ref={ref}
-    />
-  )
-})
+export const H1 = styled(RNText)
+H1.defaultProps = {
+  accessibilityLevel: 1,
+  accessibilityRole: 'header',
+  baseClassName: 'text-3xl font-extrabold my-4',
+}
 
 /**
- * This is more advanced component with custom styles and per-platform functionality
+ * This is a more advanced component with custom styles and per-platform functionality
  */
 export interface AProps extends TextProps {
   href?: string
   target?: string
+}
+
+const StyledA = styled(RNText)
+StyledA.defaultProps = {
+  accessibilityRole: 'link',
+  baseClassName: 'text-blue-500 hover:underline',
 }
 
 export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
@@ -66,15 +62,7 @@ export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
     },
   })
 
-  return (
-    <Text
-      accessibilityRole="link"
-      className={`text-blue-500 hover:underline ${className}`}
-      {...props}
-      {...nativeAProps}
-      ref={ref}
-    />
-  )
+  return <StyledA {...props} {...nativeAProps} ref={ref} />
 })
 
 /**
@@ -83,28 +71,15 @@ export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
  *
  * This is a common pattern when working with libraries
  */
-const StyledTextLink = styled(
+export const TextLink = styled(
   ({
     style,
     textProps,
     ...props
   }: ComponentProps<typeof SolitoTextLink> & { style?: TextStyle }) => (
     <SolitoTextLink textProps={{ style, ...textProps }} {...props} />
-  )
+  ),
 )
-
-/**
- * Now you can create your TextLink with default styles
- */
-export const TextLink = forwardRef<
-  RNText,
-  ComponentProps<typeof StyledTextLink>
->(function TextLink({ className = '', ...props }, ref) {
-  return (
-    <StyledTextLink
-      className={`text-base font-bold hover:underline text-blue-500 ${className}`}
-      {...props}
-      ref={ref}
-    />
-  )
-})
+TextLink.defaultProps = {
+  baseClassName: 'text-base font-bold hover:underline text-blue-500'
+}
