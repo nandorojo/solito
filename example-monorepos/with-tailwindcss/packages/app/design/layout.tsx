@@ -1,5 +1,4 @@
-import { View as RNView } from 'react-native'
+import { View } from 'react-native'
 import { styled } from 'tailwindcss-react-native'
 
-export const View = styled(RNView)
-export const Row = styled(RNView, "flex-row")
+export const Row = styled(View, "flex-row")

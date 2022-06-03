@@ -7,6 +7,7 @@
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["@babel/plugin-proposal-private-methods", { "loose": true }],
     ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
+    ['tailwindcss-react-native/babel', { mode: 'transformOnly' }],
     "react-native-reanimated/plugin"
   ]
 }

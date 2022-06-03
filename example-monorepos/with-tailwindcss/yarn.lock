@@ -9669,9 +9669,9 @@ svgo@^1.0.0:
     util.promisify "~1.0.0"
 
 tailwindcss-react-native@latest:
-  version "1.7.7"
-  resolved "https://registry.yarnpkg.com/tailwindcss-react-native/-/tailwindcss-react-native-1.7.7.tgz#f4c81575d51b523aead6683f20ef0fe3afa54a0d"
-  integrity sha512-eMBPHXls/HM3645NKj7tvdG/0l5W/S5RwW7MUhMMZHpDw4AL5rw/XtAGPNxyNzoQoEs/ZktWpEkcNh9IFU8iFg==
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/tailwindcss-react-native/-/tailwindcss-react-native-1.7.8.tgz#9a762f691f8a363762f6683e9d008f24f3b5192d"
+  integrity sha512-vU/UdwmP7WhIF+lblJhijNROBfDhZll0oZd5GXPDPZ+gaLwcLclxtG+zHeEhslMtPpc8MrFJC3uBVvnXVVjlwQ==
   dependencies:
     "@babel/types" "7.18.2"
     css-mediaquery "^0.1.2"

@@ -1,5 +1,6 @@
+import { View } from "react-native"
 import { A, H1, P, Text, TextLink } from 'app/design/typography'
-import { Row, View } from 'app/design/layout'
+import { Row } from 'app/design/layout'
 
 import { MotiLink } from 'solito/moti'
 

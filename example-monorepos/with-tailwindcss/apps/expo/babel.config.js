@@ -4,7 +4,7 @@ module.exports = function (api) {
     presets: [['babel-preset-expo', { jsxRuntime: 'automatic' }]],
     plugins: [
       'react-native-reanimated/plugin',
-      ['tailwindcss-react-native/babel', { mode: 'compileOnly' }],
+      'tailwindcss-react-native/babel',
     ],
   }
 }
