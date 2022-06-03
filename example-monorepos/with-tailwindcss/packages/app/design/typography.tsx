@@ -1,10 +1,5 @@
 import { ComponentProps, forwardRef } from 'react'
-import {
-  Text as RNText,
-  Platform,
-  Linking,
-  TextStyle,
-} from 'react-native'
+import { Text as RNText, Platform, Linking, TextStyle } from 'react-native'
 import { styled, StyledProps } from 'tailwindcss-react-native'
 import { TextLink as SolitoTextLink } from 'solito/link'
 
@@ -33,7 +28,7 @@ export interface AProps extends ComponentProps<typeof Text> {
 }
 
 export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
-  { className = "", href, target, ...props },
+  { className = '', href, target, ...props },
   ref
 ) {
   const nativeAProps = Platform.select<Partial<AProps>>({
@@ -52,12 +47,12 @@ export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
   })
 
   return (
-    <Text 
-      accessibilityRole="link" 
-      className={`text-blue-500 hover:underline ${className}`} 
-      {...props} 
-      {...nativeAProps} 
-      ref={ref} 
+    <Text
+      accessibilityRole="link"
+      className={`text-blue-500 hover:underline ${className}`}
+      {...props}
+      {...nativeAProps}
+      ref={ref}
     />
   )
 })
@@ -66,7 +61,11 @@ export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
  * Solito's TextLink doesn't quite work with styled(), so you need to wrap it in a function
  * to correctly pass the style prop.
  */
-export const TextLink = styled<ComponentProps<typeof SolitoTextLink> & { style?: TextStyle }>(
-  ({ style, textProps, ...props }) => (<SolitoTextLink textProps={{ style, ...textProps }} {...props} />),
+export const TextLink = styled<
+  ComponentProps<typeof SolitoTextLink> & { style?: TextStyle }
+>(
+  ({ style, textProps, ...props }) => (
+    <SolitoTextLink textProps={{ style, ...textProps }} {...props} />
+  ),
   'text-base font-bold hover:underline text-blue-500'
 )
