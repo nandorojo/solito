@@ -1766,11 +1766,6 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
-"@react-native-community/hooks@^2.8.1":
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-2.8.1.tgz#6e785431db49318048fdd14b601998437b6cc200"
-  integrity sha512-DCmCIC0Gn9m6K0Mlg2MwNmTxMEpBu5lTLsI6b/XUAv/vLGa6o+X7RhCai4FWeqkjCU36+ZOwaLzDo4NBWMXaoQ==
-
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
@@ -9674,12 +9669,11 @@ svgo@^1.0.0:
     util.promisify "~1.0.0"
 
 tailwindcss-react-native@latest:
-  version "1.7.5"
-  resolved "https://registry.yarnpkg.com/tailwindcss-react-native/-/tailwindcss-react-native-1.7.5.tgz#b4fdd057022aaeb010d1ed9b70c3a7dac5700b8c"
-  integrity sha512-c0W3fdnsd0qvSchSLwCVKUeCA6jWG3j0QqHvEypakdwCG2hhgROv/wWQwfH8jRwMVMi+1L7w2WLywe9rNflqXQ==
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/tailwindcss-react-native/-/tailwindcss-react-native-1.7.7.tgz#f4c81575d51b523aead6683f20ef0fe3afa54a0d"
+  integrity sha512-eMBPHXls/HM3645NKj7tvdG/0l5W/S5RwW7MUhMMZHpDw4AL5rw/XtAGPNxyNzoQoEs/ZktWpEkcNh9IFU8iFg==
   dependencies:
     "@babel/types" "7.18.2"
-    "@react-native-community/hooks" "^2.8.1"
     css-mediaquery "^0.1.2"
     css-to-react-native "^3.0.0"
     micromatch "^4.0.5"
