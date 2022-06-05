@@ -10,7 +10,9 @@ import { createParam } from 'solito'
 const { useParam } = createParam()
 ```
 
-`useParam` is a hook that lets you read screen parameters on both Next.js and React Native. On Native, it reads React Navigation params, and on Web, it reads query params from `next/router`.
+`useParam` is a hook that lets you read screen parameters on both Next.js and React Native. On Native, it reads React Navigation params, and on Web, it reads query params from `next/router`. 
+
+Dynamic route parameters are also included in Next.js query params (ex pages/user/[id].tsx).
 
 It also lets you update the parameter, using query parameters on Web, and React state on iOS/Android.
 
