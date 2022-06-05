@@ -4,9 +4,6 @@ import React from 'react'
 import type { SolitoAppProps } from 'solito'
 import 'raf/polyfill'
 
-import 'app/rnw-overrides'
-import 'app/tailwindcss-react-native.d'
-
 import '../global.css'
 
 function MyApp({ Component, pageProps }: SolitoAppProps) {
