@@ -1,14 +1,15 @@
 import { StackActions } from '@react-navigation/native'
 import type { NextRouter as NextRouterType } from 'next/router'
 import { useCallback, useContext } from 'react'
+import { Platform } from 'react-native'
 
 import { getActionFromState } from './get-action-from-state'
 import { getStateFromPath } from './get-state-from-path'
 import { LinkingContext } from './linking-context'
-import { NextRouter } from './next-router'
 import { parseNextPath } from './parse-next-path'
 import { useLinkTo } from './use-link-to'
 import { useNavigation } from './use-navigation'
+import { useNextRouter } from './use-next-router'
 
 // copied from next/router to appease typescript error
 // if we don't manually write this here, then we get some ReturnType error on build
@@ -24,6 +25,8 @@ export function useRouter() {
   const navigation = useNavigation()
   const linking = useContext(LinkingContext)
 
+  const nextRouter = useNextRouter()
+
   return {
     push: useCallback(
       (
@@ -31,8 +34,8 @@ export function useRouter() {
         as?: Parameters<NextRouterType['push']>[1],
         transitionOptions?: TransitionOptions
       ) => {
-        if (NextRouter?.router) {
-          NextRouter.push(url, as, transitionOptions)
+        if (Platform.OS === 'web') {
+          nextRouter?.push(url, as, transitionOptions)
         } else {
           const to = parseNextPath(as || url)
 
@@ -41,7 +44,7 @@ export function useRouter() {
           }
         }
       },
-      [linkTo]
+      [linkTo, nextRouter?.push]
     ),
     replace: useCallback(
       (
@@ -49,8 +52,8 @@ export function useRouter() {
         as?: Parameters<NextRouterType['replace']>[1],
         transitionOptions?: TransitionOptions
       ) => {
-        if (NextRouter?.router) {
-          NextRouter.replace(url, as, transitionOptions)
+        if (Platform.OS === 'web') {
+          nextRouter?.replace(url, as, transitionOptions)
         } else {
           const to = parseNextPath(as || url)
 
@@ -90,15 +93,15 @@ export function useRouter() {
           }
         }
       },
-      [linkTo, navigation, linking]
+      [linkTo, navigation, linking, nextRouter?.replace]
     ),
     back: useCallback(() => {
-      if (NextRouter?.router) {
-        NextRouter.back()
+      if (Platform.OS === 'web') {
+        nextRouter?.back()
       } else {
         navigation?.goBack()
       }
-    }, [navigation]),
+    }, [navigation, nextRouter?.back]),
     parseNextPath,
   }
 }
