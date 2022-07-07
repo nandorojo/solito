@@ -1,5 +1,5 @@
-import { NativeNavigation } from 'app/navigation/native'
-import { Provider } from 'app/provider'
+import { NativeNavigation } from 'solito-app/navigation/native'
+import { Provider } from 'solito-app/provider'
 
 export default function App() {
   return (
