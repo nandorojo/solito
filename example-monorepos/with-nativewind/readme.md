@@ -1,24 +1,24 @@
-# Solito + Tailwind CSS Example Monorepo 🕴
+# Solito + NativeWind CSS Example Monorepo 🕴
 
 ```sh
-npx create-solito-app@latest my-solito-app with-tailwindcss
+npx create-solito-app@latest my-solito-app with-nativewind
 ```
 
 ## ⚡️ Instantly clone & deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnandorojo%2Fsolito%2Ftree%2Fmaster%2Fexample-monorepos%2Fwith-tailwindcss&env=ENABLE_ROOT_PATH_BUILD_CACHE&root-directory=apps/next&envDescription=Set%20this%20environment%20variable%20to%201%20for%20Turborepo%20to%20cache%20your%20node_modules.&envLink=https%3A%2F%2Ftwitter.com%2Fjaredpalmer%2Fstatus%2F1488954563533189124&project-name=solito-app&repo-name=solito-app&demo-title=Solito%20App%20%E2%9A%A1%EF%B8%8F&demo-description=React%20Native%20%2B%20Next.js%20starter%20with%20Solito.%20Made%20by%20Fernando%20Rojo.&demo-url=https%3A%2F%2Fsolito.dev%2Fstarter&demo-image=https%3A%2F%2Fsolito.dev%2Fimg%2Fog.png)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnandorojo%2Fsolito%2Ftree%2Fmaster%2Fexample-monorepos%2Fwith-nativewind&env=ENABLE_ROOT_PATH_BUILD_CACHE&root-directory=apps/next&envDescription=Set%20this%20environment%20variable%20to%201%20for%20Turborepo%20to%20cache%20your%20node_modules.&envLink=https%3A%2F%2Ftwitter.com%2Fjaredpalmer%2Fstatus%2F1488954563533189124&project-name=solito-app&repo-name=solito-app&demo-title=Solito%20App%20%E2%9A%A1%EF%B8%8F&demo-description=React%20Native%20%2B%20Next.js%20starter%20with%20Solito.%20Made%20by%20Fernando%20Rojo.&demo-url=https%3A%2F%2Fsolito.dev%2Fstarter&demo-image=https%3A%2F%2Fsolito.dev%2Fimg%2Fog.png)
 
 ## 🔦 About
 
-This monorepo is a starter for an Expo + Next.js app using [tailwindcss-react-native](https://tailwindcss-react-native.vercel.app) for its styling.
+This monorepo is a starter for an Expo + Next.js app using [NativeWind](https://nativewind.vercel.app) for its styling.
 
 > :warning: This example is using the Preview version of React Native Web 0.18
 
-## 👓 How Tailwind CSS works with Solito
+## 👓 How NativeWind works with Solito
 
 **iOS and Android** apps use Babel to compile the styles and output them as `StyleSheet.create` objects at build-time.
 
-On the other hand, the web app uses Next.js's inbuilt `PostCSS` feature outputs CSS StyleSheets. On Web, `tailwindcss-react-native` uses actual CSS classnames. This is unlike iOS and Android, where styles are compiled into objects.
+On the other hand, the web app uses Next.js's inbuilt `PostCSS` feature outputs CSS StyleSheets. On Web, `NativeWind` uses actual CSS classnames. This is unlike iOS and Android, where styles are compiled into objects.
 
 Since two different compilation methods are used across platforms, the components must be written using the `styled()` higher-order component. Take a look at the [`/packages/app/design`](/packages/app/design) folder to see how components are created with ease.
 
@@ -26,7 +26,7 @@ Since two different compilation methods are used across platforms, the component
 
 - `solito` for cross-platform navigation
 - `moti` for animations
-- `tailwindcss-react-native` for theming/design (you can bring your own, too)
+- `NativeWind` for theming/design (you can bring your own, too)
 - Expo SDK 44
 - Next.js 12
 - React Navigation 6
@@ -93,7 +93,7 @@ Follow Fernando Rojo, creator of `solito`, on Twitter: [@FernandoTheRojo](https:
 
 ### Mark Lawlor
 
-Follow Mark Lawlor, creator of `tailwindcss-react-native`, on Twitter: [@mark\_\_lawlor](https://twitter.com/mark__lawlor)
+Follow Mark Lawlor, creator of `NativeWind`, on Twitter: [@mark\_\_lawlor](https://twitter.com/mark__lawlor)
 
 ## 🧐 Why use Expo + Next.js?
 

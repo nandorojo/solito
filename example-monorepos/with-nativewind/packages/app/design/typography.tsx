@@ -1,6 +1,6 @@
 import { ComponentProps, forwardRef } from 'react'
 import { Text as RNText, Platform, Linking, TextStyle } from 'react-native'
-import { styled, StyledProps } from 'tailwindcss-react-native'
+import { styled, StyledProps } from 'nativewind'
 import { TextLink as SolitoTextLink } from 'solito/link'
 
 export const Text = styled(RNText)

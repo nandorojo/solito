@@ -6,10 +6,10 @@ import { MotiLink } from 'solito/moti'
 
 export function HomeScreen() {
   return (
-    <View className="flex-1 justify-center items-center p-4">
+    <View className="flex-1 justify-center items-center p-2">
       <H1>Welcome to Solito.</H1>
       <View className="max-w-xl">
-        <P className="text-center">
+        <P className="text-center text-red text-purple">
           Here is a basic starter to show you how you can navigate from one
           screen to another. This screen uses the same code on Next.js and React
           Native.
@@ -28,7 +28,7 @@ export function HomeScreen() {
           .
         </P>
         <P className="text-center">
-          tailwindcss-react-native is made by{' '}
+          NativeWind is made by{' '}
           <A
             href="https://twitter.com/mark__lawlor"
             hrefAttrs={{
