@@ -8,41 +8,47 @@ import { NextLink } from './next-link'
 
 export type LinkCoreProps = {
   children: React.ReactNode
+  asChild?: boolean
 } & Omit<ComponentProps<typeof NextLink>, 'passHref'>
 
 function LinkCore({
-  children,
+  children: childrenProp,
   href,
   as,
   componentProps,
   Component,
+  asChild,
   ...props
 }: LinkCoreProps & {
   Component: ComponentType<any>
   componentProps?: any
 }) {
-  if (Platform.OS === 'web') {
-    return (
-      <NextLink {...props} href={href} as={as} passHref>
-        <Component {...componentProps}>{children}</Component>
-      </NextLink>
-    )
+  if (asChild) {
+    React.Children.only(childrenProp)
   }
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const linkTo = useLinkTo()
-  return (
-    <Component
-      accessibilityRole="link"
-      {...componentProps}
-      onPress={(e?: any) => {
+
+  if (Platform.OS !== 'web') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const linkTo = useLinkTo()
+    const childProps = {
+      accessibilityRole: 'link',
+      ...componentProps,
+      onPress: (e?: any) => {
         componentProps?.onPress?.(e)
         if (!e?.defaultPrevented) {
           linkTo(parseNextPath(as || href))
         }
-      }}
-    >
-      {children}
-    </Component>
+      },
+    }
+    return asChild
+      ? React.cloneElement(childrenProp as any, childProps)
+      : React.createElement(Component, childProps, childrenProp)
+  }
+
+  return (
+    <NextLink {...props} href={href} as={as} passHref>
+      {childrenProp}
+    </NextLink>
   )
 }
 
