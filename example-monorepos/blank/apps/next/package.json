@@ -18,6 +18,8 @@
     "@types/node": "17.0.21",
     "eslint-config-next": "^12.1.0",
     "next-compose-plugins": "^2.2.1",
+    "next-fonts": "^1.5.1",
+    "next-images": "^1.8.4",
     "next-transpile-modules": "^9.0.0"
   }
 }
