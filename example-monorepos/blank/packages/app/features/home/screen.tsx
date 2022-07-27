@@ -1,6 +1,7 @@
 import { Text, useSx, View, H1, P, Row, A } from 'dripsy'
 import { TextLink } from 'solito/link'
 import { MotiLink } from 'solito/moti'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export function HomeScreen() {
   const sx = useSx()
@@ -30,6 +31,9 @@ export function HomeScreen() {
             Fernando Rojo
           </A>
           .
+        </P>
+        <P sx={{ textAlign: 'center' }}>
+          Cross Platform Expo Vector Icon <Ionicons name="md-checkmark-circle" size={32} color="green" />
         </P>
       </View>
       <View sx={{ height: 32 }} />
