@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
+
+const path = require('path')
+
 const nextConfig = {
   reactStrictMode: true,
   webpack5: true,
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.ttf$/,
+      loader: "url-loader", // or directly file-loader
+      include: path.resolve(__dirname, "../../node_modules/@expo/vector-icons"),
+    })
+    return config
+  }
 }
 
 const { withExpo } = require('@expo/next-adapter')
