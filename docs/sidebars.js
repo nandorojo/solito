@@ -51,6 +51,7 @@ const sidebars = {
         'recipes/use-is-focused',
         'recipes/scroll-view',
         'recipes/deep-linking',
+        'recipes/modals',
       ],
       label: 'Recipes',
       collapsed: false,
