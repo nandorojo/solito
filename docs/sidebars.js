@@ -53,6 +53,7 @@ const sidebars = {
         'recipes/deep-linking',
       ],
       label: 'Recipes',
+      collapsed: false,
     },
     // {
     //   type: 'category',
