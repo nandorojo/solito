@@ -13,8 +13,6 @@ const withTM = require('next-transpile-modules')([
   'dripsy',
   '@dripsy/core',
   'moti',
-  '@motify/core',
-  '@motify/components',
   'app',
 ])
 
