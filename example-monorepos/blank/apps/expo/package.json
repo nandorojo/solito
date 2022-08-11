@@ -21,8 +21,8 @@
   },
   "scripts": {
     "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "android": "expo run:android -c",
+    "ios": "expo run:ios -c",
     "web": "expo start --web"
   },
   "main": "index.js",

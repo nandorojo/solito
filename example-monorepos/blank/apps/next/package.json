@@ -11,12 +11,12 @@
   "dependencies": {
     "@expo/next-adapter": "4.0.10",
     "app": "*",
-    "next": "12.2.2",
+    "next": "12.2.3-canary.2",
     "raf": "^3.4.1"
   },
   "devDependencies": {
     "@types/node": "17.0.21",
-    "eslint-config-next": "^12.1.0",
+    "eslint-config-next": "12.2.0",
     "next-compose-plugins": "^2.2.1",
     "next-fonts": "^1.5.1",
     "next-images": "^1.8.4",
