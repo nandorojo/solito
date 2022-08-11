@@ -1,0 +1,14 @@
+{
+  "version": "0.0.0",
+  "name": "app",
+  "main": "index.ts",
+  "dependencies": {
+    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native-stack": "^6.5.0",
+    "dripsy": "^3.6.0",
+    "expo-linking": "^3.0.0",
+    "moti": "canary",
+    "solito": "latest"
+  },
+  "sideEffects": false
+}
