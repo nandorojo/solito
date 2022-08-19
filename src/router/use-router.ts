@@ -1,5 +1,5 @@
 import type { NextRouter as NextRouterType } from 'next/router'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 
 import { NextRouter } from './next-router'
 import { parseNextPath } from './parse-next-path'
@@ -18,51 +18,58 @@ interface TransitionOptions {
 export function useRouter() {
   const linkTo = useLinkTo()
   const navigation = useNavigation()
-
-  return {
-    push: useCallback(
-      (
-        url: Parameters<NextRouterType['push']>[0],
-        as?: Parameters<NextRouterType['push']>[1],
-        options?: TransitionOptions
-      ) => {
-        if (NextRouter?.router) {
-          NextRouter.push(url, as, options)
-        } else {
-          const to = parseNextPath(as || url)
-
-          if (to) {
-            linkTo(to)
-          }
-        }
-      },
-      [linkTo]
-    ),
-    replace: useCallback(
-      (
-        url: Parameters<NextRouterType['replace']>[0],
-        as?: Parameters<NextRouterType['replace']>[1],
-        options?: TransitionOptions
-      ) => {
-        if (NextRouter?.router) {
-          NextRouter.replace(url, as, options)
-        } else {
-          const to = parseNextPath(as || url)
-
-          if (to) {
-            linkTo(to)
-          }
-        }
-      },
-      [linkTo]
-    ),
-    back: useCallback(() => {
+  const push = useCallback(
+    (
+      url: Parameters<NextRouterType['push']>[0],
+      as?: Parameters<NextRouterType['push']>[1],
+      options?: TransitionOptions
+    ) => {
       if (NextRouter?.router) {
-        NextRouter.back()
+        NextRouter.push(url, as, options)
       } else {
-        navigation?.goBack()
+        const to = parseNextPath(as || url)
+
+        if (to) {
+          linkTo(to)
+        }
       }
-    }, [navigation]),
-    parseNextPath,
-  }
+    },
+    [linkTo]
+  )
+
+  const replace = useCallback(
+    (
+      url: Parameters<NextRouterType['replace']>[0],
+      as?: Parameters<NextRouterType['replace']>[1],
+      options?: TransitionOptions
+    ) => {
+      if (NextRouter?.router) {
+        NextRouter.replace(url, as, options)
+      } else {
+        const to = parseNextPath(as || url)
+
+        if (to) {
+          linkTo(to)
+        }
+      }
+    },
+    [linkTo]
+  )
+
+  const back = useCallback(() => {
+    if (NextRouter?.router) {
+      NextRouter.back()
+    } else {
+      navigation?.goBack()
+    }
+  }, [navigation])
+
+  return useMemo(() => {
+    return {
+      push,
+      replace,
+      back,
+      parseNextPath,
+    }
+  }, [push, replace, back, parseNextPath])
 }
