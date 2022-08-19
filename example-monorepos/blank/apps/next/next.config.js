@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  webpack5: true,
-}
-
 const { withExpo } = require('@expo/next-adapter')
 const withFonts = require('next-fonts')
 const withImages = require('next-images')
@@ -16,7 +11,12 @@ const withTM = require('next-transpile-modules')([
   'app',
 ])
 
-module.exports = withPlugins(
-  [withTM, withFonts, withImages, [withExpo, { projectRoot: __dirname }]],
-  nextConfig
-)
+const transform = withPlugins([withTM, withFonts, withImages, withExpo])
+
+module.exports = function (name, { defaultConfig }) {
+  return transform(name, {
+    ...defaultConfig,
+    webpack5: true,
+    reactStrictMode: true,
+  })
+}
