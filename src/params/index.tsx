@@ -147,7 +147,7 @@ export function createParam<
       ParsedType | InitialValue
     >(() => (nativeRoute?.params as any)?.[name] ?? (initial as InitialValue))
 
-    const nativeStateFromParams = nativeRoute?.params as ParsedType
+    const nativeStateFromParams = nativeRoute?.params as any as ParsedType
     const setNativeStateFromParams = useCallback((value: ParsedType) => {
       nativeNavigation?.setParams({
         [name]: value,
@@ -221,7 +221,7 @@ export function createParam<
         console.warn(
           `[solito] useParam('${
             name as string
-          }') called when there is no React Navigation route available. In a future version, this will throw an error. Please fix this by only calling useParam() inside of a React Navigation route. For now, Solito will fall back to using React state.`
+          }') called when there is no React Navigation route available. In a future version, this will throw an error. Please fix this by only calling useParam() inside of a React Navigation route. For now, Solito will fallback to using React state.`
         )
       }
       return [nativeState, setNativeState]
