@@ -4,6 +4,7 @@ import Router, { useRouter } from 'next/router'
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { Platform } from 'react-native'
 
+import { useNavigation } from '../router/use-navigation'
 import { useRoute } from './use-route'
 
 function useStable<T>(value: T) {
@@ -140,10 +141,25 @@ export function createParam<
     } = maybeConfig || {}
     const nextRouter = useRouter()
     const nativeRoute = useRoute()
+    const nativeNavigation = useNavigation()
 
-    const [nativeState, setNativeState] = useState<ParsedType | InitialValue>(
-      () => (nativeRoute?.params as any)?.[name] ?? (initial as InitialValue)
-    )
+    const [nativeStateFromReact, setNativeStateFromReact] = useState<
+      ParsedType | InitialValue
+    >(() => (nativeRoute?.params as any)?.[name] ?? (initial as InitialValue))
+
+    const nativeStateFromParams = nativeRoute?.params as any as ParsedType
+    const setNativeStateFromParams = useCallback((value: ParsedType) => {
+      nativeNavigation?.setParams({
+        [name]: value,
+      })
+    }, [])
+
+    const nativeState = nativeRoute
+      ? nativeStateFromParams
+      : nativeStateFromReact
+    const setNativeState = nativeRoute
+      ? setNativeStateFromParams
+      : setNativeStateFromReact
 
     const stableStringify = useStableCallback(stringify)
     const stableParse = useStableCallback(parse)
@@ -201,6 +217,13 @@ export function createParam<
     }, [stableParse, webParam])
 
     if (Platform.OS !== 'web') {
+      if (!nativeRoute) {
+        console.warn(
+          `[solito] useParam('${
+            name as string
+          }') called when there is no React Navigation route available. In a future version, this will throw an error. Please fix this by only calling useParam() inside of a React Navigation route. For now, Solito will fallback to using React state.`
+        )
+      }
       return [nativeState, setNativeState]
     }
 
