@@ -13,7 +13,7 @@ This starter monorepo demonstrates how to use a custom font on both Next.js and 
 Reference the following files/folders to see how it's done:
 
 1. [`apps/expo/Fonts.tsx`](https://github.com/nandorojo/solito/tree/master/example-monorepos/with-custom-font/apps/expo/Fonts.tsx)
-2. [`apps/next/pages/_document.tsx`](https://github.com/nandorojo/solito/tree/master/example-monorepos/with-custom-font/apps/next/pages/_document.tsx)
+2. [`apps/next/pages/_document.tsx`](https://github.com/nandorojo/solito/tree/master/example-monorepos/with-custom-font/apps/next/pages/_document.tsx#L7-L16)
 3. [`packages/app/provider/dripsy.tsx`](https://github.com/nandorojo/solito/tree/master/example-monorepos/with-custom-font/packages/app/provider/dripsy.tsx)
 4. [`apps/next/public/font`](https://github.com/nandorojo/solito/tree/master/example-monorepos/with-custom-font/apps/next/public/font)
 
