@@ -4,12 +4,14 @@ import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 import * as React from 'react'
 import { AppRegistry } from 'react-native'
 
-const customFontCss = ['Regular', 'Bold', 'Black']
+const fonts = ['Inter-Regular', 'Inter-Bold', 'Inter-Black']
+
+const customFontCss = fonts
   .map(
-    (weight) => `
+    (font) => `
     @font-face {
-        font-family: 'Inter-${weight}';
-        url: url('/font/Inter/Inter-${weight}.otf');
+        font-family: '${font}';
+        url: url('/font/Inter/${font}.otf');
     }
 `
   )
@@ -74,6 +76,15 @@ export class Document extends NextDocument {
       <Html>
         <Head>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          {fonts.map((font) => (
+            <link
+              key={font}
+              rel="preload"
+              as="font"
+              crossOrigin=""
+              href={`/font/Inter/${font}`}
+            />
+          ))}
         </Head>
         <body>
           <Main />
