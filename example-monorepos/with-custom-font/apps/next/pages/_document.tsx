@@ -59,8 +59,10 @@ body {
 ${customFontCss}
 `
 
+// @ts-expect-error it's okay
 export async function getInitialProps({ renderPage }) {
   AppRegistry.registerComponent('Main', () => Main)
+  // @ts-expect-error missing types here too
   const { getStyleElement } = AppRegistry.getApplication('Main')
   const page = renderPage()
   const styles = [
