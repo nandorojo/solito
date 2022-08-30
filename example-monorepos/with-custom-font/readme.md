@@ -4,7 +4,7 @@
 npx create-solito-app@latest my-solito-app -t with-custom-font
 ```
 
-👾 [View the website](https://example.solito.dev)
+👾 [View the website](https://custom-font.example.solito.dev)
 
 ## About this starter
 
