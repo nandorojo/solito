@@ -40,7 +40,6 @@ export function useLink({ href, as, shallow, scroll }: UseLinkProps) {
   return {
     accessibilityRole: 'link' as const,
     onPress,
-    href: parseNextPath(as || href),
-    scroll,
+    href: parseNextPath(as || href)
   }
 }
