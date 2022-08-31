@@ -32,6 +32,7 @@ export function useLink({ href, as, shallow, scroll }: UseLinkProps) {
     if (shouldHandle) {
       push(href, as, {
         shallow,
+        scroll
       })
     }
   }
