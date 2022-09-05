@@ -45,14 +45,22 @@ const sidebars = {
     },
     {
       type: 'category',
+      items: ['guides/new-route', 'guides/dynamic-route'],
+      label: 'Guides',
+      collapsed: false,
+    },
+    {
+      type: 'category',
       items: [
         'recipes/redirects',
         'recipes/tree-shaking',
         'recipes/use-is-focused',
         'recipes/scroll-view',
         'recipes/deep-linking',
+        'recipes/modals',
       ],
       label: 'Recipes',
+      collapsed: false,
     },
     // {
     //   type: 'category',
