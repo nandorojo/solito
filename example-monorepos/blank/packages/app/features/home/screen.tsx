@@ -53,6 +53,10 @@ export function HomeScreen() {
               rotateZ: pressed ? '0deg' : hovered ? '-3deg' : '0deg',
             }
           }}
+          from={{
+            scale: 0,
+            rotateZ: '0deg',
+          }}
           transition={{
             type: 'timing',
             duration: 150,

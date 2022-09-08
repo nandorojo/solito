@@ -1,5 +1,5 @@
 {
-  "name": "solito-blank",
+  "name": "solito-with-custom-font",
   "private": true,
   "workspaces": [
     "apps/*",
