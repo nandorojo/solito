@@ -3,11 +3,10 @@
     "name": "solito-blank",
     "slug": "solito-blank",
     "version": "1.0.0",
-    "sdkVersion": "44.0.0",
-    "scheme": "solito-blank",
+    "scheme": "solito-with-font",
     "platforms": ["ios", "android"],
     "ios": {
-      "bundleIdentifier": "com.solito.blank"
+      "bundleIdentifier": "com.solito.with-font"
     },
     "assetBundlePatterns": ["**/*", "../next/public/font/**/*"]
   }
