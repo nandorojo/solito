@@ -1,16 +1,16 @@
 {
-  "name": "solito-with-custom-font",
+  "name": "solito-blank",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^17.0.39",
-    "@types/react-native": "^0.67.2",
-    "eslint": "^8.11.0",
-    "turbo": "^1.1.6",
-    "typescript": "^4.6.2"
+    "@types/react": "^18.0.17",
+    "@types/react-native": "^0.69.5",
+    "eslint": "^8.21.0",
+    "turbo": "^1.4.2",
+    "typescript": "^4.7.4"
   },
   "scripts": {
     "native": "cd apps/expo && expo start",
