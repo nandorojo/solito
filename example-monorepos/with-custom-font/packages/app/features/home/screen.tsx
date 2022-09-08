@@ -45,6 +45,10 @@ export function HomeScreen() {
         <View sx={{ width: 32 }} />
         <MotiLink
           href="/user/fernando"
+          from={{
+            scale: 0,
+            rotateZ: '0deg',
+          }}
           animate={({ hovered, pressed }) => {
             'worklet'
 
