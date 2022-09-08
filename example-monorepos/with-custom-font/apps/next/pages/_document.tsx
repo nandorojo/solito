@@ -83,7 +83,7 @@ function Document() {
             rel="preload"
             as="font"
             crossOrigin=""
-            href={`/font/Inter/${font}`}
+            href={`/font/Inter/${font}.otf`}
           />
         ))}
       </Head>
