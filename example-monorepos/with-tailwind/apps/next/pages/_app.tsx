@@ -5,8 +5,9 @@ import type { SolitoAppProps } from 'solito'
 import 'raf/polyfill'
 
 import '../global.css'
+import { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: SolitoAppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider>
+        {/* @ts-expect-error */}
         <Component {...pageProps} />
       </Provider>
     </>

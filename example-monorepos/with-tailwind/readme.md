@@ -1,8 +1,10 @@
 # Solito + NativeWind CSS Example Monorepo 🕴
 
 ```sh
-npx create-solito-app@latest my-solito-app with-nativewind
+npx create-solito-app@latest my-solito-app -t with-tailwind
 ```
+
+This example brings the power of Tailwind CSS to Solito, thanks to [NativeWind](https://nativewind.dev)
 
 ## ⚡️ Instantly clone & deploy
 
@@ -10,24 +12,80 @@ npx create-solito-app@latest my-solito-app with-nativewind
 
 ## 🔦 About
 
-This monorepo is a starter for an Expo + Next.js app using [NativeWind](https://nativewind.vercel.app) for its styling.
-
-> :warning: This example is using the Preview version of React Native Web 0.18
+This monorepo is a starter for an Expo + Next.js app using [NativeWind](https://nativewind.dev) for its styling & [Solito](https://solito.dev) for navigation.
 
 ## 👓 How NativeWind works with Solito
 
-**iOS and Android** apps use Babel to compile the styles and output them as `StyleSheet.create` objects at build-time.
+### Fast on every platform
 
-On the other hand, the web app uses Next.js's inbuilt `PostCSS` feature outputs CSS StyleSheets. On Web, `NativeWind` uses actual CSS classnames. This is unlike iOS and Android, where styles are compiled into objects.
+NativeWind lets you use Tailwind while reducing runtime work on every platform.
 
-Since two different compilation methods are used across platforms, the components must be written using the `styled()` higher-order component. Take a look at the [`/packages/app/design`](/packages/app/design) folder to see how components are created with ease.
+### Web
+
+NativeWind uses Next.js' `PostCSS` feature outputs CSS StyleSheets.
+
+Which is to say: **on Web, you're using CSS.** Yes, that's right. We aren't parsing className strings into objects for React Native Web to read. We're forwarding down the CSS classnames to the DOM. That means you can get responsive styles & pseudo-selectors _with serverside rendering support_.
+
+This is finally possible with the release of React Native Web 0.18.
+
+As a result, using NativeWind is like using `tailwind` without React Native.
+
+If you were going to make a website with Tailwind anyway, you might be wondering, why not just use the Solito starter with NativeWind, if I'm getting pure CSS outputs anyway?
+
+What if your website worked as a native app without compromising the Web side?
+
+🤷‍♂️
+
+### iOS and Android
+
+While Web uses class names, React Native uses style objects.
+
+Most approaches to using TailWind in React Native do something like this at runtime:
+
+```ts
+const styles = props.className
+  .split(' ')
+  .map((className) => makeStyle(className))
+```
+
+This means that every component ends up parsing strings to construct predictable style objects.
+
+NativeWind takes a new, more performant approach. Thanks to its Babel plugin, this work is done at build time.
+
+(The Babel plugin is an optional optimization, but you don't need to use it.)
+
+Since NativeWind turns `className` strings into `StyleSheet.create` objects at build time, it can avoid the [slow string parsing problem](https://twitter.com/terrysahaidak/status/1470735820915150850?s=20&t=w9VUPwiTFxBkRBHWTtDz1g) of libraries like `styled-components/native`.
+
+Keep in mind that the Babel plugin will get used on iOS/Android only: on Web, we are simply forwarding the `className` prop to the DOM.
+
+### Bringing it together
+
+Since different compilation methods are used across platforms, the components must be written using the `styled()` higher-order component:
+
+```tsx
+// packages/app/design/typography
+import { Text } from 'react-native'
+import { styled } from 'nativewind'
+
+export const P = styled(Text, 'text-base text-black my-4')
+```
+
+Notice that you can set base styles using the second argument of `styled`.
+
+The components can later be extended with the `className` prop, just like regular Tailwind CSS:
+
+```tsx
+<P className="dark:text-white">Solito + NativeWind</P>
+```
+
+Take a look at the [`design`](/tree/master/packages/app/design) folder to see how components are created with ease.
 
 ## 📦 Included packages
 
 - `solito` for cross-platform navigation
 - `moti` for animations
-- `NativeWind` for theming/design (you can bring your own, too)
-- Expo SDK 44
+- `nativewind` for theming/design (you can bring your own, too)
+- Expo SDK 46
 - Next.js 12
 - React Navigation 6
 

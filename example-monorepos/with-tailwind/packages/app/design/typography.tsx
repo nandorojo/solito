@@ -1,19 +1,19 @@
 import { ComponentProps, forwardRef } from 'react'
-import { Text as RNText, Platform, Linking, TextStyle } from 'react-native'
+import { Text as NativeText, Platform, Linking, TextStyle } from 'react-native'
 import { styled, StyledProps } from 'nativewind'
 import { TextLink as SolitoTextLink } from 'solito/link'
 
-export const Text = styled(RNText)
+export const Text = styled(NativeText)
 
 /**
  * You can use this pattern to create components with default styles
  */
-export const P = styled(RNText, 'text-base text-black my-4')
+export const P = styled(NativeText, 'text-base text-black my-4')
 
 /**
  * Components can have defaultProps and styles
  */
-export const H1 = styled(RNText, 'text-3xl font-extrabold my-4')
+export const H1 = styled(NativeText, 'text-3xl font-extrabold my-4')
 H1.defaultProps = {
   accessibilityLevel: 1,
   accessibilityRole: 'header',
@@ -24,10 +24,10 @@ H1.defaultProps = {
  */
 export interface AProps extends ComponentProps<typeof Text> {
   href?: string
-  target?: string
+  target?: '_blank'
 }
 
-export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
+export const A = forwardRef<NativeText, StyledProps<AProps>>(function A(
   { className = '', href, target, ...props },
   ref
 ) {
@@ -35,6 +35,10 @@ export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
     web: {
       href,
       target,
+      hrefAttrs: {
+        rel: 'noreferrer',
+        target,
+      },
     },
     default: {
       onPress: (event) => {
@@ -58,14 +62,17 @@ export const A = forwardRef<RNText, StyledProps<AProps>>(function A(
 })
 
 /**
- * Solito's TextLink doesn't quite work with styled(), so you need to wrap it in a function
- * to correctly pass the style prop.
+ * Solito's TextLink doesn't work directly with styled() since it has a textProps prop
+ * By wrapping it in a function, we can forward style down properly.
  */
 export const TextLink = styled<
   ComponentProps<typeof SolitoTextLink> & { style?: TextStyle }
 >(
   ({ style, textProps, ...props }) => (
-    <SolitoTextLink textProps={{ style, ...textProps }} {...props} />
+    <SolitoTextLink
+      textProps={{ ...textProps, style: [style, textProps?.style] }}
+      {...props}
+    />
   ),
   'text-base font-bold hover:underline text-blue-500'
 )

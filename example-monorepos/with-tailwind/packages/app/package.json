@@ -7,8 +7,8 @@
     "@react-navigation/native-stack": "^6.5.0",
     "expo-linking": "^3.0.0",
     "moti": "canary",
-    "solito": "latest",
-    "nativewind": "latest"
+    "nativewind": "2.0.9",
+    "solito": "latest"
   },
   "sideEffects": false
 }
