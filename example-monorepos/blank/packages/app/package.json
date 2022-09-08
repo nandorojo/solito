@@ -8,11 +8,8 @@
     "dripsy": "^3.6.0",
     "expo-linking": "^3.0.0",
     "moti": "canary",
-    "react-native-reanimated": "2.8.0",
+    "react-native-reanimated": "2.9.1",
     "solito": "latest"
-  },
-  "resolutions": {
-    "react-native-reanimated": "2.8.0"
   },
   "sideEffects": false
 }
