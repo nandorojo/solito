@@ -28,9 +28,9 @@ Which is to say: **on Web, you're using CSS.** Yes, that's right. We aren't pars
 
 This is finally possible with the release of React Native Web 0.18.
 
-As a result, using NativeWind is like using `tailwind` without React Native.
+As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS.
 
-If you were going to make a website with Tailwind anyway, you might be wondering, why not just use the Solito starter with NativeWind, if I'm getting pure CSS outputs anyway?
+If you're planning on making a website with Tailwind, you might be wondering, why not just use the Solito NativeWind, if I'm getting pure CSS outputs anyway?
 
 What if your website worked as a native app without compromising the Web side?
 
@@ -54,13 +54,13 @@ NativeWind takes a new, more performant approach. Thanks to its Babel plugin, th
 
 (The Babel plugin is an optional optimization, but you don't need to use it.)
 
-Since NativeWind turns `className` strings into `StyleSheet.create` objects at build time, it can avoid the [slow string parsing problem](https://twitter.com/terrysahaidak/status/1470735820915150850?s=20&t=w9VUPwiTFxBkRBHWTtDz1g) of libraries like `styled-components/native`.
+NativeWind turns `className` strings into `StyleSheet.create` objects at build time, avoiding the [slow string parsing problem](https://twitter.com/terrysahaidak/status/1470735820915150850?s=20&t=w9VUPwiTFxBkRBHWTtDz1g) of libraries like `styled-components/native`.
 
 Keep in mind that the Babel plugin will get used on iOS/Android only: on Web, we are simply forwarding the `className` prop to the DOM.
 
 ### Bringing it together
 
-Since different compilation methods are used across platforms, the components must be written using the `styled()` higher-order component:
+Components must be written using the `styled()` higher-order component:
 
 ```tsx
 // packages/app/design/typography
@@ -79,6 +79,8 @@ The components can later be extended with the `className` prop, just like regula
 ```
 
 Take a look at the [`design`](/tree/master/packages/app/design) folder to see how components are created with ease.
+
+> If you're reading the NativeWind docs, you might find that you can use `className` directly without using `styled`. This will not work with Solito, since this requires the Babel plugin, and we don't want to use Babel on Next.js to stay future-proof.
 
 ## 📦 Included packages
 
