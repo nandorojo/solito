@@ -30,11 +30,7 @@ This is finally possible with the release of React Native Web 0.18.
 
 As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS.
 
-If you're planning on making a website with Tailwind, you might be wondering, why not just use the Solito NativeWind, if I'm getting pure CSS outputs anyway?
-
-What if your website worked as a native app without compromising the Web side?
-
-🤷‍♂️
+If you're planning on making a website with Tailwind, you might be wondering, why not use Solito with NativeWind if I'm getting pure CSS outputs anyway?
 
 ### iOS and Android
 
