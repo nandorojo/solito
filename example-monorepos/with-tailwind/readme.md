@@ -1,4 +1,4 @@
-# Solito + NativeWind CSS Example Monorepo 🕴
+# Solito + NativeWind Example Monorepo 🕴
 
 ```sh
 npx create-solito-app@latest my-solito-app -t with-tailwind
