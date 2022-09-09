@@ -34,9 +34,7 @@ return <View style={styles} />
 
 This means that every component ends up parsing strings to construct predictable style objects.
 
-NativeWind takes a new approach by doing this work at runtime with a Babel plugin.
-
-(The Babel plugin is an optional optimization.)
+NativeWind takes a new approach by doing this work upfront with a Babel plugin.
 
 NativeWind turns `className` strings into cached `StyleSheet.create` objects at build time, avoiding the [slow string parsing problem](https://twitter.com/terrysahaidak/status/1470735820915150850?s=20&t=w9VUPwiTFxBkRBHWTtDz1g) of libraries like `styled-components/native`.
 
