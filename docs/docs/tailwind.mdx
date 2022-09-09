@@ -44,19 +44,19 @@ This means that every component ends up parsing strings to construct predictable
 
 NativeWind takes a new approach by turning `className` strings into `StyleSheet.create` objects at build time with a Babel plugin.
 
-The Babel plugin will get used on iOS/Android only; on Web, we don't need the plugin since we are using `className`.
+With all that said, the Babel plugin will get used on iOS/Android only...
 
 ### Web
 
-On Web, NativeWind uses Next.js' `PostCSS` feature to output CSS StyleSheets.
+NativeWind uses Next.js' `PostCSS` feature to output CSS StyleSheets.
 
 Yes, that's right. **On Web, you're using actual Tailwind CSS.**
 
 We aren't parsing `className` strings into objects for React Native Web to use. Instead, we're actually forwarding CSS classnames to the DOM. That means you can get responsive styles, dark mode support, & pseudo-selectors _with server-side rendering support_.
 
-This is finally possible with the release of React Native Web 0.18.
+Until recently, this was a pipedream with React Native, but with the release of React Native Web 0.18, it's finally possible.
 
-As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS in a React website.
+As a result, using NativeWind with React Native Web doesn't have significant overhead compared to plain old Tailwind CSS in a React website.
 
 If you're planning on making a website with Tailwind, why not use Solito with NativeWind?
 
