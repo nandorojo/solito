@@ -79,7 +79,7 @@ You can then use the `className` prop, just like regular Tailwind CSS:
 <P className="dark:text-white">Solito + NativeWind</P>
 ```
 
-Take a look at the [`packages/app/design`](/tree/master/packages/app/design) folder to see how components are created with ease.
+Take a look at the [`packages/app/design`](https://github.com/nandorojo/solito/tree/master/example-monorepos/with-tailwind/packages/app/design) folder to see how components are created with ease.
 
 > If you're reading the NativeWind docs, you might find that you can use `className` directly without using `styled`. Since this requires the Babel plugin for all platforms, it won't work with Solito. Be sure to always wrap your components with `styled`.
 
