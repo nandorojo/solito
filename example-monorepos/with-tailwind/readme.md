@@ -4,7 +4,7 @@
 npx create-solito-app@latest my-solito-app -t with-tailwind
 ```
 
-This example brings the power of Tailwind CSS to Solito, thanks to [NativeWind](https://nativewind.dev)
+And just like that, you now have an Expo + Next.js app that is styled with Tailwind CSS.
 
 ## ⚡️ Instantly clone & deploy
 
@@ -22,41 +22,47 @@ NativeWind lets you use Tailwind while reducing runtime work on every platform.
 
 ### Web
 
-NativeWind uses Next.js' `PostCSS` feature outputs CSS StyleSheets.
+NativeWind uses Next.js' `PostCSS` feature to output CSS StyleSheets.
 
-Which is to say: **on Web, you're using CSS.** Yes, that's right. We aren't parsing className strings into objects for React Native Web to read. We're forwarding down the CSS classnames to the DOM. That means you can get responsive styles & pseudo-selectors _with serverside rendering support_.
+Which means that **on Web, you're using CSS class names.** 
+
+Yes, that's right. We aren't parsing className strings into objects for React Native Web to use. Instead, we're actually forwarding CSS classnames to the DOM. That means you can get responsive styles, dark mode support, & pseudo-selectors _with server-side rendering support_.
 
 This is finally possible with the release of React Native Web 0.18.
 
-As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS.
+As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS in a regular React app.
 
-If you're planning on making a website with Tailwind, you might be wondering, why not use Solito with NativeWind if I'm getting pure CSS outputs anyway?
+If you're planning on making a website with Tailwind, why not use Solito with NativeWind? After all, you're I'm getting pure CSS outputs anyway. Plus, you now have all the building blocks to share your code between your app and website.
 
 ### iOS and Android
 
-While Web uses class names, React Native uses style objects.
+While Web uses CSS class names, React Native uses style objects passed to a component's `style` prop.
 
-Most approaches to using TailWind in React Native do something like this at runtime:
+Most approaches to using Tailwind in React Native do something like this at runtime:
 
 ```ts
 const styles = props.className
   .split(' ')
   .map((className) => makeStyle(className))
+  
+return <View style={styles} />
 ```
 
 This means that every component ends up parsing strings to construct predictable style objects.
 
-NativeWind takes a new, more performant approach. Thanks to its Babel plugin, this work is done at build time.
+NativeWind takes a new approach by doing this work at runtime with a Babel plugin.
 
-(The Babel plugin is an optional optimization, but you don't need to use it.)
+(The Babel plugin is an optional optimization.)
 
-NativeWind turns `className` strings into `StyleSheet.create` objects at build time, avoiding the [slow string parsing problem](https://twitter.com/terrysahaidak/status/1470735820915150850?s=20&t=w9VUPwiTFxBkRBHWTtDz1g) of libraries like `styled-components/native`.
+NativeWind turns `className` strings into cached `StyleSheet.create` objects at build time, avoiding the [slow string parsing problem](https://twitter.com/terrysahaidak/status/1470735820915150850?s=20&t=w9VUPwiTFxBkRBHWTtDz1g) of libraries like `styled-components/native`.
 
-Keep in mind that the Babel plugin will get used on iOS/Android only: on Web, we are simply forwarding the `className` prop to the DOM.
+Keep in mind that the Babel plugin will get used on iOS/Android only; on Web, we don't need the plugin since we are using `className`.
 
 ### Bringing it together
 
-Components must be written using the `styled()` higher-order component:
+Components are written using the `styled()` higher-order component.
+
+In your app's design system, you can start by building your own UI primitives:
 
 ```tsx
 // packages/app/design/typography
@@ -68,15 +74,15 @@ export const P = styled(Text, 'text-base text-black my-4')
 
 Notice that you can set base styles using the second argument of `styled`.
 
-The components can later be extended with the `className` prop, just like regular Tailwind CSS:
+You can then use the `className` prop, just like regular Tailwind CSS:
 
 ```tsx
 <P className="dark:text-white">Solito + NativeWind</P>
 ```
 
-Take a look at the [`design`](/tree/master/packages/app/design) folder to see how components are created with ease.
+Take a look at the [`packages/app/design`](/tree/master/packages/app/design) folder to see how components are created with ease.
 
-> If you're reading the NativeWind docs, you might find that you can use `className` directly without using `styled`. This will not work with Solito, since this requires the Babel plugin, and we don't want to use Babel on Next.js to stay future-proof.
+> If you're reading the NativeWind docs, you might find that you can use `className` directly without using `styled`. Since this requires the Babel plugin for all platforms, it won't work with Solito. Be sure to always wrap your components with `styled`.
 
 ## 📦 Included packages
 
@@ -84,7 +90,7 @@ Take a look at the [`design`](/tree/master/packages/app/design) folder to see ho
 - `moti` for animations
 - `nativewind` for theming/design (you can bring your own, too)
 - Expo SDK 46
-- Next.js 12
+- Next.js 12.3
 - React Navigation 6
 
 ## 🗂 Folder layout
