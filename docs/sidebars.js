@@ -18,7 +18,22 @@ const sidebars = {
   mySidebar: [
     // 'welcome',
     'welcome',
-    'starter',
+    {
+      type: 'category',
+      label: 'Starters',
+      items: [
+        {
+          type: 'doc',
+          id: 'starter',
+          label: 'Minimal',
+        },
+        {
+          type: 'doc',
+          id: 'tailwind',
+          label: 'Tailwind CSS',
+        },
+      ],
+    },
     'install',
     // {
     //   type: 'ref',
