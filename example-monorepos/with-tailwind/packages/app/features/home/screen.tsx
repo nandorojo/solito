@@ -6,7 +6,7 @@ import { MotiLink } from 'solito/moti'
 
 export function HomeScreen() {
   return (
-    <View className="flex-1 justify-center items-center p-2">
+    <View className="flex-1 items-center justify-center p-3">
       <H1>Welcome to Solito.</H1>
       <View className="max-w-xl">
         <P className="text-center">
