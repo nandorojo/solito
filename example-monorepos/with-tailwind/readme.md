@@ -20,23 +20,7 @@ This monorepo is a starter for an Expo + Next.js app using [NativeWind](https://
 
 NativeWind lets you use Tailwind while reducing runtime work on every platform.
 
-### Web
-
-NativeWind uses Next.js' `PostCSS` feature to output CSS StyleSheets.
-
-Which means that **on Web, you're using CSS class names.** 
-
-Yes, that's right. We aren't parsing className strings into objects for React Native Web to use. Instead, we're actually forwarding CSS classnames to the DOM. That means you can get responsive styles, dark mode support, & pseudo-selectors _with server-side rendering support_.
-
-This is finally possible with the release of React Native Web 0.18.
-
-As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS in a regular React app.
-
-If you're planning on making a website with Tailwind, why not use Solito with NativeWind? After all, you're I'm getting pure CSS outputs anyway. Plus, you now have all the building blocks to share your code between your app and website.
-
 ### iOS and Android
-
-While Web uses CSS class names, React Native uses style objects passed to a component's `style` prop.
 
 Most approaches to using Tailwind in React Native do something like this at runtime:
 
@@ -57,6 +41,21 @@ NativeWind takes a new approach by doing this work at runtime with a Babel plugi
 NativeWind turns `className` strings into cached `StyleSheet.create` objects at build time, avoiding the [slow string parsing problem](https://twitter.com/terrysahaidak/status/1470735820915150850?s=20&t=w9VUPwiTFxBkRBHWTtDz1g) of libraries like `styled-components/native`.
 
 Keep in mind that the Babel plugin will get used on iOS/Android only; on Web, we don't need the plugin since we are using `className`.
+
+### Web
+
+On Web, NativeWind uses Next.js' `PostCSS` feature to output CSS StyleSheets.
+
+Which means that **on Web, you're using CSS class names.** 
+
+Yes, that's right. We aren't parsing className strings into objects for React Native Web to use. Instead, we're actually forwarding CSS classnames to the DOM. That means you can get responsive styles, dark mode support, & pseudo-selectors _with server-side rendering support_.
+
+This is finally possible with the release of React Native Web 0.18.
+
+As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS in a regular React app.
+
+If you're planning on making a website with Tailwind, why not use Solito with NativeWind? After all, you're I'm getting pure CSS outputs anyway. Plus, you now have all the building blocks to share your code between your app and website.
+
 
 ### Bringing it together
 
