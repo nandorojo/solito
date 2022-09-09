@@ -67,12 +67,11 @@ export const A = forwardRef<NativeText, StyledProps<AProps>>(function A(
  */
 export const TextLink = styled<
   ComponentProps<typeof SolitoTextLink> & { style?: TextStyle }
->(
-  ({ style, textProps, ...props }) => (
+>(function TextLink({ style, textProps, ...props }) {
+  return (
     <SolitoTextLink
       textProps={{ ...textProps, style: [style, textProps?.style] }}
       {...props}
     />
-  ),
-  'text-base font-bold hover:underline text-blue-500'
-)
+  )
+}, 'text-base font-bold hover:underline text-blue-500')
