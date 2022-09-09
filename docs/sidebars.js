@@ -18,6 +18,9 @@ const sidebars = {
   mySidebar: [
     // 'welcome',
     'welcome',
+    'install',
+    'gradual-adoption',
+    'methodology',
     {
       type: 'category',
       label: 'Starters',
@@ -34,7 +37,6 @@ const sidebars = {
         },
       ],
     },
-    'install',
     // {
     //   type: 'ref',
     //   label: 'Welcome',
@@ -85,8 +87,6 @@ const sidebars = {
     //   ],
     //   label: 'TypeScript',
     // },
-    'gradual-adoption',
-    'methodology',
     'resources',
     // 'community',
   ],
