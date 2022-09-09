@@ -52,7 +52,7 @@ This is finally possible with the release of React Native Web 0.18.
 
 As a result, using NativeWind with React Native doesn't have significant overhead compared to plain old Tailwind CSS in a regular React app.
 
-If you're planning on making a website with Tailwind, why not use Solito with NativeWind? After all, you're I'm getting pure CSS outputs anyway. Plus, you now have all the building blocks to share your code between your app and website.
+If you're planning on making a website with Tailwind, why not use Solito with NativeWind? After all, you're using CSS anyway. Plus, you now have all the building blocks to share your code between your app and website.
 
 
 ### Bringing it together
