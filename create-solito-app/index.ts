@@ -52,7 +52,7 @@ ${chalk.blueBright(`npx ${packageJson.name} twitter-clone`)}`
   //   )
   .option(
     `-t, --template <template>`,
-    'Options are `blank`, `with-tailwind`. The default is `blank`'
+    'Options are `blank`, `with-tailwind`, `with-custom-font`. The default is `blank`'
   )
   .allowUnknownOption()
   .parse(process.argv)
