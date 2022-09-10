@@ -51,7 +51,7 @@ ${chalk.blueBright(`npx ${packageJson.name} twitter-clone`)}`
   // `
   //   )
   .option(
-    `--template <template>, -t <template>`,
+    `-t, --template <template>`,
     'Currently, the only option is `blank`, which is set by default.'
   )
   .allowUnknownOption()
@@ -162,7 +162,7 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
   try {
     console.log(`Copying template into ${chalk.blueBright(projectName)}...`)
     console.log()
-    await downloadAndExtractExample(resolvedProjectPath)
+    await downloadAndExtractExample(resolvedProjectPath, program.template)
     console.log(`Downloaded template into ${chalk.blueBright(projectName)}...`)
     console.log()
     console.log('[solito] resolved path!!', resolvedProjectPath)
