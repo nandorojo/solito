@@ -52,7 +52,7 @@ ${chalk.blueBright(`npx ${packageJson.name} twitter-clone`)}`
   //   )
   .option(
     `-t, --template <template>`,
-    'Currently, the only option is `blank`, which is set by default.'
+    'Options are `blank`, `with-tailwind`. The default is `blank`'
   )
   .allowUnknownOption()
   .parse(process.argv)
