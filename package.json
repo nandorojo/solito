@@ -1,6 +1,6 @@
 {
   "name": "solito",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -33,5 +33,12 @@
     "email": "fernando@wearptos.com",
     "name": "Fernando Rojo",
     "url": "https://fernandotherojo.co"
-  }
+  },
+  "files": [
+    "build/**/*",
+    "index.d.ts",
+    "src/**/*",
+    "link/**/*",
+    "router/**/*"
+  ]
 }
