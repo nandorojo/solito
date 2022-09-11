@@ -142,12 +142,14 @@ export function createParam<
     const nextRouter = useRouter()
     const nativeRoute = useRoute()
     const nativeNavigation = useNavigation()
+    const nativeStateFromParams = (nativeRoute?.params as any)?.[
+      name
+    ] as ParsedType
 
     const [nativeStateFromReact, setNativeStateFromReact] = useState<
       ParsedType | InitialValue
-    >(() => (nativeRoute?.params as any)?.[name] ?? (initial as InitialValue))
+    >(() => nativeStateFromParams ?? (initial as InitialValue))
 
-    const nativeStateFromParams = nativeRoute?.params as any as ParsedType
     const setNativeStateFromParams = useCallback((value: ParsedType) => {
       nativeNavigation?.setParams({
         [name]: value,
