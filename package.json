@@ -1,13 +1,10 @@
 {
   "name": "solito",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
-    "test": "expo-module test",
-    "prepare": "expo-module prepare",
-    "prepublishOnly": "expo-module prepublishOnly",
-    "expo-module": "expo-module"
+    "test": "expo-module test"
   },
   "devDependencies": {
     "@react-navigation/bottom-tabs": "^6.0.9",
@@ -28,13 +25,6 @@
   "homepage": "https://github.com/nandorojo/solito.git#readme",
   "main": "build/index.js",
   "types": "index.d.ts",
-  "files": [
-    "!**/__tests__",
-    "./src",
-    "./build",
-    "./link",
-    "./router"
-  ],
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
