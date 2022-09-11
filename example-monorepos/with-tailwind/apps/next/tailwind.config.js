@@ -8,7 +8,7 @@ module.exports = {
     './pages/**/*.{js,jsx,ts,tsx}',
     '../../packages/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: ['nativewind/tailwind/css'],
+  plugins: [require('nativewind/tailwind/css')],
   important: 'html',
   theme: {
     ...theme,
