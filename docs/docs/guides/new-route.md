@@ -176,7 +176,7 @@ export function NativeNavigation() {
         name="settings"
         component={SettingsScreen}
         options={{
-          title: 'User',
+          title: 'Settings',
         }}
       />
       <Stack.Screen
