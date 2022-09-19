@@ -11,7 +11,7 @@ const customFontCss = fonts
     (font) => `
     @font-face {
         font-family: '${font}';
-        url: url('/font/Inter/${font}.otf');
+        src: url('/font/Inter/${font}.otf');
     }
 `
   )
