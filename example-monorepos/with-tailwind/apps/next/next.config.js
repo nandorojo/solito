@@ -18,13 +18,13 @@ const nextConfig = {
   // once that gets fixed, set this back to true
   reactStrictMode: false,
   webpack5: true,
+  experimental: {
+    forceSwcTransforms: true,
+    swcPlugins: [[require.resolve('./plugins/swc_plugin_reanimated.wasm')]],
+  },
 }
 
-const transform = withPlugins([withTM, withFonts, withImages, withExpo])
-
-module.exports = function (name, { defaultConfig }) {
-  return transform(name, {
-    ...defaultConfig,
-    ...nextConfig,
-  })
-}
+module.exports = withPlugins(
+  [withTM, withFonts, withImages, withExpo],
+  nextConfig
+)
