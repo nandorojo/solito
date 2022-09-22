@@ -1,5 +1,3 @@
-const plugin = require('tailwindcss/plugin')
-
 const { theme } = require('app/design/tailwind/theme')
 
 /** @type {import('tailwindcss').Config} */
