@@ -2,10 +2,12 @@ import React from 'react'
 import { AppRegistry } from 'react-native'
 
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+import type { DocumentContext } from 'next/document'
 
 class Document extends NextDocument {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext) {
     AppRegistry.registerComponent('Main', () => Main)
+    // @ts-ignore
     const { getStyleElement } = AppRegistry.getApplication('Main')
     const styles = [getStyleElement()]
 
