@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "app": "*",
-    "expo": "^46.0.0",
+    "expo": "46.0.13",
     "expo-router": "^0.0.17",
     "expo-splash-screen": "~0.16.1",
     "expo-status-bar": "~1.4.0",
