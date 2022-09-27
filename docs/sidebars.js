@@ -35,6 +35,11 @@ const sidebars = {
           id: 'tailwind',
           label: 'Tailwind CSS',
         },
+        {
+          type: 'doc',
+          id: 'expo-router',
+          label: 'Expo Router',
+        },
       ],
     },
     // {
@@ -62,7 +67,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      items: ['guides/new-route', 'guides/dynamic-route'],
+      items: ['guides/new-route', 'guides/dynamic-route', 'guides/expo-router'],
       label: 'Guides',
       collapsed: false,
     },
