@@ -13,7 +13,7 @@ Once those steps are done, you're good to go. You can create files inside of `ap
 Run this from the terminal to get a Solito + Expo Router project.
 
 ```sh
-npx create-solito-app@latest with-expo-router
+npx create-solito-app@latest -t with-expo-router
 ```
 
 ## In an existing app
