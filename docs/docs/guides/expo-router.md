@@ -18,4 +18,4 @@ npx create-solito-app@latest -t with-expo-router
 
 ## In an existing app
 
-To use Solito in an existing Solito project, you'll have to remove the `Navigation` provider from `packages/app/providers/index.tsx`. Expo Router will provide this context for you, reducing boilerplate.
+To use Expo Router in an existing Solito project, you'll have to remove the `Navigation` provider from `packages/app/providers/index.tsx`. Expo Router will provide this context for you, reducing boilerplate.
