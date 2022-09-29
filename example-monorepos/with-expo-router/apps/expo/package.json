@@ -25,7 +25,6 @@
     "android": "expo run:android",
     "ios": "expo run:ios"
   },
-  "main": "expo-router/entry",
   "version": "1.0.0",
   "private": true,
   "name": "expo-app"
