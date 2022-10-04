@@ -52,3 +52,9 @@ export function NavigationProvider({
 ```
 
 On the Next.js side, you should have a file at `apps/next/pages/users/[id].tsx` that exports the same screen.
+
+:::tip Recursive Routes
+
+In order to properly navigate recursive routes, you will need to implement [React Navigation's getId](https://reactnavigation.org/docs/screen/#getid) attribute on the affected screens.
+
+:::
