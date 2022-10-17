@@ -22,10 +22,10 @@ const nextConfig = {
   images: {
     disableStaticImages: true,
   },
-  // experimental: {
-  //   forceSwcTransforms: true,
-  //   swcPlugins: [[require.resolve('./plugins/swc_plugin_reanimated.wasm')]],
-  // },
+  experimental: {
+    forceSwcTransforms: true,
+    swcPlugins: [[require.resolve('./plugins/swc_plugin_reanimated.wasm')]],
+  },
 }
 
 module.exports = withPlugins(
