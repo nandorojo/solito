@@ -67,7 +67,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      items: ['guides/new-route', 'guides/dynamic-route', 'guides/expo-router'],
+      items: ['guides/new-route', 'guides/dynamic-route', 'guides/expo-router', 'guides/firebase-auth' ],
       label: 'Guides',
       collapsed: false,
     },
