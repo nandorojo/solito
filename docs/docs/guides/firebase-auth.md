@@ -9,7 +9,7 @@ Firebase provides an easy and fast way to authenticate users.
 In this guide you will learn how to:
 
 1. Sign in users with Firebase Authentication in your Solito apps.
-2. Create protected routes, which only signed in users has access to.
+2. Create protected routes, that can only be accessed by signed in users.
 
 We’ll do both of these for our Solito web and native apps. This guide also covers how to setup and install `react-native-firebase` for your native Solito app with EAS build.
 
@@ -20,7 +20,7 @@ We’ll do both of these for our Solito web and native apps. This guide also cov
 We are taking the beautiful Solito starter project and simply adding authentication on top.
 
 - We will add a sign-in with Google button to our the homepage
-- We will make the /user page a protected route, which will only be accesible to signed in users
+- We will make the /user page a protected route, which will only be accesible for signed in users
 
 Simple!
 
@@ -365,7 +365,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
 Let’s start editing our pages! We will:
 
 - Add a sign-in with Google button to our homepage
-- Make the /user page a protected route, which will only be accesible for signed in users
+- Make the /user page a protected route, that can only be accessed by signed in users
 
 Simple!
 
