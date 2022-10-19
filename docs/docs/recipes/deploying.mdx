@@ -1,0 +1,21 @@
+---
+title: Deploying
+---
+
+Using both Github Actions and the tools provided by companies such as Vercel, we can deploy both our web app and update our mobile app on each commit to our `main` branch.
+
+## Expo
+
+Expo has excellent documentation for setting up their Github Action to publish on each commit: [Expo Github Actions](https://docs.expo.dev/eas-update/github-actions/)
+
+However, it doesn't take into account a monorepo structure. By adding in `working-directory` to the Expo Github action, this ensures the action runs `eas update` in the correct directory.
+
+```yml title=".github/workflows/update.yml"
+- name: Publish update
+  run: eas update --auto
+  working-directory: ./apps/expo
+```
+
+## Web
+
+Deploying to Vercel works out of the box, Vercel knows where your NextJS project is but using Solito comes with the added benefit of TurboRepo.
