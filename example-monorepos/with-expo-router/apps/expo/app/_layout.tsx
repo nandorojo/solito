@@ -1,10 +1,10 @@
 import { Provider } from 'app/provider'
-import { NativeStack } from 'expo-router'
+import { Stack } from 'expo-router'
 
 export default function Root() {
   return (
     <Provider>
-      <NativeStack />
+      <Stack />
     </Provider>
   )
 }
