@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ComponentProps, ComponentType } from 'react'
-import { Platform } from 'react-native'
+import { Platform, Linking } from 'react-native'
 
 import { parseNextPath } from '../router'
 import { useLinkTo } from '../router/use-link-to'
@@ -37,7 +37,13 @@ function LinkCore({
       onPress={(e?: any) => {
         componentProps?.onPress?.(e)
         if (!e?.defaultPrevented) {
-          linkTo(parseNextPath(as || href))
+          const link = as || href
+          // Handles external URLs
+          if (typeof link === 'string' && !link.startsWith('/')) {
+            Linking.openURL(link)
+          } else {
+            linkTo(parseNextPath(link))
+          }
         }
       }}
     >
