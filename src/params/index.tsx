@@ -44,6 +44,7 @@ type Config<
   stringify?: (value: ParsedType) => string
   initial: InitialValue
   paramsToClearOnSetState?: (keyof Props)[]
+    alwaysReplaceRoute?: boolean
 }
 
 type Params<
@@ -138,6 +139,7 @@ export function createParam<
       initial,
       stringify = (value: ParsedType) => `${value}`,
       paramsToClearOnSetState,
+        alwaysReplaceRoute,
     } = maybeConfig || {}
     const nextRouter = useRouter()
     const nativeRoute = useRoute()
@@ -166,7 +168,7 @@ export function createParam<
     const stableStringify = useStableCallback(stringify)
     const stableParse = useStableCallback(parse)
     const stableParamsToClear = useStable(paramsToClearOnSetState)
-
+    const stableAlwaysReplaceRoute = useStable(alwaysReplaceRoute)
     const initialValue = useRef(initial)
     const hasSetState = useRef(false)
 
@@ -190,7 +192,7 @@ export function createParam<
         const willChangeExistingParam =
           query[name as string] && newQuery[name as string]
 
-        const action = willChangeExistingParam ? Router.replace : Router.push
+        const action = willChangeExistingParam || stableAlwaysReplaceRoute.current ? Router.replace : Router.push
 
         action(
           {
