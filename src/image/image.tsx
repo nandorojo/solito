@@ -137,7 +137,7 @@ export function SolitoImage({
   )
 }
 
-function booleanish<Value>(value?: Value) {
+function booleanish<Value extends string | boolean>(value?: Value) {
   // this should get upstreamed in RN
   return (
     value === 'true' ? true : value === 'false' ? false : value
