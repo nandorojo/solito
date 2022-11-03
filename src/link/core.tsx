@@ -23,7 +23,7 @@ function LinkCore({
 }) {
   if (Platform.OS === 'web') {
     return (
-      <NextLink {...props} href={href} as={as} passHref>
+      <NextLink {...props} href={href} as={as} passHref legacyBehavior>
         <Component {...componentProps}>{children}</Component>
       </NextLink>
     )
