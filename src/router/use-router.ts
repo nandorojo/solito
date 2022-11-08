@@ -50,7 +50,7 @@ export function useRouter() {
           const to = parseNextPath(as || url)
 
           if (to) {
-            navigation.dispatch(StackActions.replace(to))
+            navigation?.dispatch(StackActions.replace(to))
           }
         }
       },
