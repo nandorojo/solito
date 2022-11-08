@@ -1,8 +1,10 @@
 import {
-  NavigationContext,
   NavigationContainerRefContext,
+  NavigationContext,
 } from '@react-navigation/core'
 import { useContext } from 'react'
+
+export { StackActions } from "@react-navigation/native";
 
 export const useNavigation = () => {
   const root = useContext(NavigationContainerRefContext)

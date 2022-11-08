@@ -1,10 +1,10 @@
 import type { NextRouter as NextRouterType } from 'next/router'
-import { Platform } from 'react-native'
 import { useMemo } from 'react'
+import { Platform } from 'react-native'
 
-import { StackActions, useNavigation } from './use-navigation'
 import { parseNextPath } from './parse-next-path'
 import { useLinkTo } from './use-link-to'
+import { useNavigation } from './use-navigation'
 import { useNextRouter } from './use-next-router'
 
 // copied from next/router to appease typescript error
@@ -50,7 +50,7 @@ export function useRouter() {
           const to = parseNextPath(as || url)
 
           if (to) {
-            navigation.dispatch(StackActions.replace(to))
+            linkTo(to)
           }
         }
       },
