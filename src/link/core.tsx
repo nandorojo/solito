@@ -17,6 +17,7 @@ export type LinkCoreProps = {
         replace: true
         experimental?: {
           nativeBehavior: 'stack-replace'
+          isNestedNavigator: boolean
         }
       }
   )

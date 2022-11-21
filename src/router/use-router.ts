@@ -51,9 +51,14 @@ export function useRouter() {
         url: Parameters<NextRouterType['replace']>[0],
         as?: Parameters<NextRouterType['replace']>[1],
         transitionOptions?: TransitionOptions & {
-          experimental?: {
-            nativeBehavior?: 'stack-replace'
-          }
+          experimental?:
+            | {
+                nativeBehavior?: undefined
+              }
+            | {
+                nativeBehavior: 'stack-replace'
+                isNestedNavigator: boolean
+              }
         }
       ) => {
         if (Platform.OS === 'web') {
@@ -86,7 +91,18 @@ export function useRouter() {
                       action.payload.name
                     ) {
                       const { name, params } = action.payload
-                      navigation?.dispatch(StackActions.replace(name, params))
+                      if (
+                        transitionOptions?.experimental?.isNestedNavigator &&
+                        params &&
+                        'screen' in params
+                      ) {
+                        navigation?.navigate(
+                          params.screen as string,
+                          params.params as object | undefined
+                        )
+                      } else {
+                        navigation?.dispatch(StackActions.replace(name, params))
+                      }
                     } else {
                       navigation?.dispatch(action)
                     }
