@@ -1,6 +1,6 @@
 {
   "name": "solito",
-  "version": "2.1.0-image.2",
+  "version": "2.1.0-image.3",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -50,6 +50,7 @@
     "src/**/*",
     "link/**/*",
     "router/**/*",
-    "moti/**/*"
+    "moti/**/*",
+    "image/**/*"
   ]
 }
