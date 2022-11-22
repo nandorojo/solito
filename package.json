@@ -1,6 +1,6 @@
 {
   "name": "solito",
-  "version": "2.0.0-canary.4",
+  "version": "2.1.0-image.1",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -16,12 +16,17 @@
     "@react-navigation/native-stack": "^6.2.5",
     "@types/jest": "^29.2.3",
     "@types/react": "^18.0.7",
-    "@types/react-native": "^0.66.9",
+    "@types/react-native": "^0.70.0",
     "eslint-config-nando": "^1.1.0",
     "expo-module-scripts": "^2.0.0",
     "jest": "^29.3.1",
     "moti": "^0.17.1",
     "next": "13.0.1"
+  },
+  "resolutions": {
+    "@types/react": "^18.0.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "license": "MIT",
   "bugs": {
