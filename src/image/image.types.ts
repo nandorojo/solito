@@ -39,4 +39,4 @@ export type SolitoImageProps = Pick<
         width?: number
       }
   ) &
-  Pick<ImageProps, 'onLayout'>
+  Pick<ImageProps, 'onLayout' | 'resizeMode'>

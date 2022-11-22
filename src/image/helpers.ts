@@ -257,18 +257,3 @@ export const imageConfigDefault: ImageConfigComplete = {
   //   remotePatterns: [],
   //   unoptimized: false,
 }
-
-const objectFitFromResizeMode = (resizeMode: ImageResizeMode) => {
-  switch (resizeMode) {
-    case 'cover':
-      return 'cover'
-    case 'contain':
-      return 'contain'
-    case 'stretch':
-      return 'fill'
-    case 'center':
-      return 'none'
-    default:
-      throw new Error('[solito/image] Unsupported resize mode: ' + resizeMode)
-  }
-}
