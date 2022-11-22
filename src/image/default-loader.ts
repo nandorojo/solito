@@ -35,15 +35,11 @@ export function defaultLoader({
 
     if (src.startsWith('/') && !config.nextJsURL) {
       throw new Error(
-        `[solito/image] You used a relative image source "${src}". This is not valid on native without a nextJsURL prop configured. Please add nextJsURL to your <SolitoProvider /> to use relative paths.`
+        `[solito/image] Please add the "nextJsURL" prop to your <SolitoProvider /> to use relative paths.
+        
+Error due to image source "${src}".`
       )
     }
-  }
-
-  if (src.endsWith('.svg')) {
-    // Special case to make svg serve as-is to avoid proxying
-    // through the built-in Image Optimization API.
-    return src
   }
 
   if (src.startsWith('http')) {

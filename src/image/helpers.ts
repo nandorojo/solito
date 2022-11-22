@@ -130,7 +130,6 @@ export const resolveSourceFromImgAttributes = ({
   }
 }): { uri: string; scale?: number } => {
   try {
-    let url = src
     if (srcSet) {
       const getVw = (size: string) => {
         return (parseInt(size.replace('vw', ''), 10) * dimensions.width) / 100
@@ -230,17 +229,17 @@ export const resolveSourceFromImgAttributes = ({
         return { uri: firstSourceThatMatchesforSize.sourceUrl }
       }
     }
+
     return {
-      uri: url,
+      uri: src,
     }
   } catch (e: any) {
     throw new Error(
       `[solito/image] Error parsing srcSet & sizes: ${
         e?.message || 'unknown error.'
-      }`
+      }. ${JSON.stringify({ src, srcSet, sizes })}`
     )
   }
-  throw new Error(`[solito/image] Error parsing srcSet & sizes.`)
 }
 
 export const imageConfigDefault: ImageConfigComplete = {

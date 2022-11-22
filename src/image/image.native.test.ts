@@ -15,6 +15,48 @@ describe('resolveSourceFromImgAttributes', () => {
     ).toBe('elva-fairy-480w.jpg')
   })
 
+  test('picks from min-width', () => {
+    expect(
+      resolveSourceFromImgAttributes({
+        dimensions: {
+          width: 700,
+          height: 700,
+        },
+        srcSet: `elva-fairy-480w.jpg 480w, elva-fairy-800w.jpg 800w`,
+        sizes: `(min-width: 600px) 480px, 800px`,
+        src: 'elva-fairy.jpg',
+      }).uri
+    ).toBe('elva-fairy-480w.jpg')
+  })
+
+  test('100vw size is treated as dimensions width', () => {
+    expect(
+      resolveSourceFromImgAttributes({
+        dimensions: {
+          width: 700,
+          height: 700,
+        },
+        srcSet: `elva-fairy-480w.jpg 480w, elva-fairy-800w.jpg 800w`,
+        sizes: `100vw`,
+        src: 'elva-fairy.jpg',
+      }).uri
+    ).toBe('elva-fairy-800w.jpg')
+  })
+
+  test('100vw falls back to src', () => {
+    expect(
+      resolveSourceFromImgAttributes({
+        dimensions: {
+          width: 900,
+          height: 900,
+        },
+        srcSet: `elva-fairy-480w.jpg 480w, elva-fairy-800w.jpg 800w`,
+        sizes: `100vw`,
+        src: 'elva-fairy.jpg',
+      }).uri
+    ).toBe('elva-fairy.jpg')
+  })
+
   test('falls back to last value in sizes', () => {
     expect(
       resolveSourceFromImgAttributes({
