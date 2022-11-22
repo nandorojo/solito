@@ -1,6 +1,6 @@
 {
   "name": "solito",
-  "version": "2.1.0-image.5",
+  "version": "2.1.0-image.6",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
