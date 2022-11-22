@@ -1,4 +1,4 @@
-import { ImageConfig } from './types'
+import { ImageConfigComplete } from './types'
 
 export type ImageLoaderProps = {
   src: string
@@ -7,7 +7,7 @@ export type ImageLoaderProps = {
 }
 
 export type ImageLoaderPropsWithConfig = ImageLoaderProps & {
-  config: Readonly<ImageConfig>
+  config: Readonly<ImageConfigComplete>
 }
 
 export function defaultLoader({

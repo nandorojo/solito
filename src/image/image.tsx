@@ -60,9 +60,11 @@ export function SolitoImage({
           src,
           config,
           loader: (obj) => {
-            const customImageLoader = loader || defaultLoader
             const { config: _, ...opts } = obj as any
-            return customImageLoader(opts)
+            if (loader) {
+              return loader(opts)
+            }
+            return defaultLoader({ ...obj, config: imageConfigDefault })
           },
           unoptimized: Boolean(unoptimized),
           quality: getInt(quality || 75),
