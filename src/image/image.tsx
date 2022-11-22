@@ -1,7 +1,15 @@
-import React from 'react'
-import { Image, ImageURISource, StyleSheet } from 'react-native'
+import { useMemo, useSyncExternalStore } from 'react'
+import { Image, ImageProps, Dimensions, StyleSheet } from 'react-native'
 
+import { defaultLoader } from './default-loader'
+import {
+  generateImgAttrs,
+  getInt,
+  imageConfigDefault,
+  resolveSourceFromImgAttributes,
+} from './helpers'
 import { SolitoImageProps } from './image.types'
+import { ImageConfig } from './types'
 
 export function SolitoImage({
   src,
@@ -18,23 +26,20 @@ export function SolitoImage({
   priority,
   placeholder,
   blurDataURL,
-  sizes = '100vw',
+  sizes,
   style,
   onLayout,
+  unoptimized,
   ...props
 }: SolitoImageProps) {
-  let source: React.ComponentProps<typeof Image>['source']
   let progressiveRenderingEnabled = false
 
-  if (sizes) {
-    const sizeSet = sizes.split(',').map((size) => size.trim())
-    sizeSet.forEach((sizeChunk) => {
-      if (sizeChunk.includes(' ')) {
-        const [size, descriptor] = sizeChunk.split(' ')
-        // TODO what is the correct approach here? should we generate the srcSet based on this from screen sizes?
-      }
-    })
-  }
+  const config: ImageConfig = useMemo(() => {
+    const c = imageConfigDefault
+    const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
+    const deviceSizes = c.deviceSizes.sort((a, b) => a - b)
+    return { ...c, allSizes, deviceSizes }
+  }, [])
 
   const headers: { [key in string]: string } = {}
   if (crossOrigin === 'use-credentials') {
@@ -43,72 +48,47 @@ export function SolitoImage({
   if (referrerPolicy != null) {
     headers['Referrer-Policy'] = referrerPolicy
   }
-  if (typeof src == 'string') {
-    // TODO next/image uses srcSet from image sizes and screen sizes right?
-    // but here we're saying that only scale is supported
-    // however, that doesn't seem right
-    // also, where is the sizes prop in all this?
+  const finalSource = useSyncExternalStore(
+    (callback) => Dimensions.addEventListener('change', callback).remove,
+    () => {
+      let source: ImageProps['source'] = src
 
-    let srcSet = '' // TODO how do we generate this? from the config?
-    if (srcSet) {
-      // https://github.com/facebook/react-native/blob/main/Libraries/Image/Image.ios.js
-      const sourceList: ImageURISource[] = []
-      const srcSetList = srcSet.split(', ')
-      // `src` prop should be used with default scale if `srcSet` does not have 1x scale.
-      let shouldUseSrcForDefaultScale = true
-      srcSetList.forEach((imageSrc) => {
-        const [uri, xScale = '1x'] = imageSrc.split(' ')
-        if (!xScale.endsWith('x')) {
-          console.warn(
-            '[solito/image] The provided format for scale in the srcSet is not supported yet. Please use scales like 1x, 2x, etc.'
-          )
-        } else {
-          const scale = parseInt(xScale.split('x')[0], 10)
-          if (!isNaN(scale)) {
-            // 1x scale is provided in `srcSet` prop so ignore the `src` prop if provided.
-            shouldUseSrcForDefaultScale =
-              scale === 1 ? false : shouldUseSrcForDefaultScale
-            sourceList.push({ headers, scale, uri, width, height })
-          }
-        }
-      })
+      const dimensions = Dimensions.get('window')
 
-      if (shouldUseSrcForDefaultScale && src != null) {
-        sourceList.push({
-          headers,
-          scale: 1,
-          uri:
-            (width && loader?.({ src, quality: Number(quality), width })) ||
-            src,
-          width,
-          height,
-          cache: priority ? 'force-cache' : 'default',
+      if (typeof src == 'string') {
+        const attrs = generateImgAttrs({
+          src,
+          config,
+          loader: (obj) => {
+            const customImageLoader = loader || defaultLoader
+            const { config: _, ...opts } = obj as any
+            return customImageLoader(opts)
+          },
+          unoptimized: Boolean(unoptimized),
+          quality: getInt(quality || 75),
+          sizes,
+          width: getInt(width || 400),
         })
-      }
-      if (sourceList.length === 0) {
-        console.warn('The provided value for srcSet is not valid.')
+        const { uri, scale } = resolveSourceFromImgAttributes({
+          ...attrs,
+          dimensions,
+        })
+
+        return {
+          uri,
+          scale,
+        }
+      } else {
+        source = src
       }
 
-      source = sourceList
-    } else {
-      progressiveRenderingEnabled = true
-
-      source = {
-        uri:
-          (width && loader?.({ src, quality: Number(quality), width })) || src,
-        height,
-        width,
-        headers,
-        cache: priority ? 'force-cache' : 'default',
-      }
+      return source
     }
-  } else {
-    source = src
-  }
+  )
 
   return (
     <Image
-      source={source}
+      source={finalSource}
       progressiveRenderingEnabled={progressiveRenderingEnabled}
       accessible={Boolean(alt)}
       style={[fill && StyleSheet.absoluteFill, style]}

@@ -22,6 +22,8 @@ export type SolitoImageProps = Pick<
   | 'quality'
   | 'crossOrigin'
   | 'referrerPolicy'
+  | 'unoptimized'
+  | 'quality'
 > & {
   // TODO extract resize mode, object fit
   style?: ImageStyle

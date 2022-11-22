@@ -1,5 +1,4 @@
 {
-  "extends": "expo-module-scripts/tsconfig.base",
   "compilerOptions": {
     "outDir": "./build",
     "skipLibCheck": true,
