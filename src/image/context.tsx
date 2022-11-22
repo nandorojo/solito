@@ -1,4 +1,5 @@
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
+
 import { imageConfigDefault } from './helpers'
 
 const SolitoImageContext = createContext(imageConfigDefault)
@@ -12,8 +13,15 @@ export const SolitoImageProvider = ({
 }: {
   children: React.ReactNode
 } & typeof imageConfigDefault) => {
+  const [context] = useState(() => ({
+    deviceSizes,
+    imageSizes,
+    nextJsURL,
+    path,
+  }))
+
   return (
-    <SolitoImageContext.Provider value={config}>
+    <SolitoImageContext.Provider value={context}>
       {children}
     </SolitoImageContext.Provider>
   )

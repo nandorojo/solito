@@ -1,7 +1,9 @@
 import type NextImage from 'next/image'
-import type { ImageStyle, StyleProp, ImageProps } from 'react-native'
+import type { ImageStyle, ImageProps } from 'react-native'
 
 type AccessibilityProp<key extends string> = key extends `aria-${string}`
+  ? key
+  : key extends `accessibility${Capitalize<string>}`
   ? key
   : never
 
@@ -39,4 +41,7 @@ export type SolitoImageProps = Pick<
         width?: number
       }
   ) &
-  Pick<ImageProps, 'onLayout' | 'resizeMode'>
+  Pick<
+    ImageProps,
+    'onLayout' | 'resizeMode' | AccessibilityProp<keyof ImageProps>
+  >

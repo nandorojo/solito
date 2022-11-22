@@ -32,8 +32,6 @@ export function useSolitoImage({
   unoptimized,
   ...props
 }: SolitoImageProps): ImageProps {
-  let progressiveRenderingEnabled = false
-
   const config: ImageConfig = useMemo(() => {
     const c = imageConfigDefault
     const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
@@ -41,7 +39,7 @@ export function useSolitoImage({
     return { ...c, allSizes, deviceSizes }
   }, [])
 
-  const finalSource = useSyncExternalStore(
+  const finalSource = useSyncExternalStore<ImageProps['source']>(
     (callback) => Dimensions.addEventListener('change', callback).remove,
     () => {
       const headers: { [key in string]: string } = {}
@@ -92,7 +90,8 @@ export function useSolitoImage({
   )
 
   return {
-    progressiveRenderingEnabled,
+    ...props,
+    progressiveRenderingEnabled: true,
     onLoad: ({ nativeEvent, ...rest }) =>
       onLoadingComplete?.({
         width: nativeEvent.source.width,

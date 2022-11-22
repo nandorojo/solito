@@ -1,27 +1,39 @@
 import NextImage from 'next/image'
-import { forwardRef } from 'react'
+import { forwardRef, useRef } from 'react'
 import { Image, ImageResizeMode, StyleSheet } from 'react-native'
 // @ts-expect-error missing types
 import { unstable_createElement } from 'react-native-web'
+// @ts-expect-error missing types
+import useElementLayout from 'react-native-web/dist/modules/useElementLayout'
 
+import { mergeRefs } from '../helpers/merge-refs'
 import { SolitoImageProps } from './image.types'
 
-export const SolitoImage = forwardRef<Image, SolitoImageProps>(
-  function SolitoImage({ resizeMode = 'contain', fill, style, ...props }, ref) {
-    return unstable_createElement(NextImage, {
-      ...props,
-      ref,
-      fill,
-      style: [
-        fill && StyleSheet.absoluteFill,
-        {
-          objectFit: objectFitFromResizeMode(resizeMode),
-        },
-        style,
-      ],
-    })
-  }
-)
+const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
+  { resizeMode = 'contain', fill, style, onLayout, ...props },
+  ref
+) {
+  const localRef = useRef<Image>(null)
+  useElementLayout(
+    // https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/View/index.js#L88
+    localRef,
+    onLayout
+  )
+  return unstable_createElement(NextImage, {
+    ...props,
+    ref: mergeRefs([ref, localRef]),
+    fill,
+    style: [
+      fill && StyleSheet.absoluteFill,
+      {
+        objectFit: objectFitFromResizeMode(resizeMode),
+      },
+      style,
+    ],
+  })
+})
+
+export default SolitoImage
 
 const styles = StyleSheet.create<
   StyleSheet.NamedStyles<Record<ImageResizeMode, any>>
