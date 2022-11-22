@@ -128,7 +128,7 @@ export const resolveSourceFromImgAttributes = ({
     width: number
     height: number
   }
-}): { uri: string; scale?: number } => {
+}): { uri: string } => {
   try {
     if (srcSet) {
       const getVw = (size: string) => {
