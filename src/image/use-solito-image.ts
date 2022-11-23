@@ -11,7 +11,7 @@ import {
 import { SolitoImageProps } from './image.types'
 import { ImageConfig } from './types'
 
-type UseSolitoImage = Pick<
+export type UseSolitoImage = Pick<
   ImageProps,
   | Extract<keyof ImageProps, keyof SolitoImageProps>
   | 'progressiveRenderingEnabled'

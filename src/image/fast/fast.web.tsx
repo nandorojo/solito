@@ -1,1 +1,1 @@
-export { default } from '../image.web'
+export { default } from '../expo/image.web'

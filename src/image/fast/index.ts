@@ -1,3 +1,3 @@
-import SolitoFastImage from './fast'
+import SolitoImage from './fast'
 
-export { SolitoFastImage }
+export { SolitoImage }
