@@ -1,1 +1,1 @@
-export * from '../build/image'
+export * from '../build/image/fast'

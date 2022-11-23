@@ -1,5 +1,6 @@
-import { useMemo, useSyncExternalStore } from 'react'
+import { useContext, useMemo, useSyncExternalStore } from 'react'
 import { ImageProps, Dimensions, StyleSheet } from 'react-native'
+import { useSolitoImageContext } from './context'
 
 import { defaultLoader } from './default-loader'
 import {
@@ -44,12 +45,13 @@ export function useSolitoImage({
   unoptimized,
   ...props
 }: SolitoImageProps): UseSolitoImage {
-  const config: ImageConfig = useMemo(() => {
-    const c = imageConfigDefault
+  const contextConfig = useSolitoImageContext()
+  const config = useMemo<ImageConfig>(() => {
+    const c = contextConfig || imageConfigDefault
     const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
     const deviceSizes = c.deviceSizes.sort((a, b) => a - b)
     return { ...c, allSizes, deviceSizes }
-  }, [])
+  }, [contextConfig])
 
   const finalSource = useSyncExternalStore<ImageProps['source']>(
     (callback) => Dimensions.addEventListener('change', callback).remove,
@@ -74,7 +76,7 @@ export function useSolitoImage({
             if (loader) {
               return loader(opts)
             }
-            return defaultLoader({ ...obj, config: imageConfigDefault })
+            return defaultLoader({ ...obj, config })
           },
           unoptimized: Boolean(unoptimized),
           quality: getInt(quality || 75),

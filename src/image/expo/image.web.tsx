@@ -3,6 +3,7 @@ import { forwardRef, useRef } from 'react'
 import { Image, ImageResizeMode, StyleSheet } from 'react-native'
 // @ts-expect-error missing types
 import { unstable_createElement } from 'react-native-web'
+import { useSolitoImageContext } from '../context'
 // import useElementLayout from 'react-native-web/dist/modules/useElementLayout'
 
 // import { mergeRefs } from '../../helpers/merge-refs'
@@ -12,6 +13,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
   { resizeMode = 'contain', fill, style, onLayout, ...props },
   ref
 ) {
+  const { loader } = useSolitoImageContext()
   // add back onLayout when this is solved: https://github.com/vercel/next.js/discussions/43267
   // const localRef = useRef<Image>(null)
   // useElementLayout(
@@ -22,6 +24,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
   return unstable_createElement(NextImage, {
     ...props,
     // ref: mergeRefs([ref, localRef]),
+    loader,
     fill,
     style: [
       fill && StyleSheet.absoluteFill,
