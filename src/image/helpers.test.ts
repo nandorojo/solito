@@ -15,6 +15,23 @@ describe('resolveSourceFromImgAttributes', () => {
     ).toBe('elva-fairy-480w.jpg')
   })
 
+  test('trims excess space', () => {
+    expect(
+      resolveSourceFromImgAttributes({
+        dimensions: {
+          width: 100,
+          height: 100,
+        },
+        srcSet: `elva-fairy-480w.jpg 480w, 
+        
+    elva-fairy-800w.jpg 800w`,
+        sizes: `(max-width: 600px) 480px, 
+        800px`,
+        src: 'elva-fairy.jpg',
+      }).uri
+    ).toBe('elva-fairy-480w.jpg')
+  })
+
   test('picks from min-width', () => {
     expect(
       resolveSourceFromImgAttributes({

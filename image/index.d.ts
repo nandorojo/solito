@@ -1,1 +1,1 @@
-export * from '../build/image/native'
+export * from '../build/image'

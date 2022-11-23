@@ -11,6 +11,7 @@ export default function Home() {
     >
       <SolitoImage
         alt=""
+        priority
         unoptimized
         src="https://dice-media.imgix.net/attachments/2022-10-05/b2738fef-45c4-4e02-a88c-0972eb825afd.jpg?rect=0%2C0%2C1920%2C1920&auto=format%2Ccompress&q=40&w=328&fit=max&dpr=2"
         width={300}
