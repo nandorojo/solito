@@ -26,7 +26,9 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
     fill,
     style: [
       fill && StyleSheet.absoluteFill,
-      objectFitFromResizeMode(resizeMode),
+      {
+        objectFit: objectFitFromResizeMode(resizeMode),
+      },
       style,
     ],
   })
@@ -34,33 +36,19 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
 
 export default SolitoImage
 
-const styles = StyleSheet.create<
-  StyleSheet.NamedStyles<Record<ImageResizeMode, any>>
->({
-  cover: {
-    // @ts-expect-error
-    objectFit: 'cover',
-  },
-  contain: {
-    // @ts-expect-error
-    objectFit: 'contain',
-  },
-  stretch: {
-    // @ts-expect-error
-    objectFit: 'fill',
-  },
-  center: {
-    // @ts-expect-error
-    objectFit: 'none',
-  },
-})
-
 const objectFitFromResizeMode = (resizeMode: ImageResizeMode) => {
-  const result = styles[resizeMode]
-
-  if (!result) {
-    throw new Error(`[solito/image] Invalid resizeMode: ${resizeMode}`)
+  if (resizeMode === 'cover') {
+    return 'cover'
+  }
+  if (resizeMode === 'contain') {
+    return 'contain'
+  }
+  if (resizeMode === 'stretch') {
+    return 'fill'
+  }
+  if (resizeMode === 'center') {
+    return 'none'
   }
 
-  return result
+  throw new Error(`[solito/image] Invalid resizeMode: ${resizeMode}`)
 }
