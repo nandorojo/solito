@@ -11,6 +11,18 @@ import {
 import { SolitoImageProps } from './image.types'
 import { ImageConfig } from './types'
 
+type UseSolitoImage = Pick<
+  ImageProps,
+  | Extract<keyof ImageProps, keyof SolitoImageProps>
+  | 'progressiveRenderingEnabled'
+  | 'source'
+  | 'accessible'
+  | 'onLayout'
+  | 'style'
+> & {
+  onLoadingComplete?: (info: { height: number; width: number }) => void
+}
+
 export function useSolitoImage({
   src,
   loader,
@@ -31,7 +43,7 @@ export function useSolitoImage({
   onLayout,
   unoptimized,
   ...props
-}: SolitoImageProps): ImageProps {
+}: SolitoImageProps): UseSolitoImage {
   const config: ImageConfig = useMemo(() => {
     const c = imageConfigDefault
     const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
@@ -92,12 +104,7 @@ export function useSolitoImage({
   return {
     ...props,
     progressiveRenderingEnabled: true,
-    onLoad: ({ nativeEvent, ...rest }) =>
-      onLoadingComplete?.({
-        width: nativeEvent.source.width,
-        height: nativeEvent.source.height,
-        ...(rest as any),
-      }),
+    onLoadingComplete,
     source: finalSource,
     accessible: Boolean(alt),
     onLayout,

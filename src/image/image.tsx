@@ -8,9 +8,17 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function Img(
   props,
   ref
 ) {
-  const imageProps = useSolitoImage(props)
+  const { onLoadingComplete, ...imageProps } = useSolitoImage(props)
 
-  return <Image {...imageProps} ref={ref} />
+  return (
+    <Image
+      {...imageProps}
+      onLoad={
+        onLoadingComplete && ((e) => onLoadingComplete(e.nativeEvent.source))
+      }
+      ref={ref}
+    />
+  )
 })
 
 export default SolitoImage

@@ -13,21 +13,20 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
   { resizeMode = 'contain', fill, style, onLayout, ...props },
   ref
 ) {
-  const localRef = useRef<Image>(null)
-  useElementLayout(
-    // https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/View/index.js#L88
-    localRef,
-    onLayout
-  )
+  // add back onLayout when this is solved: https://github.com/vercel/next.js/discussions/43267
+  // const localRef = useRef<Image>(null)
+  // useElementLayout(
+  //   // https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/View/index.js#L88
+  //   localRef,
+  //   onLayout
+  // )
   return unstable_createElement(NextImage, {
     ...props,
-    ref: mergeRefs([ref, localRef]),
+    // ref: mergeRefs([ref, localRef]),
     fill,
     style: [
       fill && StyleSheet.absoluteFill,
-      {
-        objectFit: objectFitFromResizeMode(resizeMode),
-      },
+      objectFitFromResizeMode(resizeMode),
       style,
     ],
   })

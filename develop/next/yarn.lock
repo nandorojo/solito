@@ -6965,10 +6965,10 @@ sockjs@0.3.20:
     uuid "^3.4.0"
     websocket-driver "0.6.5"
 
-solito@2.1.0-image.3:
-  version "2.1.0-image.3"
-  resolved "https://registry.yarnpkg.com/solito/-/solito-2.1.0-image.3.tgz#33b128a9d27c6a2d7db2659b61d8444a50c180fd"
-  integrity sha512-QqOVUuF5pqn7OUCNu1D+sWy7IhKQhwyUrw3xucomnu+yR3hFaH/3cW1e1qy0ImqOXLA+sUXNmrIPXr3AJWcZhg==
+solito@2.1.0-image.4:
+  version "2.1.0-image.4"
+  resolved "https://registry.yarnpkg.com/solito/-/solito-2.1.0-image.4.tgz#119dd9a945b23d1a1d53c63573381a34edfc736d"
+  integrity sha512-SJ/6eFxFx+8H9J9A8ofhcNvxMmLOr52QjD6mrZkOVWjF56L9g1ynZOFvbQvnRhAvPjRISQ0oXGavCef8923ktA==
 
 source-list-map@^2.0.0:
   version "2.0.1"

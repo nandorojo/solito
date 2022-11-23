@@ -15,6 +15,9 @@ module.exports = withExpo(
       config.resolve.alias['react-native$'] = 'react-native-web'
       return config
     },
+    experimental: {
+      forceSwcTransforms: true,
+    },
   }),
   {
     projectRoot: __dirname,
