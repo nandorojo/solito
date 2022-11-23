@@ -4,7 +4,7 @@ export type ImageConfigComplete = {
   /**
    * Example: `https://beatgig.com` or `http://localhost:3000`
    *
-   * This is the host of your images, used on iOS & Android if you use relative image paths.
+   * This is the URL to your Next.js app, used on iOS & Android to resolve relative URLs.
    *
    * For example, if you have `public/image.png` in your Next.js app, and your URL is `https://beatgig.com`,
    * then you can use `<SolitoImage src="/image.png" />` and it will get the image from the next.js site.
