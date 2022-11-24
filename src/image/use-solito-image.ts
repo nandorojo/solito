@@ -54,7 +54,11 @@ export function useSolitoImage({
   }, [contextConfig])
 
   const finalSource = useSyncExternalStore<ImageProps['source']>(
-    (callback) => Dimensions.addEventListener('change', callback).remove,
+    (callback) => {
+      const { remove } = Dimensions.addEventListener('change', callback)
+
+      return () => remove()
+    },
     () => {
       const headers: { [key in string]: string } = {}
       if (crossOrigin === 'use-credentials') {

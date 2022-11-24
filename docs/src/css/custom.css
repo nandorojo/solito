@@ -30,6 +30,7 @@
 
   --ifm-navbar-shadow: 0 0 0 1px var(--ifm-border-color);
   --ifm-container-width-xl: 1140px;
+
   /* background-color */
 
   /* --ifm-color-primary: #ff0059;
@@ -126,4 +127,18 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 [data-theme='dark'] .shiki.min-light {
   display: none;
+}
+
+
+.navbar--fixed-top {
+  backdrop-filter: blur(12px);
+  background-color: transparent;
+}
+
+.menu__link, .menu__list-item-collapsible {
+  border-radius: 999px;
+}
+
+aside {
+  border-right-width: 0px!important;
 }
