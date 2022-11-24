@@ -53,22 +53,21 @@ export function useSolitoImage({
     return { ...c, allSizes, deviceSizes }
   }, [contextConfig])
 
-  const finalSource = useSyncExternalStore<ImageProps['source']>(
-    (callback) => {
-      const { remove } = Dimensions.addEventListener('change', callback)
+  const headers: { [key in string]: string } = {}
+  if (crossOrigin === 'use-credentials') {
+    headers['Access-Control-Allow-Credentials'] = 'true'
+  }
+  if (referrerPolicy != null) {
+    headers['Referrer-Policy'] = referrerPolicy
+  }
 
-      return () => remove()
+  const uri = useSyncExternalStore<string | undefined>(
+    (callback) => {
+      const subscription = Dimensions.addEventListener('change', callback)
+
+      return () => subscription?.remove()
     },
     () => {
-      const headers: { [key in string]: string } = {}
-      if (crossOrigin === 'use-credentials') {
-        headers['Access-Control-Allow-Credentials'] = 'true'
-      }
-      if (referrerPolicy != null) {
-        headers['Referrer-Policy'] = referrerPolicy
-      }
-      let source: ImageProps['source'] = src
-
       const dimensions = Dimensions.get('window')
 
       if (typeof src == 'string') {
@@ -92,26 +91,37 @@ export function useSolitoImage({
           dimensions,
         })
 
-        return {
-          uri,
-          height,
-          width,
-          headers,
-          cache: priority ? 'force-cache' : 'default',
-        }
-      } else {
-        source = src
+        return uri
       }
-
-      return source
+      return undefined
     }
   )
+
+  const source = useMemo<ImageProps['source']>(() => {
+    const headers: { [key in string]: string } = {}
+    if (crossOrigin === 'use-credentials') {
+      headers['Access-Control-Allow-Credentials'] = 'true'
+    }
+    if (referrerPolicy != null) {
+      headers['Referrer-Policy'] = referrerPolicy
+    }
+    if (uri && typeof uri == 'string') {
+      return {
+        uri,
+        height,
+        width,
+        headers,
+        cache: priority ? 'force-cache' : 'default',
+      }
+    }
+    return src
+  }, [uri, src, height, width, priority, referrerPolicy, crossOrigin])
 
   return {
     ...props,
     progressiveRenderingEnabled: true,
     onLoadingComplete,
-    source: finalSource,
+    source,
     accessible: Boolean(alt),
     onLayout,
     style: [fill && StyleSheet.absoluteFill, style],
