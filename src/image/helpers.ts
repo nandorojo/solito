@@ -210,9 +210,16 @@ export const resolveSourceFromImgAttributes = ({
         const [sourceUrl, size] = source.trim().split(' ')
 
         if (size.endsWith('x')) {
-          throw new Error(
-            `[solito/image] srcSet does not support x descriptors, but it got "${size}" inside of ${srcSet}`
-          )
+          // throw new Error(
+          //   `[solito/image] srcSet does not support x descriptors, but it got "${size}" inside of ${srcSet}`
+          // )
+
+          // TODO what is the right way to handle 1x, 2x sizes?
+
+          return {
+            sourceUrl,
+            size: parseInt(size.replace('x', ''), 10) * dimensions.width, // should this use image width?
+          }
         }
 
         return {
