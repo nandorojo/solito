@@ -25,7 +25,8 @@ export default function SolitoFastImage(
       }
       resizeMode={props.resizeMode}
       onLoad={onLoadingComplete && ((e) => onLoadingComplete(e.nativeEvent))}
-      style={props.style}
+      // @ts-expect-error this is fine
+      style={style}
       {...imageProps}
     />
   )

@@ -47,7 +47,7 @@ export function useSolitoImage({
 }: SolitoImageProps): UseSolitoImage {
   const contextConfig = useSolitoImageContext()
   const config = useMemo<ImageConfig>(() => {
-    const c = contextConfig || imageConfigDefault
+    const c = { ...imageConfigDefault, ...contextConfig }
     const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
     const deviceSizes = c.deviceSizes.sort((a, b) => a - b)
     return { ...c, allSizes, deviceSizes }
