@@ -5,11 +5,11 @@ import { SolitoImageProps } from '../image.types'
 import { useSolitoImage } from '../use-solito-image'
 
 export default function SolitoFastImage(
-  props: Omit<SolitoImageProps, 'resizeMode'> &
+  props: Omit<SolitoImageProps, 'resizeMode' | 'style'> &
     Pick<ComponentProps<typeof FastImage>, 'style' | 'resizeMode'>
 ) {
   const { source, resizeMode, onLoadingComplete, style, ...imageProps } =
-    useSolitoImage(props)
+    useSolitoImage(props as SolitoImageProps)
 
   return (
     <FastImage

@@ -105,7 +105,7 @@ export function useSolitoImage({
     if (referrerPolicy != null) {
       headers['Referrer-Policy'] = referrerPolicy
     }
-    if (uri && typeof uri == 'string') {
+    if (typeof uri == 'string') {
       return {
         uri,
         height,
@@ -114,7 +114,7 @@ export function useSolitoImage({
         cache: priority ? 'force-cache' : 'default',
       }
     }
-    return src
+    return src as number
   }, [uri, src, height, width, priority, referrerPolicy, crossOrigin])
 
   return {

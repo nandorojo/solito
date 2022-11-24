@@ -35,7 +35,7 @@ export type SolitoImageProps = Pick<
         width: number
       }
     | {
-        src: Exclude<any, string>
+        src: Exclude<NextImageProps['src'], string> | number
         height?: number
         width?: number
       }

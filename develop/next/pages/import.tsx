@@ -1,12 +1,14 @@
 import { View } from 'react-native'
 import { SolitoImage } from 'solito/image'
 
-export default function CoverPage() {
+import mountains from '../public/mountains.jpg'
+
+export default function ImportPage() {
   return (
     <View style={{ flex: 1 }}>
       <SolitoImage
         alt="Mountain"
-        src="/mountains.jpg"
+        src={mountains}
         quality={100}
         fill
         priority
