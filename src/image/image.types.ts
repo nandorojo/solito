@@ -18,7 +18,6 @@ export type SolitoImageProps = Pick<
   | 'loader'
   | 'priority'
   | 'loading'
-  | 'fill'
   | 'sizes'
   | 'quality'
   | 'crossOrigin'
@@ -45,4 +44,5 @@ export type SolitoImageProps = Pick<
     'onLayout' | 'resizeMode' | AccessibilityProp<keyof ImageProps>
   > & {
     onLoadingComplete?: (info: { height: number; width: number }) => void
+    fill?: boolean
   }
