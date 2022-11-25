@@ -2,13 +2,25 @@ import React from 'react'
 import type { ComponentProps, ComponentType } from 'react'
 import { Platform } from 'react-native'
 
-import { parseNextPath } from '../router'
-import { useLinkTo } from '../router/use-link-to'
 import { NextLink } from './next-link'
+import { useLink } from './use-custom-link'
 
 export type LinkCoreProps = {
   children: React.ReactNode
-} & Omit<ComponentProps<typeof NextLink>, 'passHref'>
+} & Omit<ComponentProps<typeof NextLink>, 'passHref' | 'replace'> &
+  (
+    | {
+        replace?: false
+        experimental?: undefined
+      }
+    | {
+        replace: true
+        experimental?: {
+          nativeBehavior: 'stack-replace'
+          isNestedNavigator: boolean
+        }
+      }
+  )
 
 function LinkCore({
   children,
@@ -16,6 +28,8 @@ function LinkCore({
   as,
   componentProps,
   Component,
+  replace,
+  experimental,
   ...props
 }: LinkCoreProps & {
   Component: ComponentType<any>
@@ -23,22 +37,25 @@ function LinkCore({
 }) {
   if (Platform.OS === 'web') {
     return (
-      <NextLink {...props} href={href} as={as} passHref>
+      <NextLink {...props} replace={replace} href={href} as={as} passHref>
         <Component {...componentProps}>{children}</Component>
       </NextLink>
     )
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const linkTo = useLinkTo()
+  const linkTo = useLink({
+    href,
+    as,
+    replace,
+    experimental,
+  })
   return (
     <Component
       accessibilityRole="link"
       {...componentProps}
       onPress={(e?: any) => {
         componentProps?.onPress?.(e)
-        if (!e?.defaultPrevented) {
-          linkTo(parseNextPath(as || href))
-        }
+        linkTo.onPress(e)
       }}
     >
       {children}
