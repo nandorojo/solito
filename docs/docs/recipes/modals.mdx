@@ -1,6 +1,228 @@
 ---
-title: Modals
+sidebar_label: Modals
+title: Conquering Modals in React Native
 ---
 
-TODO 👀 I'll make this page when I have some time...
+Modals, modals, modals. I put off writing this doc for a while. But after spending hours fixing an authentication modal issue on iOS, I figured I should write it while my passion is still there.
 
+Consider this less of a guide and more of a stream of consciousness. Cross-platform modals are a powerful yet tricky tool.
+
+Let's cover a few things throughout:
+
+- Use cases: when should I use a modal?
+- Quirks: how does the behavior differ across platforms?
+- Implementation: what are my options?
+
+## The options
+
+React Native has a `Modal` component:
+
+```tsx
+import { Modal, Platform } from 'react-native'
+
+export const MyModal = ({ children }) => (
+  <Modal
+    visible
+    onRequestClose={close}
+    presentation="formSheet"
+    animationType="slide"
+    transparent={Platform.iOS != 'ios'}
+  >
+    {children}
+  </Modal>
+)
+```
+
+On iOS & Android, you can also render a page as a modal inside of a stack.
+
+```tsx
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+const { Navigator, Screen } = createNativeStackNavigator()
+
+export default function App() {
+  return (
+    <Navigator>
+      <Screen
+        name="Home"
+        component={Home}
+        screenOptions={{
+          presentation: 'modal',
+        }}
+      />
+    </Navigator>
+  )
+}
+```
+
+### When to use each one
+
+The `Modal` element is best for ephemeral UI where URLs aren't necessary. One exception to that rule is [Next.js route modals](#route-modals), which we'll cover at the end.
+
+For authentication, I prefer to render a [global auth modal](https://twitter.com/FernandoTheRojo/status/1518755690730471424?s=20&t=cTO36D5q60RCgt-8gjDBsA) rather than a `/login` page to ensure that users don't throw away their state when trying to log in on Web.
+
+## iOS modals are weird
+
+If you've used React Native, you've probably struggled with modals on iOS.
+
+Here are some of the limitations, along with the ~~workarounds~~ solutions.
+
+### Mutliple modals
+
+React Native only lets you mount a single `<Modal />` at a time on iOS.
+
+Imagine you have an `<AuthModal />` in `App.tsx` at the root of your app, controlled by a global state variable. What happens if you try to open it while another modal is already open? Nothing. It won't open. I've encountered this many times with great frustration.
+
+Coming from Web, one might expect that you need to the add fixed position and increase your `z-index`. But that doesn't apply here.
+
+#### The solution
+
+```tsx
+// this won't work 😢
+const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+
+const openAuthModal = () => setIsAuthModalOpen(true)
+
+return (
+  <>
+    <Modal visible>
+      <Button onPress={viewAuthModal} title="Sign In" />
+    </Modal>
+
+    <Modal visible={isAuthModalOpen}>
+      <AuthFlow />
+    </Modal>
+  </>
+)
+```
+
+To fix this, render the second modal inside of the first one:
+
+```tsx
+// this will work 😎
+const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+
+const openAuthModal = () => setIsAuthModalOpen(true)
+
+return (
+  <Modal visible>
+    <Button onPress={viewAuthModal} title="Sign In" />
+
+    <Modal visible={isAuthModalOpen}>
+      <AuthFlow />
+    </Modal>
+  </Modal>
+)
+```
+
+The same applies for a navigation stack modal. If you try to open a globally-rendered modal while a navigation stack modal is open, your app just...freezes. The solution is to mount the modal inside of the navigation stack modal. I pulled my hair out with this problem yesterday.
+
+With this limitation in mind, let's use React Context to override the auth modal's visibility state.
+
+For instance, if your root app file looks like this:
+
+```tsx
+// App.tsx
+
+<AuthModalProvider>
+  <Navigator>
+    <Screen
+      name="Home"
+      component={Home}
+      screenOptions={{
+        presentation: 'modal',
+      }}
+    />
+  </Navigator>
+
+  <AuthModal />
+</AuthModalProvider>
+```
+
+In `Home` component, add `AuthModalProvider` and `AuthModal` once again:
+
+```tsx
+export function Home() {
+  return (
+    <AuthModalProvider>
+      {/* your screen content goes here... */}
+      <AuthModal />
+    </AuthModalProvider>
+  )
+}
+```
+
+This pattern does two things:
+
+1. Re-mount the `AuthModal` element inside of the `Home` stack page modal.
+2. Use React Context to override the `AuthModalProvider` so that all children of `Home` will open the modal mounted inside of the page.
+
+### Toasts
+
+React Native doesn't have `position: 'fixed'`. That said, if you use `position: 'absolute'` for an element at the root of your app, it will render on top of every other element. _Except_ for modals.
+
+Modals render on top of everything. This can be frustrating when you want to mount a component like a Toast at the root of your app and have it show on top of any arbitrary element. On Web, you can use a portal, or simply set fixed position with a really high `z-index`.
+
+This limitation is why I built [Burnt](https://github.com/nandorojo/burnt), a library for Toasts. Rather than using React Native UI, Burnt wraps an existing Swift library called `SPIndicator`. As a result, the toast UI is native, and it renders on top of any modal.
+
+## Next.js route modals
+
+A common pattern on Next.js is to use shallow routing to open a page as a modal. This lets you preserve local state and scroll position when navigating to a new page.
+
+For example, if you're on the `/search` screen and you click an artist, rather than opening the actual artist page, you can render a modal on top of the search list that displays the artist page component. The URL changes, but the search list doesn't unmount.
+
+```tsx
+// pages/search
+
+import { createParam } from 'solito'
+import { Modal } from 'react-native'
+import dynamic from 'next/dynamic'
+const ArtistPage = dynamic(() => import('../artist/[artistSlug]'))
+import { SearchList } from 'app/features/search/list'
+
+const { useParam } = createParam<{
+  artistSlug?: string
+}>()
+
+export default function SearchPage() {
+  const [artistSlug] = useParam('artistSlug')
+
+  return (
+    <>
+      <SearchList />
+      {/** render the artist page as a modal */}
+      <Modal visible={Boolean(artistSlug)}>
+        <ArtistPage />
+      </Modal>
+    </>
+  )
+}
+```
+
+While code above is only used in your Next.js app, it imports our `SearchList` component which is shared across platforms:
+
+```tsx
+// features/search/list
+export function SearchList() {
+  const router = useRouter()
+  return (
+    <ArtistResults
+      onPressArtist={(artist) => {
+        // open the current page with an artistSlug search parameter
+        // the URL shows /@{artistSlug}
+        router.push(`/search?artistSlug=${artist.slug}`, `/@${artist.slug}`, {
+          shallow: true,
+        })
+      }}
+    />
+  )
+}
+```
+
+Here we opened `/search?artistSlug=the-beatles` and the URL visible to the user changed to `/@the-beatles`. The search page didn't unmount, and the artist page rendered on top of it inside of a modal. If the user refreshes, they'll open the actual page at `/@the-beatles`. If they click the back button, they'll go back to `/search` with preserved state.
+
+What would the behavior be on native? Solito prefers the `as` path you set when calling `router.push` on native (see the second argument passed above). On iOS and Android, it would open the screen at `/@the-beatles` in a stack.
+
+If you find yourself using route modals often, you can create a component wrapper that handles the logic for you. [Here's an example](https://github.com/showtime-xyz/showtime-frontend/blob/staging/packages/design-system/modal-screen/with-modal-screen.web.tsx) from Showtime's open source Solito app.
+
+Good luck, and let me know if you have any questions on [Twitter](https://twitter.com/fernandotherojo).
