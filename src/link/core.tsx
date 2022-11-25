@@ -7,7 +7,10 @@ import { useLink } from './use-custom-link'
 
 export type LinkCoreProps = {
   children: React.ReactNode
-} & Omit<ComponentProps<typeof NextLink>, 'passHref' | 'replace'> &
+} & Omit<
+  ComponentProps<typeof NextLink>,
+  'passHref' | 'replace' | 'legacyBehavior'
+> &
   (
     | {
         replace?: false
@@ -37,7 +40,14 @@ function LinkCore({
 }) {
   if (Platform.OS === 'web') {
     return (
-      <NextLink {...props} replace={replace} href={href} as={as} passHref>
+      <NextLink
+        {...props}
+        replace={replace}
+        href={href}
+        as={as}
+        passHref
+        legacyBehavior
+      >
         <Component {...componentProps}>{children}</Component>
       </NextLink>
     )

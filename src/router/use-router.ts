@@ -94,11 +94,14 @@ export function useRouter() {
                       if (
                         transitionOptions?.experimental?.isNestedNavigator &&
                         params &&
-                        'screen' in params
+                        'screen' in params &&
+                        params.screen
                       ) {
-                        navigation?.navigate(
-                          params.screen as string,
-                          params.params as object | undefined
+                        navigation?.dispatch(
+                          StackActions.replace(
+                            params.screen,
+                            params.params as object | undefined
+                          )
                         )
                       } else {
                         navigation?.dispatch(StackActions.replace(name, params))

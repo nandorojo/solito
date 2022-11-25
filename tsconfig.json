@@ -8,7 +8,8 @@
     "moduleResolution": "node",
     "strict": true,
     "experimentalDecorators": true,
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "jsx": "react-jsx"
   },
   "include": ["./src"],
   "exclude": ["**/__mocks__/*", "**/__tests__/*"]
