@@ -25,7 +25,7 @@ export const MyModal = ({ children }) => (
     onRequestClose={close}
     presentation="formSheet"
     animationType="slide"
-    transparent={Platform.iOS != 'ios'}
+    transparent={Platform.OS != 'ios'}
   >
     {children}
   </Modal>
