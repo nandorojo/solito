@@ -272,7 +272,8 @@ Add the `images` configuration to your `next.config.js`:
 ```js
 module.exports = {
   images: {
-    disableStaticImages: true,
+    // you might need to add this if your app imports images outside of Next.js
+    // disableStaticImages: true,
   },
 }
 ```
@@ -300,9 +301,43 @@ npx expo start --dev-client --ios
 
 #### With Expo Go
 
-If you still want to use Expo Go, you can import from `solito/image/expo` instead. This uses React Native's vanilla `Image` component under the hood.
+Solito Image adds support for Expo Go. However, images will not be optimized on iOS & Android, since it uses the vanilla `Image` from React Native.
 
-For a production app, I recommend using `solito/image` with `react-native-fast-image` and a custom dev client, since React Native's vanilla image is known to have bugs.
+First, add a module resolver plugin in `apps/expo`:
+
+```sh
+cd apps/expo
+yarn add -D babel-plugin-module-resolver
+cd ../..
+yarn
+```
+
+Next, edit your `apps/expo/babel.config.js` file to add a resolution from `solito/image` to `solito/image/expo`.
+
+```js
+// babel.config.js
+module.exports = function (api) {
+  api.cache(true)
+
+  return {
+    presets: [['babel-preset-expo', { jsxRuntime: 'automatic' }]],
+    plugins: [
+      'react-native-reanimated/plugin',
+      [
+        'module-resolver',
+        {
+          root: ['./'],
+          alias: {
+            'solito/image': 'solito/image/expo',
+          },
+        },
+      ],
+    ],
+  }
+}
+```
+
+For a production app, I recommend not doing this, as you will miss out on `react-native-fast-image`'s optimizations.
 
 ### Vanilla React Native
 
