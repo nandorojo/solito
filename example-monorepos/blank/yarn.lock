@@ -10230,10 +10230,10 @@ sockjs@0.3.20:
     uuid "^3.4.0"
     websocket-driver "0.6.5"
 
-solito@next13:
-  version "2.0.0-canary.1"
-  resolved "https://registry.yarnpkg.com/solito/-/solito-2.0.0-canary.1.tgz#f188eec1cad9653df1c7ac83ab3c80e6cd6269c5"
-  integrity sha512-hGCMyTi1FPfpkWMr0oPg42863iUfvVGtwftkghc1kuXNvuEnFbKTldJpzHaTEUjl+rCe9ty0Hs+mzGxK65Ox0Q==
+solito@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/solito/-/solito-2.0.0.tgz#cf0734b2127687bf5323f619e0c49d26676c4b2a"
+  integrity sha512-gEG3/vzXshaZZjEFAkaM9ES0XTvs2m99u6taIXn9EaMNbFG8Cc/naqiZin+2dIQQ++6T6qvTFqT0mg0aX/CORw==
 
 source-list-map@^2.0.0:
   version "2.0.1"
