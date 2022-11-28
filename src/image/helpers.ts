@@ -57,9 +57,8 @@ type GenImgAttrsData = {
   config: ImageConfig
   src: string
   unoptimized: boolean
-  loader:
-    | typeof defaultLoader
-    | NonNullable<React.ComponentProps<typeof NextImage>['loader']>
+  loader: typeof defaultLoader
+  // | NonNullable<React.ComponentProps<typeof NextImage>['loader']>
   width?: number
   quality?: number
   sizes?: string

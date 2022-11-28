@@ -7,20 +7,22 @@ const SolitoImageContext =
 
 export const SolitoImageProvider = ({
   children,
-  deviceSizes,
-  imageSizes,
-  nextJsURL,
-  path,
+  // deviceSizes,
+  // imageSizes,
+  // nextJsURL,
+  // path,
+  ...rest
 }: {
   children: React.ReactNode
 } & ContextType<typeof SolitoImageContext>) => {
   const parent = useContext(SolitoImageContext)
   const [context] = useState(() => ({
     ...parent,
-    deviceSizes,
-    imageSizes,
-    nextJsURL,
-    path,
+    // deviceSizes,
+    // imageSizes,
+    // nextJsURL,
+    // path,
+    ...rest,
   }))
 
   return (

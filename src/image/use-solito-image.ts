@@ -74,12 +74,11 @@ export function useSolitoImage({
         const attrs = generateImgAttrs({
           src,
           config,
-          loader: (obj) => {
-            const { config: _, ...opts } = obj as any
+          loader: ({ config: _, ...opts }) => {
             if (loader) {
               return loader(opts)
             }
-            return defaultLoader({ ...obj, config })
+            return defaultLoader({ ...opts, config })
           },
           unoptimized: Boolean(unoptimized),
           quality: getInt(quality || 75),
