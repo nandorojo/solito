@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import { ImageConfigComplete } from './types'
 
 export type ImageLoaderProps = {
@@ -33,7 +34,7 @@ export function defaultLoader({
       )
     }
 
-    if (src.startsWith('/') && !config.nextJsURL) {
+    if (src.startsWith('/') && !config.nextJsURL && Platform.OS !== 'web') {
       throw new Error(
         `[solito/image] Please add the "nextJsURL" prop to your <SolitoProvider /> to use relative paths.
         

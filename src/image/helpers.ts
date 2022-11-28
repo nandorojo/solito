@@ -1,5 +1,6 @@
 import type NextImage from 'next/image'
 import type { ImageResizeMode } from 'react-native'
+import { defaultLoader } from './default-loader'
 
 import { ImageConfig, ImageConfigComplete } from './types'
 
@@ -56,7 +57,9 @@ type GenImgAttrsData = {
   config: ImageConfig
   src: string
   unoptimized: boolean
-  loader: NonNullable<React.ComponentProps<typeof NextImage>['loader']>
+  loader:
+    | typeof defaultLoader
+    | NonNullable<React.ComponentProps<typeof NextImage>['loader']>
   width?: number
   quality?: number
   sizes?: string
@@ -99,7 +102,7 @@ export function generateImgAttrs({
     srcSet: widths
       .map(
         (w, i) =>
-          `${loader({ src, quality, width: w })} ${
+          `${loader({ src, quality, width: w, config })} ${
             kind === 'w' ? w : i + 1
           }${kind}`
       )
@@ -111,7 +114,7 @@ export function generateImgAttrs({
     // updated by React. That causes multiple unnecessary requests if `srcSet`
     // and `sizes` are defined.
     // This bug cannot be reproduced in Chrome or Firefox.
-    src: loader({ quality, width: widths[last], src }),
+    src: loader({ quality, width: widths[last], src, config }),
   }
 }
 

@@ -14,7 +14,7 @@ On Web, it uses `next/image`. On iOS & Android, it uses [`react-native-fast-imag
 
 ## Usage
 
-You can use remote URLs:
+### Remote URLs
 
 ```tsx
 <SolitoImage
@@ -25,7 +25,7 @@ You can use remote URLs:
 />
 ```
 
-You can use imported files:
+### Local files
 
 ```tsx
 import image from './image.png'
@@ -39,6 +39,10 @@ export const Image = () => (
   />
 )
 ```
+
+> Next.js will not optimize images imported via `require`.
+
+### Public folder images
 
 And if you add [some configuration](#configuration), you can even use files from your Next.js website's `public` folder across platforms:
 
