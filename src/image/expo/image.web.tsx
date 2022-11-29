@@ -25,7 +25,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
   return unstable_createElement(NextImage, {
     ...props,
     // ref: mergeRefs([ref, localRef]),
-    loader,
+    loader: props.loader ?? loader,
     fill,
     style: [
       fill && StyleSheet.absoluteFill,

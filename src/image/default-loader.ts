@@ -45,7 +45,7 @@ Error due to image source "${src}".`
 
   if (src.startsWith('/') && src.endsWith('.svg')) {
     // relative SVG paths are raw
-    return `${config.nextJsURL}/${src}`
+    return `${config.nextJsURL}${src}`
   }
 
   if (src.startsWith('http')) {
