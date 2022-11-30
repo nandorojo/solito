@@ -208,7 +208,7 @@ export const resolveSourceFromImgAttributes = ({
         }
       }
 
-      const sources = srcSet.split(',').map((source) => {
+      const sources = srcSet.split(', ').map((source) => {
         const [sourceUrl, size] = source.trim().split(' ')
 
         if (size.endsWith('x')) {
