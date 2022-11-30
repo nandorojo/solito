@@ -29,7 +29,7 @@ export function useSolitoImage({
   loader,
   width,
   height,
-  quality = 0.75,
+  quality = 75,
   crossOrigin,
   referrerPolicy,
   alt,
