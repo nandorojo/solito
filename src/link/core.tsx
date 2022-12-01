@@ -67,7 +67,11 @@ function LinkCore({
         componentProps?.onPress?.(e)
         const link = as || href
         // Handles external URLs
-        if (typeof link === 'string' && isAbsoluteUrl(link)) {
+        if (
+          !e?.defaultPrevented &&
+          typeof link === 'string' &&
+          isAbsoluteUrl(link)
+        ) {
           Linking.openURL(link)
         } else {
           linkTo.onPress(e)
@@ -82,7 +86,7 @@ function LinkCore({
 // Scheme: https://tools.ietf.org/html/rfc3986#section-3.1
 // Absolute URL: https://tools.ietf.org/html/rfc3986#section-4.3
 const ABSOLUTE_URL_REGEX = /^[a-zA-Z][a-zA-Z\d+\-.]*?:/
-// Source credit NextJS - https://github.com/vercel/next.js/blob/77b5f79a4dff453abb62346bf75b14d859539b81/packages/next/shared/lib/utils.ts#L313
+// Source - https://github.com/vercel/next.js/blob/77b5f79a4dff453abb62346bf75b14d859539b81/packages/next/shared/lib/utils.ts#L313
 export const isAbsoluteUrl = (url: string) => ABSOLUTE_URL_REGEX.test(url)
 
 export { LinkCore }
