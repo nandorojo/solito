@@ -34,7 +34,7 @@ All solito example monorepos have been upgraded to Next.js 13. The following cha
 - Upgrade `react` & `react-dom` in `apps/expo/package.json` to `18.2.0`
   - If you run `expo upgrade` in `apps/expo`, this version might get downgraded. If this happens, be sure to manually upgrade to at least `18.2.0`.
 
-### Upgrade Guide
+### Next.js 13 Upgrade Guide
 
 While Solito doesn't add any breaking changes to support Next.js 13, Next.js 13 itself does have [breaking changes](https://nextjs.org/blog/next-13#breaking-changes). Please refer to [their upgrade guide](https://nextjs.org/docs/upgrading).
 
@@ -137,3 +137,34 @@ Since Solito's custom font loading recommendations are currently quite platform-
 How will server components work with React Native (Web)? Frankly, I am not quite sure yet. For now, we'll have to see if the React Native team gives an indication of the existence of server components on the native side (whatever that might mean).
 
 If you want to use RSC for data fetching on Web, you could presumably do this and pass down props to a client UI element. You'd just need an equivalent file on Native to fetch the same data using a regular data fetching solution, such as React Query, URQL, SWR, Apollo, etc.
+
+## Upgrade guide
+
+Please follow the steps below to upgrade. This guide will use `yarn`.
+
+1. Upgrade solito in `packages/app`:
+   a. `yarn add solito`
+2. Upgrade Next.js in `apps/next`:
+   a. `yarn add next@latest`
+3. Add resolutions for `react` and `react-dom` to `18.2.0` in your root `package.json`:
+
+```json
+{
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
+```
+
+4. See the [Next.js 13 upgrade guide](https://nextjs.org/docs/upgrading) for any other changes you need to make.
+
+5. Upgrade `@react-navigation/native` the newest `6.x` version
+
+- The minimum version is [`6.0.11`](https://github.com/react-navigation/react-navigation/releases?q=linkingcontext&expanded=true), which exposes `LinkingContext`. This is necessary for the new `stack-replace` functionality.
+- This isn't a breaking change, but it will be in a future release.
+- If you're using `expo-router`, you may need to set this as a yarn resolution.
+  - First, remove any `@react-navigation` packages from your `package.json`s, since `expo-router` installs these for you. Next, run `yarn`, and finally `yarn why @react-navigation/native`.
+  - If your version is below `6.0.11`, please add a yarn resolution to your root `package.json` with a high enough version.
+
+6. Run `yarn` from the root of your monorepo.
