@@ -5,49 +5,14 @@ id: v2
 
 Solito 2 is a big step for the React Native + Next.js stack:
 
-- **Next.js 13 support**
-  - `Link` and `TextLink` support
-  - Upgraded example monorepos
 - **New `solito/image`:** Optimized cross-platform images
   - `next/image` on Web
   - `react-native-fast-image` on iOS & Android
   - Expo Go support
+- **Next.js 13 support**
+  - `Link` and `TextLink` support
+  - Upgraded example monorepos
 - Native stack `replace()` support
-
-## Next.js 13 support
-
-Solito 2 adds support for Next.js 13.
-
-### Links
-
-`TextLink` and `Link` now use Next.js' `legacyBehavior` prop under the hood. No user changes are required.
-
-Similarly, Next.js' `useRouter` hook has been tree shaken on native to avoid runtime errors from Next.js 13 on iOS and Android.
-
-### Upgraded example monorepos
-
-All solito example monorepos have been upgraded to Next.js 13. The following changes were made:
-
-- Increment Next.js version in `apps/next/package.json`
-- Change `react-native-reanimated` SWC plugin in `apps/next/plugins`
-- Upgrade `solito` to `2.0.0` in `packages/app/package.json`
-- Upgrade `react` & `react-dom` in `apps/expo/package.json` to `18.2.0`
-  - If you run `expo upgrade` in `apps/expo`, this version might get downgraded. If this happens, be sure to manually upgrade to at least `18.2.0`.
-
-### Next.js 13 Upgrade Guide
-
-While Solito doesn't add any breaking changes to support Next.js 13, Next.js 13 itself does have [breaking changes](https://nextjs.org/blog/next-13#breaking-changes). Please refer to [their upgrade guide](https://nextjs.org/docs/upgrading).
-
-Since the minimum React/React DOM versions are now `18.2.0`, I recommend setting this version as a resolution in your monorepo's root `package.json` to avoid version mismatches:
-
-```json
-{
-  "resolutions": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  }
-}
-```
 
 ## `solito/image`
 
@@ -84,6 +49,41 @@ A key goal of this component was to bring the `next/image` API to native. This m
   - Implemented with React Context
 
 For more, see the [`SolitoImage` docs](/usage/image).
+
+## Next.js 13 support
+
+Solito 2 adds support for Next.js 13.
+
+### Links
+
+`TextLink` and `Link` now use Next.js' `legacyBehavior` prop under the hood. No user changes are required.
+
+Similarly, Next.js' `useRouter` hook has been tree shaken on native to avoid runtime errors from Next.js 13 on iOS and Android.
+
+### Upgraded example monorepos
+
+All solito example monorepos have been upgraded to Next.js 13. The following changes were made:
+
+- Increment Next.js version in `apps/next/package.json`
+- Change `react-native-reanimated` SWC plugin in `apps/next/plugins`
+- Upgrade `solito` to `2.0.0` in `packages/app/package.json`
+- Upgrade `react` & `react-dom` in `apps/expo/package.json` to `18.2.0`
+  - If you run `expo upgrade` in `apps/expo`, this version might get downgraded. If this happens, be sure to manually upgrade to at least `18.2.0`.
+
+### Next.js 13 Upgrade Guide
+
+While Solito doesn't add any breaking changes to support Next.js 13, Next.js 13 itself does have [breaking changes](https://nextjs.org/blog/next-13#breaking-changes). Please refer to [their upgrade guide](https://nextjs.org/docs/upgrading).
+
+Since the minimum React/React DOM versions are now `18.2.0`, I recommend setting this version as a resolution in your monorepo's root `package.json` to avoid version mismatches:
+
+```json
+{
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
+```
 
 ## Native Stack `replace()`
 
