@@ -1,1 +1,1 @@
-export * from '../build/image/expo'
+export * from '../../build/image/expo'
