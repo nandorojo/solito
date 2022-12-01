@@ -12,6 +12,7 @@ Solito 2 is a big step for the React Native + Next.js stack:
   - `next/image` on Web
   - `react-native-fast-image` on iOS & Android
   - Expo Go support
+- Native stack `replace()` support
 
 ## Next.js 13 support
 
@@ -33,11 +34,103 @@ All solito example monorepos have been upgraded to Next.js 13. The following cha
 - Upgrade `react` & `react-dom` in `apps/expo/package.json` to `18.2.0`
   - If you run `expo upgrade` in `apps/expo`, this version might get downgraded. If this happens, be sure to manually upgrade to at least `18.2.0`.
 
+### Upgrade Guide
+
+While Solito doesn't add any breaking changes to support Next.js 13, Next.js 13 itself does have [breaking changes](https://nextjs.org/blog/next-13#breaking-changes). Please refer to [their upgrade guide](https://nextjs.org/docs/upgrading).
+
+Since the minimum React/React DOM versions are now `18.2.0`, I recommend setting this version as a resolution in your monorepo's root `package.json` to avoid version mismatches:
+
+```json
+{
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
+```
+
 ## `solito/image`
 
-Next.js 13 comes with many exciting improvements for the `next/image` component. This new component's simplified API opened the door for a new cross-platform image component in Solito.
+Optimized images are one of the most-requested features for cross-platform development.
 
-Images are one of the most-requested features for cross-platform development.
+Solito 2 introduces [`SolitoImage`](/usage/image), which wraps `next/image` on Web and `react-native-fast-image` on iOS & Android.
+
+```tsx
+<SolitoImage
+  src="/logo.png"
+  height={100}
+  width={200}
+  alt="BeatGig logo"
+  priority
+/>
+```
+
+You can now use optimized, fast images across platforms with a single API.
+
+A key goal of this component was to bring the `next/image` API to native. This meant porting the following features, among others:
+
+- `sizes` property for optimized image sizes. Uses the `Dimensions` API on native.
+- `priority` property
+- Relative URL paths for images in the Next.js `public` folder
+- Static files via imported via `import`
+- `fill` property for absolute-filled styles
+- Object fit/resize modes
+- `style` property having same behavior, such as React Native's `transform` array.
+- `loader` property for custom image loaders
+- Global image configuration (via `SolitoImageProvider`)
+  - Set a global `loader` instead of a `loaderFile`
+  - Configure `deviceSizes`
+  - Configure `imageSizes`
+
+For more, see the [`SolitoImage` docs](/usage/image).
+
+## Native Stack `replace()`
+
+A common point of confusion for Solito users is the `router.replace()` function. On Web, it replaces the screen as expected. But on native, it always pushes a new screen, even when using a stack.
+
+This limitation is due to the complexity of determining a user's navigation intentions in a composable way with URLs, especially when dealing with nested navigators.
+
+To solve this feature request, Solito 2 introduces a new `nativeBehavior` option in the `router.replace()` function:
+
+```ts
+import { useRouter } from 'solito/router'
+
+export function Home() {
+  const router = useRouter()
+
+  const openArtists = () => {
+    replace('/artists', undefined, {
+      experimental: {
+        nativeBehavior: 'stack-replace',
+        isNestedNavigator: true,
+      },
+    })
+  }
+
+  // ...
+}
+```
+
+By passing `nativeBahvior: 'stack-replace'`, you tell Solito to re-write your navigation action with `StackActions.replace()`. The `isNestedNavigator` property is an important way to indicate to Solito that your stack is nested inside of another navigator, such as tabs. Chances are, this property will always be `true`.
+
+You can also use this functionality on the `Link` and `TextLink` components when `replace` is set to `true`:
+
+```tsx
+<Link
+  href="/artists"
+  replace
+  experimental={{
+    nativeBehavior: 'stack-replace',
+    isNestedNavigator: true,
+  }}
+/>
+```
+
+For now, this feature will live behind the `experimental` flag.
+
+## Fonts
+
+Since Solito's custom font loading recommendations are currently quite platform-specific, you should be able to take advantage of Next.js' new [`@next/font`](https://nextjs.org/docs/basic-features/font-optimization) package without any changes on the native side.
 
 ## Open Questions
 

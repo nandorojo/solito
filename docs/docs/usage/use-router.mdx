@@ -97,13 +97,45 @@ const onOpenArtist = () => {
 }
 ```
 
-#### Limitation
+### Stack Replace on Native
 
-On iOS and Android, this function doesn't call actually `replace()`. Instead, it calls [`linkTo` from React Navigaton](https://reactnavigation.org/docs/use-link-to/).
+Solito v2 introduces a new `nativeBehavior` option in the `router.replace()` function to let you use a stack replacement action on native navigators:
 
-This is because React Navigation doesn't currently offer an API to `replace` a current route with a URL.
+```ts
+import { useRouter } from 'solito/router'
 
-If this is a big need for you, please open an issue.
+export function Home() {
+  const router = useRouter()
+
+  const openArtists = () => {
+    replace('/artists', undefined, {
+      experimental: {
+        nativeBehavior: 'stack-replace',
+        isNestedNavigator: true,
+      },
+    })
+  }
+
+  // ...
+}
+```
+
+By passing `nativeBahvior: 'stack-replace'`, you tell Solito to re-write your navigation action with `StackActions.replace()`. The `isNestedNavigator` property is an important way to indicate to Solito that your stack is nested inside of another navigator, such as tabs. Chances are, this property will always be `true`.
+
+You can also use this functionality on the `Link` and `TextLink` components when `replace` is set to `true`:
+
+```tsx
+<Link
+  href="/artists"
+  replace
+  experimental={{
+    nativeBehavior: 'stack-replace',
+    isNestedNavigator: true,
+  }}
+/>
+```
+
+For now, this feature will live behind the `experimental` flag.
 
 ### `parseNextPath`
 

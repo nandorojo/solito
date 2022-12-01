@@ -263,6 +263,16 @@ You can think of `SolitoImageProvider` as your `images` configuration from `next
 </SolitoImageProvider>
 ```
 
+## Object Fit
+
+Rather than `style.objectFit`, use the `resizeMode` prop.
+
+```tsx
+<SolitoImage src="/image.png" width={200} height={200} resizeMode="cover" />
+```
+
+This behavior aligns with React Native images.
+
 ## Installation
 
 `solito/image` requires `solito` v2+.
