@@ -75,12 +75,13 @@ A key goal of this component was to bring the `next/image` API to native. This m
 - Static files via imported via `import`
 - `fill` property for absolute-filled styles
 - Object fit/resize modes
-- `style` property having same behavior, such as React Native's `transform` array.
+- React Native `style` prop support across platforms, including `transform` array, etc.
 - `loader` property for custom image loaders
-- Global image configuration (via `SolitoImageProvider`)
+- Global image configuration
   - Set a global `loader` instead of a `loaderFile`
   - Configure `deviceSizes`
   - Configure `imageSizes`
+  - Implemented with React Context
 
 For more, see the [`SolitoImage` docs](/usage/image).
 
@@ -131,12 +132,6 @@ For now, this feature will live behind the `experimental` flag.
 ## Fonts
 
 Since Solito's custom font loading recommendations are currently quite platform-specific, you should be able to take advantage of Next.js' new [`@next/font`](https://nextjs.org/docs/basic-features/font-optimization) package without any changes on the native side.
-
-## Open Questions
-
-How will server components work with React Native (Web)? Frankly, I am not quite sure yet. For now, we'll have to see if the React Native team gives an indication of the existence of server components on the native side (whatever that might mean).
-
-If you want to use RSC for data fetching on Web, you could presumably do this and pass down props to a client UI element. You'd just need an equivalent file on Native to fetch the same data using a regular data fetching solution, such as React Query, URQL, SWR, Apollo, etc.
 
 ## Upgrade guide
 
