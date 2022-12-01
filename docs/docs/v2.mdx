@@ -1,9 +1,9 @@
---
+---
 title: Solito 2
 id: v2
---
+---
 
-Solito 2 brings the following new additions to cross-platform development:
+Solito 2 is a big step for the React Native + Next.js stack:
 
 - **Next.js 13 support**
   - `Link` and `TextLink` support
@@ -34,3 +34,13 @@ All solito example monorepos have been upgraded to Next.js 13. The following cha
   - If you run `expo upgrade` in `apps/expo`, this version might get downgraded. If this happens, be sure to manually upgrade to at least `18.2.0`.
 
 ## `solito/image`
+
+Next.js 13 comes with many exciting improvements for the `next/image` component. This new component's simplified API opened the door for a new cross-platform image component in Solito.
+
+Images are one of the most-requested features for cross-platform development.
+
+## Open Questions
+
+How will server components work with React Native (Web)? Frankly, I am not quite sure yet. For now, we'll have to see if the React Native team gives an indication of the existence of server components on the native side (whatever that might mean).
+
+If you want to use RSC for data fetching on Web, you could presumably do this and pass down props to a client UI element. You'd just need an equivalent file on Native to fetch the same data using a regular data fetching solution, such as React Query, URQL, SWR, Apollo, etc.
