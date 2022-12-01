@@ -3,10 +3,20 @@ import { GestureResponderEvent, Platform } from 'react-native'
 import { useRouter } from '../router'
 import { LinkCoreProps } from './core'
 
-export type UseLinkProps = Pick<LinkCoreProps, 'as' | 'shallow' | 'href' | 'scroll'>
+export type UseLinkProps = Pick<
+  LinkCoreProps,
+  'as' | 'shallow' | 'href' | 'scroll' | 'replace' | 'experimental'
+>
 
-export function useLink({ href, as, shallow, scroll }: UseLinkProps) {
-  const { push, parseNextPath } = useRouter()
+export function useLink({
+  href,
+  as,
+  shallow,
+  scroll,
+  replace,
+  experimental,
+}: UseLinkProps) {
+  const router = useRouter()
 
   // https://github.com/react-navigation/react-navigation/blob/main/packages/native/src/useLinkProps.tsx#L64
   const onPress = (
@@ -30,16 +40,20 @@ export function useLink({ href, as, shallow, scroll }: UseLinkProps) {
     }
 
     if (shouldHandle) {
-      push(href, as, {
-        shallow,
-        scroll
-      })
+      if (replace) {
+        router.replace(href, as, { shallow, scroll, experimental })
+      } else {
+        router.push(href, as, {
+          shallow,
+          scroll,
+        })
+      }
     }
   }
 
   return {
     accessibilityRole: 'link' as const,
     onPress,
-    href: parseNextPath(as || href)
+    href: router.parseNextPath(as || href),
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+'use client'
 import { TextProps, Text } from 'react-native'
 
 import { LinkCore, LinkCoreProps } from './core'

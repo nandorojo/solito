@@ -4,9 +4,10 @@
 import * as PackageManager from '@expo/package-manager'
 import chalk from 'chalk'
 import Commander from 'commander'
-import fs from 'fs'
+import fs, { createWriteStream } from 'fs'
 import got from 'got'
-import path from 'path'
+import { tmpdir } from 'os'
+import path, { join } from 'path'
 import prompts from 'prompts'
 import { Stream } from 'stream'
 import tar from 'tar'
@@ -63,20 +64,40 @@ const packageManager = program.useNpm
   ? 'pnpm'
   : 'yarn'
 
-export function downloadAndExtractExample(
+async function downloadTar(url: string) {
+  const tempFile = join(tmpdir(), `solito-csa-example.temp-${Date.now()}`)
+  await pipeline(got.stream(url), createWriteStream(tempFile))
+  return tempFile
+}
+
+async function downloadAndExtractExample(
   root: string,
   name = 'blank'
-): Promise<void | unknown> {
+): Promise<void> {
   if (name === '__internal-testing-retry') {
     throw new Error('This is an internal example for testing the CLI.')
   }
 
-  return pipeline(
-    got.stream('https://codeload.github.com/nandorojo/solito/tar.gz/master'),
-    tar.extract({ cwd: root, strip: 3 }, [
-      `solito-master/example-monorepos/${name}`,
-    ])
+  const tempFile = await downloadTar(
+    `https://codeload.github.com/nandorojo/solito/tar.gz/master`
   )
+
+  // const result = await pipeline(
+  //   got.stream('https://codeload.github.com/nandorojo/solito/tar.gz/master'),
+  //   tar.extract({ cwd: root, strip: 3 }, [
+  //     `solito-master/example-monorepos/${name}`,
+  //   ])
+  // )
+
+  // return result
+  await tar.x({
+    file: tempFile,
+    cwd: root,
+    strip: 3,
+    filter: (p) => p.includes(`solito-master/example-monorepos/${name}/`),
+  })
+
+  fs.unlinkSync(tempFile)
 }
 
 async function run() {
@@ -165,17 +186,6 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
     await downloadAndExtractExample(resolvedProjectPath, program.template)
     console.log(`Downloaded template into ${chalk.blueBright(projectName)}...`)
     console.log()
-    console.log('[solito] resolved path!!', resolvedProjectPath)
-    const pkgPath = `${resolvedProjectPath}/package.json`
-    console.log('[solito] package.json path:', pkgPath)
-    // const pkg = require(pkgPath)
-    // console.log(`Found package.json`)
-    // console.log()
-    // pkg.name = projectName
-    // fs.writeFileSync(
-    //   path.resolve(resolvedProjectPath, 'package.json'),
-    //   JSON.stringify(pkg, null, 2)
-    // )
     console.log(chalk.green(`${projectName} created!`))
   } catch (e) {
     console.error('[solito] Failed to download example\n\n', e)
