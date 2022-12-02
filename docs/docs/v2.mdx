@@ -114,7 +114,7 @@ export function Home() {
 }
 ```
 
-By passing `nativeBahvior: 'stack-replace'`, you tell Solito to re-write your navigation action with `StackActions.replace()`. The `isNestedNavigator` property is an important way to indicate to Solito that your stack is nested inside of another navigator, such as tabs. Chances are, this property will always be `true`.
+By passing `nativeBehavior: 'stack-replace'`, you tell Solito to re-write your navigation action with `StackActions.replace()`. The `isNestedNavigator` property is an important way to indicate to Solito that your stack is nested inside of another navigator, such as tabs. Chances are, this property will always be `true`.
 
 You can also use this functionality on the `Link` and `TextLink` components when `replace` is set to `true`:
 
