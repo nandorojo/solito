@@ -94,6 +94,7 @@ const sidebars = {
     //   label: 'TypeScript',
     // },
     'resources',
+    'v2',
     // 'community',
   ],
 
