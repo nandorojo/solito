@@ -81,10 +81,9 @@ import { SettingsScreen } from 'app/features/settings/screen'
 export default function Settings() {
   return <SettingsScreen />
 }
-
 ```
 
-### 2. Next.js page
+### 3. Next.js page
 
 In `apps/next/pages/settings.tsx`, export the screen `as default`:
 
@@ -94,7 +93,7 @@ export { SettingsScreen as default } from 'app/features/settings/screen'
 
 Start the web app and open `localhost:3000/settings` to see your settings screen!
 
-### 3. React Navigation
+### 4. React Navigation
 
 Now that the `SettingsScreen` works on the website, let's add it to the native app.
 
@@ -210,7 +209,7 @@ The `name` of the screen is `settings`. This name is important and will be used 
 
 For the `component` prop, we pass the **same `SettingsScreen` component we used for the website**.
 
-### 4. Configure native `linking`
+### 5. Configure native `linking`
 
 To map a URL to a screen on the native app, we'll use React Navigation's [linking](https://reactnavigation.org/docs/configuring-links/) feature.
 
@@ -276,7 +275,7 @@ The Expo team is working on bringing [filesystem routing to React Native](https:
 
 :::
 
-### 5. Bonus
+### 6. Bonus
 
 Now we can link to the `settings` screen from any shared component!
 
