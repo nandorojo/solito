@@ -71,6 +71,19 @@ Here we have a basic `SettingsScreen` component. Since it's inside of `packages/
 
 This is a common pattern for Solito; created shared UI inside of `packages/`, and then render them in their respective apps.
 
+### 2. Expo screen
+
+In `apps/next/pages/settings.tsx`, export the screen as a typical component:
+
+```tsx
+import { SettingsScreen } from 'app/features/settings/screen'
+
+export default function Settings() {
+  return <SettingsScreen />
+}
+
+```
+
 ### 2. Next.js page
 
 In `apps/next/pages/settings.tsx`, export the screen `as default`:
