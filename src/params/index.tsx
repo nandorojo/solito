@@ -1,8 +1,9 @@
 // From https://gist.github.com/nandorojo/052887f99bb61b54845474f324aa41cc
 
-import Router, { useRouter } from 'next/router'
-import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
+import Router from 'next/router'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Platform } from 'react-native'
+import { useRouter } from './use-router'
 
 import { useNavigation } from '../router/use-navigation'
 import { useRoute } from './use-route'

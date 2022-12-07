@@ -58,6 +58,7 @@ const sidebars = {
         'usage/link',
         'usage/text-link',
         'usage/moti-link',
+        'usage/image',
         'usage/use-router',
         'usage/params',
         'usage/use-link',
@@ -93,6 +94,7 @@ const sidebars = {
     //   label: 'TypeScript',
     // },
     'resources',
+    'v2',
     // 'community',
   ],
 

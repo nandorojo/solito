@@ -1,0 +1,173 @@
+---
+title: Upgrade to Solito 2
+id: v2
+sidebar_label: Upgrade to v2
+image: https://solito.dev/img/v2.png
+---
+
+Solito 2 is a big step for the React Native + Next.js stack:
+
+- **New `solito/image`:** Optimized cross-platform images
+  - `next/image` on Web
+  - `react-native-fast-image` on iOS & Android
+  - Expo Go support
+- **Next.js 13 support**
+  - `Link` and `TextLink` support
+  - Upgraded example monorepos
+- Native stack `replace()` support
+
+## `solito/image`
+
+Optimized images are one of the most-requested features for cross-platform development.
+
+Solito 2 introduces [`SolitoImage`](/usage/image), which wraps `next/image` on Web and [`react-native-fast-image` by Dylan Vann](https://github.com/DylanVann/react-native-fast-image) on iOS & Android.
+
+```tsx
+<SolitoImage
+  src="/logo.png"
+  height={100}
+  width={200}
+  alt="BeatGig logo"
+  priority
+/>
+```
+
+You can now use optimized images across platforms with a single API.
+
+A key goal of this component was to bring the `next/image` API to native. This meant porting the following features, among others:
+
+- `src` and `srcSet` support
+- `sizes` property for optimized image sizes. Uses the `Dimensions` API on native.
+- `priority` property
+- Relative URL paths for images in the Next.js `public` folder
+- Static files via imported via `import`
+- `fill` property for absolute-filled styles
+- Object fit/resize modes
+- React Native `style` prop support across platforms, including `transform` array, etc.
+- `loader` property for custom image loaders
+- Global image configuration
+  - Set a global `loader` instead of a `loaderFile`
+  - Configure `deviceSizes`
+  - Configure `imageSizes`
+  - Implemented with React Context
+- `unoptimized` prop
+
+For more, see the [`SolitoImage` docs](/usage/image).
+
+## Next.js 13 support
+
+Solito 2 adds support for Next.js 13.
+
+### Links
+
+`TextLink` and `Link` now use Next.js' `legacyBehavior` prop under the hood. No user changes are required.
+
+Similarly, Next.js' `useRouter` hook has been tree shaken on native to avoid runtime errors from Next.js 13 on iOS and Android.
+
+### Upgraded example monorepos
+
+All Solito example monorepos have been upgraded to Next.js 13. The following changes were made:
+
+- Increment Next.js version in `apps/next/package.json`
+- Change `react-native-reanimated` SWC plugin in `apps/next/plugins`
+- Upgrade `solito` to `2.0.0` in `packages/app/package.json`
+- Upgrade `react` & `react-dom` in `apps/expo/package.json` to `18.2.0`
+  - If you run `expo upgrade` in `apps/expo`, this version might get downgraded. If this happens, be sure to manually upgrade to at least `18.2.0`.
+
+### Next.js 13 Upgrade Guide
+
+While Solito doesn't add any breaking changes to support Next.js 13, Next.js 13 itself does have [breaking changes](https://nextjs.org/blog/next-13#breaking-changes). Please refer to [their upgrade guide](https://nextjs.org/docs/upgrading).
+
+Since the minimum React/React DOM versions are now `18.2.0`, I recommend setting this version as a resolution in your monorepo's root `package.json` to avoid version mismatches:
+
+```json
+{
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
+```
+
+## Native Stack `replace()`
+
+A common point of confusion for Solito users is the `router.replace()` function. On Web, it replaces the screen as expected. But on native, it always pushes a new screen, even when using a stack.
+
+This limitation is due to the complexity of determining a user's navigation intentions in a composable way with URLs, especially when dealing with nested navigators.
+
+To solve this feature request, Solito 2 introduces a new `nativeBehavior` option in the `router.replace()` function:
+
+```ts
+import { useRouter } from 'solito/router'
+
+export function Home() {
+  const router = useRouter()
+
+  const openArtists = () => {
+    replace('/artists', undefined, {
+      experimental: {
+        nativeBehavior: 'stack-replace',
+        isNestedNavigator: true,
+      },
+    })
+  }
+
+  // ...
+}
+```
+
+By passing `nativeBehavior: 'stack-replace'`, you tell Solito to re-write your navigation action with `StackActions.replace()`. The `isNestedNavigator` property is an important way to indicate to Solito that your stack is nested inside of another navigator, such as tabs. Chances are, this property will always be `true`.
+
+You can also use this functionality on the `Link` and `TextLink` components when `replace` is set to `true`:
+
+```tsx
+<Link
+  href="/artists"
+  replace
+  experimental={{
+    nativeBehavior: 'stack-replace',
+    isNestedNavigator: true,
+  }}
+/>
+```
+
+For now, this feature will live behind the `experimental` flag.
+
+## Fonts
+
+Since Solito's custom font loading recommendations are currently quite platform-specific, you should be able to take advantage of Next.js' new [`@next/font`](https://nextjs.org/docs/basic-features/font-optimization) package without any changes on the native side.
+
+## Upgrade guide
+
+Please follow the steps below to upgrade. This guide will use `yarn`.
+
+1. Upgrade solito in `packages/app`:
+
+   a. `yarn add solito`
+
+2. Upgrade Next.js in `apps/next`:
+
+   a. `yarn add next@latest`
+
+3. Add resolutions for `react` and `react-dom` to `18.2.0` in your root `package.json`:
+
+```json
+{
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
+```
+
+4. See the [Next.js 13 upgrade guide](https://nextjs.org/docs/upgrading) for any other changes you need to make.
+
+5. Upgrade `@react-navigation/native` the newest `6.x` version
+
+- The minimum version is [`6.0.11`](https://github.com/react-navigation/react-navigation/releases?q=linkingcontext&expanded=true), which exposes `LinkingContext`. This is necessary for the new `stack-replace` functionality.
+- This isn't a breaking change, but it will be in a future release.
+- If you're using `expo-router`, you may need to set this as a yarn resolution.
+  - First, remove any `@react-navigation` packages from your `package.json`s, since `expo-router` installs these for you. Next, run `yarn`, and finally `yarn why @react-navigation/native`.
+  - If your version is below `6.0.11`, please add a yarn resolution to your root `package.json` with a high enough version.
+
+6. Run `yarn` from the root of your monorepo.
