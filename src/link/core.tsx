@@ -1,7 +1,8 @@
 import React from 'react'
 import type { ComponentProps, ComponentType } from 'react'
-import { Platform, Linking } from 'react-native'
+import { Platform } from 'react-native'
 
+import { openURL } from './linking'
 import { NextLink } from './next-link'
 import { useLink } from './use-custom-link'
 
@@ -72,7 +73,7 @@ function LinkCore({
           typeof link === 'string' &&
           isAbsoluteUrl(link)
         ) {
-          Linking.openURL(link)
+          openURL(link)
         } else {
           linkTo.onPress(e)
         }
@@ -87,6 +88,6 @@ function LinkCore({
 // Absolute URL: https://tools.ietf.org/html/rfc3986#section-4.3
 const ABSOLUTE_URL_REGEX = /^[a-zA-Z][a-zA-Z\d+\-.]*?:/
 // Source - https://github.com/vercel/next.js/blob/77b5f79a4dff453abb62346bf75b14d859539b81/packages/next/shared/lib/utils.ts#L313
-export const isAbsoluteUrl = (url: string) => ABSOLUTE_URL_REGEX.test(url)
+const isAbsoluteUrl = (url: string) => ABSOLUTE_URL_REGEX.test(url)
 
 export { LinkCore }
