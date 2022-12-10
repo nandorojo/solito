@@ -104,7 +104,7 @@ export function Home() {
   const router = useRouter()
 
   const openArtists = () => {
-    replace('/artists', undefined, {
+    router.replace('/artists', undefined, {
       experimental: {
         nativeBehavior: 'stack-replace',
         isNestedNavigator: true,
