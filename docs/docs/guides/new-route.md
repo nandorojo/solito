@@ -73,7 +73,7 @@ This is a common pattern for Solito; created shared UI inside of `packages/`, an
 
 ### 2. Expo screen
 
-In `apps/next/pages/settings.tsx`, export the screen as a typical component:
+In `apps/expo/pages/settings.tsx`, export the screen as a typical component:
 
 ```tsx
 import { SettingsScreen } from 'app/features/settings/screen'
