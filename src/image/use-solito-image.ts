@@ -78,6 +78,13 @@ export function useSolitoImage({
             if (loader) {
               return loader(opts)
             }
+            if (config.loader) {
+              return config.loader({
+                quality: Number(quality ?? 75),
+                src: opts.src,
+                width: opts.width,
+              })
+            }
             return defaultLoader({ ...opts, config })
           },
           unoptimized: Boolean(unoptimized),
