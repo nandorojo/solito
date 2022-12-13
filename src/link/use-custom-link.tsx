@@ -40,6 +40,11 @@ export function useLink({
     }
 
     if (shouldHandle) {
+      if (href === '#') {
+        // this is a way on web to stay on the same page
+        // useful for conditional hrefs
+        return
+      }
       if (replace) {
         router.replace(href, as, { shallow, scroll, experimental })
       } else {
