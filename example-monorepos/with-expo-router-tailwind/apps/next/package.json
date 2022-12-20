@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "17.0.21",
+    "autoprefixer": "^10.4.7",
     "eslint-config-next": "13.0.1",
     "next-compose-plugins": "^2.2.1",
     "next-fonts": "^1.5.1",

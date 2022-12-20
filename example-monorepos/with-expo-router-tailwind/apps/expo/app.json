@@ -4,7 +4,7 @@
     "slug": "solito-expo-router",
     "version": "1.0.0",
     "scheme": "solito-expo-router",
-    "platforms": ["ios", "android"],
+    "platforms": ["ios", "android", "web"],
     "ios": {
       "bundleIdentifier": "com.solito.expo-router"
     }
