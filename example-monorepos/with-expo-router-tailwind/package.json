@@ -1,5 +1,5 @@
 {
-  "name": "solito-expo-router",
+  "name": "solito-expo-router-tailwind",
   "private": true,
   "workspaces": [
     "apps/*",

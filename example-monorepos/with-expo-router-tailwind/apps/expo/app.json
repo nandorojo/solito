@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "solito-expo-router",
-    "slug": "solito-expo-router",
+    "name": "solito-expo-router-tailwind",
+    "slug": "solito-expo-router-tailwind",
     "version": "1.0.0",
-    "scheme": "solito-expo-router",
+    "scheme": "solito-expo-router-tailwind",
     "platforms": ["ios", "android", "web"],
     "ios": {
       "bundleIdentifier": "com.solito.expo-router"
