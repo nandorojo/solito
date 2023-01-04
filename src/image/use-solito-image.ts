@@ -130,7 +130,15 @@ export function useSolitoImage({
     source,
     accessible: Boolean(alt),
     onLayout,
-    style: [fill && StyleSheet.absoluteFill, style],
+    style: [
+      fill
+        ? StyleSheet.absoluteFill
+        : {
+            height,
+            width,
+          },
+      style,
+    ],
 
     // adapter for older versions of RN
     // https://github.com/facebook/react-native/blob/main/Libraries/Image/Image.android.js#L169-L194
