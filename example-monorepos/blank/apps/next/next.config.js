@@ -1,6 +1,4 @@
 const { withExpo } = require('@expo/next-adapter')
-const withFonts = require('next-fonts')
-const withImages = require('next-images')
 const withPlugins = require('next-compose-plugins')
 const withTM = require('next-transpile-modules')([
   'solito',
@@ -19,9 +17,6 @@ const nextConfig = {
   // once that gets fixed, set this back to true
   reactStrictMode: false,
   webpack5: true,
-  images: {
-    disableStaticImages: true,
-  },
   experimental: {
     forceSwcTransforms: true,
     swcPlugins: [[require.resolve('./plugins/swc_plugin_reanimated.wasm')]],
@@ -31,8 +26,6 @@ const nextConfig = {
 module.exports = withPlugins(
   [
     withTM,
-    withFonts,
-    withImages,
     [
       withExpo,
       {

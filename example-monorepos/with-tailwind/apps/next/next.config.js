@@ -6,8 +6,6 @@ const withTM = require('next-transpile-modules')([
   'nativewind',
   'app',
 ])
-const withFonts = require('next-fonts')
-const withImages = require('next-images')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -24,7 +22,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withPlugins(
-  [withTM, withFonts, withImages, withExpo],
-  nextConfig
-)
+module.exports = withPlugins([withTM, withExpo], nextConfig)
