@@ -25,11 +25,7 @@ const nextConfig = {
   },
 }
 
-const transform = withPlugins([withTM, withFonts, withImages, withExpo])
-
-module.exports = function (name, { defaultConfig }) {
-  return transform(name, {
-    ...defaultConfig,
-    ...nextConfig,
-  })
-}
+module.exports = withPlugins(
+  [withTM, withFonts, withImages, withExpo],
+  nextConfig
+)
