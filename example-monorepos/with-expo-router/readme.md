@@ -8,7 +8,7 @@ And just like that, you now have an Expo + Next.js app using Expo Router.
 
 ## ⚡️ Instantly clone & deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnandorojo%2Fsolito%2Ftree%2Fmaster%2Fexample-monorepos%2Fwith-expo-router&project-name=solito-app&repo-name=solito-app&demo-title=Solito%20App%20⚡%EF%B8%8F&demo-description=React%20Native%20%2B%20Next.js%20starter%20with%20Solito.%20Made%20by%20Fernando%20Rojo.&demo-url=https%3A%2F%2Fsolito.dev%2Fstarter&demo-image=https%3A%2F%2Fsolito.dev%2Fimg%2Fog.png)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnandorojo%2Fsolito%2Ftree%2Fmaster%2Fexample-monorepos%2Fwith-expo-router&project-name=solito-app&repo-name=solito-app&demo-title=Solito%20App%20⚡%EF%B8%8F&demo-description=React%20Native%20%2B%20Next.js%20starter%20with%20Solito.%20Made%20by%20Fernando%20Rojo.&demo-url=https%3A%2F%2Fsolito.dev%2Fstarter&demo-image=https%3A%2F%2Fsolito.dev%2Fimg%2Fog.png&build-command=cd+..%2F..+%26%26+npx+turbo+run+build+--filter%3Dnext-app)
 
 ## 🔦 About
 
@@ -30,7 +30,7 @@ Do note that Expo Router was announced recently (28 Sep 2022) as an **early beta
 - `apps` entry points for each app
 
   - `expo`
-    -  `app` you'll be creating files inside of `apps/expo/app` to use file system routing on iOS and Android.
+    - `app` you'll be creating files inside of `apps/expo/app` to use file system routing on iOS and Android.
   - `next`
 
 - `packages` shared packages across apps
