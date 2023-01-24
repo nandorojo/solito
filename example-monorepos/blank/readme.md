@@ -22,7 +22,7 @@ While it's pretty barebones, it does a lot of the annoying config for you. The f
 - `moti` for animations
 - `dripsy` for theming/design (you can bring your own, too)
 - Expo SDK 46
-- Next.js 12
+- Next.js 13
 - React Navigation 6
 
 ## 🗂 Folder layout
