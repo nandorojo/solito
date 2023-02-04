@@ -12,3 +12,5 @@ android
 create-test-app
 
 .DS_Store
+
+.idea
