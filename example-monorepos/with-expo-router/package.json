@@ -17,10 +17,14 @@
     "web": "cd apps/next && yarn next"
   },
   "resolutions": {
-    "metro": "0.72.3"
+    "metro": "^0.73.1",
+    "metro-resolver": "^0.73.1"
   },
   "nohoist": [
     "**/expo-router",
     "**/expo-router/**"
-  ]
+  ],
+  "engines": {
+    "node": "^16.0.0"
+  }
 }

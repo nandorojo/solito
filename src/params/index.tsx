@@ -231,7 +231,7 @@ export function createParam<
 
     if (Platform.OS !== 'web') {
       if (!nativeRoute) {
-        console.warn(
+        console.error(
           `[solito] useParam('${
             name as string
           }') called when there is no React Navigation route available. In a future version, this will throw an error. Please fix this by only calling useParam() inside of a React Navigation route. For now, Solito will fallback to using React state.`
@@ -243,7 +243,56 @@ export function createParam<
     return [state, setState]
   }
 
+  type UpdateOptions = {
+    web?: {
+      replace?: boolean
+    }
+  }
+
+  function useUpdateParams(): (
+    props: Partial<Props>,
+    options?: UpdateOptions
+  ) => void {
+    const nativeNavigation = useNavigation()
+
+    const setNativeStateFromParams = useCallback((value: Partial<Props>) => {
+      nativeNavigation?.setParams(value)
+    }, [])
+
+    const setWebState = useCallback(
+      (value: Partial<Props>, options?: UpdateOptions) => {
+        const { pathname, query } = Router
+        const newQuery = { ...query, ...value }
+        for (const key in value) {
+          if (value[key] == null || value[key] === '') {
+            delete newQuery[key]
+          }
+        }
+
+        const action = options?.web?.replace ? Router.replace : Router.push
+
+        action(
+          {
+            pathname,
+            query: newQuery,
+          },
+          undefined,
+          {
+            shallow: true,
+          }
+        )
+      },
+      []
+    )
+
+    return Platform.select({
+      web: setWebState,
+      default: setNativeStateFromParams,
+    })
+  }
+
   return {
     useParam,
+    useUpdateParams,
   }
 }

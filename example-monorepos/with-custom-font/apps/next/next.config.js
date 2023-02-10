@@ -1,6 +1,4 @@
 const { withExpo } = require('@expo/next-adapter')
-const withFonts = require('next-fonts')
-const withImages = require('next-images')
 const withPlugins = require('next-compose-plugins')
 const withTM = require('next-transpile-modules')([
   'solito',
@@ -21,11 +19,4 @@ const nextConfig = {
   webpack5: true,
 }
 
-const transform = withPlugins([withTM, withFonts, withImages, withExpo])
-
-module.exports = function (name, { defaultConfig }) {
-  return transform(name, {
-    ...defaultConfig,
-    ...nextConfig,
-  })
-}
+module.exports = withPlugins([withTM, withExpo], nextConfig)

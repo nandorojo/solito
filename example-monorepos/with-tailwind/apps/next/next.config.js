@@ -6,8 +6,6 @@ const withTM = require('next-transpile-modules')([
   'nativewind',
   'app',
 ])
-const withFonts = require('next-fonts')
-const withImages = require('next-images')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -19,12 +17,9 @@ const nextConfig = {
   reactStrictMode: false,
   webpack5: true,
   experimental: {
-    forceSwcTransforms: false,  // set this to true to use reanimated + swc experimentally
+    forceSwcTransforms: true,
     swcPlugins: [[require.resolve('./plugins/swc_plugin_reanimated.wasm')]],
   },
 }
 
-module.exports = withPlugins(
-  [withTM, withFonts, withImages, withExpo],
-  nextConfig
-)
+module.exports = withPlugins([withTM, withExpo], nextConfig)
