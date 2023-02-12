@@ -1,6 +1,7 @@
 import Router from 'next/router'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 
+import { Params, Returns, UpdateOptions } from './types'
 import { useRouter } from './use-router'
 
 function useStable<T>(value: T) {
@@ -24,72 +25,6 @@ function useStableCallback<T extends (...args: any[]) => any>(
   // https://github.com/facebook/react/issues/19240
   return useMemo(() => ((...args) => callbackRef.current?.(...args)) as T, [])
 }
-
-type Config<
-  Props extends Record<string, unknown>,
-  Required extends boolean,
-  ParsedType,
-  InitialValue
-> = (Required extends false
-  ? {
-      parse?: (value?: string | string[]) => ParsedType
-    }
-  : {
-      parse: (value?: string | string[]) => ParsedType
-    }) & {
-  stringify?: (value: ParsedType) => string
-  initial: InitialValue
-  paramsToClearOnSetState?: (keyof Props)[]
-}
-
-type Params<
-  Props extends Record<string, unknown> = Record<string, string>,
-  Name extends keyof Props = keyof Props,
-  NullableUnparsedParsedType extends Props[Name] | undefined =
-    | Props[Name]
-    | undefined,
-  ParseFunction extends
-    | undefined
-    | ((
-        value?: string | string[]
-      ) => NonNullable<NullableUnparsedParsedType>) = (
-    value?: string | string[]
-  ) => NonNullable<NullableUnparsedParsedType>,
-  InitialValue = NullableUnparsedParsedType | undefined,
-  ParsedType = InitialValue extends undefined
-    ? NullableUnparsedParsedType
-    : ParseFunction extends undefined
-    ? NullableUnparsedParsedType
-    : NonNullable<NullableUnparsedParsedType>
-> = NonNullable<ParsedType> extends string
-  ?
-      | [name: Name, config: Config<Props, false, ParsedType, InitialValue>]
-      | [name: Name]
-  : [name: Name, config: Config<Props, true, ParsedType, InitialValue>]
-
-type Returns<
-  Props extends Record<string, unknown> = Record<string, string>,
-  Name extends keyof Props = keyof Props,
-  NullableUnparsedParsedType extends Props[Name] | undefined =
-    | Props[Name]
-    | undefined,
-  ParseFunction extends
-    | undefined
-    | ((
-        value?: string | string[]
-      ) => NonNullable<NullableUnparsedParsedType>) = (
-    value?: string | string[]
-  ) => NonNullable<NullableUnparsedParsedType>,
-  InitialValue = NullableUnparsedParsedType | undefined,
-  ParsedType = InitialValue extends undefined
-    ? NullableUnparsedParsedType
-    : ParseFunction extends undefined
-    ? NullableUnparsedParsedType
-    : NonNullable<NullableUnparsedParsedType>
-> = readonly [
-  state: ParsedType | InitialValue,
-  setState: (value: ParsedType) => void
-]
 
 export function createParam<
   Props extends Record<string, unknown> = Record<string, string>
@@ -193,12 +128,6 @@ export function createParam<
     }, [stableParse, webParam])
 
     return [state, setState]
-  }
-
-  type UpdateOptions = {
-    web?: {
-      replace?: boolean
-    }
   }
 
   function useUpdateParams(): (
