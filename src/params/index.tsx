@@ -94,8 +94,17 @@ type Returns<
     : NonNullable<NullableUnparsedParsedType>
 > = readonly [
   state: ParsedType | InitialValue,
-  setState: (value: ParsedType) => void
+  setState: (value: ParsedType, options?: SetStateOptions) => void
 ]
+
+type SetStateOptions = {
+  /**
+   * Override whether this function calls `Router.push` or `Router.replace`.
+   *
+   * By default, `Router.push` is called if the query parameter already exists in the URL.
+   */
+  webBehavior?: 'push' | 'replace'
+}
 
 export function createParam<
   Props extends Record<string, unknown> = Record<string, string>
@@ -173,7 +182,7 @@ export function createParam<
     const hasSetState = useRef(false)
 
     const setState = useCallback(
-      (value: ParsedType) => {
+      (value: ParsedType, options?: SetStateOptions) => {
         hasSetState.current = true
         const { pathname, query } = Router
         const newQuery = { ...query }
@@ -192,7 +201,11 @@ export function createParam<
         const willChangeExistingParam =
           query[name as string] && newQuery[name as string]
 
-        const action = willChangeExistingParam ? Router.replace : Router.push
+        let action = willChangeExistingParam ? Router.replace : Router.push
+
+        if (options?.webBehavior) {
+          action = Router[options.webBehavior]
+        }
 
         action(
           {
@@ -284,7 +297,7 @@ export function createParam<
 
   function useParams(): {
     params: Props
-    setParams: (value: Partial<Props>) => void
+    setParams: (value: Partial<Props>, options?: SetStateOptions) => void
   } {
     if (Platform.OS !== 'web') {
       const nativeRoute = useRoute()
@@ -302,7 +315,7 @@ export function createParam<
 
     return {
       params: nextRouter?.query as Props,
-      setParams: useCallback((params) => {
+      setParams: useCallback((params, options) => {
         const { pathname, query } = Router
         const newQuery = { ...query, ...params }
         for (const key in params) {
@@ -311,7 +324,9 @@ export function createParam<
           }
         }
 
-        Router.push(
+        const action = Router[options?.webBehavior ?? 'push']
+
+        action(
           {
             pathname,
             query: newQuery,
