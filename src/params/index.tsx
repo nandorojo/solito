@@ -1,12 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 // From https://gist.github.com/nandorojo/052887f99bb61b54845474f324aa41cc
 
-import Router from 'next/router'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Platform } from 'react-native'
-import { useRouter } from './use-router'
 
 import { useNavigation } from '../router/use-navigation'
+import Router from './router'
 import { useRoute } from './use-route'
+import { useRouter } from './use-router'
 
 function useStable<T>(value: T) {
   const ref = useRef(value)
@@ -281,8 +282,52 @@ export function createParam<
     })
   }
 
+  function useParams(): {
+    params: Props
+    setParams: (value: Partial<Props>) => void
+  } {
+    if (Platform.OS !== 'web') {
+      const nativeRoute = useRoute()
+      const nativeNavigation = useNavigation()
+
+      return {
+        params: nativeRoute?.params as Props,
+        setParams: useCallback(
+          (params) => nativeNavigation?.setParams(params),
+          [nativeNavigation]
+        ),
+      }
+    }
+    const nextRouter = useRouter()
+
+    return {
+      params: nextRouter?.query as Props,
+      setParams: useCallback((params) => {
+        const { pathname, query } = Router
+        const newQuery = { ...query, ...params }
+        for (const key in params) {
+          if (params[key] == null || params[key] === '') {
+            delete newQuery[key]
+          }
+        }
+
+        Router.push(
+          {
+            pathname,
+            query: newQuery,
+          },
+          undefined,
+          {
+            shallow: true,
+          }
+        )
+      }, []),
+    }
+  }
+
   return {
     useParam,
     useUpdateParams,
+    useParams,
   }
 }
