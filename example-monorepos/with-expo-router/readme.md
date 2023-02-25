@@ -21,7 +21,7 @@ Do note that Expo Router was announced recently (28 Sep 2022) as an **early beta
 - `solito` for cross-platform navigation
 - `moti` for animations
 - `dripsy` for theming/design (you can bring your own, too)
-- Expo SDK 46
+- Expo SDK 48
 - Next.js 13
 - React Navigation 6
 

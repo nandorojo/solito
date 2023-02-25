@@ -5400,6 +5400,11 @@ expect@^29.0.0, expect@^29.3.1:
     jest-message-util "^29.3.1"
     jest-util "^29.3.1"
 
+expo-image@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-1.0.0.tgz#a3670d20815d99e2527307a33761c9b0088823b1"
+  integrity sha512-A1amVExKhBa/eRXuceauYtPkf9izeje5AbxEWL09tgK91rf3GSIZXM5PSDGlIM0s7dpCV+Iet2jhwcFUfWaZrw==
+
 expo-module-scripts@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/expo-module-scripts/-/expo-module-scripts-2.0.0.tgz#4f26a547bce056056e8d7eb07e7a063bd94e5638"

@@ -1,7 +1,8 @@
-import { useContext, useMemo, useSyncExternalStore } from 'react'
+import { ImageStyle } from 'expo-image'
+import { useMemo, useSyncExternalStore } from 'react'
 import { ImageProps, Dimensions, StyleSheet } from 'react-native'
-import { useSolitoImageContext } from './context'
 
+import { useSolitoImageContext } from './context'
 import { defaultLoader } from './default-loader'
 import {
   generateImgAttrs,
@@ -19,9 +20,9 @@ export type UseSolitoImage = Pick<
   | 'source'
   | 'accessible'
   | 'onLayout'
-  | 'style'
 > & {
   onLoadingComplete?: (info: { height: number; width: number }) => void
+  style: Array<ImageStyle | undefined>
 }
 
 export function useSolitoImage({
@@ -138,7 +139,7 @@ export function useSolitoImage({
             width,
           },
       style,
-    ],
+    ] as any,
 
     // adapter for older versions of RN
     // https://github.com/facebook/react-native/blob/main/Libraries/Image/Image.android.js#L169-L194
