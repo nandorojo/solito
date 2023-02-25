@@ -1,0 +1,23 @@
+---
+title: Deploying
+---
+
+Using both Github Actions and the tools provided by companies such as Vercel, we can deploy both our web app and update our mobile app on each commit.
+
+
+## Web
+
+Deploying to [Vercel](https://vercel.com) works out of the box when you link your project via GitHub.
+
+
+## Expo
+
+While Expo doesn't have a GitHub integration like Vercel, they do offer documentation for setting up deployments via Github Action to publish on each commit: [Expo Github Actions](https://docs.expo.dev/eas-update/github-actions/)
+
+However, Expo's docs don't account for a monorepo structure. By adding in `working-directory` to the Expo Github action, you can run `eas update` in the correct directory.
+
+```yml title=".github/workflows/update.yml"
+- name: Publish update
+  run: eas update --auto
+  working-directory: ./apps/expo
+```

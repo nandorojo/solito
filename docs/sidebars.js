@@ -81,6 +81,7 @@ const sidebars = {
         'recipes/scroll-view',
         'recipes/deep-linking',
         'recipes/modals',
+        'recipes/deploying',
       ],
       label: 'Recipes',
       collapsed: false,
