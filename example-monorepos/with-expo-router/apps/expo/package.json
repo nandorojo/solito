@@ -2,7 +2,7 @@
   "dependencies": {
     "app": "*",
     "expo": "^48.0.0",
-    "expo-router": "0.0.31",
+    "expo-router": "^1.0.1",
     "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
