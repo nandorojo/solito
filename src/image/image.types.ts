@@ -23,21 +23,27 @@ export type SolitoImageProps = Pick<
   | 'quality'
   | 'crossOrigin'
   | 'referrerPolicy'
-  | 'unoptimized'
   | 'quality'
 > & {
-  // TODO extract resize mode, object fit
   style?: ImageStyle
 } & (
     | {
         src: string
         height: number
         width: number
+        unoptimized?: false
+      }
+    | {
+        unoptimized: true
+        src: NextImageProps['src']
+        height?: number
+        width?: number
       }
     | {
         src: Exclude<NextImageProps['src'], string> | number
         height?: number
         width?: number
+        unoptimized?: false
       }
   ) &
   Pick<
