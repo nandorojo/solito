@@ -1,3 +1,4 @@
+import { ImageContentPosition } from 'expo-image'
 import type NextImage from 'next/image'
 import type { ImageStyle, ImageProps } from 'react-native'
 
@@ -22,21 +23,28 @@ export type SolitoImageProps = Pick<
   | 'quality'
   | 'crossOrigin'
   | 'referrerPolicy'
-  | 'unoptimized'
   | 'quality'
+  | 'unoptimized'
 > & {
-  // TODO extract resize mode, object fit
   style?: ImageStyle
 } & (
     | {
         src: string
         height: number
         width: number
+        fill?: false
+      }
+    | {
+        src: string
+        height?: number
+        width?: number
+        fill: true
       }
     | {
         src: Exclude<NextImageProps['src'], string> | number
         height?: number
         width?: number
+        fill?: boolean
       }
   ) &
   Pick<
@@ -45,4 +53,5 @@ export type SolitoImageProps = Pick<
   > & {
     onLoadingComplete?: (info: { height: number; width: number }) => void
     fill?: boolean
+    contentPosition?: Exclude<ImageContentPosition, string>
   }
