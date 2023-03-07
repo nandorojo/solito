@@ -74,12 +74,14 @@ The following props are supported across platforms:
 - `loading`
 - `priority`
 - `placeholder`
-- `blurDataURL` (web only)
+- `blurDataURL`
 - `sizes`
 - `srcSet`
 - `style` React Native style prop.
 <!-- - `onLayout` -->
 - `unoptimized`
+- [`contentPosition`](#contentposition) (AKA CSS `objectPosition`)
+- [`resizeMode`](#resizemode) (AKA CSS `objectFit`)
 
 ## Styling
 
@@ -134,6 +136,16 @@ Note that you can use strings like `center` or `top center`. But if you want per
   contentPosition={{ top: '25%', left: '50%' }}
 />
 ```
+
+### `resizeMode`
+
+Rather than `style.objectFit`, use the `resizeMode` prop.
+
+```tsx
+<SolitoImage src="/image.png" width={200} height={200} resizeMode="cover" />
+```
+
+This behavior aligns with React Native images.
 
 ## Image Loaders
 
@@ -291,16 +303,6 @@ You can think of `SolitoImageProvider` as your `images` configuration from `next
   <App />
 </SolitoImageProvider>
 ```
-
-## Object Fit
-
-Rather than `style.objectFit`, use the `resizeMode` prop.
-
-```tsx
-<SolitoImage src="/image.png" width={200} height={200} resizeMode="cover" />
-```
-
-This behavior aligns with React Native images.
 
 ## Installation
 
