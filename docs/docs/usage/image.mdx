@@ -10,7 +10,7 @@ import { SolitoImage } from 'solito/image'
 
 A drop-in replacement for the [Next.js `Image` component](https://nextjs.org/docs/basic-features/image-optimization).
 
-On Web, it uses `next/image`. On iOS & Android, it uses [`react-native-fast-image`](https://github.com/DylanVann/react-native-fast-image) by Dylan Vann.
+On Web, it uses `next/image`. On iOS & Android, it uses [`expo-image`](https://docs.expo.dev/versions/unversioned/sdk/image/), and also supports [`react-native-fast-image`](https://github.com/DylanVann/react-native-fast-image) for non-Expo users.
 
 ## Usage
 
@@ -104,6 +104,35 @@ If `fill` is set to `true`, the image will fill the entire container with absolu
 
 ```tsx
 <SolitoImage fill src="/my-image.png" />
+```
+
+### `blurDataURL`
+
+`SolitoImage` now supports the `blurDataURL` on Native when you set `placeholder="blur"`.
+
+```tsx
+<SolitoImage
+  placeholder="blur"
+  blurDataURL="|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj["
+  {...props}
+/>
+```
+
+### `contentPosition`
+
+You can use `contentPosition` to mirror the `objectPosition` behavior from Web.
+
+```tsx
+<SolitoImage contentPosition="top center" />
+```
+
+Note that you can use strings like `center` or `top center`. But if you want percentage values, you should pass them as an object, since this is the syntax supported by `expo-image`
+
+```tsx
+<SolitoImage
+  // objectPosition="25% 50%" <- CSS equivalent
+  contentPosition={{ top: '25%', left: '50%' }}
+/>
 ```
 
 ## Image Loaders
@@ -285,48 +314,26 @@ Add the `images` configuration to your `next.config.js`:
 
 ```js
 module.exports = {
-  images: {
-    // you might need to add this if your app imports images outside of Next.js
-    // disableStaticImages: true,
-  },
+  images: {},
 }
 ```
 
 ### Expo
 
-`solito/image` uses `react-native-fast-image` under the hood. Since this has native code, you have to use a custom dev client instead of Expo Go.
+`solito/image` uses `expo-image` under the hood. This is compatible with Expo Dev Client and Expo Go. Just be sure to install `expo-image`.
 
-#### With a custom dev client (recommended)
+### Non-Expo Users
 
-```sh
-cd apps/expo
-expo install react-native-fast-image
-cd ../..
-yarn
-
-cd apps/expo
-# install your native dependencies
-npx expo prebuild
-# build your development client
-npx expo run:ios
-# start the expo dev server for testing
-npx expo start --dev-client --ios
-```
-
-#### With Expo Go
-
-Solito Image adds support for Expo Go. However, images will not be optimized on iOS & Android, since it uses the vanilla `Image` from React Native.
-
-First, add a module resolver plugin in `apps/expo`:
+While `SolitoImage` defaults to `expo-image` on native, you can override this to use `react-native-fast-image` under the hood, as of v3.
 
 ```sh
-cd apps/expo
+cd apps/expo # change this path to match your react-native app's folder
 yarn add -D babel-plugin-module-resolver
 cd ../..
 yarn
 ```
 
-Next, edit your `apps/expo/babel.config.js` file to add a resolution from `solito/image` to `solito/image/expo`.
+Next, edit your `apps/expo/babel.config.js` file to add a resolution from `solito/image` to `solito/image/react-native-fast-image`. If you renamed `apps/expo` to something else, go to that folder.
 
 ```js
 // babel.config.js
@@ -337,12 +344,13 @@ module.exports = function (api) {
     presets: [['babel-preset-expo', { jsxRuntime: 'automatic' }]],
     plugins: [
       'react-native-reanimated/plugin',
+
       [
         'module-resolver',
         {
           root: ['./'],
           alias: {
-            'solito/image': 'solito/image/expo',
+            'solito/image': 'solito/image/react-native-fast-image',
           },
         },
       ],
@@ -351,16 +359,6 @@ module.exports = function (api) {
 }
 ```
 
-For a production app, I recommend not doing this, as you will miss out on `react-native-fast-image`'s optimizations.
+### Upgrade from v2 to v3
 
-### Vanilla React Native
-
-After upgrading to Solito v2, you'll need to install `react-native-fast-image`.
-
-```sh
-cd apps/expo # or wherever your react-native folder is
-yarn add react-native-fast-image
-npx pod-install
-cd ../..
-yarn
-```
+v3 introduced a few breaking changes for `solito/image`. See the [v3 Release Notes](https://github.com/nandorojo/solito/releases/tag/v3.0.0) for an upgrade guide.
