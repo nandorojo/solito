@@ -73,6 +73,11 @@ const config = {
           //   position: 'left',
           // },
           {
+            href: 'https://discord.gg/JtvAVzNpDk',
+            label: 'Discord',
+            position: 'right',
+          },
+          {
             href: 'https://twitter.com/fernandotherojo',
             label: 'Twitter',
             position: 'right',
