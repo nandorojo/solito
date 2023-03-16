@@ -1,21 +1,8 @@
 // Based on https://github.com/zeit/next.js/tree/canary/examples/with-react-native-web
 // and https://github.com/expo/expo-cli/blob/main/packages/webpack-config/web-default/index.html
-import { Head, Html, Main, NextScript } from 'next/document'
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 import * as React from 'react'
 import { AppRegistry } from 'react-native'
-
-const fonts = ['Inter-Regular', 'Inter-Bold', 'Inter-Black']
-
-const customFontCss = fonts
-  .map(
-    (font) => `
-    @font-face {
-        font-family: '${font}';
-        src: url('/font/Inter/${font}.otf');
-    }
-`
-  )
-  .join('\n')
 
 export const style = `
 /**
@@ -55,44 +42,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: scrollbar;
 }
-
-${customFontCss}
 `
 
-// @ts-expect-error it's okay
 export async function getInitialProps({ renderPage }) {
   AppRegistry.registerComponent('Main', () => Main)
-  // @ts-expect-error missing types here too
   const { getStyleElement } = AppRegistry.getApplication('Main')
   const page = await renderPage()
   const styles = [
-    <style key="base-style" dangerouslySetInnerHTML={{ __html: style }} />,
+    <style key="style-reset" dangerouslySetInnerHTML={{ __html: style }} />,
     getStyleElement(),
   ]
   return { ...page, styles: React.Children.toArray(styles) }
 }
 
-function Document() {
-  return (
-    <Html>
-      <Head>
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        {fonts.map((font) => (
-          <link
-            key={font}
-            rel="preload"
-            as="font"
-            crossOrigin=""
-            href={`/font/Inter/${font}.otf`}
-          />
-        ))}
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+export class Document extends NextDocument {
+  render() {
+    return (
+      <Html>
+        <Head>
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
 }
 
 Document.getInitialProps = getInitialProps

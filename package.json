@@ -57,5 +57,6 @@
     "router/**/*",
     "moti/**/*",
     "image/**/*"
-  ]
+  ],
+  "packageManager": "yarn@3.4.1"
 }
