@@ -16,6 +16,7 @@
     "app": "*",
     "next": "13.2.0",
     "raf": "^3.4.1",
+    "react-native-web": "~0.18.11",
     "setimmediate": "^1.0.5"
   },
   "devDependencies": {

@@ -18,6 +18,7 @@ const nextConfig = {
     'app',
     'react-native-reanimated',
     '@expo/html-elements',
+    'react-native-gesture-handler',
   ],
 }
 

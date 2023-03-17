@@ -11,13 +11,13 @@ const nextConfig = {
   transpilePackages: [
     'react-native',
     'react-native-web',
+    'react-native',
     'solito',
-    'dripsy',
-    '@dripsy/core',
     'moti',
     'app',
     'react-native-reanimated',
-    '@expo/html-elements',
+    'nativewind',
+    'react-native-gesture-handler',
   ],
 }
 

@@ -2933,13 +2933,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.8":
-  version: 7.0.11
-  resolution: "@types/json-schema@npm:7.0.11"
-  checksum: 527bddfe62db9012fccd7627794bd4c71beb77601861055d87e3ee464f2217c85fca7a4b56ae677478367bbd248dbde13553312b7d4dbc702a2f2bbf60c4018d
-  languageName: node
-  linkType: hard
-
 "@types/json5@npm:^0.0.29":
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
@@ -3228,16 +3221,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv-keywords@npm:^3.5.2":
-  version: 3.5.2
-  resolution: "ajv-keywords@npm:3.5.2"
-  peerDependencies:
-    ajv: ^6.9.1
-  checksum: 7dc5e5931677a680589050f79dcbe1fefbb8fea38a955af03724229139175b433c63c68f7ae5f86cf8f65d55eb7c25f75a046723e2e58296707617ca690feae9
-  languageName: node
-  linkType: hard
-
-"ajv@npm:^6.10.0, ajv@npm:^6.12.4, ajv@npm:^6.12.5":
+"ajv@npm:^6.10.0, ajv@npm:^6.12.4":
   version: 6.12.6
   resolution: "ajv@npm:6.12.6"
   dependencies:
@@ -3774,13 +3758,6 @@ __metadata:
   version: 1.6.51
   resolution: "big-integer@npm:1.6.51"
   checksum: 3d444173d1b2e20747e2c175568bedeebd8315b0637ea95d75fd27830d3b8e8ba36c6af40374f36bdaea7b5de376dcada1b07587cb2a79a928fccdb6e6e3c518
-  languageName: node
-  linkType: hard
-
-"big.js@npm:^5.2.2":
-  version: 5.2.2
-  resolution: "big.js@npm:5.2.2"
-  checksum: b89b6e8419b097a8fb4ed2399a1931a68c612bce3cfd5ca8c214b2d017531191070f990598de2fc6f3f993d91c0f08aa82697717f6b3b8732c9731866d233c9e
   languageName: node
   linkType: hard
 
@@ -4891,13 +4868,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emojis-list@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "emojis-list@npm:3.0.0"
-  checksum: ddaaa02542e1e9436c03970eeed445f4ed29a5337dfba0fe0c38dfdd2af5da2429c2a0821304e8a8d1cadf27fdd5b22ff793571fa803ae16852a6975c65e8e70
-  languageName: node
-  linkType: hard
-
 "encodeurl@npm:~1.0.2":
   version: 1.0.2
   resolution: "encodeurl@npm:1.0.2"
@@ -5783,18 +5753,6 @@ __metadata:
   dependencies:
     flat-cache: ^3.0.4
   checksum: f49701feaa6314c8127c3c2f6173cfefff17612f5ed2daaafc6da13b5c91fd43e3b2a58fd0d63f9f94478a501b167615931e7200e31485e320f74a33885a9c74
-  languageName: node
-  linkType: hard
-
-"file-loader@npm:^6.0.0, file-loader@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "file-loader@npm:6.2.0"
-  dependencies:
-    loader-utils: ^2.0.0
-    schema-utils: ^3.0.0
-  peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: faf43eecf233f4897b0150aaa874eeeac214e4f9de49738a9e0ef734a30b5260059e85b7edadf852b98e415f875bd5f12587768a93fd52aaf2e479ecf95fab20
   languageName: node
   linkType: hard
 
@@ -7567,7 +7525,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.1.2, json5@npm:^2.2.2":
+"json5@npm:^2.2.2":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -7687,17 +7645,6 @@ __metadata:
   version: 1.2.4
   resolution: "lines-and-columns@npm:1.2.4"
   checksum: 0c37f9f7fa212b38912b7145e1cd16a5f3cd34d782441c3e6ca653485d326f58b3caccda66efce1c5812bde4961bbde3374fae4b0d11bf1226152337f3894aa5
-  languageName: node
-  linkType: hard
-
-"loader-utils@npm:^2.0.0":
-  version: 2.0.4
-  resolution: "loader-utils@npm:2.0.4"
-  dependencies:
-    big.js: ^5.2.2
-    emojis-list: ^3.0.0
-    json5: ^2.1.2
-  checksum: a5281f5fff1eaa310ad5e1164095689443630f3411e927f95031ab4fb83b4a98f388185bb1fe949e8ab8d4247004336a625e9255c22122b815bb9a4c5d8fc3b7
   languageName: node
   linkType: hard
 
@@ -8760,54 +8707,10 @@ __metadata:
     app: "*"
     eslint-config-next: 13.2.0
     next: 13.2.0
-    next-compose-plugins: ^2.2.1
-    next-fonts: ^1.5.1
-    next-images: ^1.8.4
-    next-transpile-modules: 10.0.0
     raf: ^3.4.1
     setimmediate: ^1.0.5
   languageName: unknown
   linkType: soft
-
-"next-compose-plugins@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "next-compose-plugins@npm:2.2.1"
-  checksum: 771762fda2b12b81daf10431cbb494816cff96be02b44009692c6c0eefbacd62cbf51ddb93af8d3380ec00254c6a95d64d10f744d4b9ddadefc21efee7dc69fc
-  languageName: node
-  linkType: hard
-
-"next-fonts@npm:^1.5.1":
-  version: 1.5.1
-  resolution: "next-fonts@npm:1.5.1"
-  dependencies:
-    file-loader: ^6.0.0
-    url-loader: ^4.0.0
-  peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 7ad03b4ef5b6951de4152558209943481c1698d22d8ffa9bf0b089c9c804457deeb9276cf6a0f5f2a62c3ef79714fcb4e5c990268c9a5220cd73e9f8bad7a159
-  languageName: node
-  linkType: hard
-
-"next-images@npm:^1.8.4":
-  version: 1.8.4
-  resolution: "next-images@npm:1.8.4"
-  dependencies:
-    file-loader: ^6.2.0
-    url-loader: ^4.1.0
-  peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: f7d59ff211d6ff93f274a899df85ebabc20630e18fc3c471f81ab64fa1ea856ef445da5d7dae34a4be36ef002e63e8e446cddf8e70043a6c6e40fd36e1aabdf5
-  languageName: node
-  linkType: hard
-
-"next-transpile-modules@npm:10.0.0":
-  version: 10.0.0
-  resolution: "next-transpile-modules@npm:10.0.0"
-  dependencies:
-    enhanced-resolve: ^5.10.0
-  checksum: 3300fc7081f63b2c9487588db7cbe718f209dfd2111adec22d9c8af0e3c8ade2d95fd45f91e045546d78d98cafc78a49431de9a623360d33831b5e694bf007c9
-  languageName: node
-  linkType: hard
 
 "next@npm:13.2.0":
   version: 13.2.0
@@ -10499,17 +10402,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^3.0.0":
-  version: 3.1.1
-  resolution: "schema-utils@npm:3.1.1"
-  dependencies:
-    "@types/json-schema": ^7.0.8
-    ajv: ^6.12.5
-    ajv-keywords: ^3.5.2
-  checksum: fb73f3d759d43ba033c877628fe9751620a26879f6301d3dbeeb48cf2a65baec5cdf99da65d1bf3b4ff5444b2e59cbe4f81c2456b5e0d2ba7d7fd4aed5da29ce
-  languageName: node
-  linkType: hard
-
 "semver@npm:7.3.2":
   version: 7.3.2
   resolution: "semver@npm:7.3.2"
@@ -11961,23 +11853,6 @@ __metadata:
   version: 4.0.0
   resolution: "url-join@npm:4.0.0"
   checksum: d2ac05f8ac276edbcd2b234745415abe27ef6b0c18c4d7a8e7f88fbafa1e9470912392b09391fb47f097f470d4c8b93bf2219b5638286852b2bf65d693e207ee
-  languageName: node
-  linkType: hard
-
-"url-loader@npm:^4.0.0, url-loader@npm:^4.1.0":
-  version: 4.1.1
-  resolution: "url-loader@npm:4.1.1"
-  dependencies:
-    loader-utils: ^2.0.0
-    mime-types: ^2.1.27
-    schema-utils: ^3.0.0
-  peerDependencies:
-    file-loader: "*"
-    webpack: ^4.0.0 || ^5.0.0
-  peerDependenciesMeta:
-    file-loader:
-      optional: true
-  checksum: c1122a992c6cff70a7e56dfc2b7474534d48eb40b2cc75467cde0c6972e7597faf8e43acb4f45f93c2473645dfd803bcbc20960b57544dd1e4c96e77f72ba6fd
   languageName: node
   linkType: hard
 

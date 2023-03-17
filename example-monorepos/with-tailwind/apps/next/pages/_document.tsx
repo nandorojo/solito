@@ -2,7 +2,8 @@
 // and https://github.com/expo/expo-cli/blob/main/packages/webpack-config/web-default/index.html
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 import * as React from 'react'
-import { AppRegistry } from 'react-native'
+// @ts-ignore
+import { AppRegistry } from 'react-native-web'
 
 export const style = `
 /**
@@ -44,7 +45,7 @@ body {
 }
 `
 
-export async function getInitialProps({ renderPage }) {
+export async function getInitialProps({ renderPage }: any) {
   AppRegistry.registerComponent('Main', () => Main)
   const { getStyleElement } = AppRegistry.getApplication('Main')
   const page = await renderPage()
