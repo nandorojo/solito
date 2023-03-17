@@ -11,7 +11,6 @@ const nextConfig = {
   transpilePackages: [
     'react-native',
     'react-native-web',
-    'react-native',
     'solito',
     'moti',
     'app',
