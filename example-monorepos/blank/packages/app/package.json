@@ -6,10 +6,8 @@
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.5.0",
     "dripsy": "^3.6.0",
-    "expo-linking": "^3.0.0",
     "moti": "latest",
-    "react-native-reanimated": "3.0.2",
-    "solito": "^2.0.0"
+    "solito": "3.0.0"
   },
   "sideEffects": false
 }

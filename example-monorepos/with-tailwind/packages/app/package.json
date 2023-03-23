@@ -5,10 +5,9 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
-    "moti": "0.19.0-alpha.6",
+    "moti": "latest",
     "nativewind": "2.0.9",
-    "react-native-reanimated": "3.0.2",
-    "solito": "^2.0.0"
+    "solito": "3.0.0"
   },
   "sideEffects": false
 }

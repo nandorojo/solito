@@ -4,7 +4,7 @@ import path from 'path'
 
 const examples = fs.readdirSync(path.join(__dirname, '../example-monorepos'))
 
-console.log('upgrading expo versions in examples...')
+console.log('running yarn in example monorepos')
 
 concurrent(
   examples.map((example, i) => {
