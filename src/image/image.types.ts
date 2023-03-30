@@ -53,5 +53,5 @@ export type SolitoImageProps = Pick<
   > & {
     onLoadingComplete?: (info: { height: number; width: number }) => void
     fill?: boolean
-    contentPosition?: Exclude<ImageContentPosition, string>
+    contentPosition?: ImageContentPosition
   }
