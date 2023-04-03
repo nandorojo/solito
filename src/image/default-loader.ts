@@ -52,6 +52,10 @@ Error due to image source "${src}".`
     return src
   }
 
+  if (src.startsWith('file://')) {
+    return src
+  }
+
   return `${config.nextJsURL}${config.path}?url=${encodeURIComponent(
     src
   )}&w=${width}&q=${quality || 75}`
