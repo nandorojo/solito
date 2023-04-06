@@ -67,12 +67,9 @@ function LinkCore({
       onPress={(e?: any) => {
         componentProps?.onPress?.(e)
         const link = as || href
+        if (e?.defaultPrevented) return
         // Handles external URLs
-        if (
-          !e?.defaultPrevented &&
-          typeof link === 'string' &&
-          isAbsoluteUrl(link)
-        ) {
+        if (typeof link === 'string' && isAbsoluteUrl(link)) {
           openURL(link)
         } else {
           linkTo.onPress(e)
