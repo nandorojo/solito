@@ -4,6 +4,19 @@ import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 import * as React from 'react'
 import { AppRegistry } from 'react-native'
 
+const fonts = ['Inter-Regular', 'Inter-Bold', 'Inter-Black']
+
+const customFontCss = fonts
+  .map(
+    (font) => `
+    @font-face {
+        font-family: '${font}';
+        src: url('/font/Inter/${font}.otf');
+    }
+`
+  )
+  .join('\n')
+
 export const style = `
 /**
  * Building on the RNWeb reset:
@@ -44,8 +57,10 @@ body {
 }
 `
 
+// @ts-expect-error it's okay
 export async function getInitialProps({ renderPage }) {
   AppRegistry.registerComponent('Main', () => Main)
+  // @ts-expect-error missing types here too
   const { getStyleElement } = AppRegistry.getApplication('Main')
   const page = await renderPage()
   const styles = [
@@ -55,20 +70,18 @@ export async function getInitialProps({ renderPage }) {
   return { ...page, styles: React.Children.toArray(styles) }
 }
 
-export class Document extends NextDocument {
-  render() {
-    return (
-      <Html>
-        <Head>
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+function Document() {
+  return (
+    <Html>
+      <Head>
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
 }
 
 Document.getInitialProps = getInitialProps
