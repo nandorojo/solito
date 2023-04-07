@@ -55,6 +55,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: scrollbar;
 }
+
+${customFontCss}
 `
 
 // @ts-expect-error it's okay
