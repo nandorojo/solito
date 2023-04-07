@@ -70,18 +70,20 @@ export async function getInitialProps({ renderPage }) {
   return { ...page, styles: React.Children.toArray(styles) }
 }
 
-function Document() {
-  return (
-    <Html>
-      <Head>
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+class Document extends NextDocument {
+  render() {
+    return (
+      <Html>
+        <Head>
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
 }
 
 Document.getInitialProps = getInitialProps
