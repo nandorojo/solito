@@ -134,12 +134,6 @@ export function useRouter() {
       },
       parseNextPath,
     }),
-    [
-      linkTo,
-      navigation,
-      nextRouter?.push,
-      nextRouter?.back,
-      nextRouter?.replace,
-    ]
+    [linkTo, navigation]
   )
 }
