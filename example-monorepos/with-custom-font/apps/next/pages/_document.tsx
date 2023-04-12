@@ -72,7 +72,7 @@ export async function getInitialProps({ renderPage }) {
   return { ...page, styles: React.Children.toArray(styles) }
 }
 
-export class Document extends NextDocument {
+export default class Document extends NextDocument {
   render() {
     return (
       <Html>
@@ -89,5 +89,3 @@ export class Document extends NextDocument {
 }
 
 Document.getInitialProps = getInitialProps
-
-export default Document
