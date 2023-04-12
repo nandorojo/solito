@@ -1,6 +1,6 @@
-import { ImageContentPosition } from 'expo-image'
+import { ImageContentPosition, ImageProps } from 'expo-image'
 import type NextImage from 'next/image'
-import type { ImageStyle, ImageProps } from 'react-native'
+import type { ImageStyle } from 'react-native'
 
 export type AccessibilityProp<key extends string> = key extends `aria-${string}`
   ? key
@@ -49,7 +49,7 @@ export type SolitoImageProps = Pick<
   ) &
   Pick<
     ImageProps,
-    'onLayout' | 'resizeMode' | AccessibilityProp<keyof ImageProps>
+    'onLayout' | 'contentFit' | 'resizeMode' | AccessibilityProp<keyof ImageProps>
   > & {
     onLoadingComplete?: (info: { height: number; width: number }) => void
     fill?: boolean
