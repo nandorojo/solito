@@ -68,7 +68,12 @@ const sidebars = {
     },
     {
       type: 'category',
-      items: ['guides/new-route', 'guides/dynamic-route', 'guides/expo-router'],
+      items: [
+        'guides/new-route',
+        'guides/dynamic-route',
+        'guides/expo-router',
+        'guides/auth',
+      ],
       label: 'Guides',
       collapsed: false,
     },
@@ -82,6 +87,7 @@ const sidebars = {
         'recipes/deep-linking',
         'recipes/modals',
         'recipes/deploying',
+        'recipes/platform-code',
       ],
       label: 'Recipes',
       collapsed: false,

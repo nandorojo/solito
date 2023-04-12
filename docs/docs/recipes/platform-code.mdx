@@ -1,0 +1,27 @@
+---
+title: Platform-Specific Code
+---
+
+You can use different code on different platforms by specifying different file extensions.
+
+See the [tree shaking](/recipes/tree-shaking) guide for more.
+
+## Video
+
+For a video walkthrough of using different code per-platform, see my 2021 Next.js Conf talk at about 21:53:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/0lnbdRweJtA?start=1313"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+## Example
+
+One example of platform-specific code is using `@react-native-firebase` on Native, and `firebase` on Web.
+
+To see how this works, you can reference the [source code](https://github.com/nandorojo/nextjs-conf-22-example/tree/setup/packages/app/features/auth/firebase) from my 2022 Next.js Conf talk. Here's the Firebase section.
