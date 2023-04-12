@@ -1,6 +1,6 @@
 # Authentication
 
-This doc should give you everything you need to get setup with Firebase Auth.
+This doc should give you everything you need to use Solito with Firebase Auth.
 
 ## Authentication with Firebase
 
