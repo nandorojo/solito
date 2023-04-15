@@ -105,7 +105,7 @@ Solito v2 introduces a new `nativeBehavior` option in the `router.replace()` fun
 import { useRouter } from 'solito/router'
 
 export function Home() {
-  const router = useRouter()
+  const { replace } = useRouter()
 
   const openArtists = () => {
     replace('/artists', undefined, {
