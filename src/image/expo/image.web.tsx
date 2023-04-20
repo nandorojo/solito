@@ -17,7 +17,7 @@ import { useSolitoImageContext } from '../context'
 import { SolitoImageProps } from '../image.types'
 
 const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
-  { resizeMode = 'contain', fill, style, onLayout, ...props },
+  { contentFit, resizeMode = 'contain', fill, style, onLayout, ...props },
   ref
 ) {
   const { loader } = useSolitoImageContext()
@@ -36,7 +36,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
     style: [
       fill && StyleSheet.absoluteFill,
       {
-        objectFit: objectFitFromResizeMode(resizeMode),
+        objectFit: contentFit || objectFitFromResizeMode(resizeMode),
         objectPosition: getObjectPositionFromContentPositionObject(
           resolveContentPosition(props.contentPosition)
         ),
