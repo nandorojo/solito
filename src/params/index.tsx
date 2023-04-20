@@ -50,7 +50,7 @@ type Config<
 
 type Params<
   Props extends Record<string, unknown> = Record<string, string>,
-  Name extends keyof Props = keyof Props,
+  Name extends Extract<keyof Props, string> = Extract<keyof Props, string>,
   NullableUnparsedParsedType extends Props[Name] | undefined =
     | Props[Name]
     | undefined,
@@ -110,7 +110,7 @@ export function createParam<
   Props extends Record<string, unknown> = Record<string, string>
 >() {
   function useParam<
-    Name extends keyof Props,
+    Name extends Extract<keyof Props, string>,
     NullableUnparsedParsedType extends Props[Name] | undefined =
       | Props[Name]
       | undefined,
@@ -187,9 +187,12 @@ export function createParam<
         const { pathname, query } = Router
         const newQuery = { ...query }
         if (value != null && (value as any) !== '') {
-          newQuery[name as string] = stableStringify(value)
+          // don't call stringify if it's an array
+          if (!Array.isArray(newQuery[name])) {
+            newQuery[name] = stableStringify(value)
+          }
         } else {
-          delete newQuery[name as string]
+          delete newQuery[name]
         }
 
         if (stableParamsToClear.current) {
@@ -198,8 +201,7 @@ export function createParam<
           }
         }
 
-        const willChangeExistingParam =
-          query[name as string] && newQuery[name as string]
+        const willChangeExistingParam = query[name] && newQuery[name]
 
         let action = willChangeExistingParam ? Router.replace : Router.push
 
