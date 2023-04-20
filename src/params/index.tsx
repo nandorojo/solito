@@ -188,7 +188,9 @@ export function createParam<
         const newQuery = { ...query }
         if (value != null && (value as any) !== '') {
           // don't call stringify if it's an array
-          if (!Array.isArray(newQuery[name])) {
+          if (Array.isArray(value)) {
+            newQuery[name] = value
+          } else {
             newQuery[name] = stableStringify(value)
           }
         } else {
