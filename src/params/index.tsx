@@ -147,7 +147,7 @@ export function createParam<
     const {
       parse = (value?: string | string[]) => value,
       initial,
-      stringify = (value: ParsedType) => `${value}`,
+      stringify,
       paramsToClearOnSetState,
     } = maybeConfig || {}
     const nextRouter = useRouter()
@@ -174,7 +174,7 @@ export function createParam<
       ? setNativeStateFromParams
       : setNativeStateFromReact
 
-    const stableStringify = useStableCallback(stringify)
+    const stableStringify = useStable(stringify)
     const stableParse = useStableCallback(parse)
     const stableParamsToClear = useStable(paramsToClearOnSetState)
 
@@ -187,11 +187,10 @@ export function createParam<
         const { pathname, query } = Router
         const newQuery = { ...query }
         if (value != null && (value as any) !== '') {
-          // don't call stringify if it's an array
-          if (Array.isArray(value)) {
-            newQuery[name] = value
+          if (stableStringify.current) {
+            newQuery[name] = stableStringify.current(value)
           } else {
-            newQuery[name] = stableStringify(value)
+            newQuery[name] = value as any
           }
         } else {
           delete newQuery[name]
