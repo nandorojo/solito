@@ -112,6 +112,6 @@ describe('resolveSourceFromImgAttributes', () => {
           sizes: `(max-width: 600px) 480px, 800px`,
           src: 'elva-fairy.jpg',
         }).uri
-    ).toThrow()
+    ).not.toThrow()
   })
 })

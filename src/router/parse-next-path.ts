@@ -9,6 +9,8 @@ const parseNextPath = (from: Parameters<NextRouter['push']>[0]) => {
   // but I can't see why you would use this with RN + Next.js
   if (typeof from == 'object' && from.query && typeof from.query == 'object') {
     const query = { ...from.query }
+    // replace dynamic routes
+    // and [...param] syntax
     for (const key in query) {
       if (path.includes(`[${key}]`)) {
         path = path.replace(`[${key}]`, `${query[key] ?? ''}`)
@@ -21,11 +23,18 @@ const parseNextPath = (from: Parameters<NextRouter['push']>[0]) => {
         }
       }
     }
+
     if (Object.keys(query).length) {
+      // add query param separator
       path += '?'
       for (const key in query) {
-        if (query[key] != null) {
-          path += `${key}=${query[key]}&`
+        const value = query[key]
+        if (Array.isArray(value)) {
+          value.forEach((item) => {
+            path += `${key}=${item}&`
+          })
+        } else if (value != null) {
+          path += `${key}=${value}&`
         }
       }
       if (path.endsWith('&') || path.endsWith('?')) {
