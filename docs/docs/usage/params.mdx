@@ -34,6 +34,8 @@ export default function Page() {
 }
 ```
 
+On Web, this will update the parameters in the URL, including dynamic URL segments. On native, it will use React Navigation `params`.
+
 For more advanced use cases, such as parameters that are numbers or arrays, you may be better off using the `useParam` hook.
 
 `useParam` is a hook that lets you read screen parameters on both Next.js and React Native. On Native, it reads React Navigation params, and on Web, it reads query params from `next/router`.
