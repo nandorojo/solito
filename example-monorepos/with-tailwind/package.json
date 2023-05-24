@@ -18,8 +18,5 @@
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next"
   },
-  "engines": {
-    "node": ">=16.0.0 <17.0.0"
-  },
   "packageManager": "yarn@3.4.1"
 }
