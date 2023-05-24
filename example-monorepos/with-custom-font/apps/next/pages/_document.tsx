@@ -55,6 +55,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: scrollbar;
 }
+
+${customFontCss}
 `
 
 // @ts-expect-error it's okay
@@ -87,5 +89,3 @@ export default class Document extends NextDocument {
 }
 
 Document.getInitialProps = getInitialProps
-
-export default Document
