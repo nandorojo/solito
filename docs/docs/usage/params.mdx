@@ -22,11 +22,11 @@ type Params = {
 const { useParam, useParams } = createParam<Params>()
 
 export default function Page() {
-  const { params, updateParams } = useParams()
+  const { params, setParams } = useParams()
 
   const artistSlug = params.artistSlug // optional string
   const onPressUpdateSlug = () => {
-    updateParams({
+    setParams({
       // params will merge with existing ones
       artistSlug: 'drake',
     })
