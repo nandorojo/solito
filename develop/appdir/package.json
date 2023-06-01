@@ -10,15 +10,18 @@
   },
   "dependencies": {
     "@types/node": "20.2.5",
-    "@types/react-dom": "18.2.4",
+    "@types/react": "18.2.4",
     "next": "13.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native-web": "^0.19.4",
     "solito": "canary",
-    "typescript": "5.1.3"
+    "typescript": "~5.0.0"
   },
   "devDependencies": {
     "react-native": "^0.71.8"
+  },
+  "resolutions": {
+    "typescript": "5.0.4"
   }
 }
