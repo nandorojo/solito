@@ -1,1 +1,1 @@
-export * from '../build/navigation'
+export * from '../build/app/navigation'

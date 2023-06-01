@@ -1,1 +1,1 @@
-export * from '../build/moti'
+export * from '../build/app/navigation'
