@@ -15,16 +15,21 @@ export default function <
 
   return useCallback(
     (params, options) => {
-      const action = router[options?.webBehavior ?? 'push']
       const next = new URLSearchParams(searchParams?.toString())
 
+      let shouldReplace = false
       Object.entries(params).forEach(([key, value]) => {
+        if (next.has(key)) {
+          shouldReplace = true
+        }
         if (value == null) {
           next.delete(key)
         } else {
           next.set(key, value)
         }
       })
+      const action =
+        router[options?.webBehavior ?? (shouldReplace ? 'replace' : 'push')]
 
       action(`${pathname}?${next.toString()}`)
     },
