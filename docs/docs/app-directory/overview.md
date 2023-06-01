@@ -75,14 +75,20 @@ Notice that we have two imports at the top. Let's implement those next.
 ```tsx
 'use client'
 import { Main } from 'next/document'
+import { useState } from 'react'
 import { useServerInsertedHTML } from 'next/navigation'
 import { AppRegistry } from 'react-native'
 
 export function StylesProvider({ children }: { children: React.ReactNode }) {
-  useServerInsertedHTML(() => {
+  const [getStyleElement] = useState(() => {
+    // no-op
     AppRegistry.registerComponent('Main', () => Main)
     // @ts-ignore
     const { getStyleElement } = AppRegistry.getApplication('Main')
+
+    return getStyleElement
+  })
+  useServerInsertedHTML(() => {
     return getStyleElement()
   })
   return <>{children}</>
