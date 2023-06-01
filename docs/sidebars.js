@@ -68,7 +68,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      items: ['app-directory/overview', 'app-directory/text-link'],
+      items: ['app-directory/overview', 'app-directory/hooks'],
       label: 'App Directory',
       collapsed: false,
     },
