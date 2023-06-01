@@ -84,13 +84,9 @@ export function StylesProvider({ children }: { children: React.ReactNode }) {
     // no-op
     AppRegistry.registerComponent('Main', () => Main)
     // @ts-ignore
-    const { getStyleElement } = AppRegistry.getApplication('Main')
-
-    return getStyleElement
+    return AppRegistry.getApplication('Main').getStyleElement
   })
-  useServerInsertedHTML(() => {
-    return getStyleElement()
-  })
+  useServerInsertedHTML(() => getStyleElement())
   return <>{children}</>
 }
 ```
