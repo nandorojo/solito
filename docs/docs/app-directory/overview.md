@@ -144,6 +144,6 @@ body {
 
 **That's it!** You should now be able to use the App Directory with Solito.
 
-# `_document.tsx`/`_app.tsx`
+## `_document.tsx`/`_app.tsx`
 
 You can start using the App Directory with Solito without changing those existing files.
