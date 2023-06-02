@@ -5,17 +5,17 @@ sidebar_label: Setup
 
 Solito supports the Next.js App Directory as of v4. Keep in mind that React Native Web components are all client components, so you will likely find yourself using `use client` at (or near) the top level of most pages.
 
-# How it works
+## How it works
 
 Solito introduces a number of changes in v4 to support the App Directory. All previous code and docs still work with `pages`. However, you will need to use the new hooks from `solito/navigation` to access the router and URL parameters.
 
-## `solito/link`
+### `solito/link`
 
 `Link` and `TextLink` components are now marked with `use client`, making them compatible with RSC and the app directory.
 
 [See the docs for Link.](/usage/link)
 
-## `solito/navigation`
+### `solito/navigation`
 
 Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Directory hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`, and `solito` for `createParam`.
 
@@ -30,11 +30,11 @@ The following hooks are added:
 - `useUpdateSearchParams`: A convenience hook to update search parameters as an object. Calls `setParams` on native, and `router.push` or `router.replace` on Web (configurable).
 - `useLink` The same hook that exists now from `solito/link`, adapted for the App Directory. You can call this to create accessible, custom link components.
 
-# Setup
+## Setup
 
 In addition to using new code, you'll need to add some configurations to the root layout component in the `app` folder.
 
-## `/app/layout.tsx`
+### `/app/layout.tsx`
 
 Clear out the `layout.tsx` file to look like this:
 
@@ -64,7 +64,7 @@ export default function RootLayout({
 
 Notice that we have two imports at the top. Let's implement those next.
 
-## `/app/styles-provider.tsx`
+### `/app/styles-provider.tsx`
 
 `StylesProvider` should look like this (you can copy-paste it):
 
@@ -94,7 +94,7 @@ export function StylesProvider({ children }: { children: React.ReactNode }) {
 
 </details>
 
-## `/app/globals.css`
+### `/app/globals.css`
 
 Finally, add this CSS reset:
 
@@ -144,6 +144,6 @@ body {
 
 **That's it!** You should now be able to use the App Directory with Solito.
 
-## `_document.tsx`/`_app.tsx`
+### `_document.tsx`/`_app.tsx`
 
 You can start using the App Directory with Solito without changing those existing files.
