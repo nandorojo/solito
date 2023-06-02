@@ -1,5 +1,5 @@
 ---
-title: App Directory
+title: Next.js App Directory
 sidebar_label: Setup
 ---
 
