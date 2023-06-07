@@ -3,7 +3,7 @@ title: Next.js App Directory
 sidebar_label: Setup
 ---
 
-Solito supports the Next.js App Directory as of v4. Keep in mind that React Native Web components are all client components, so you will likely find yourself using `use client` at (or near) the top level of most pages.
+Solito supports the Next.js App Directory as of v4. Keep in mind that React Native Web components are all client components, so you will likely find yourself using `use client` often.
 
 ## How it works
 
