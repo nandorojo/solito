@@ -17,7 +17,7 @@ Solito introduces a number of changes in v4 to support the App Directory. All pr
 
 ### `solito/navigation`
 
-Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Directory hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`, and `solito` for `createParam`.
+Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Directory hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`.
 
 [See the docs for all hooks.](/app-directory/hooks)
 
