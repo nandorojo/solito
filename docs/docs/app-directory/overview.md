@@ -3,7 +3,7 @@ title: Next.js App Directory
 sidebar_label: Setup
 ---
 
-Solito supports the Next.js App Directory as of v4. Keep in mind that React Native Web components are all client components, so you will likely find yourself using `use client` at (or near) the top level of most pages.
+Solito supports the Next.js App Directory as of v4. Keep in mind that React Native Web components are all client components, so you will likely find yourself using `use client` often.
 
 ## How it works
 
@@ -17,7 +17,7 @@ Solito introduces a number of changes in v4 to support the App Directory. All pr
 
 ### `solito/navigation`
 
-Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Directory hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`, and `solito` for `createParam`.
+Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Directory hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`.
 
 [See the docs for all hooks.](/app-directory/hooks)
 
