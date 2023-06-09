@@ -69,7 +69,7 @@ const sidebars = {
     {
       type: 'category',
       items: ['app-directory/overview', 'app-directory/hooks'],
-      label: 'App Directory',
+      label: 'App Router',
       collapsed: false,
     },
     {

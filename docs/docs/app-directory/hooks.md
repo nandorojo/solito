@@ -1,6 +1,6 @@
 ---
-title: App Directory Hooks
-sidebar_label: Hooks
+title: App Router Hooks
+sidebar_label: solito/navigation
 ---
 
 > These hooks are available as of Solito v4. They will only work in the Next.js `app` directory on the Web side.
@@ -86,7 +86,7 @@ export default function ExampleClientComponent() {
 }
 ```
 
-## usePathname
+## `usePathname`
 
 100% feature parity with the [Next.js hook](https://nextjs.org/docs/app/api-reference/functions/use-pathname).
 
@@ -107,7 +107,7 @@ export default function ExampleClientComponent() {
 
 Please keep in mind that this hook may not be perfectly safe to use on iOS / Android if you haven't gone all-in on using links to power navigation for React Navigation. If all screens have a linking config, then this should be safe. Expo Router users can use this hook safely.
 
-I am looking into adding support for `usePathname` for `solito/router` too, allowing its usage in non-app directory folders.
+I am looking into adding support for `usePathname` for `solito/router` too, allowing its usage in non-App Router folders.
 
 ## `useUpdateSearchParams`
 

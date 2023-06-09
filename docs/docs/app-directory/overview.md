@@ -1,34 +1,34 @@
 ---
-title: Next.js App Directory
+title: Next.js App Router
 sidebar_label: Setup
 ---
 
-Solito supports the Next.js App Directory as of v4. Keep in mind that React Native Web components are all client components, so you will likely find yourself using `use client` often.
+Solito supports the Next.js App Router as of v4. Keep in mind that React Native Web components are all client components, so you will likely find yourself using `use client` often.
 
 ## How it works
 
-Solito introduces a number of changes in v4 to support the App Directory. All previous code and docs still work with `pages`. However, you will need to use the new hooks from `solito/navigation` to access the router and URL parameters.
+Solito introduces a number of changes in v4 to support the App Router. All previous code and docs still work with `pages`. However, you will need to use the new hooks from `solito/navigation` to access the router and URL parameters.
 
 ### `solito/link`
 
-`Link` and `TextLink` components are now marked with `use client`, making them compatible with RSC and the app directory.
+`Link` and `TextLink` components are now marked with `use client`, making them compatible with RSC and the App Router.
 
 [See the docs for Link.](/usage/link)
 
 ### `solito/navigation`
 
-Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Directory hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`.
+Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Router hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`.
 
 [See the docs for all hooks.](/app-directory/hooks)
 
 The following hooks are added:
 
-- `useRouter`: Similar to the `useRouter` hook from `solito/router`, adapted for the App Directory by following the `next/navigation` conventions. It has the same behavior on iOS and Android.
+- `useRouter`: Similar to the `useRouter` hook from `solito/router`, adapted for the App Router by following the `next/navigation` conventions. It has the same behavior on iOS and Android.
 - `useParams`: Read dynamic segment parameters (`/users/[userId]`) as `{ userId: string }`.
 - `useSearchParams`: Read URL search parameters using the `URLSearchParams` class.
 - `usePathname`: The much-requested hook to read the current path. On native, this is only safe if you're using Expo Router. This hook may change in the future, depending on its stability on native.
 - `useUpdateSearchParams`: A convenience hook to update search parameters as an object. Calls `setParams` on native, and `router.push` or `router.replace` on Web (configurable).
-- `useLink` The same hook that exists now from `solito/link`, adapted for the App Directory. You can call this to create accessible, custom link components.
+- `useLink` The same hook that exists now from `solito/link`, adapted for the App Router. You can call this to create accessible, custom link components.
 
 ## Setup
 
@@ -142,8 +142,12 @@ body {
 
 </details>
 
-**That's it!** You should now be able to use the App Directory with Solito.
+**That's it!**
 
 ### `_document.tsx`/`_app.tsx`
 
-You can start using the App Directory with Solito without changing those existing files.
+You can start using the App Router with Solito without changing those existing files.
+
+## Follow the Next.js Docs
+
+Please reference the [official Next.js docs for using the App Router](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration).
