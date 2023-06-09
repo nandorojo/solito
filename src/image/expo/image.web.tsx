@@ -1,4 +1,4 @@
-// Add client directive once we implement onLayout
+'use client'
 import {
   ImageContentPosition,
   ImageContentPositionObject,
