@@ -1,5 +1,6 @@
+'use client'
 import { MotiPressableProps, MotiPressable } from 'moti/interactions'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import type { View } from 'react-native'
 
 import { useLink, UseLinkProps } from '../link/use-custom-link'
