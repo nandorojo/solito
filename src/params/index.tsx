@@ -322,7 +322,7 @@ export function createParam<
         const { pathname, query } = Router
         const newQuery = { ...query, ...params }
         for (const key in params) {
-          if (params[key] == null || params[key] === '') {
+          if (params[key] == null) {
             delete newQuery[key]
           }
         }
