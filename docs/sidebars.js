@@ -68,6 +68,12 @@ const sidebars = {
     },
     {
       type: 'category',
+      items: ['app-directory/overview', 'app-directory/hooks'],
+      label: 'Next.js App Router',
+      collapsed: false,
+    },
+    {
+      type: 'category',
       items: [
         'guides/new-route',
         'guides/dynamic-route',

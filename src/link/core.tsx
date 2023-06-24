@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import type { ComponentProps, ComponentType } from 'react'
 import { Platform } from 'react-native'

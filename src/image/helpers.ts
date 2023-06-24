@@ -1,5 +1,3 @@
-import type NextImage from 'next/image'
-import type { ImageResizeMode } from 'react-native'
 import { defaultLoader } from './default-loader'
 
 import { ImageConfig, ImageConfigComplete } from './types'
