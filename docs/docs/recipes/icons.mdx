@@ -1,0 +1,41 @@
+---
+title: Icons
+---
+
+When searching for an icon pack, use an SVG-based icon library with proper tree shaking, not a font-based library.
+
+## Recommendation
+
+1. Take a folder (or multiple folders) of SVG icons
+2. For each icon, turn it into a component using `react-native-svg` in its own file.
+   a. SVGR is a preferred tool for this. You can create a [node script](https://github.com/nandorojo/react-native-heroicons/blob/master/generate/index.ts) that handles this for you.
+3. Export each icon as its own module for proper tree shaking.
+4. Install `react-native-svg` (and any library which wraps it) and add them to `transpilePackages` in `next.config.js`
+
+You can also find many of these libraries on GitHub/NPM. Here are two open source examples (but there are many others too):
+
+- [@nandorojo/heroicons](https://github.com/nandorojo/react-native-heroicons)
+- [@nandorojo/iconic](https://github.com/nandorojo/react-native-iconic)
+
+Those repositories have a generator [script](https://github.com/nandorojo/react-native-heroicons/blob/master/generate/index.ts) which you can fork to create your own icon packs. Or, you can install them from NPM.
+
+If you are using Tamagui, you can use any of its SVG-based [icon packs](https://tamagui.dev/docs/components/lucide-icons/1.0.0#credit).
+
+The usage will look like this:
+
+```tsx
+// ✅ tree-shaken, SVG-based icons
+import { Person } from '@nandorojo/heroicons'
+
+const Icon = () => <Person />
+```
+
+This is better than a single entrypoint for icons, like the one used by `@expo/vector-icons`.
+
+<!--
+A popular icon package for React Native apps is `@expo/vector-icons`. While it is a good library, it uses a font-based icon approach.
+
+It's best to avoid this in a Solito/Next.js app. It doesn't tree shake well and is thus slow to render on Web. Font-based icon libraries also don't play nicely with Next.js' bundler.
+
+> While I normally wouldn't recommend against a library, it's a common issue on the Solito Discord/GitHub.
+-->

@@ -18,9 +18,9 @@ const sidebars = {
   mySidebar: [
     // 'welcome',
     'welcome',
-    'install',
     'gradual-adoption',
     'methodology',
+    'install',
     {
       type: 'category',
       label: 'Starters',
@@ -94,6 +94,7 @@ const sidebars = {
         'recipes/modals',
         'recipes/deploying',
         'recipes/platform-code',
+        'recipes/icons',
       ],
       label: 'Recipes',
       collapsed: false,
