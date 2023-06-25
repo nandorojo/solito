@@ -8,6 +8,7 @@ When searching for an icon pack, use an SVG-based icon library with proper tree 
 
 1. Take a folder (or multiple folders) of SVG icons
 2. For each icon, turn it into a component using `react-native-svg` in its own file.
+   
    a. SVGR is a preferred tool for this. You can create a [node script](https://github.com/nandorojo/react-native-heroicons/blob/master/generate/index.ts) that handles this for you.
 3. Export each icon as its own module for proper tree shaking.
 4. Install `react-native-svg` (and any library which wraps it) and add them to `transpilePackages` in `next.config.js`
