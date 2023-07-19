@@ -8,9 +8,10 @@ When searching for an icon pack, use an SVG-based icon library with proper tree 
 
 1. Take a folder (or multiple folders) of SVG icons
 2. For each icon, turn it into a component using `react-native-svg` in its own file.
+   
    a. SVGR is a preferred tool for this. You can create a [node script](https://github.com/nandorojo/react-native-heroicons/blob/master/generate/index.ts) that handles this for you.
 3. Export each icon as its own module for proper tree shaking.
-4. Install `react-native-svg` (and any library which wraps it) and add them to `transpilePackages` in `next.config.js`
+4. Install `react-native-svg` (and any library which wraps it) and add them to `transpilePackages` in `next.config.js`. You'll need to rebuild your Expo Dev Client if you aren't using Expo Go.
 
 You can also find many of these libraries on GitHub/NPM. Here are two open source examples (but there are many others too):
 
@@ -19,7 +20,8 @@ You can also find many of these libraries on GitHub/NPM. Here are two open sourc
 
 Those repositories have a generator [script](https://github.com/nandorojo/react-native-heroicons/blob/master/generate/index.ts) which you can fork to create your own icon packs. Or, you can install them from NPM.
 
-If you are using Tamagui, you can use any of its SVG-based [icon packs](https://tamagui.dev/docs/components/lucide-icons/1.0.0#credit).
+> If you decide to fork an existing icon repository, please credit and link back to it at the top of your Readme.
+
 
 The usage will look like this:
 
@@ -30,7 +32,11 @@ import { Person } from '@nandorojo/heroicons'
 const Icon = () => <Person />
 ```
 
-This is better than a single entrypoint for icons, like the one used by `@expo/vector-icons`.
+This is better than a single entrypoint for icons like the one used by `@expo/vector-icons`.
+
+### Tamagui
+
+If you are using Tamagui, you can use any of its SVG-based [icon packs](https://tamagui.dev/docs/components/lucide-icons/1.0.0#credit) too.
 
 <!--
 A popular icon package for React Native apps is `@expo/vector-icons`. While it is a good library, it uses a font-based icon approach.
