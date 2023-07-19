@@ -27,7 +27,7 @@ export const MotiLink = forwardRef<View, MotiLinkProps>((props, ref) => {
         // we let users pass an onPress prop, in case they want to preventDefault()
         props.onPress?.(e)
 
-        onPress?.(e)
+        onPress(e)
       }}
       ref={ref}
     />

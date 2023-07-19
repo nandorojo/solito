@@ -108,6 +108,7 @@ const sidebars = {
     //   label: 'TypeScript',
     // },
     'resources',
+    'v4',
     'v2',
     // 'community',
   ],
