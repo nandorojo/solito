@@ -134,3 +134,21 @@ export function App() {
 ```
 
 On native, `setParams` is called. On Web, it either uses `push` or `replace`.
+
+## `useLink`
+
+A Solito hook to create accessible, custom link components.
+
+```tsx
+'use client'
+
+import { useLink } from 'solito/navigation'
+
+export function App() {
+  const link = useLink({
+    href: '/users/fernando',
+  })
+
+  return <Pressable {...link} />
+}
+```

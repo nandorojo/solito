@@ -1,8 +1,6 @@
 import { GestureResponderEvent, Platform } from 'react-native'
 
 import { useRouter } from './use-router'
-import { useMemo } from 'react'
-import { parseNextPath } from '../../router/parse-next-path'
 
 export function useLink({
   href,

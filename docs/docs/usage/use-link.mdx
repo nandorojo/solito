@@ -5,6 +5,9 @@ title: useLink
 
 ```ts
 import { useLink } from 'solito/link'
+
+# or, for App Directory:
+import { useLink } from 'solito/navigation'
 ```
 
 A low-level hook that lets you create your own accessible Link component.
@@ -18,7 +21,7 @@ const linkProps = useLink({
   href,
   as,
   shallow,
-  replace
+  replace,
 })
 ```
 

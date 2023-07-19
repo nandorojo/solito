@@ -15,6 +15,16 @@ Solito introduces a number of changes in v4 to support the App Router. All previ
 
 [See the docs for Link.](/usage/link)
 
+### `solito/image`
+
+`SolitoImage` is now marked with `use client`, making them compatible with RSC and the App Router.
+
+[See the docs for Image.](/usage/image)
+
+### `solito/moti`
+
+To use the [`MotiLink`](/usage/moti-link) component in the App Directory, you should import it from `solito/moti/app`.
+
 ### `solito/navigation`
 
 Following the Next.js approach, there is now a new import, `solito/navigation`, for the App Router hooks. You will use this instead of other imports you may be used to, such as `solito/router` for `useRouter`.
