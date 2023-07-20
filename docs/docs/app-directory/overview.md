@@ -17,7 +17,7 @@ Solito introduces a number of changes in v4 to support the App Router. All previ
 
 ### `solito/image`
 
-`SolitoImage` is now marked with `use client`, making them compatible with RSC and the App Router.
+`SolitoImage` is now marked with `use client`, making it compatible with RSC and the App Router.
 
 [See the docs for Image.](/usage/image)
 
