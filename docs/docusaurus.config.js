@@ -73,6 +73,11 @@ const config = {
           //   position: 'left',
           // },
           {
+            href: 'https://github.com/sponsors/nandorojo',
+            label: 'Sponsor',
+            position: 'right',
+          },
+          {
             href: 'https://discord.gg/JtvAVzNpDk',
             label: 'Discord',
             position: 'right',
@@ -115,6 +120,14 @@ const config = {
               {
                 label: 'Twitter',
                 href: 'https://twitter.com/fernandotherojo',
+              },
+              {
+                href: 'https://discord.gg/JtvAVzNpDk',
+                label: 'Discord',
+              },
+              {
+                href: 'https://github.com/sponsors/nandorojo',
+                label: 'Sponsor',
               },
             ],
           },
