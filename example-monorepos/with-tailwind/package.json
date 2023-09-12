@@ -18,5 +18,13 @@
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next"
   },
+  "resolutions": {
+    "metro": "^0.73.1",
+    "metro-resolver": "^0.73.1"
+  },
+  "nohoist": [
+    "**/expo-router",
+    "**/expo-router/**"
+  ],
   "packageManager": "yarn@3.4.1"
 }
