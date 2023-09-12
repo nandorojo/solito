@@ -3134,7 +3134,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.0.17":
+"@types/react@npm:*":
   version: 18.0.33
   resolution: "@types/react@npm:18.0.33"
   dependencies:
@@ -3145,7 +3145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:~18.2.14":
+"@types/react@npm:^18.2.21":
   version: 18.2.21
   resolution: "@types/react@npm:18.2.21"
   dependencies:
@@ -5530,7 +5530,7 @@ __metadata:
   resolution: "expo-app@workspace:apps/expo"
   dependencies:
     "@babel/core": ^7.20.0
-    "@types/react": ~18.2.14
+    "@types/react": ^18.2.21
     "@types/react-native": ^0.72.2
     app: "*"
     expo: ^49.0.0
@@ -5546,7 +5546,7 @@ __metadata:
     react-native-screens: ~3.22.0
     react-native-web: ~0.19.6
     tailwindcss: ^3.0.24
-    typescript: ^5.1.3
+    typescript: ^5.2.2
   languageName: unknown
   linkType: soft
 
@@ -10705,13 +10705,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "solito-with-tailwind@workspace:."
   dependencies:
-    "@types/react": ^18.0.17
+    "@types/react": ^18.2.21
     "@types/react-native": ^0.72.2
     eslint: ^8.21.0
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.1.13
     turbo: ^1.4.2
-    typescript: ^4.7.4
+    typescript: ^5.2.2
   languageName: unknown
   linkType: soft
 
@@ -11568,17 +11568,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.7.4":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: ee000bc26848147ad423b581bd250075662a354d84f0e06eb76d3b892328d8d4440b7487b5a83e851b12b255f55d71835b008a66cbf8f255a11e4400159237db
-  languageName: node
-  linkType: hard
-
-"typescript@npm:^5.1.3":
+"typescript@npm:^5.2.2":
   version: 5.2.2
   resolution: "typescript@npm:5.2.2"
   bin:
@@ -11588,17 +11578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@^5.1.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^5.2.2#~builtin<compat/typescript>":
   version: 5.2.2
   resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=1f5320"
   bin:
