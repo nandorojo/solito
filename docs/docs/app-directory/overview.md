@@ -161,3 +161,7 @@ You can start using the App Router with Solito without changing those existing f
 ## Follow the Next.js Docs
 
 Please reference the [official Next.js docs for using the App Router](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration).
+
+## Example
+
+[Here is a minimal repo](https://github.com/nandorojo/solito/tree/master/develop/appdir) with the App Directory and React Native Web to reference. It is not a starter app necessarily.
