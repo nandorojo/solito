@@ -3,11 +3,11 @@
   "name": "app",
   "main": "index.ts",
   "dependencies": {
-    "@react-navigation/native": "^6.0.11",
-    "@react-navigation/native-stack": "^6.5.0",
-    "dripsy": "^3.6.0",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/native-stack": "^6.9.13",
+    "dripsy": "^4.3.3",
     "moti": "latest",
-    "solito": "3.0.0"
+    "solito": "4.0.1"
   },
   "sideEffects": false
 }

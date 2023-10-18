@@ -7,6 +7,9 @@
     "platforms": ["ios", "android"],
     "ios": {
       "bundleIdentifier": "com.solito.expo-router"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

@@ -14,16 +14,14 @@ And just like that, you now have an Expo + Next.js app using Expo Router.
 
 This monorepo is a starter for an Expo + Next.js app using [Expo Router](https://expo.github.io/router/) to enable a file-system based routing in native apps. The API is very Next.js- and Remix-esque. I view it as the future of cross-platform routing.
 
-Do note that Expo Router was announced recently (28 Sep 2022) as an **early beta** - full announcement by Evan Bacon from Expo [here](https://blog.expo.dev/rfc-file-system-based-routing-in-react-native-7a35474722a).
-
 ## 📦 Included packages
 
 - `solito` for cross-platform navigation
 - `moti` for animations
 - `dripsy` for theming/design (you can bring your own, too)
-- Expo SDK 48
+- Expo SDK 49
 - Next.js 13
-- React Navigation 6
+- Expo Router 2
 
 ## 🗂 Folder layout
 
