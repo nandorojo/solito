@@ -21,7 +21,6 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function Img(
       resizeMode={resizeMode}
       onLoad={onLoadingComplete && ((e) => onLoadingComplete(e.source))}
       ref={ref}
-      // @ts-expect-error expo-image has weird types
       style={imageProps.style}
       contentPosition={props.contentPosition}
     />

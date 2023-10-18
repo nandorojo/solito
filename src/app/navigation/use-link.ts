@@ -6,7 +6,6 @@ export function useLink({
   href,
   replace,
   experimental,
-  forceOptimisticNavigation,
 }: {
   href: string
   replace?: boolean
@@ -41,11 +40,9 @@ export function useLink({
         return
       }
       if (replace) {
-        router.replace(href, { experimental, forceOptimisticNavigation })
+        router.replace(href, { experimental })
       } else {
-        router.push(href, {
-          forceOptimisticNavigation,
-        })
+        router.push(href)
       }
     }
   }
