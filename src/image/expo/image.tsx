@@ -27,4 +27,6 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function Img(
   )
 })
 
+export type SolitoImageRef = Image
+
 export default SolitoImage

@@ -1,5 +1,6 @@
-import SolitoImage from './image'
+import type { SolitoImageRef } from './image'
+export type SolitoImage = SolitoImageRef
 
-export { SolitoImage }
+export { default as SolitoImage } from './image'
 
 export { SolitoImageProvider } from '../context'
