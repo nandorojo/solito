@@ -1,7 +1,7 @@
 import { GestureResponderEvent, Platform } from 'react-native'
 
 import { useRouter } from '../router'
-import { LinkCoreProps } from './core'
+import { LinkCoreProps } from './LinkCoreProps'
 
 export type UseLinkProps = Pick<
   LinkCoreProps,

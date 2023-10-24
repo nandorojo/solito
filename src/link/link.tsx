@@ -1,7 +1,8 @@
 'use client'
 import { Platform, Pressable, ViewProps, View } from 'react-native'
 
-import { LinkCore, LinkCoreProps } from './core'
+import { LinkCore } from './core'
+import { LinkCoreProps } from './LinkCoreProps'
 
 type LinkProps = LinkCoreProps & { viewProps?: ViewProps }
 

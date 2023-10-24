@@ -1,32 +1,12 @@
 'use client'
 
-import React from 'react'
-import type { ComponentProps, ComponentType } from 'react'
+import type { ComponentType } from 'react'
 import { Platform } from 'react-native'
 
 import { openURL } from './linking'
 import { NextLink } from './next-link'
 import { useLink } from './use-custom-link'
-
-export type LinkCoreProps = {
-  children: React.ReactNode
-} & Omit<
-  ComponentProps<typeof NextLink>,
-  'passHref' | 'replace' | 'legacyBehavior'
-> &
-  (
-    | {
-        replace?: false
-        experimental?: undefined
-      }
-    | {
-        replace: true
-        experimental?: {
-          nativeBehavior: 'stack-replace'
-          isNestedNavigator: boolean
-        }
-      }
-  )
+import { LinkCoreProps } from './LinkCoreProps'
 
 function LinkCore({
   children,
