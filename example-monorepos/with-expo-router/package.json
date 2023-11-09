@@ -13,7 +13,9 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "native": "cd apps/expo && yarn start",
+    "start": "cd apps/expo && npx expo start",
+    "android": "cd apps/expo && npx expo run:android",
+    "ios": "cd apps/expo && npx expo run:ios",
     "web": "cd apps/next && yarn next"
   },
   "resolutions": {
