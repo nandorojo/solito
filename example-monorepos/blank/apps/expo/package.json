@@ -22,7 +22,7 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "start": "expo start --dev-client",
+    "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios"
   },
