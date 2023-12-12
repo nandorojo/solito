@@ -16,6 +16,8 @@ function LinkCore({
   Component,
   replace,
   experimental,
+  target,
+  rel,
   ...props
 }: LinkCoreProps & {
   Component: ComponentType<any>
@@ -31,7 +33,12 @@ function LinkCore({
         passHref
         legacyBehavior
       >
-        <Component {...componentProps}>{children}</Component>
+        <Component
+          {...componentProps}
+          {...(target && { hrefAttrs: { target, rel } })}
+        >
+          {children}
+        </Component>
       </NextLink>
     )
   }
