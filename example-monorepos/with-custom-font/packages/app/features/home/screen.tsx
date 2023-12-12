@@ -20,7 +20,6 @@ export function HomeScreen() {
           Solito is made by{' '}
           <A
             href="https://twitter.com/fernandotherojo"
-            // @ts-expect-error react-native-web only types
             hrefAttrs={{
               target: '_blank',
               rel: 'noreferrer',
