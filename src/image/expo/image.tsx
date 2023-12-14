@@ -21,7 +21,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function Img(
       placeholder={props.placeholder === 'blur' ? props.blurDataURL : undefined}
       resizeMode={resizeMode}
       onLoad={onLoadingComplete && ((e) => onLoadingComplete(e.source))}
-      onError={onError && (() => onError())}
+      onError={onError}
       ref={ref}
       style={imageProps.style}
       contentPosition={props.contentPosition}

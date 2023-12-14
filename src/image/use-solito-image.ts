@@ -130,7 +130,7 @@ export function useSolitoImage({
     ...props,
     progressiveRenderingEnabled: true,
     onLoadingComplete,
-    onError: () => onError && onError(),
+    onError,
     source,
     accessible: Boolean(alt),
     onLayout,
