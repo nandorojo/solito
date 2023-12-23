@@ -22,6 +22,7 @@ export type UseSolitoImage = Pick<
   | 'onLayout'
 > & {
   onLoadingComplete?: (info: { height: number; width: number }) => void
+  onError?: () => void
   style: Array<ImageStyle | undefined>
 }
 
@@ -36,6 +37,7 @@ export function useSolitoImage({
   alt,
   fill,
   onLoadingComplete,
+  onError,
   loading,
   priority,
   placeholder,
@@ -128,6 +130,7 @@ export function useSolitoImage({
     ...props,
     progressiveRenderingEnabled: true,
     onLoadingComplete,
+    onError,
     source,
     accessible: Boolean(alt),
     onLayout,

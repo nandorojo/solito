@@ -49,9 +49,13 @@ export type SolitoImageProps = Pick<
   ) &
   Pick<
     ImageProps,
-    'onLayout' | 'contentFit' | 'resizeMode' | AccessibilityProp<keyof ImageProps>
+    | 'onLayout'
+    | 'contentFit'
+    | 'resizeMode'
+    | AccessibilityProp<keyof ImageProps>
   > & {
     onLoadingComplete?: (info: { height: number; width: number }) => void
+    onError?: () => void
     fill?: boolean
     contentPosition?: ImageContentPosition
   }

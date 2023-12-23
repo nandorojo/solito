@@ -8,8 +8,14 @@ export default function SolitoFastImage(
   props: Omit<SolitoImageProps, 'resizeMode' | 'style'> &
     Pick<ComponentProps<typeof FastImage>, 'style' | 'resizeMode' | 'testID'>
 ) {
-  const { source, resizeMode, onLoadingComplete, style, ...imageProps } =
-    useSolitoImage(props as SolitoImageProps)
+  const {
+    source,
+    resizeMode,
+    onLoadingComplete,
+    onError,
+    style,
+    ...imageProps
+  } = useSolitoImage(props as SolitoImageProps)
 
   return (
     <FastImage
@@ -25,6 +31,7 @@ export default function SolitoFastImage(
       }
       resizeMode={props.resizeMode}
       onLoad={onLoadingComplete && ((e) => onLoadingComplete(e.nativeEvent))}
+      onError={onError}
       // @ts-expect-error this is fine
       style={style}
       {...imageProps}

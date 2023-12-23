@@ -21,6 +21,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
     fill,
     style,
     onLayout,
+    onError,
     contentPosition,
     ...props
   },
@@ -32,6 +33,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
     ref,
     loader: props.loader ?? loader,
     fill,
+    onError,
     style: [
       fill && StyleSheet.absoluteFill,
       {

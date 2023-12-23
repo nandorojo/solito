@@ -10,6 +10,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function Img(
 ) {
   const {
     onLoadingComplete,
+    onError,
     resizeMode = 'contain',
     ...imageProps
   } = useSolitoImage(props)
@@ -20,6 +21,7 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function Img(
       placeholder={props.placeholder === 'blur' ? props.blurDataURL : undefined}
       resizeMode={resizeMode}
       onLoad={onLoadingComplete && ((e) => onLoadingComplete(e.source))}
+      onError={onError}
       ref={ref}
       style={imageProps.style}
       contentPosition={props.contentPosition}
