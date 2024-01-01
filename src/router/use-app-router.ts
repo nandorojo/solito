@@ -1,17 +1,21 @@
-import type { NextRouter as NextRouterType } from 'next/router'
-import { useContext, useMemo } from 'react'
-import { Platform } from 'react-native'
+import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-runtime";
+type NextRouterType =  AppRouterInstance
 
-import { parseNextPath } from './parse-next-path'
+import { Platform } from 'react-native'
+import { useContext, useMemo } from 'react'
+
+import { parseNextAppPath } from './parse-app-next-path'
 import {
   getActionFromState,
   getStateFromPath,
   LinkingContext,
   StackActions,
 } from './replace-helpers'
+
 import { useLinkTo } from './use-link-to'
 import { useNavigation } from './use-navigation'
-import { useNextRouter } from './use-next-router'
+import {useNextAppRouter} from "./use-next-app-router.web";
+import {usePathname} from "next/navigation";
 
 // copied from next/router to appease typescript error
 // if we don't manually write this here, then we get some ReturnType error on build
@@ -22,24 +26,23 @@ interface TransitionOptions {
   scroll?: boolean
 }
 
-export function useRouter() {
+export function useAppRouter() {
   const linkTo = useLinkTo()
   const navigation = useNavigation()
-  const nextRouter = useNextRouter()
+  const nextRouter: AppRouterInstance = useNextAppRouter()
   const linking = useContext(LinkingContext)
-
+  const pathName = usePathname()
 
   return useMemo(
     () => ({
       push: (
         url: Parameters<NextRouterType['push']>[0],
-        as?: Parameters<NextRouterType['push']>[1],
         transitionOptions?: TransitionOptions
       ) => {
         if (Platform.OS === 'web') {
-          nextRouter?.push(url, as, transitionOptions)
+          nextRouter?.push(url, transitionOptions)
         } else {
-          const to = parseNextPath(as || url)
+          const to = parseNextAppPath(url) // get the link to be redirected to in react native.
 
           if (to) {
             linkTo(to)
@@ -61,15 +64,12 @@ export function useRouter() {
         }
       ) => {
         if (Platform.OS === 'web') {
-          nextRouter?.replace(url, as, transitionOptions)
+          nextRouter?.replace(url,  transitionOptions)
         } else {
-          const to = parseNextPath(as || url)
+          const to = parseNextAppPath(url)
 
           if (to) {
-            if (
-              transitionOptions?.experimental?.nativeBehavior ===
-              'stack-replace'
-            ) {
+            if (transitionOptions?.experimental?.nativeBehavior === 'stack-replace') {
               if (linking?.options) {
                 // custom logic to create a replace() from a URL on native
                 // https://github.com/react-navigation/react-navigation/discussions/10517
@@ -131,7 +131,7 @@ export function useRouter() {
           navigation?.goBack()
         }
       },
-      parseNextPath,
+      parseNextAppPath,
     }),
     [linkTo, navigation]
   )
