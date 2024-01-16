@@ -2,6 +2,7 @@
   "dependencies": {
     "app": "*",
     "expo": "^49.0.0",
+    "expo-image": "~1.5.1",
     "expo-linear-gradient": "~12.3.0",
     "expo-linking": "~5.0.2",
     "expo-router": "^2.0.5",

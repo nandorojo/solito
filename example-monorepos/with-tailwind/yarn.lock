@@ -5647,6 +5647,7 @@ __metadata:
     "@types/react-native": ^0.72.2
     app: "*"
     expo: ^49.0.0
+    expo-image: ~1.5.1
     expo-linking: ~5.0.2
     expo-router: ^2.0.5
     expo-splash-screen: ~0.20.5
@@ -5733,6 +5734,15 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 243f961d95d40996f216f2618336dd3c3f49da798e6ccd789a0484fdab0c018a6c9ec9d8e6acd4274e50572682368406effc9409d613c652732cb312f2e34187
+  languageName: node
+  linkType: hard
+
+"expo-image@npm:~1.5.1":
+  version: 1.5.2
+  resolution: "expo-image@npm:1.5.2"
+  peerDependencies:
+    expo: "*"
+  checksum: 1507b568cc7d7c5d9a5090c9718f743a0a99ab2bf54f74128d2cc82c22530bb0c25a13ec025ad42e6eb5ad47ced89c1c61e5358c95c687c71bc9efbbef199119
   languageName: node
   linkType: hard
 

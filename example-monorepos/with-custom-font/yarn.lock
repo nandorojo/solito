@@ -5893,6 +5893,7 @@ __metadata:
     app: "*"
     expo: ^49.0.0
     expo-font: ~11.4.0
+    expo-image: ~1.5.1
     expo-linear-gradient: ~12.3.0
     expo-linking: ~5.0.2
     expo-splash-screen: ~0.20.5
@@ -5964,6 +5965,15 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 3eff92ba5c62de5f37cfdfd86a5daf1d448e4f3e82a9ff401b4c4da1c4e5a7241da26edf32fb049763147e442d74ae8b4575b7e5a4ae0d935750c6d3f70f4355
+  languageName: node
+  linkType: hard
+
+"expo-image@npm:~1.5.1":
+  version: 1.5.2
+  resolution: "expo-image@npm:1.5.2"
+  peerDependencies:
+    expo: "*"
+  checksum: 1507b568cc7d7c5d9a5090c9718f743a0a99ab2bf54f74128d2cc82c22530bb0c25a13ec025ad42e6eb5ad47ced89c1c61e5358c95c687c71bc9efbbef199119
   languageName: node
   linkType: hard
 
