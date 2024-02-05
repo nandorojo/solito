@@ -298,6 +298,8 @@ export function createParam<
     })
   }
 
+  const empty = {}
+
   function useParams(): {
     params: Props
     setParams: (value: Partial<Props>, options?: SetStateOptions) => void
@@ -307,7 +309,7 @@ export function createParam<
       const nativeNavigation = useNavigation()
 
       return {
-        params: nativeRoute?.params as Props,
+        params: (nativeRoute?.params ?? empty) as Props,
         setParams: useCallback(
           (params) => nativeNavigation?.setParams(params),
           [nativeNavigation]
