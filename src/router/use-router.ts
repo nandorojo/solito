@@ -40,7 +40,11 @@ export function useRouter() {
         if (Platform.OS === 'web') {
           nextRouter?.push(url, as, transitionOptions)
         } else {
-          const to = parseNextPath(as || url)
+          const href = as || url
+          if (href === '#') {
+            return
+          }
+          const to = parseNextPath(href)
 
           if (to) {
             linkTo(to)
@@ -64,7 +68,11 @@ export function useRouter() {
         if (Platform.OS === 'web') {
           nextRouter?.replace(url, as, transitionOptions)
         } else {
-          const to = parseNextPath(as || url)
+          const href = as || url
+          if (href === '#') {
+            return
+          }
+          const to = parseNextPath(href)
 
           if (to) {
             if (
