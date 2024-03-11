@@ -31,7 +31,8 @@ export default function <
       const action =
         router[options?.webBehavior ?? (shouldReplace ? 'replace' : 'push')]
 
-      action(`${pathname}?${next.toString()}`)
+      const stringifiedNext = next.toString();
+      action(`${pathname}${stringifiedNext ? `?${stringifiedNext}` : ''}`)
     },
     [router]
   )
