@@ -15,5 +15,5 @@
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@4.1.1"
 }
