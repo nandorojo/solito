@@ -44,7 +44,7 @@ import { View, ScrollView } from 'react-native'
 
 export default function ArtistPage() {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flexGrow: 1, flexBasis: 0 }}>
       <ScrollView>
         <ContentThatShouldScroll />
       </ScrollView>
@@ -53,11 +53,11 @@ export default function ArtistPage() {
 }
 ```
 
-By adding `flex: 1`, the parent view is fixed to the height of the screen (or its parent).
+By adding `flexGrow: 1, flexBasis: 0`, the parent view is fixed to the height of the screen (or its parent).
 
 ### Absolute Fill
 
-There may be some situations where `flex: 1` on the parent doesn't work perfectly. In my experience, a fool-proof way to solve it is to absolutely position the parent view:
+There may be some situations where `flexGrow: 1, flexBasis: 0` on the parent doesn't work perfectly. In my experience, a fool-proof way to solve it is to absolutely position the parent view:
 
 ```tsx
 import { View, ScrollView, StyleSheet } from 'react-native'
@@ -86,9 +86,9 @@ import { View, ScrollView, StyleSheet } from 'react-native'
 
 export default function ArtistPage() {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flexGrow: 1, flexBasis: 0 }}>
       {/* Make the messages span full height */}
-      <View style={{ flex: 1 }}>
+      <View style={{ flexGrow: 1, flexBasis: 0 }}>
         <ScrollView>
           <MessagesList />
         </ScrollView>
@@ -110,11 +110,11 @@ export default function ArtistPage() {
     <View
       style={Platform.select({
         web: StyleSheet.absoluteFill,
-        default: { flex: 1 },
+        default: { flexGrow: 1, flexBasis: 0 },
       })}
     >
       {/* Make the messages span full height */}
-      <View style={{ flex: 1 }}>
+      <View style={{ flexGrow: 1, flexBasis: 0 }}>
         <ScrollView>
           <MessagesList />
         </ScrollView>
@@ -194,6 +194,6 @@ If you're using `useWindowScrolling={true}`, don't wrap `ScreenScrollView` in a 
 
 ## FlatLists
 
-If you're using FlatList, you probably can't use window scrolling, so you should wrap it with a `View` with `flex: 1`. And if that doesn't work, try the absolute fill escape hatch.
+If you're using FlatList, you probably can't use window scrolling, so you should wrap it with a `View` with `flexGrow: 1, flexBasis: 0`. And if that doesn't work, try the absolute fill escape hatch.
 
 It's worth noting that `FlatList` has zero virtualization on Web, so it doesn't really offer any performance benefit to use it. But it does let you share code. The video shown above of the [BeatGig search](https://beatgig.com/search) uses FlatList.
