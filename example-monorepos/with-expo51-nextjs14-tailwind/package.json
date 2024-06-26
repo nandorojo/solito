@@ -1,0 +1,35 @@
+{
+  "name": "solito-expo51-nextjs14-tailwind",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/react": "~18.2.79",
+    "@types/react-native": "^0.72.2",
+    "eslint": "^8.21.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "turbo": "^1.4.2",
+    "typescript": "~5.3.3"
+  },
+  "scripts": {
+    "native": "cd apps/expo && yarn start",
+    "web": "cd apps/next && yarn next"
+  },
+  "resolutions": {
+    "metro": "~0.76.7",
+    "metro-resolver": "~0.76.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "nohoist": [
+    "**/expo-router",
+    "**/expo-router/**"
+  ],
+  "packageManager": "yarn@3.4.1",
+  "dependencies": {
+    "react-icons": "^5.2.1"
+  }
+}
