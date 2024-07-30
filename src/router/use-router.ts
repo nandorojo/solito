@@ -142,7 +142,7 @@ export function useRouter() {
       },
       canGoBack: () => {
         if (Platform.OS === 'web') {
-          return window.history?.length && window.history.length > 1
+          return window.history?.length && window.history.length > 2
         } else {
           return navigation?.canGoBack()
         }
