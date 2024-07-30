@@ -15,8 +15,8 @@
     "typescript": "^5.5.4"
   },
   "scripts": {
-    "native": "cd apps/expo && yarn start",
-    "web": "cd apps/next && yarn next"
+    "native": "cd apps/expo && bun run start",
+    "web": "cd apps/next && bun run next"
   },
   "resolutions": {
     "metro": "~0.80.8",
@@ -26,5 +26,5 @@
     "**/expo-router",
     "**/expo-router/**"
   ],
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "bun@1.1.18"
 }
