@@ -6,11 +6,11 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "~18.2.21",
-    "@types/react-native": "^0.72.2",
+    "@types/react": "~18.3.3",
+    "@types/react-native": "^0.73.0",
     "eslint": "^8.21.0",
-    "turbo": "^1.4.2",
-    "typescript": "^5.2.2"
+    "turbo": "^2.0.9",
+    "typescript": "^5.5.4"
   },
   "scripts": {
     "native": "cd apps/expo && yarn start",
@@ -24,5 +24,5 @@
     "**/expo-router",
     "**/expo-router/**"
   ],
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@4.3.1"
 }

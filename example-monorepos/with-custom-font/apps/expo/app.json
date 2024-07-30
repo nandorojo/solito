@@ -4,10 +4,19 @@
     "slug": "solito-blank",
     "version": "1.0.0",
     "scheme": "solito-with-font",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
       "bundleIdentifier": "com.solito.with-font"
     },
-    "assetBundlePatterns": ["**/*", "../next/public/font/**/*"]
+    "assetBundlePatterns": [
+      "**/*",
+      "../next/public/font/**/*"
+    ],
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

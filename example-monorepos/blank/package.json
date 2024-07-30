@@ -6,14 +6,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^18.2.21",
+    "@types/react": "^18.3.3",
     "eslint": "^8.21.0",
-    "turbo": "^1.4.2",
-    "typescript": "^5.2.2"
+    "turbo": "^2.0.9",
+    "typescript": "^5.5.4"
   },
   "scripts": {
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.3.1"
 }
