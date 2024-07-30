@@ -11,6 +11,14 @@
     "turbo": "^2.0.9",
     "typescript": "^5.5.4"
   },
+  "nohoist": [
+    "**/expo-router",
+    "**/expo-router/**"
+  ],
+  "resolutions": {
+    "metro": "~0.80.8",
+    "metro-resolver": "~0.80.8"
+  },
   "scripts": {
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next"
