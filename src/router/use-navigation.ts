@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/core'
 import { useContext } from 'react'
 
+
 export const useNavigation = () => {
   const root = useContext(NavigationContainerRefContext)
   const navigation = useContext(NavigationContext)
