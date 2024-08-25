@@ -22,8 +22,6 @@ Solito treats URLs as your source of truth. Your Next.js app and React Native ap
 
 Lets call this [headless navigation](https://github.com/axeldelafosse/expo-next-monorepo-example/pull/1#issuecomment-1005969004). Your [screens are your primitives](https://github.com/axeldelafosse/expo-next-monorepo-example/pull/1#issuecomment-1009185655), and they're fully shared across platforms. It's then up to each platform to implement these screens, and ensure that the URLs across platforms map to the same screens.
 
-In the future, React Native may have a [`pages` folder API](https://github.com/EvanBacon/expo-auto-navigation-webpack), like Next.js. This would be the final missing piece for true code sharing.
-
 ## Web vs. Native patterns
 
 It's worth noting the differences between Web and Native navigation patterns. Web navigation is flat: you have one screen mounted at a time. When you navigate from one page to another, the current page unmounts, and a new one renders. On native, this is not the case. Native screens typically animate as they enter. They can be in a stack, tab, drawer, modal, nested stack, and so on.
