@@ -52,6 +52,8 @@ export type SolitoImageProps = Pick<
     | 'onLayout'
     | 'contentFit'
     | 'resizeMode'
+    | 'transition'
+    | 'recyclingKey'
     | AccessibilityProp<keyof ImageProps>
   > & {
     onLoadingComplete?: (info: { height: number; width: number }) => void
