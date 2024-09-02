@@ -42,16 +42,16 @@ You can add other folders inside of `packages/` if you know what you're doing an
 
 ## 🏁 Start the app
 
-- Install dependencies: `bun i`
+- Install dependencies: `yarn`
 
-- Next.js local dev: `bun run web`
-  - Runs `bun run next`
+- Next.js local dev: `yarn web`
+  - Runs `yarn next`
 - Expo local dev:
   - First, build a dev client onto your device or simulator
     - `cd apps/expo`
     - Then, either `expo run:ios`, or `eas build`
   - After building the dev client, from the root of the monorepo...
-    - `bun run native` (This runs `expo start --dev-client`)
+    - `yarn native` (This runs `expo start --dev-client`)
 
 ## 🆕 Add new dependencies
 
