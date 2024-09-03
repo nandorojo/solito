@@ -6,25 +6,25 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-native": "^0.73.0",
+    "@types/react": "^18.2.21",
+    "@types/react-native": "^0.72.2",
     "eslint": "^8.21.0",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
-    "turbo": "^2.0.9",
-    "typescript": "^5.5.4"
+    "turbo": "^1.4.2",
+    "typescript": "^5.2.2"
   },
   "scripts": {
-    "native": "cd apps/expo && bun run start",
-    "web": "cd apps/next && bun run next"
+    "native": "cd apps/expo && yarn start",
+    "web": "cd apps/next && yarn next"
   },
   "resolutions": {
-    "metro": "~0.80.8",
-    "metro-resolver": "~0.80.8"
+    "metro": "~0.76.7",
+    "metro-resolver": "~0.76.7"
   },
   "nohoist": [
     "**/expo-router",
     "**/expo-router/**"
   ],
-  "packageManager": "bun@1.1.18"
+  "packageManager": "yarn@3.4.1"
 }

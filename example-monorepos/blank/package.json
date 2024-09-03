@@ -6,22 +6,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.2.21",
     "eslint": "^8.21.0",
-    "turbo": "^2.0.9",
-    "typescript": "^5.5.4"
-  },
-  "nohoist": [
-    "**/expo-router",
-    "**/expo-router/**"
-  ],
-  "resolutions": {
-    "metro": "~0.80.8",
-    "metro-resolver": "~0.80.8"
+    "turbo": "^1.4.2",
+    "typescript": "^5.2.2"
   },
   "scripts": {
-    "native": "cd apps/expo && bun run start",
-    "web": "cd apps/next && bun run next"
+    "native": "cd apps/expo && yarn start",
+    "web": "cd apps/next && yarn next"
   },
-  "packageManager": "bun@1.1.18"
+  "packageManager": "yarn@4.1.1"
 }
