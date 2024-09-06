@@ -3,9 +3,9 @@
   "name": "app",
   "main": "index.ts",
   "dependencies": {
-    "dripsy": "^4.3.1",
-    "moti": "latest",
-    "solito": "4.0.1"
+    "dripsy": "~4.3.1",
+    "moti": "~0.29.0",
+    "solito": "~4.0.1"
   },
   "sideEffects": false
 }

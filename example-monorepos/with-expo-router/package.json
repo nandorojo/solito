@@ -7,14 +7,13 @@
   ],
   "devDependencies": {
     "@types/react": "~18.3.3",
-    "@types/react-native": "^0.73.0",
-    "eslint": "^8.21.0",
-    "turbo": "^2.0.9",
-    "typescript": "^5.5.4"
+    "eslint": "~8.21.0",
+    "turbo": "~2.0.9",
+    "typescript": "~5.5.4"
   },
   "scripts": {
-    "native": "cd apps/expo && bun run start",
-    "web": "cd apps/next && bun run next"
+    "native": "cd apps/expo && yarn run start",
+    "web": "cd apps/next && yarn run next"
   },
   "resolutions": {
     "metro": "~0.80.8",
@@ -24,5 +23,5 @@
     "**/expo-router",
     "**/expo-router/**"
   ],
-  "packageManager": "bun@1.1.18"
+  "packageManager": "yarn@1.1.18"
 }

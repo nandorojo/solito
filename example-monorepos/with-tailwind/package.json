@@ -6,13 +6,13 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "eslint": "^8.21.0",
-    "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.4",
-    "turbo": "^2.0.9",
-    "typescript": "^5.5.4",
-    "autoprefixer": "^10.4.14"
+    "@types/react": "~18.3.3",
+    "eslint": "~8.21.0",
+    "prettier": "~3.0.3",
+    "prettier-plugin-tailwindcss": "~0.5.4",
+    "turbo": "~2.0.9",
+    "typescript": "~5.5.4",
+    "autoprefixer": "~10.4.14"
   },
   "scripts": {
     "native": "cd apps/expo && yarn run start",

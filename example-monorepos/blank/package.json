@@ -6,10 +6,10 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "eslint": "^8.21.0",
-    "turbo": "^2.0.9",
-    "typescript": "^5.5.4"
+    "@types/react": "~18.3.3",
+    "eslint": "~8.21.0",
+    "turbo": "~2.0.9",
+    "typescript": "~5.5.4"
   },
   "nohoist": [
     "**/expo-router",
@@ -20,8 +20,8 @@
     "metro-resolver": "~0.80.8"
   },
   "scripts": {
-    "native": "cd apps/expo && bun run start",
-    "web": "cd apps/next && bun run next"
+    "native": "cd apps/expo && yarn run start",
+    "web": "cd apps/next && yarn run next"
   },
-  "packageManager": "bun@1.1.18"
+  "packageManager": "yarn@1.1.18"
 }
