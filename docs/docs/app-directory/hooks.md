@@ -75,7 +75,7 @@ import { useSearchParams } from 'solito/navigation'
 type Params = { search: string }
 
 export default function ExampleClientComponent() {
-  const params = useSearchParams<Params>()
+  const searchParams = useSearchParams<Params>()
 
   const search = searchParams.get('search')
 
