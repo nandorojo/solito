@@ -13,8 +13,8 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "native": "cd apps/expo && yarn start",
-    "web": "cd apps/next && yarn next"
+    "native": "cd apps/expo && APP_ENV=local node ../../generateEnv.js && yarn start",
+    "web": "cd apps/next && APP_ENV=local node ../../generateEnv.js && yarn next"
   },
   "packageManager": "yarn@3.4.1"
 }
