@@ -3,6 +3,7 @@ import { Row } from 'app/design/layout'
 import { View } from 'app/design/view'
 
 import { MotiLink } from 'solito/moti'
+import { VAR_1, VAR_2 } from 'app/env'
 
 export function HomeScreen() {
   return (
@@ -14,6 +15,7 @@ export function HomeScreen() {
           screen to another. This screen uses the same code on Next.js and React
           Native.
         </P>
+        <P className="text-center">ENVIRONMENTAL_VARIABLES DEMONSTRATION=VAR_1: {VAR_1}, VAR_2: {VAR_2}</P>
         <P className="text-center">
           Solito is made by{' '}
           <A
@@ -54,10 +56,10 @@ export function HomeScreen() {
               rotateZ: pressed ? '0deg' : hovered ? '-3deg' : '0deg',
             }
           }}
-          transition={{
-            type: 'timing',
-            duration: 150,
-          }}
+          // transition={{
+          //   type: 'timing',
+          //   duration: 150,
+          // }}
         >
           <Text selectable={false} className="text-base font-bold">
             Moti Link
