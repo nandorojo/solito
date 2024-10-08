@@ -79,3 +79,12 @@ build/**
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Ignore all .env files
+.env*
+
+# Except .env.example
+!.env.example
+
+# Ignore env.ts
+env.ts
