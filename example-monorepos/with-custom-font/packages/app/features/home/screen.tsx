@@ -1,6 +1,7 @@
 import { Text, useSx, View, H1, P, Row, A } from 'dripsy'
 import { TextLink } from 'solito/link'
 import { MotiLink } from 'solito/moti'
+import { VAR_1, VAR_2 } from 'app/env'
 
 export function HomeScreen() {
   const sx = useSx()
@@ -16,6 +17,7 @@ export function HomeScreen() {
           screen to another. This screen uses the same code on Next.js and React
           Native.
         </P>
+        <P sx={{ textAlign: 'center' }}>ENVIRONMENTAL_VARIABLES DEMONSTRATION=VAR_1: {VAR_1}, VAR_2: {VAR_2}</P>
         <P sx={{ textAlign: 'center' }}>
           Solito is made by{' '}
           <A
