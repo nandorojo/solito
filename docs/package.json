@@ -17,7 +17,7 @@
     "@docusaurus/core": "2.0.0-beta.14",
     "@docusaurus/preset-classic": "2.0.0-beta.14",
     "@mdx-js/react": "^1.6.21",
-    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native": "7.0.0",
     "@types/react-native": "^0.67.2",
     "clsx": "^1.1.1",
     "docusaurus-preset-shiki-twoslash": "^1.1.37",

@@ -5,7 +5,7 @@
   "dependencies": {
     "dripsy": "^4.3.1",
     "moti": "latest",
-    "solito": "4.0.1"
+    "solito": "4.3.0"
   },
   "sideEffects": false
 }
