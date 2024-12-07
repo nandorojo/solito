@@ -15,8 +15,8 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "native": "cd apps/expo && yarn start",
-    "web": "cd apps/next && yarn next"
+    "native": "cd apps/expo && APP_ENV=local node ../../generateEnv.js && yarn start",
+    "web": "cd apps/next && APP_ENV=local node ../../generateEnv.js && yarn next"
   },
   "resolutions": {
     "metro": "~0.76.7",
