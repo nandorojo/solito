@@ -1,0 +1,43 @@
+{
+  "$schema": "https://params.com/params.json",
+  "docs": {
+    "main": "README.md",
+    "sidebar": {
+      "Welcome": "docs/docs/welcome.mdx",
+      "Gradual Adoption": "docs/docs/gradual-adoption.md",
+      "Methodology": "docs/docs/methodology.md",
+      "Install": "docs/docs/install.md",
+      "Minimal Starter": "docs/docs/starter.md",
+      "Tailwind CSS Starter": "docs/docs/tailwind.mdx",
+      "Expo Router Starter": "docs/docs/expo-router.mdx",
+      "Link API": "docs/docs/usage/link.mdx",
+      "Text Link API": "docs/docs/usage/text-link.mdx",
+      "Moti Link API": "docs/docs/usage/moti-link.mdx",
+      "Image API": "docs/docs/usage/image.mdx",
+      "Use Router API": "docs/docs/usage/use-router.mdx",
+      "Params API": "docs/docs/usage/params.mdx",
+      "Use Link API": "docs/docs/usage/use-link.mdx",
+      "Next.js App Router Overview": "docs/docs/app-directory/overview.mdx",
+      "Next.js App Router Hooks": "docs/docs/app-directory/hooks.mdx",
+      "New Route Guide": "docs/docs/guides/new-route.mdx",
+      "Dynamic Route Guide": "docs/docs/guides/dynamic-route.mdx",
+      "Expo Router Guide": "docs/docs/guides/expo-router.mdx",
+      "Auth Guide": "docs/docs/guides/auth.mdx",
+      "Redirects Recipe": "docs/docs/recipes/redirects.mdx",
+      "Tree Shaking Recipe": "docs/docs/recipes/tree-shaking.mdx",
+      "Use isFocused Recipe": "docs/docs/recipes/use-is-focused.mdx",
+      "Scroll View Recipe": "docs/docs/recipes/scroll-view.mdx",
+      "Deep Linking Recipe": "docs/docs/recipes/deep-linking.mdx",
+      "Modals Recipe": "docs/docs/recipes/modals.mdx",
+      "Deploying Recipe": "docs/docs/recipes/deploying.mdx",
+      "Platform Code Recipe": "docs/docs/recipes/platform-code.mdx",
+      "Icons Recipe": "docs/docs/recipes/icons.mdx",
+      "Resources": "docs/docs/resources.mdx",
+      "Version 4": "docs/docs/v4.mdx",
+      "Version 2": "docs/docs/v2.mdx"
+    },
+    "youtube": {
+      "video_id": "H1gSWXA3qfw"
+    }
+  }
+}
