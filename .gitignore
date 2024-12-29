@@ -21,3 +21,7 @@ create-test-app
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+
+.idea
+.idea/**
