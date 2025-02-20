@@ -56,9 +56,18 @@ export function useLink({
     }
   }
 
+  let hrefLink = router.parseNextPath(as || href);
+  if (Platform.OS === 'web') {
+    // if the href is an internal link, we should add the basePath to it
+    // with onPress, it is handled by the router
+    if (hrefLink.startsWith('/')) {
+        hrefLink = router.basePath + hrefLink;
+    }
+  }
+
   return {
     accessibilityRole: 'link' as const,
     onPress,
-    href: router.parseNextPath(as || href),
+    href: hrefLink,
   }
 }
