@@ -3643,7 +3643,7 @@ __metadata:
     "@react-navigation/native-stack": "npm:7.0.0"
     dripsy: "npm:^4.3.3"
     moti: "npm:^0.30.0"
-    solito: "npm:4.4.0"
+    solito: "npm:4.4.1"
   languageName: unknown
   linkType: soft
 
@@ -11252,12 +11252,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"solito@npm:4.4.0":
-  version: 4.4.0
-  resolution: "solito@npm:4.4.0"
+"solito@npm:4.4.1":
+  version: 4.4.1
+  resolution: "solito@npm:4.4.1"
   dependencies:
     typescript: "npm:^5.0.4"
-  checksum: 10/4240bd9caf1205502f7c154a4803ee65fcc99b76a838705b8524fa1acfb8a86ddeae97ef33cc7bfdd75ccd41921a688519a48c24e4706c988dcebe9f78d1514a
+  checksum: 10/cee33de240418404f3160ae3ad618233d3f8029ac2ce3b0f2b6122b195da3b9026d2085db79a5d2b9758c26b7086f920a3f39269da296f3f9c7c1f1dfc663de3
   languageName: node
   linkType: hard
 
@@ -12244,11 +12244,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A^5.0.4#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>":
   version: 5.8.2
-  resolution: "typescript@patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5adc0c"
+  resolution: "typescript@patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/6ae9b2c4d3254ec2eaee6f26ed997e19c02177a212422993209f81e87092b2bb0a4738085549c5b0164982a5609364c047c72aeb281f6c8d802cd0d1c6f0d353
+  checksum: 10/97920a082ffc57583b1cb6bc4faa502acc156358e03f54c7fc7fdf0b61c439a717f4c9070c449ee9ee683d4cfc3bb203127c2b9794b2950f66d9d307a4ff262c
   languageName: node
   linkType: hard
 

@@ -35,7 +35,10 @@ const withWebpack = {
     }
 
     config.resolve.extensions = [
-      ...resolveExtensions,
+      '.web.js',
+      '.web.jsx',
+      '.web.ts',
+      '.web.tsx',
       ...(config.resolve?.extensions ?? []),
     ]
 
@@ -50,6 +53,8 @@ const withTurpopack = {
   experimental: {
     turbo: {
       resolveAlias: {
+        'react-native-reanimated': 'react-native-reanimated',
+
         'react-native': 'react-native-web',
         'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
           'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
@@ -57,6 +62,8 @@ const withTurpopack = {
           'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
         'react-native/Libraries/EventEmitter/NativeEventEmitter$':
           'react-native-web/dist/vendor/react-native/NativeEventEmitter',
+        moti: 'moti',
+        'react-native-gesture-handler': 'react-native-gesture-handler',
       },
       resolveExtensions: [
         ...resolveExtensions,

@@ -1,5 +1,5 @@
 import { TextLink } from 'solito/link'
-import { MotiLink } from 'solito/moti'
+import { MotiLink } from 'solito/moti/app'
 import { Text, View } from 'react-native'
 
 export function HomeScreen() {
