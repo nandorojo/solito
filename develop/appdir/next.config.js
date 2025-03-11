@@ -26,8 +26,6 @@ const withWebpack = {
       ...resolveAlias,
     }
 
-    console.log('config.resolve.extensions', config.resolve.extensions)
-
     config.resolve.extensions = [
       ...resolveExtensions,
       ...(config.resolve?.extensions ?? []),
