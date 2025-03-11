@@ -55,6 +55,10 @@ ${chalk.blueBright(`npx ${packageJson.name} twitter-clone`)}`
     `-t, --template <template>`,
     'Options are `blank`, `with-tailwind`, `with-custom-font`. The default is `blank`'
   )
+  .option(
+    '--branch <branch>',
+    'The branch of the Solito repo to use for the template. Defaults to "master"'
+  )
   .allowUnknownOption()
   .parse(process.argv)
 
@@ -72,14 +76,15 @@ async function downloadTar(url: string) {
 
 async function downloadAndExtractExample(
   root: string,
-  name = 'blank'
+  name = 'blank',
+  branch = 'master'
 ): Promise<void> {
   if (name === '__internal-testing-retry') {
     throw new Error('This is an internal example for testing the CLI.')
   }
 
   const tempFile = await downloadTar(
-    `https://codeload.github.com/nandorojo/solito/tar.gz/master`
+    `https://codeload.github.com/nandorojo/solito/tar.gz/${branch}`
   )
 
   // const result = await pipeline(
@@ -94,7 +99,7 @@ async function downloadAndExtractExample(
     file: tempFile,
     cwd: root,
     strip: 3,
-    filter: (p) => p.includes(`solito-master/example-monorepos/${name}/`),
+    filter: (p) => p.includes(`solito-${branch}/example-monorepos/${name}/`),
   })
 
   fs.unlinkSync(tempFile)
@@ -183,7 +188,11 @@ ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
   try {
     console.log(`Copying template into ${chalk.blueBright(projectName)}...`)
     console.log()
-    await downloadAndExtractExample(resolvedProjectPath, program.template)
+    await downloadAndExtractExample(
+      resolvedProjectPath,
+      program.template,
+      program.branch
+    )
     console.log(`Downloaded template into ${chalk.blueBright(projectName)}...`)
     console.log()
     console.log(chalk.green(`${projectName} created!`))
