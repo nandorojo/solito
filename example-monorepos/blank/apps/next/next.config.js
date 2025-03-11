@@ -24,7 +24,14 @@ const withWebpack = {
 
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      ...resolveAlias,
+      'react-native$': 'react-native-web',
+      // Alias internal react-native modules to react-native-web
+      'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
+        'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
+      'react-native/Libraries/vendor/emitter/EventEmitter$':
+        'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
+      'react-native/Libraries/EventEmitter/NativeEventEmitter$':
+        'react-native-web/dist/vendor/react-native/NativeEventEmitter',
     }
 
     config.resolve.extensions = [
@@ -42,7 +49,15 @@ const withWebpack = {
 const withTurpopack = {
   experimental: {
     turbo: {
-      resolveAlias,
+      resolveAlias: {
+        'react-native': 'react-native-web',
+        'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
+          'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
+        'react-native/Libraries/vendor/emitter/EventEmitter$':
+          'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
+        'react-native/Libraries/EventEmitter/NativeEventEmitter$':
+          'react-native-web/dist/vendor/react-native/NativeEventEmitter',
+      },
       resolveExtensions: [
         ...resolveExtensions,
 
@@ -62,7 +77,14 @@ const withTurpopack = {
  * @type {import('next').NextConfig}
  */
 module.exports = {
-  transpilePackages: ['solito', 'react-native', 'react-native-reanimated'],
+  transpilePackages: [
+    'react-native',
+    'react-native-web',
+    'solito',
+    'react-native-reanimated',
+    'moti',
+    'react-native-gesture-handler',
+  ],
 
   compiler: {
     define: {

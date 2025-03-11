@@ -1,4 +1,6 @@
 'use client'
+
+// export { HomeScreen as default } from 'app/features/home/screen'
 import { Text, View } from 'react-native'
 import { Link } from 'solito/link'
 
