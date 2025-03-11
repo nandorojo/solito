@@ -1,8 +1,16 @@
+'use client'
+
 import { TextLink } from 'solito/link'
 import { MotiLink } from 'solito/moti/app'
 import { Text, View } from 'react-native'
+import { useEffect, useId } from 'react'
 
 export function HomeScreen() {
+  const id = useId()
+  console.log('[HomeScreen] Render', id)
+  useEffect(() => {
+    console.log('[HomeScreen] useEffect')
+  }, [])
   return (
     <View
       style={{
@@ -33,27 +41,28 @@ export function HomeScreen() {
           .
         </Text>
       </View>
-      <View style={{ flexDirection: 'row', gap: 4 }}>
+      <View style={{ flexDirection: 'row', gap: 32 }}>
         <TextLink
-          href="/user/fernando"
+          href="/users/fernando"
           style={{ fontSize: 16, fontWeight: 'bold', color: 'blue' }}
         >
           Regular Link
         </TextLink>
-        <View style={{ width: 32 }} />
         <MotiLink
-          href="/user/fernando"
+          href="/users/fernando"
+          from={{
+            scale: 0,
+            rotateZ: '0deg',
+          }}
           animate={({ hovered, pressed }) => {
             'worklet'
+
+            console.log('[MotiLink] Render', { hovered, pressed })
 
             return {
               scale: pressed ? 0.95 : hovered ? 1.1 : 1,
               rotateZ: pressed ? '0deg' : hovered ? '-3deg' : '0deg',
             }
-          }}
-          from={{
-            scale: 0,
-            rotateZ: '0deg',
           }}
           transition={{
             type: 'timing',

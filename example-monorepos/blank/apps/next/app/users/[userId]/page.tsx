@@ -7,11 +7,11 @@ const useUserParams = useParams<{ userId: string }>
 export default function Home() {
   const { userId } = useUserParams()
   const router = useRouter()
-  const searchParams = useSearchParams()
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text onPress={() => router.back()}>
-        {userId}, here is the search param: {searchParams?.get('search')}
+        Hi {userId}, click me to go back
       </Text>
     </View>
   )
