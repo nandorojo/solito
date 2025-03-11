@@ -66,8 +66,8 @@ web-build/
 
 **/*/.next
 
-**/*/ios
-**/*/android
+apps/expo/ios
+apps/expo/android
 
 .turbo
 build/**
