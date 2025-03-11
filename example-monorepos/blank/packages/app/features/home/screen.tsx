@@ -1,47 +1,46 @@
-import { Text, useSx, View, H1, P, Row, A } from 'dripsy'
 import { TextLink } from 'solito/link'
 import { MotiLink } from 'solito/moti'
+import { Text, View } from 'react-native'
 
 export function HomeScreen() {
-  const sx = useSx()
-
   return (
     <View
-      sx={{ flex: 1, justifyContent: 'center', alignItems: 'center', p: 16 }}
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+        gap: 32,
+      }}
     >
-      <H1 sx={{ fontWeight: '800' }}>Welcome to Solito.</H1>
-      <View sx={{ maxWidth: 600 }}>
-        <P sx={{ textAlign: 'center' }}>
+      <H1>Welcome to Solito.</H1>
+      <View style={{ maxWidth: 600, gap: 16 }}>
+        <Text style={{ textAlign: 'center' }}>
           Here is a basic starter to show you how you can navigate from one
           screen to another. This screen uses the same code on Next.js and React
           Native.
-        </P>
-        <P sx={{ textAlign: 'center' }}>
+        </Text>
+        <Text style={{ textAlign: 'center' }}>
           Solito is made by{' '}
-          <A
+          <TextLink
             href="https://twitter.com/fernandotherojo"
-            hrefAttrs={{
-              target: '_blank',
-              rel: 'noreferrer',
-            }}
-            sx={{ color: 'blue' }}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'blue' }}
           >
             Fernando Rojo
-          </A>
+          </TextLink>
           .
-        </P>
+        </Text>
       </View>
-      <View sx={{ height: 32 }} />
-      <Row>
+      <View style={{ flexDirection: 'row', gap: 4 }}>
         <TextLink
           href="/user/fernando"
-          textProps={{
-            style: sx({ fontSize: 16, fontWeight: 'bold', color: 'blue' }),
-          }}
+          style={{ fontSize: 16, fontWeight: 'bold', color: 'blue' }}
         >
           Regular Link
         </TextLink>
-        <View sx={{ width: 32 }} />
+        <View style={{ width: 32 }} />
         <MotiLink
           href="/user/fernando"
           animate={({ hovered, pressed }) => {
@@ -63,12 +62,20 @@ export function HomeScreen() {
         >
           <Text
             selectable={false}
-            sx={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}
+            style={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}
           >
             Moti Link
           </Text>
         </MotiLink>
-      </Row>
+      </View>
     </View>
   )
+}
+
+const H1 = ({ children }: { children: React.ReactNode }) => {
+  return <Text style={{ fontWeight: '800', fontSize: 24 }}>{children}</Text>
+}
+
+const P = ({ children }: { children: React.ReactNode }) => {
+  return <Text style={{ textAlign: 'center' }}>{children}</Text>
 }
