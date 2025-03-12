@@ -59,7 +59,12 @@ const withTurpopack = {
  * @type {import('next').NextConfig}
  */
 module.exports = {
-  transpilePackages: ['solito', 'react-native'],
+  transpilePackages: [
+    'solito',
+    'react-native',
+    'react-native-reanimated',
+    'moti',
+  ],
 
   compiler: {
     define: {

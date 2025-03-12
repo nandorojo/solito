@@ -11,9 +11,11 @@
   "dependencies": {
     "@types/node": "20.2.5",
     "@types/react": "18.2.4",
+    "moti": "^0.30.0",
     "next": "^15.2.2",
     "react": "19.0.0-rc.1",
     "react-dom": "19.0.0-rc.1",
+    "react-native-reanimated": "^3.17.1",
     "react-native-web": "^0.19.12",
     "solito": "^4.4.0"
   },
