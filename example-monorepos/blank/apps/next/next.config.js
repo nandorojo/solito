@@ -1,5 +1,3 @@
-const resolveExtensions = ['.web.js', '.web.jsx', '.web.ts', '.web.tsx']
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -53,7 +51,10 @@ const withTurpopack = {
         'react-native-gesture-handler': 'react-native-gesture-handler',
       },
       resolveExtensions: [
-        ...resolveExtensions,
+        '.web.js',
+        '.web.jsx',
+        '.web.ts',
+        '.web.tsx',
 
         '.js',
         '.mjs',
