@@ -47,8 +47,6 @@ const withTurpopack = {
           'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
         'react-native/Libraries/EventEmitter/NativeEventEmitter$':
           'react-native-web/dist/vendor/react-native/NativeEventEmitter',
-        moti: 'moti',
-        'react-native-gesture-handler': 'react-native-gesture-handler',
       },
       resolveExtensions: [
         '.web.js',

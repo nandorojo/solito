@@ -83,6 +83,8 @@ async function downloadAndExtractExample(
     throw new Error('This is an internal example for testing the CLI.')
   }
 
+  console.log(chalk.green(`Downloading template from the ${branch} branch...`))
+
   const tempFile = await downloadTar(
     `https://codeload.github.com/nandorojo/solito/tar.gz/${branch}`
   )
