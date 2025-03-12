@@ -1,13 +1,3 @@
-const resolveAlias = {
-  'react-native': 'react-native-web',
-  'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
-    'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
-  'react-native/Libraries/vendor/emitter/EventEmitter$':
-    'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
-  'react-native/Libraries/EventEmitter/NativeEventEmitter$':
-    'react-native-web/dist/vendor/react-native/NativeEventEmitter',
-}
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -47,7 +37,15 @@ const withWebpack = {
 const withTurpopack = {
   experimental: {
     turbo: {
-      resolveAlias,
+      resolveAlias: {
+        'react-native': 'react-native-web',
+        'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
+          'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
+        'react-native/Libraries/vendor/emitter/EventEmitter$':
+          'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
+        'react-native/Libraries/EventEmitter/NativeEventEmitter$':
+          'react-native-web/dist/vendor/react-native/NativeEventEmitter',
+      },
       resolveExtensions: [
         '.web.js',
         '.web.jsx',
