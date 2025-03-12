@@ -38,7 +38,7 @@ const withTurpopack = {
   experimental: {
     turbo: {
       resolveAlias: {
-        'react-native-reanimated': 'react-native-reanimated',
+        // 'react-native-reanimated': 'react-native-reanimated',
 
         'react-native': 'react-native-web',
         'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
