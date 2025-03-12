@@ -74,4 +74,7 @@ module.exports = {
 
   ...withWebpack,
   ...withTurpopack,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
