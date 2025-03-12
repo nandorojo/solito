@@ -8,8 +8,6 @@ const resolveAlias = {
     'react-native-web/dist/vendor/react-native/NativeEventEmitter',
 }
 
-const resolveExtensions = ['.web.js', '.web.jsx', '.web.ts', '.web.tsx']
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -21,11 +19,21 @@ const withWebpack = {
 
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      ...resolveAlias,
+
+      'react-native$': 'react-native-web',
+      'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
+        'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
+      'react-native/Libraries/vendor/emitter/EventEmitter$':
+        'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
+      'react-native/Libraries/EventEmitter/NativeEventEmitter$':
+        'react-native-web/dist/vendor/react-native/NativeEventEmitter',
     }
 
     config.resolve.extensions = [
-      ...resolveExtensions,
+      '.web.js',
+      '.web.jsx',
+      '.web.ts',
+      '.web.tsx',
       ...(config.resolve?.extensions ?? []),
     ]
 
@@ -41,7 +49,10 @@ const withTurpopack = {
     turbo: {
       resolveAlias,
       resolveExtensions: [
-        ...resolveExtensions,
+        '.web.js',
+        '.web.jsx',
+        '.web.ts',
+        '.web.tsx',
         // we need to merge with the default extensions
         '.js',
         '.mjs',
