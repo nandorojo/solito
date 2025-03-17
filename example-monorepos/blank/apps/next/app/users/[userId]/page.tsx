@@ -1,6 +1,6 @@
 'use client'
 import { Text, View } from 'react-native'
-import { useParams, useRouter, useSearchParams } from 'solito/navigation'
+import { useParams, useRouter } from 'solito/navigation'
 
 const useUserParams = useParams<{ userId: string }>
 

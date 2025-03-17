@@ -1,3 +1,5 @@
+const path = require('path')
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -9,6 +11,7 @@ const withWebpack = {
 
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
+      'react-native': 'react-native-web',
       'react-native$': 'react-native-web',
       // Alias internal react-native modules to react-native-web
       'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':

@@ -2051,7 +2051,7 @@ __metadata:
     react: "npm:19.0.0-rc.1"
     react-dom: "npm:19.0.0-rc.1"
     react-native: "npm:^0.78.0"
-    react-native-reanimated: "npm:^3.17.1"
+    react-native-reanimated: "npm:4.0.0-beta.2"
     react-native-web: "npm:^0.19.12"
     solito: "npm:^4.4.0"
     typescript: "npm:^5.8.2"
@@ -4607,19 +4607,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-is-edge-to-edge@npm:1.1.6":
-  version: 1.1.6
-  resolution: "react-native-is-edge-to-edge@npm:1.1.6"
-  peerDependencies:
-    react: ">=18.2.0"
-    react-native: ">=0.73.0"
-  checksum: 10c0/5690e521e8310d21643634a8d0dacd524e19b76695f347b26f649fcac156a7a901fd6daef7f78482381a41e8445f4552f40ade13790fdf112fab15b0f54dbabd
-  languageName: node
-  linkType: hard
-
-"react-native-reanimated@npm:^3.17.1":
-  version: 3.17.1
-  resolution: "react-native-reanimated@npm:3.17.1"
+"react-native-reanimated@npm:4.0.0-beta.2":
+  version: 4.0.0-beta.2
+  resolution: "react-native-reanimated@npm:4.0.0-beta.2"
   dependencies:
     "@babel/plugin-transform-arrow-functions": "npm:^7.0.0-0"
     "@babel/plugin-transform-class-properties": "npm:^7.0.0-0"
@@ -4632,12 +4622,11 @@ __metadata:
     "@babel/preset-typescript": "npm:^7.16.7"
     convert-source-map: "npm:^2.0.0"
     invariant: "npm:^2.2.4"
-    react-native-is-edge-to-edge: "npm:1.1.6"
   peerDependencies:
     "@babel/core": ^7.0.0-0
     react: "*"
     react-native: "*"
-  checksum: 10c0/da4f653a675816eb0b3502aa5029c21ec4ec8889bcbbbbc174d567db1c05d9529d638a22c2e4085bf5a97ad2e184988d64cfa9b77774cb32322f29ab4e6c2585
+  checksum: 10c0/1c134b539f726649a9df9d7324716d4e5964f1cdb5c4de86f3c0b882c3063ab32b4c63f6f24599af2658d92a590fcc3955823a9653e4adce5a5965d3d3c4153f
   languageName: node
   linkType: hard
 
