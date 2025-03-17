@@ -4990,6 +4990,7 @@ __metadata:
     expo-linking: "npm:~7.0.5"
     expo-splash-screen: "npm:~0.29.22"
     expo-status-bar: "npm:~2.0.1"
+    react: "npm:19.0.0-rc.1"
     react-native: "npm:0.76.7"
     react-native-gesture-handler: "npm:~2.20.2"
     react-native-reanimated: "npm:4.0.0-beta.2"
@@ -7789,8 +7790,6 @@ __metadata:
     raf: "npm:^3.4.1"
     react: "npm:19.0.0-rc.1"
     react-dom: "npm:19.0.0-rc.1"
-    react-native-gesture-handler: "npm:2.16.1"
-    react-native-reanimated: "npm:4.0.0-beta.2"
     react-native-web: "npm:~0.19.10"
   languageName: unknown
   linkType: soft
@@ -8721,22 +8720,6 @@ __metadata:
   version: 18.3.1
   resolution: "react-is@npm:18.3.1"
   checksum: 10/d5f60c87d285af24b1e1e7eaeb123ec256c3c8bdea7061ab3932e3e14685708221bf234ec50b21e10dd07f008f1b966a2730a0ce4ff67905b3872ff2042aec22
-  languageName: node
-  linkType: hard
-
-"react-native-gesture-handler@npm:2.16.1":
-  version: 2.16.1
-  resolution: "react-native-gesture-handler@npm:2.16.1"
-  dependencies:
-    "@egjs/hammerjs": "npm:^2.0.17"
-    hoist-non-react-statics: "npm:^3.3.0"
-    invariant: "npm:^2.2.4"
-    lodash: "npm:^4.17.21"
-    prop-types: "npm:^15.7.2"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 10/7b56ebebb3e3b78f48069d18894fe602a34b8ba74ad7e49bc5de8ca4210196f819de4408890bab0e1f7ea66a5b8a3ec5e4c80d823e44224465f90aa7deab2129
   languageName: node
   linkType: hard
 
