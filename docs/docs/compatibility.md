@@ -26,7 +26,7 @@ The following combination of versions have been tested together successfully and
 
 **You will need to set up React 19 in a particular way. For existing Solito apps upgrading, see the [React 19](#react-19) section below.**
 
-For a working example, please reference the [Solito starter monorepo](https://github.com/nandorojo/solito/tree/master/example-monorepos/blank).
+For a working example, please reference the [Solito starter monorepo](https://github.com/nandorojo/solito/tree/master/example-monorepos/blank). This has been tested for all of the dependencies above.
 
 ### For existing Solito apps
 
