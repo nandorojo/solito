@@ -8,6 +8,10 @@
     "ios": {
       "bundleIdentifier": "com.solito.blank"
     },
-    "newArchEnabled": true
+    "newArchEnabled": true,
+    "experiments": {
+      "reactCanary": true,
+      "reactCompiler": true
+    }
   }
 }

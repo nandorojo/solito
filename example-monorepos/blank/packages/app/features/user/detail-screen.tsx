@@ -1,21 +1,13 @@
-import { View, Text } from 'react-native'
-import { createParam } from 'solito'
-import { TextLink } from 'solito/link'
-
-const { useParam } = createParam<{ id: string }>()
+import { View, Text, Pressable } from 'react-native'
+import { useRouter } from 'solito/navigation'
 
 export function UserDetailScreen() {
-  const [id] = useParam('id')
-
+  const router = useRouter()
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text
-        style={{ textAlign: 'center', marginBottom: 16, fontWeight: 'bold' }}
-      >
-        {`User ID: ${id}`}
-      </Text>
-
-      <TextLink href="/">👈 Go Home</TextLink>
+      <Pressable onPress={() => router.back()}>
+        <Text>👈 Go Home</Text>
+      </Pressable>
     </View>
   )
 }

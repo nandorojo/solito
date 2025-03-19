@@ -1,3 +1,7 @@
+const path = require('path')
+
+const react = 'react' || path.resolve(__dirname, 'node_modules/react')
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -8,6 +12,7 @@ const withWebpack = {
     }
 
     config.resolve.alias = {
+      // react,
       ...(config.resolve.alias || {}),
       'react-native': 'react-native-web',
       'react-native$': 'react-native-web',
@@ -39,7 +44,7 @@ const withTurpopack = {
   experimental: {
     turbo: {
       resolveAlias: {
-        // 'react-native-reanimated': 'react-native-reanimated',
+        // react,
 
         'react-native': 'react-native-web',
         'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
