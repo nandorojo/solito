@@ -7874,8 +7874,8 @@ __metadata:
     eslint-config-next: "npm:13.2.0"
     next: "npm:^15.2.2"
     raf: "npm:^3.4.1"
-    react: "npm:19.0.0-rc.1"
-    react-dom: "npm:19.0.0-rc.1"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
     react-native-web: "npm:~0.19.10"
   languageName: unknown
   linkType: soft
@@ -8784,14 +8784,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc.1":
-  version: 19.0.0-rc.1
-  resolution: "react-dom@npm:19.0.0-rc.1"
+"react-dom@npm:^19.0.0":
+  version: 19.0.0
+  resolution: "react-dom@npm:19.0.0"
   dependencies:
-    scheduler: "npm:0.25.0-rc.1"
+    scheduler: "npm:^0.25.0"
   peerDependencies:
-    react: 19.0.0-rc.1
-  checksum: 10/9c3f79fe8f8fd10e8a86476df1670d3920f1c1083e56285b5c31d96ca18d223e9d1e78b6b5534ce7ab90a57e2d47ca96d2b3ced3a08a993c937c7f49561b337d
+    react: ^19.0.0
+  checksum: 10/aa64a2f1991042f516260e8b0eca0ae777b6c8f1aa2b5ae096e80bbb6ac9b005aef2bca697969841d34f7e1819556263476bdfea36c35092e8d9aefde3de2d9a
   languageName: node
   linkType: hard
 
@@ -8959,10 +8959,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc.1":
-  version: 19.0.0-rc.1
-  resolution: "react@npm:19.0.0-rc.1"
-  checksum: 10/4da93b26f6d8ca24a4657551fe9e6db92b42e6d8cb54821e3c2c8c5af2098094e5d997b261314a2b5723ad1e0a444a63312b7645f72394f21660da38ea4554f1
+"react@npm:^19.0.0":
+  version: 19.0.0
+  resolution: "react@npm:19.0.0"
+  checksum: 10/2490969c503f644703c88990d20e4011fa6119ddeca451e9de48f6d7ab058d670d2852a5fcd3aa3cd90a923ab2815d532637bd4a814add402ae5c0d4f129ee71
   languageName: node
   linkType: hard
 
@@ -9360,10 +9360,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-rc.1":
-  version: 0.25.0-rc.1
-  resolution: "scheduler@npm:0.25.0-rc.1"
-  checksum: 10/b9dbc9e406ab4af245c3c7cfd1d39e983aa6184ab941cfd7ee5dc1695854280a5dee556f7f81d9e0f392dbe4f2f85966f2b6988beed39f1d5f5e844b1db02c60
+"scheduler@npm:^0.25.0":
+  version: 0.25.0
+  resolution: "scheduler@npm:0.25.0"
+  checksum: 10/e661e38503ab29a153429a99203fefa764f28b35c079719eb5efdd2c1c1086522f6653d8ffce388209682c23891a6d1d32fa6badf53c35fb5b9cd0c55ace42de
   languageName: node
   linkType: hard
 
