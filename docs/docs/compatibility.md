@@ -36,7 +36,7 @@ There are a few important steps to get React 19 and Next.js 15 working in a Soli
 
 Getting React 19 working properly in this monorepo was tricky. If you're referencing this monorepo for your own existing project, here is what you need to do to get it working:
 
-1. Add `react@latest` and `react-dom@latest` to the `package.json` of `apps/next`. They **must** be the v19 RC version, such as `19.0.0-rc.1`.
+1. `yarn add react@latest react-dom@latest` inside of `apps/next`
 2. **Remove** `react` from the `package.json` of `apps/expo` (super important).
 3. **Set** `experiments.reactCanary` to `true` in the `app.json` of `apps/expo`.
 4. Run `yarn` and restart everything.
