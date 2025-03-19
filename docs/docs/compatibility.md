@@ -14,15 +14,15 @@ The first version of this doc was created in March 2025, and will be updated on 
 
 The following combination of versions have been tested together successfully and are used in the starter monorepo:
 
-- `expo` SDK 52
 - `next` 15
 - `react` 19 RC (`19.0.0-rc.1`)
+- `turbopack`
+- `expo` SDK 52
 - `react-compiler`
 - `react-native` 0.76.7
 - `solito` v4.4
-- `turbopack`
-- React Navigation v7
 - Next.js App Router
+- React Navigation v7
 
 **You will need to set up React 19 in a particular way. For existing Solito apps upgrading, see the [React 19](#react-19) section below.**
 
