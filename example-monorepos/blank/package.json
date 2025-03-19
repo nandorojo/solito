@@ -8,7 +8,7 @@
   "devDependencies": {
     "@types/react": "^18.2.21",
     "eslint": "^8.21.0",
-    "turbo": "^1.4.2",
+    "turbo": "^2.4.4",
     "typescript": "^5.2.2"
   },
   "scripts": {
