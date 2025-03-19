@@ -1,15 +1,17 @@
 {
   "expo": {
-    "name": "solito-expo-router",
-    "slug": "solito-expo-router",
+    "name": "solito-blank",
+    "slug": "solito-blank",
     "version": "1.0.0",
-    "scheme": "solito-expo-router",
+    "scheme": "solito-blank",
     "platforms": ["ios", "android"],
     "ios": {
-      "bundleIdentifier": "com.solito.expo-router"
+      "bundleIdentifier": "com.solito.blank"
     },
-    "plugins": [
-      "expo-router"
-    ]
+    "newArchEnabled": true,
+    "experiments": {
+      "reactCanary": true,
+      "reactCompiler": true
+    }
   }
 }

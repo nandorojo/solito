@@ -16,10 +16,12 @@ The following combination of versions have been tested together successfully and
 
 - `expo` SDK 52
 - `next` 15
-- `react` 19 (`rc`)
+- `react` 19 RC (`19.0.0-rc.1`)
 - `react-compiler`
 - `react-native` 0.76.7
 - `solito` v4.4
+- `turbopack`
+- Next.js App Router
 
 **You will need to set up React 19 in a particular way. For existing Solito apps upgrading, see the [React 19](#react-19) section below.**
 
