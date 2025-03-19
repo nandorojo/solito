@@ -1,6 +1,6 @@
 {
   "name": "solito",
-  "version": "4.3.0",
+  "version": "4.4.1",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -59,7 +59,7 @@
     "image/**/*",
     "navigation/**/*"
   ],
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "yarn@4.7.0",
   "dependencies": {
     "typescript": "^5.0.4"
   }

@@ -1,10 +1,10 @@
-import { Dripsy } from './dripsy'
+import { SafeArea } from 'app/provider/safe-area'
 import { NavigationProvider } from './navigation'
 
 export function Provider({ children }: { children: React.ReactNode }) {
   return (
-    <NavigationProvider>
-      <Dripsy>{children}</Dripsy>
-    </NavigationProvider>
+    <SafeArea>
+      <NavigationProvider>{children}</NavigationProvider>
+    </SafeArea>
   )
 }

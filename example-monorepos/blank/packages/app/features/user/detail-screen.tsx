@@ -1,19 +1,13 @@
-import { View, Text } from 'dripsy'
-import { createParam } from 'solito'
-import { TextLink } from 'solito/link'
-
-const { useParam } = createParam<{ id: string }>()
+import { View, Text, Pressable } from 'react-native'
+import { useRouter } from 'solito/navigation'
 
 export function UserDetailScreen() {
-  const [id] = useParam('id')
-
+  const router = useRouter()
   return (
-    <View sx={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text
-        sx={{ textAlign: 'center', mb: 16, fontWeight: 'bold' }}
-      >{`User ID: ${id}`}</Text>
-
-      <TextLink href="/">👈 Go Home</TextLink>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Pressable onPress={() => router.back()}>
+        <Text>👈 Go Home</Text>
+      </Pressable>
     </View>
   )
 }

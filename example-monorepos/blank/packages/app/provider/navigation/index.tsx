@@ -1,29 +1,9 @@
-import { NavigationContainer } from '@react-navigation/native'
-import * as Linking from 'expo-linking'
-import { useMemo } from 'react'
+// on Web, we don't use React Navigation, so we avoid the provider altogether
+// instead, we just have a no-op here
+// for more, see: https://solito.dev/recipes/tree-shaking
 
-export function NavigationProvider({
+export const NavigationProvider = ({
   children,
 }: {
-  children: React.ReactNode
-}) {
-  return (
-    <NavigationContainer
-      linking={useMemo(
-        () => ({
-          prefixes: [Linking.createURL('/')],
-          config: {
-            initialRouteName: 'home',
-            screens: {
-              home: '',
-              'user-detail': 'user/:id',
-            },
-          },
-        }),
-        []
-      )}
-    >
-      {children}
-    </NavigationContainer>
-  )
-}
+  children: React.ReactElement
+}) => <>{children}</>

@@ -18,6 +18,7 @@ function LinkCore({
   experimental,
   target,
   rel,
+  style,
   ...props
 }: LinkCoreProps & {
   Component: ComponentType<any>
@@ -34,6 +35,7 @@ function LinkCore({
         legacyBehavior
       >
         <Component
+          style={style}
           {...componentProps}
           {...(target && { hrefAttrs: { target, rel } })}
         >
@@ -52,6 +54,7 @@ function LinkCore({
   return (
     <Component
       accessibilityRole="link"
+      style={style}
       {...componentProps}
       onPress={(e?: any) => {
         componentProps?.onPress?.(e)
