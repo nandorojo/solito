@@ -37,6 +37,8 @@ Getting React 19 working properly in this monorepo was tricky. If you're referen
 
 To confirm you did this properly, try `yarn why react`. If you see it installed more than once, something is likely going to break.
 
+I recommend using `yarn why ...` for any critical dependencies to ensure you don't have duplicates. [Check out syncpack](https://www.npmjs.com/package/syncpack) to solve this for you elegantly.
+
 If you miss one of those steps, either your website or app will likely not work.
 
 ### Why
@@ -48,6 +50,17 @@ If you try installing React 18 in `apps/expo` and 19 RC in `apps/next`, suddenly
 ### React Compiler
 
 This monorepo has the React Compiler enabled. There are distinct steps to get it working in Next.js and React Native.
+
+### React Native Web
+
+React Native Web doesn't support React 19 yet, so you might get logs like this. In my experience, it's safe to ignore these.
+
+```sh
+../../node_modules/react-native-web/dist/exports/render/index.js
+Attempted import error: 'hydrate' is not exported from 'react-dom' (imported as 'domLegacyHydrate').
+```
+
+See this [pull request](https://github.com/necolas/react-native-web/pull/2731/files) and this [issue](https://github.com/necolas/react-native-web/issues/2686) to track progress.
 
 ## 🗂 Folder layout
 

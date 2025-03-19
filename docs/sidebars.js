@@ -42,6 +42,7 @@ const sidebars = {
         },
       ],
     },
+    'compatibility',
     // {
     //   type: 'ref',
     //   label: 'Welcome',
