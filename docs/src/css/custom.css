@@ -138,13 +138,82 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .navbar__inner {
   backdrop-filter: blur(12px);
   background-color: transparent;
-  padding: var(--ifm-navbar-padding-vertical) var(--ifm-navbar-padding-horizontal);
+  padding: var(--ifm-navbar-padding-vertical)
+    var(--ifm-navbar-padding-horizontal);
 }
 
-.menu__link, .menu__list-item-collapsible {
+.menu__link,
+.menu__list-item-collapsible {
   border-radius: 999px;
 }
 
 aside {
-  border-right-width: 0px!important;
+  border-right-width: 0px !important;
+}
+
+/* redesign... */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700');
+
+.navbar {
+  transition-property: border-color, background-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+.theme-doc-sidebar-item-link {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+html:not(.old) {
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+
+  code,
+  pre {
+    font-family: 'Geist Mono', monospace !important;
+  }
+
+  &[data-theme='dark'] {
+    --ifm-background-color: #000 !important;
+    --ifm-menu-color-background-active: #222;
+  }
+
+  &[data-theme='light'] {
+    --ifm-background-color: #fff !important;
+    --ifm-menu-color-background-active: #f1f1f1;
+  }
+
+  .menu__link,
+  .menu__list-item-collapsible {
+    border-radius: 12px;
+  }
+
+  .navbar--fixed-top {
+    /* backdrop-filter: blur(12px); */
+    background-color: var(--ifm-background-color);
+    [data-theme='dark'] & {
+      background-color: #0c0c0c;
+      box-shadow: none;
+    }
+    overflow: visible;
+  }
+  .table-of-contents__left-border {
+    box-shadow: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 12px;
+
+    [data-theme='dark'] & {
+      background-color: #111;
+    }
+
+    [data-theme='light'] & {
+      border-color: var(--ifm-border-color);
+    }
+  }
 }

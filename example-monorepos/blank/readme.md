@@ -20,10 +20,13 @@ While it's pretty barebones, it does a lot of the annoying config for you. The f
 
 - `solito` for cross-platform navigation
 - `moti` for animations
-- `dripsy` for theming/design (you can bring your own, too)
-- Expo SDK 49
-- Next.js 13
-- React Navigation 6
+- Expo SDK 53
+- Next.js 15
+- React Navigation 7
+- React 19 (read more below)
+- React Compiler
+
+For more, see the [compatibility docs](https://solito.dev/compatibility).
 
 ## 🗂 Folder layout
 

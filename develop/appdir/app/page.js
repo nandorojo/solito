@@ -1,13 +1,23 @@
 'use client'
 import { Text, View } from 'react-native'
-import { Link } from 'solito/link'
+import { MotiLink } from 'solito/moti/app'
 
 export default function Home() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Link href="/users/fernando?search=hey!">
+      <MotiLink
+        from={{
+          opacity: 0,
+          scale: 0,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+        }}
+        href="/users/fernando?search=hey!"
+      >
         <Text>Hello, Next.js App Router.</Text>
-      </Link>
+      </MotiLink>
     </View>
   )
 }

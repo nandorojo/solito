@@ -38,7 +38,5 @@
     "release": "ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
     "prepublish": "yarn release"
   },
-  "bin": {
-    "create-solito-app": "./dist/index.js"
-  }
+  "bin": "./dist/index.js"
 }
