@@ -140,6 +140,13 @@ export function useRouter() {
           navigation?.goBack()
         }
       },
+      canGoBack: () => {
+        if (Platform.OS === 'web') {
+          return window.history?.length && window.history.length > 2
+        } else {
+          return navigation?.canGoBack()
+        }
+      },
       parseNextPath,
     }),
     [linkTo, navigation]
