@@ -18,4 +18,4 @@ On the iOS/Android side, instead of a `pages` folder, you'll implement the scree
 
 Luckily, there are zero new things to learn on the Web side. After all, you're using the same APIs you're used to from Next.js.
 
-In the next section, let's unpack Solito's methodology to understand what's going down under the hood.
+In the next section, let's unpack Solito's methodology to understand what's going on under the hood.
