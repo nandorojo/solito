@@ -1,10 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-// import { HomeScreen } from 'app/features/home/screen'
+import { HomeScreen } from 'app/features/home/screen'
 import { UserDetailScreen } from 'app/features/user/detail-screen'
-import { Text, View } from 'react-native'
-import { Link as MotiLink } from 'solito/link'
-import { MotiView } from 'moti'
 
 const Stack = createNativeStackNavigator<{
   home: undefined
@@ -12,19 +9,6 @@ const Stack = createNativeStackNavigator<{
     id: string
   }
 }>()
-
-const HomeScreen = () => {
-  return (
-    <View>
-      <Text>Home</Text>
-      <MotiView from={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <MotiLink href="/user/1">
-          <Text>Go to user</Text>
-        </MotiLink>
-      </MotiView>
-    </View>
-  )
-}
 
 export function NativeNavigation() {
   return (
