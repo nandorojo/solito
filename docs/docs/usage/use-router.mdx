@@ -97,6 +97,25 @@ const onOpenArtist = () => {
 }
 ```
 
+### `canGoBack`
+
+Follows the exact same API as the React Navigation's navigation object's [canGoBack](https://reactnavigation.org/docs/navigation-prop/#cangoback) function.
+
+It returns a boolean that tells whether it's possible to navigate back (eg. if the navigation stack has a screen before the current screen)
+
+```tsx twoslash
+import { useRouter } from 'solito/router'
+// ---cut---
+
+const { canGoBack } = useRouter()
+
+const onBackPress = () => {
+  if (canGoBack()) {
+    // ...
+  }
+}
+```
+
 ### Stack Replace on Native
 
 Solito v2 introduces a new `nativeBehavior` option in the `router.replace()` function to let you use a stack replacement action on native navigators:
