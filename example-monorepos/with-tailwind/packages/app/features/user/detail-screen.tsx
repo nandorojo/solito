@@ -1,17 +1,14 @@
-import { createParam } from 'solito'
-import { TextLink } from 'solito/link'
-import { Text } from 'app/design/typography'
-import { View } from 'app/design/view'
+"use client";
 
-const { useParam } = createParam<{ id: string }>()
+import { Text } from 'react-native';
+import { useParams, useRouter } from 'solito/navigation';
+
+const useUserParams = useParams<{ userId: string }>
 
 export function UserDetailScreen() {
-  const [id] = useParam('id')
-
+  const router = useRouter()
+  const { userId } = useUserParams()
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="mb-4 text-center font-bold">{`User ID: ${id}`}</Text>
-      <TextLink href="/">👈 Go Home</TextLink>
-    </View>
+    <Text className='text-red-400 font-bold'>Hello {userId}</Text>
   )
 }
