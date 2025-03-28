@@ -1,51 +1,53 @@
-import { A, H1, P, Text, TextLink } from 'app/design/typography'
-import { Row } from 'app/design/layout'
-import { View } from 'app/design/view'
+'use client'
 
-import { MotiLink } from 'solito/moti'
+import { TextLink } from 'solito/link'
+import { MotiLink } from 'solito/moti/app'
+import { Text, View } from 'react-native'
 
 export function HomeScreen() {
   return (
-    <View className="flex-1 items-center justify-center p-3">
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+        gap: 32,
+      }}
+    >
       <H1>Welcome to Solito.</H1>
-      <View className="max-w-xl">
-        <P className="text-center">
+      <View style={{ maxWidth: 600, gap: 16 }}>
+        <Text style={{ textAlign: 'center' }}>
           Here is a basic starter to show you how you can navigate from one
           screen to another. This screen uses the same code on Next.js and React
           Native.
-        </P>
-        <P className="text-center">
+        </Text>
+        <Text style={{ textAlign: 'center' }}>
           Solito is made by{' '}
-          <A
+          <TextLink
             href="https://twitter.com/fernandotherojo"
-            hrefAttrs={{
-              target: '_blank',
-              rel: 'noreferrer',
-            }}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'blue' }}
           >
             Fernando Rojo
-          </A>
+          </TextLink>
           .
-        </P>
-        <P className="text-center">
-          NativeWind is made by{' '}
-          <A
-            href="https://twitter.com/mark__lawlor"
-            hrefAttrs={{
-              target: '_blank',
-              rel: 'noreferrer',
-            }}
-          >
-            Mark Lawlor
-          </A>
-          .
-        </P>
+        </Text>
       </View>
-      <View className="h-[32px]" />
-      <Row className="space-x-8">
-        <TextLink href="/user/fernando">Regular Link</TextLink>
+      <View style={{ flexDirection: 'row', gap: 32 }}>
+        <TextLink
+          href="/users/fernando"
+          style={{ fontSize: 16, fontWeight: 'bold', color: 'blue' }}
+        >
+          Regular Link
+        </TextLink>
         <MotiLink
-          href="/user/fernando"
+          href="/users/fernando"
+          from={{
+            scale: 0,
+            rotateZ: '0deg',
+          }}
           animate={({ hovered, pressed }) => {
             'worklet'
 
@@ -59,11 +61,22 @@ export function HomeScreen() {
             duration: 150,
           }}
         >
-          <Text selectable={false} className="text-base font-bold">
+          <Text
+            selectable={false}
+            style={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}
+          >
             Moti Link
           </Text>
         </MotiLink>
-      </Row>
+      </View>
     </View>
   )
+}
+
+const H1 = ({ children }: { children: React.ReactNode }) => {
+  return <Text style={{ fontWeight: '800', fontSize: 24 }}>{children}</Text>
+}
+
+const P = ({ children }: { children: React.ReactNode }) => {
+  return <Text style={{ textAlign: 'center' }}>{children}</Text>
 }
