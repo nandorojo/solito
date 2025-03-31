@@ -1,7 +1,3 @@
-const path = require('path')
-
-const react = 'react' || path.resolve(__dirname, 'node_modules/react')
-
 /**
  * @type {import('next').NextConfig}
  */
