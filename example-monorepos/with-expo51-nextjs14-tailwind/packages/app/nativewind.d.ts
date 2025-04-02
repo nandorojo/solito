@@ -1,0 +1,1 @@
+import 'nativewind/types.d'
