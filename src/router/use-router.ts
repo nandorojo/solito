@@ -141,6 +141,7 @@ export function useRouter() {
         }
       },
       parseNextPath,
+      basePath: nextRouter?.basePath || '',
     }),
     [linkTo, navigation]
   )
