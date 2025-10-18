@@ -1,19 +1,12 @@
-'use client'
-import { TextProps, Text } from 'react-native'
+import { Text } from 'react-native'
 
 import { LinkCore } from './core'
 import { LinkCoreProps } from './LinkCoreProps'
 
-type TextLinkProps = LinkCoreProps & { textProps?: TextProps }
+type TextLinkProps = LinkCoreProps
 
-function TextLink({ textProps, ...props }: TextLinkProps) {
-  return (
-    <LinkCore
-      {...props}
-      Component={Text}
-      componentProps={{ selectable: false, ...textProps }}
-    />
-  )
+function TextLink(props: TextLinkProps) {
+  return <LinkCore {...props} Component={Text} />
 }
 
 export { TextLink }

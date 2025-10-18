@@ -1,10 +1,6 @@
-'use client'
-
 import type { ComponentType } from 'react'
-import { Platform } from 'react-native'
 
 import { openURL } from './linking'
-import { NextLink } from './next-link'
 import { useLink } from './use-custom-link'
 import { LinkCoreProps } from './LinkCoreProps'
 
@@ -12,7 +8,6 @@ function LinkCore({
   children,
   href,
   as,
-  componentProps,
   Component,
   replace,
   experimental,
@@ -22,49 +17,29 @@ function LinkCore({
   ...props
 }: LinkCoreProps & {
   Component: ComponentType<any>
-  componentProps?: any
 }) {
-  if (Platform.OS === 'web') {
-    return (
-      <NextLink
-        {...props}
-        replace={replace}
-        href={href}
-        as={as}
-        passHref
-        legacyBehavior
-      >
-        <Component
-          style={style}
-          {...componentProps}
-          {...(target && { hrefAttrs: { target, rel } })}
-        >
-          {children}
-        </Component>
-      </NextLink>
-    )
-  }
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const linkTo = useLink({
     href,
     as,
     replace,
     experimental,
-  })
+  }).onPress
+  const onPress = 'onPress' in props ? props.onPress : undefined
   return (
     <Component
       accessibilityRole="link"
       style={style}
-      {...componentProps}
+      {...props}
       onPress={(e?: any) => {
-        componentProps?.onPress?.(e)
+        // @ts-expect-error: onPress is not a valid prop for the Component
+        onPress?.(e)
         const link = as || href
         if (e?.defaultPrevented) return
         // Handles external URLs
         if (typeof link === 'string' && isAbsoluteUrl(link)) {
           openURL(link)
         } else {
-          linkTo.onPress(e)
+          linkTo(e)
         }
       }}
     >

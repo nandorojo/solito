@@ -1,22 +1,12 @@
-'use client'
-import { Platform, Pressable, ViewProps, View } from 'react-native'
+import { Pressable } from 'react-native'
 
 import { LinkCore } from './core'
 import { LinkCoreProps } from './LinkCoreProps'
 
-type LinkProps = LinkCoreProps & { viewProps?: ViewProps }
+type LinkProps = LinkCoreProps
 
-function Link({ viewProps, ...props }: LinkProps) {
-  return (
-    <LinkCore
-      {...props}
-      Component={Platform.select({
-        web: View,
-        default: Pressable as any,
-      })}
-      componentProps={viewProps}
-    />
-  )
+function Link(props: LinkProps) {
+  return <LinkCore {...props} Component={Pressable} />
 }
 
 export { Link }
