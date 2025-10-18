@@ -35,32 +35,31 @@ const withWebpack = {
  * @type {import('next').NextConfig}
  */
 const withTurpopack = {
-  experimental: {
-    turbo: {
-      resolveAlias: {
-        'react-native': 'react-native-web',
-        'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
-          'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
-        'react-native/Libraries/vendor/emitter/EventEmitter$':
-          'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
-        'react-native/Libraries/EventEmitter/NativeEventEmitter$':
-          'react-native-web/dist/vendor/react-native/NativeEventEmitter',
-      },
-      resolveExtensions: [
-        '.web.js',
-        '.web.jsx',
-        '.web.ts',
-        '.web.tsx',
-        // we need to merge with the default extensions
-        '.js',
-        '.mjs',
-        '.tsx',
-        '.ts',
-        '.jsx',
-        '.json',
-        '.wasm',
-      ],
+  turbopack: {
+    resolveAlias: {
+      'react-native': 'react-native-web',
+      'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
+        'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
+      'react-native/Libraries/vendor/emitter/EventEmitter$':
+        'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
+      'react-native/Libraries/EventEmitter/NativeEventEmitter$':
+        'react-native-web/dist/vendor/react-native/NativeEventEmitter',
     },
+    resolveExtensions: [
+      '.web.js',
+      '.web.jsx',
+      '.web.ts',
+      '.web.tsx',
+      // we need to merge with the default extensions
+      '.js',
+      '.mjs',
+      '.tsx',
+      '.ts',
+      '.jsx',
+      '.json',
+      '.wasm',
+    ],
+    root: __dirname,
   },
 }
 
