@@ -16,6 +16,8 @@ export type MotiLinkProps = UseLinkProps &
 export const MotiLink = forwardRef<View, MotiLinkProps>((props, ref) => {
   const { onPress, ...linkProps } = useLink(props)
 
+  const propsOnPress = 'onPress' in props ? props.onPress : undefined
+
   return (
     <MotiPressable
       {...props}
@@ -23,7 +25,7 @@ export const MotiLink = forwardRef<View, MotiLinkProps>((props, ref) => {
       onPress={(e?: any) => {
         // @ts-expect-error no event argument
         // we let users pass an onPress prop, in case they want to preventDefault()
-        props.onPress?.(e)
+        propsOnPress?.(e)
 
         onPress?.(e)
       }}

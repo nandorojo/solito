@@ -25,12 +25,12 @@ You can also put nested `Text` components inside:
 
 ## Props
 
-### `textProps`
+### `style`
 
-Props used by the underlying `Text` component.
+`style` will not have any defaults on web. You can configure these in `globals.css` or inline.
 
 ```tsx
-<TextLink textProps={{ style: { color: 'blue' } }} href="/">
+<TextLink style={{ color: 'blue' }} href="/">
   Link to <Text style={{ fontWeight: 'bold' }}>Home</Text>
 </TextLink>
 ```

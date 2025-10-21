@@ -1,0 +1,156 @@
+---
+title: Upgrade to Solito 5
+id: v5
+sidebar_label: Upgrade to v5
+image: https://solito.dev/img/5.png
+---
+
+```sh
+yarn add solito
+```
+
+Solito 5 drops react-native-web as a dependency. It now works with zero special configuration on Web. On iOS and Android, nothing has changed.
+
+On Web, a lot has changed. Solito components return Next.js components directly with no custom UI or React Native Web wrappers. Previously, props were highly restricted to a shared subset between platforms. Now, you can use any web props on your Solito components, including `className`, `style` (as an object), and all other DOM props.
+
+This is the new source code for `solito/link` on Web:
+
+```tsx
+export { default as Link } from 'next/link'
+```
+
+The goal of this change is to let you use pure Next.js on web, and an implementation of its API on native.
+
+This decision came after many years of trying to bring native paradigms to web, only to find that the inverse is often better. For more on this point, read about what's going on [under the hood](#under-the-hood).
+
+## Updates
+
+- Headless and unstyled on web. Solito no longer depends on React Native Web.
+- `className`, `style`, and all other web props are supported
+- Upgraded example monorepo
+  - Next.js 16
+  - Turbopack
+  - Expo SDK 54
+- Next.js 16 Support
+  - Dropped `legacyBehavior`, `passHref`, and other props from older Next.js versions
+- Fixed `useSearchParams()` on native
+
+## Under the hood
+
+From an implementation standpoint, dropping React Native Web also means dropping `.web.tsx` files from Solito, and using `.native.tsx` extensions instead. **The default file is always web-first.**
+
+React Native libraries should use web-first files, since it drastically simplifies configuration for web consumers. Every React Native build step can handle `.native.tsx` and `.ios.tsx` files; conversely, web bundlers do not, and it can be quite annoying to set this up.
+
+As a result, Solito 5 actually works in a Next.js repo with **zero configuration**. However, as exciting as that sounds, you will still need a little bit of configuration in `next.config.js` to support other third-party libraries, such as react-native-reanimated and any packages offered by Expo.
+
+My hope is that the community will follow this move towards web-first files to avoid configuration for web consumers. If every native library author changed their code to use `index.ts` for web, and `index.native.ts` for native, configuration would get dramatically simplified.
+
+### Background
+
+The changes made here in Solito 5 are in part inspired by [Zeego 2](https://github.com/nandorojo/zeego/releases/tag/v2.0.0). Zeego wraps Radix UI components on web, and at the time, it mixed in `View` and `Text` from React Native Web all over the place. Zeego 2 dropped this in favor of simply re-exporting Radix components on web, and doing all of its magic on native. As a result, consumers could use Tailwind, Shadcn, and any other web library without compromise.
+
+After the great reception [Zeego 2](https://github.com/nandorojo/zeego/releases/tag/v2.0.0) received, it's clear to me that this is the correct abstraction, and it's worth the breaking changes.
+
+## Breaking Changes
+
+Onto the important parts.
+
+> The breaking changes + upgrade guide for Solito 5 are spiritually similar to those of Zeego 2. If you're interested, you can reference [Zeego 2's release notes](https://github.com/nandorojo/zeego/releases/tag/v2.0.0).
+
+This version drops `react-native-web` as a dependency from core Solito components, such as `Link` and `TextLink`. In Solito 4, these components came with react-native-web's [reset styles](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L189-L204), such as `font-size` and `display: flex`. That behavior is dropped in v5.
+
+### `TextLink`
+
+- Web: `TextLink` no longer uses `Text` from `react-native-web`.
+  - You will need to apply your own styles, such as font-family.
+  - You can no longer pass array styles; `style` must be an object, like React web
+- `textProps` dropped from `TextLink`. Use props directly.
+- `className` works, along with any other web props
+
+My recommendation for consuming components from Solito (and any open source library) is to re-export it from your own design system before using it in app code:
+
+```tsx
+// components/link.tsx
+
+export { Link } from 'solito/link'
+```
+
+This way, you can easily update every usage of it by changing that one file. For example, if you want to preserve Solito v4 default styling, you can simply set it like so:
+
+```tsx
+import { Link as SolitoLink } from 'solito/link'
+
+const resetStyle = {
+  // ...
+  // you can copy this from react-native-web:
+}
+
+export function Link(props: React.ComponentProps<typeof SolitoLink>) {
+  return <SolitoLink {...props} style={{ ...resetStyle, ...props.style }} />
+}
+```
+
+_[react-native-web reset style here](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L189-L204)._
+
+### `Link`
+
+- `Link` no longer uses `View` from `react-native-web` on Web. It renders `next/link` directly
+  - If you relied on flex styles on your view, you may have to adjust them.
+  - You can no longer pass array styles; `style` must be an object, like React web
+- `viewProps` dropped from `Link`. Use props directly.
+- `className` works, along with any other web props
+
+#### Before
+
+```tsx
+<Link viewProps={{ style: { backgroundColor: 'blue' } }} />
+```
+
+#### After
+
+```tsx
+<Link style={{ backgroundColor: 'blue' }} />
+```
+
+### `SolitoImage`
+
+- No longer supports `onLayout` on web, since it renders `next/image` directly
+- `className` works, along with any other web props
+- `style` must be an object, like React web
+- Certain props from `expo/image` are still shimmed on web, such as `contentFit`
+
+## Upgrade Guide
+
+In your `packages/app` folder (or wherever you install Solito):
+
+### 1. Install `solito`
+
+```sh
+yarn add solito
+```
+
+It's possible this is all you need to do. However, given the breaking changes, you might need some additional tweaks.
+
+### 2. Remove `StyleSheet.create` from Solito components
+
+If you're passing any styles directly to Solito components using `StyleSheet.create`, you should remove this and turn them into plain style objects.
+
+### 3. Add styles for `TextLink`
+
+`TextLink` is now fully unstyled and renders a plain `<Link>` on Web (aka `<a>`). Previously, this component rendered `Text` from `react-native-web`, which applied default styles. These styles have been removed, including the default font: 'System 14px':
+
+- To preserve the same styles that they had before, you can apply the `Text` [style reset from React Native Web](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L189-L204).
+
+### 4. Flatten `viewProps` and `textProps`
+
+These are now flattened directly onto `Link` and `TextLink`.
+
+If you use `hrefAttrs` in `viewProps`, for `target` and `rel`, these are also flattened.
+
+### 5. Check breaking changes
+
+Refer to the [breaking changes](#breaking-changes) above. If you use styles on your `Link`, `TextLink`, or `SolitoImage`, you may need to adjust them. The best way to do so is with a single file that re-exports these components.
+
+If you use `viewProps` or `textProps`, you can flatten them directly onto `Link` or `TextLink` respectively.
+
+To see compatibile versions of Solito and Expo with Next.js 16, see the [compatibility guide](/compatibility).
