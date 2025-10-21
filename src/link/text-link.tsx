@@ -1,13 +1,5 @@
-import { Text } from 'react-native'
+import NextLink from 'next/link'
+import type * as native from './text-link.native'
 
-import { LinkCore } from './core'
-import { LinkCoreProps } from './LinkCoreProps'
-
-type TextLinkProps = LinkCoreProps
-
-function TextLink(props: TextLinkProps) {
-  return <LinkCore {...props} Component={Text} />
-}
-
-export { TextLink }
-export type { TextLinkProps }
+export const TextLink = NextLink as typeof native.TextLink
+export type { TextLinkProps } from './text-link.native'

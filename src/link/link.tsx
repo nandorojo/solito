@@ -1,13 +1,5 @@
-import { Pressable } from 'react-native'
+import NextLink from 'next/link'
+import type * as native from './link.native'
 
-import { LinkCore } from './core'
-import { LinkCoreProps } from './LinkCoreProps'
-
-type LinkProps = LinkCoreProps
-
-function Link(props: LinkProps) {
-  return <LinkCore {...props} Component={Pressable} />
-}
-
-export { Link }
-export type { LinkProps }
+export const Link = NextLink as typeof native.Link
+export type { LinkProps } from './link.native'

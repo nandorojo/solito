@@ -45,6 +45,8 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
   )
 })
 
+export type { SolitoImageRef } from './image.native'
+
 export default SolitoImage
 
 // FORKED FROM EXPO IMAGE
