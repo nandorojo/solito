@@ -57,7 +57,7 @@ Onto the important parts.
 
 > The breaking changes + upgrade guide for Solito 5 are spiritually similar to those of Zeego 2. If you're interested, you can reference [Zeego 2's release notes](https://github.com/nandorojo/zeego/releases/tag/v2.0.0).
 
-This version drops `react-native-web` as a dependency from core Solito components, such as `Link` and `TextLink`. In Solito 4, these components came with react-native-web's reset styles, such as `font-size` and `display: flex`. That behavior is dropped in v5.
+This version drops `react-native-web` as a dependency from core Solito components, such as `Link` and `TextLink`. In Solito 4, these components came with react-native-web's [reset styles](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L189-L204), such as `font-size` and `display: flex`. That behavior is dropped in v5.
 
 ### `TextLink`
 
@@ -82,13 +82,15 @@ import { Link as SolitoLink } from 'solito/link'
 
 const resetStyle = {
   // ...
-  // you can copy this from react-native-web
+  // you can copy this from react-native-web:
 }
 
 export function Link(props: React.ComponentProps<typeof SolitoLink>) {
   return <SolitoLink {...props} style={{ ...resetStyle, ...props.style }} />
 }
 ```
+
+_[react-native-web reset style here](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L189-L204)._
 
 ### `Link`
 
@@ -137,7 +139,7 @@ If you're passing any styles directly to Solito components using `StyleSheet.cre
 
 `TextLink` is now fully unstyled and renders a plain `<Link>` on Web (aka `<a>`). Previously, this component rendered `Text` from `react-native-web`, which applied default styles. These styles have been removed, including the default font: 'System 14px':
 
-- To preserve the same styles that they had before, you can apply the `Text` [style reset from React Native Web](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L185-L200).
+- To preserve the same styles that they had before, you can apply the `Text` [style reset from React Native Web](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L189-L204).
 
 ### 4. Flatten `viewProps` and `textProps`
 
