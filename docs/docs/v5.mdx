@@ -38,9 +38,9 @@ My hope is that the community will follow this move towards web-first files to a
 
 ### Prior art
 
-The changes made here in Solito 5 are in part inspired by Zeego 2. Zeego wraps Radix UI components on web, and at the time, it mixed in `View` and `Text` from React Native Web all over the place. Zeego 2 dropped this in favor of simply re-exporting Radix components on web, and doing all of its magic on native. As a result, consumers could use Tailwind, Shadcn, and any other web library without compromise.
+The changes made here in Solito 5 are in part inspired by [Zeego 2](https://github.com/nandorojo/zeego/releases/tag/v2.0.0). Zeego wraps Radix UI components on web, and at the time, it mixed in `View` and `Text` from React Native Web all over the place. Zeego 2 dropped this in favor of simply re-exporting Radix components on web, and doing all of its magic on native. As a result, consumers could use Tailwind, Shadcn, and any other web library without compromise.
 
-After the great reception Zeego 2 received, it's clear to me that this is the correct abstraction, and it's worth the breaking changes.
+After the great reception [Zeego 2](https://github.com/nandorojo/zeego/releases/tag/v2.0.0) received, it's clear to me that this is the correct abstraction, and it's worth the breaking changes.
 
 ## Features
 
@@ -58,7 +58,7 @@ After the great reception Zeego 2 received, it's clear to me that this is the co
 
 Onto the important parts.
 
-> The breaking changes + upgrade guide for Solito 5 are spiritually similar to those of Zeego 2. If you're interested, you can reference that guide too.
+> The breaking changes + upgrade guide for Solito 5 are spiritually similar to those of Zeego 2. If you're interested, you can reference [that guide](https://github.com/nandorojo/zeego/releases/tag/v2.0.0) too.
 
 This version drops `react-native-web` as a dependency from core Solito components, such as `Link` and `TextLink`. In Solito 4, these components came with react-native-web's reset styles, such as `font-size` and setting `display: flex`. That behavior is dropped in v4.
 
