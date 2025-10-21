@@ -10,8 +10,7 @@
     },
     "newArchEnabled": true,
     "experiments": {
-      "reactCanary": true,
-      "reactCompiler": true
+      "reactCanary": true
     }
   }
 }
