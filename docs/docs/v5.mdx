@@ -101,6 +101,18 @@ export function Link(props: React.ComponentProps<typeof SolitoLink>) {
 - `viewProps` dropped from `Link`. Use props directly.
 - `className` works, along with any other web props
 
+#### Before
+
+```tsx
+<Link viewProps={{ style: { backgroundColor: 'blue' } }} />
+```
+
+#### After
+
+```tsx
+<Link style={{ backgroundColor: 'blue' }} />
+```
+
 ### `SolitoImage`
 
 - No longer supports `onLayout` on web, since it renders `next/image` directly
