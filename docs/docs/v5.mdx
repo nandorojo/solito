@@ -9,34 +9,31 @@ image: https://solito.dev/img/5.png
 yarn add solito
 ```
 
-Solito 5 makes it easier than ever to use React Native with Next.js in the same codebase. It now supports Next.js 16 and Turbopack with less configuration.
+Solito 5 drops react-native-web as a dependency. It now works with zero special configuration on Web. On iOS and Android, nothing has changed.
 
-## What's new
+On Web, a lot has changed. Solito components return Next.js components directly with no custom UI or React Native Web wrappers. Previously, props were highly restricted to a shared subset between platforms. Now, you can use any web props on your Solito components, including `className`, `style` (as an object), and all other DOM props.
 
-The big change in this version is dropping React Native Web as a dependency. This radically simplifies configuration, and it means you have zero middleware between Next.js and your solito code.
-
-This is essentially what the new source code for `solito/link` looks like:
+This is the new source code for `solito/link` on Web:
 
 ```tsx
-// link.tsx
 export { default as Link } from 'next/link'
 ```
 
 The goal of this change is to let you use pure Next.js on web, and an implementation of its API on native.
 
-This decision came after many years of trying to bring native paradigms to web, only to find that the inverse is better.
+This decision came after many years of trying to bring native paradigms to web, only to find that the inverse is often better. For more on this point, read about what's going on [under the hood](#under-the-hood).
 
-## Features
+## Updates
 
 - Headless and unstyled on web. Solito no longer depends on React Native Web.
-- Next.js 16 support
-- Expo SDK 54 support
 - `className`, `style`, and all other web props are supported
 - Upgraded example monorepo
   - Next.js 16
   - Turbopack
   - Expo SDK 54
-- Dropped `legacyBehavior`, `passHref`, and other props from older Next.js versions
+- Next.js 16 Support
+  - Dropped `legacyBehavior`, `passHref`, and other props from older Next.js versions
+- Fixed `useSearchParams()` on native
 
 ## Under the hood
 
@@ -58,7 +55,7 @@ After the great reception [Zeego 2](https://github.com/nandorojo/zeego/releases/
 
 Onto the important parts.
 
-> The breaking changes + upgrade guide for Solito 5 are spiritually similar to those of Zeego 2. If you're interested, you can reference [that guide](https://github.com/nandorojo/zeego/releases/tag/v2.0.0) too.
+> The breaking changes + upgrade guide for Solito 5 are spiritually similar to those of Zeego 2. If you're interested, you can reference [Zeego 2's release notes](https://github.com/nandorojo/zeego/releases/tag/v2.0.0).
 
 This version drops `react-native-web` as a dependency from core Solito components, such as `Link` and `TextLink`. In Solito 4, these components came with react-native-web's reset styles, such as `font-size` and `display: flex`. That behavior is dropped in v5.
 
@@ -124,10 +121,34 @@ export function Link(props: React.ComponentProps<typeof SolitoLink>) {
 
 In your `packages/app` folder (or wherever you install Solito):
 
+### 1. Install `solito`
+
 ```sh
 yarn add solito
 ```
 
-To see compatibile versions with Next.js 16, see the [compatibility guide](/compatibility).
+It's possible this is all you need to do. However, given the breaking changes, you might need some additional tweaks.
 
-Refer to the [breaking changes](#breaking-changes) above. If you use styles on your Link, TextLink, or SolitoImage, you may need to adjust them. The best way to do so is to have a single file that exports these components which you can edit.
+### 2. Remove `StyleSheet.create` from Solito components
+
+If you're passing any styles directly to Solito components using `StyleSheet.create`, you should remove this and turn them into plain style objects.
+
+### 3. Add styles for `TextLink`
+
+`TextLink` is now fully unstyled and renders a plain `<Link>` on Web (aka `<a>`). Previously, this component rendered `Text` from `react-native-web`, which applied default styles. These styles have been removed, including the default font: 'System 14px':
+
+- To preserve the same styles that they had before, you can apply the `Text` [style reset from React Native Web](https://github.com/necolas/react-native-web/blob/master/packages/react-native-web/src/exports/Text/index.js#L185-L200).
+
+### 4. Flatten `viewProps` and `textProps`
+
+These are now flattened directly onto `Link` and `TextLink`.
+
+If you use `hrefAttrs` in `viewProps`, for `target` and `rel`, these are also flattened.
+
+### 5. Check breaking changes
+
+Refer to the [breaking changes](#breaking-changes) above. If you use styles on your `Link`, `TextLink`, or `SolitoImage`, you may need to adjust them. The best way to do so is with a single file that re-exports these components.
+
+If you use `viewProps` or `textProps`, you can flatten them directly onto `Link` or `TextLink` respectively.
+
+To see compatibile versions of Solito and Expo with Next.js 16, see the [compatibility guide](/compatibility).
