@@ -38,7 +38,11 @@ export function HomeScreen() {
       <View style={{ flexDirection: 'row', gap: 32 }}>
         <TextLink
           href="/users/fernando"
-          style={{ fontSize: 16, fontWeight: 'bold', color: 'blue' }}
+          style={{
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: 'blue',
+          }}
         >
           Regular Link
         </TextLink>
