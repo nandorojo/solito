@@ -7,9 +7,7 @@ import {
 } from 'expo-image'
 import NextImage from 'next/image'
 import { forwardRef } from 'react'
-import { Image, ImageResizeMode, StyleSheet } from 'react-native'
-// @ts-expect-error missing types
-import { unstable_createElement } from 'react-native-web'
+import type { Image, ImageResizeMode } from 'react-native'
 
 import { useSolitoImageContext } from '../context'
 import { SolitoImageProps } from '../image.types'
@@ -28,23 +26,23 @@ const SolitoImage = forwardRef<Image, SolitoImageProps>(function SolitoImage(
   ref
 ) {
   const { loader } = useSolitoImageContext()
-  return unstable_createElement(NextImage, {
-    ...props,
-    ref,
-    loader: props.loader ?? loader,
-    fill,
-    onError,
-    style: [
-      fill && StyleSheet.absoluteFill,
-      {
+  return (
+    <NextImage
+      {...props}
+      ref={ref as any}
+      loader={props.loader ?? loader}
+      fill={fill}
+      src={props.src as any}
+      onError={onError}
+      style={{
         objectFit: contentFit || objectFitFromResizeMode(resizeMode),
         objectPosition: getObjectPositionFromContentPositionObject(
           resolveContentPosition(contentPosition)
         ),
-      },
-      style,
-    ],
-  })
+        ...style,
+      }}
+    />
+  )
 })
 
 export default SolitoImage
