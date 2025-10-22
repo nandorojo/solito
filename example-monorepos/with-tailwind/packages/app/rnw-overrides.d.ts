@@ -13,7 +13,6 @@ declare module 'react-native' {
   interface TextProps {
     accessibilityComponentType?: never
     accessibilityTraits?: never
-    accessibilityLevel?: number
     href?: string
     hrefAttrs?: {
       rel: 'noreferrer'
