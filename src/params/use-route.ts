@@ -1,4 +1,3 @@
-import { NavigationRouteContext } from '@react-navigation/native'
-import { useContext } from 'react'
+import type * as native from './use-route.native'
 
-export const useRoute = () => useContext(NavigationRouteContext)
+export const useRoute: typeof native.useRoute = () => undefined

@@ -1,7 +1,6 @@
 'use client'
 
 import { TextLink } from 'solito/link'
-import { MotiLink } from 'solito/moti/app'
 import { Text, View } from 'react-native'
 
 export function HomeScreen() {
@@ -38,36 +37,14 @@ export function HomeScreen() {
       <View style={{ flexDirection: 'row', gap: 32 }}>
         <TextLink
           href="/users/fernando"
-          style={{ fontSize: 16, fontWeight: 'bold', color: 'blue' }}
+          style={{
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: 'blue',
+          }}
         >
-          Regular Link
+          Link
         </TextLink>
-        <MotiLink
-          href="/users/fernando"
-          from={{
-            scale: 0,
-            rotateZ: '0deg',
-          }}
-          animate={({ hovered, pressed }) => {
-            'worklet'
-
-            return {
-              scale: pressed ? 0.95 : hovered ? 1.1 : 1,
-              rotateZ: pressed ? '0deg' : hovered ? '-3deg' : '0deg',
-            }
-          }}
-          transition={{
-            type: 'timing',
-            duration: 150,
-          }}
-        >
-          <Text
-            selectable={false}
-            style={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}
-          >
-            Moti Link
-          </Text>
-        </MotiLink>
       </View>
     </View>
   )

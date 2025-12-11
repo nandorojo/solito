@@ -123,7 +123,7 @@ export function useSolitoImage({
         cache: priority ? 'force-cache' : 'default',
       }
     }
-    return src as number
+    return src as any
   }, [uri, src, height, width, priority, referrerPolicy, crossOrigin])
 
   return {

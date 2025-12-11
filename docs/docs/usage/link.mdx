@@ -16,19 +16,13 @@ A drop-in replacement for [Next.js' `<Link />` component](https://nextjs.org/doc
 
 ## Props
 
-### `viewProps`
+### `style`
 
-Props used by the underlying `View`.
-
-```tsx
-<Link viewProps={{ style: { height: 100 } }} href="/">
-  <View />
-</Link>
-```
+`style` will not have any defaults on web. You can configure these in `globals.css` or inline with the `style` prop.
 
 ### Next.js props
 
-It also supports the props from [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link), besides `passHref`.
+`Link` supports the props from [Next.js' `<Link />` component](https://nextjs.org/docs/api-reference/next/link).
 
 ## Configuration
 

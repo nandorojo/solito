@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import type { ComponentProps } from 'react'
-import { NextLink } from './next-link'
+import type { NextLink } from './next-link'
 
 export type LinkCoreProps = {
   children: React.ReactNode

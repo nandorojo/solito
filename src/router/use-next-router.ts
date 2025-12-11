@@ -1,4 +1,5 @@
-import type { useRouter } from 'next/router'
+import { useRouter as _useRouter } from 'next/router'
 
-export const useNextRouter = (): ReturnType<typeof useRouter> | undefined =>
-  undefined
+export const useNextRouter = (): ReturnType<typeof _useRouter> | undefined => {
+  return _useRouter()
+}

@@ -28,9 +28,23 @@ For a working example, please reference the [Solito starter monorepo](https://gi
 
 ### For existing Solito apps
 
-There are a few important steps to get React 19 and Next.js 15 working in a Solito monorepo. Let's outline them below. The primary issue is React 19 support.
+## Next.js 16, React 19, Expo SDK 54
+
+The following combination of versions have been tested together successfully and are used in the starter monorepo:
+
+- `next` 16.x
+- `react` 19.1
+- `turbopack`
+- `expo` SDK 54
+- `react-compiler`
+- `react-native` 0.81 or 0.82
+- `solito` v4 or v5
+- Next.js App Router
+- React Navigation v7
 
 ## Next.js 15.2, React 19, Expo SDK 52
+
+There are a few important steps to get React 19 and Next.js 15 working in a Solito monorepo. Let's outline them below. The primary issue is React 19 support.
 
 The following combination of versions have been tested together successfully and are used in the starter monorepo:
 

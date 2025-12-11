@@ -1,23 +1,5 @@
-'use client'
-import { Platform, Pressable, ViewProps, View } from 'react-native'
+import NextLink from 'next/link'
+import type * as native from './link.native'
 
-import { LinkCore } from './core'
-import { LinkCoreProps } from './LinkCoreProps'
-
-type LinkProps = LinkCoreProps & { viewProps?: ViewProps }
-
-function Link({ viewProps, ...props }: LinkProps) {
-  return (
-    <LinkCore
-      {...props}
-      Component={Platform.select({
-        web: View,
-        default: Pressable as any,
-      })}
-      componentProps={viewProps}
-    />
-  )
-}
-
-export { Link }
-export type { LinkProps }
+export const Link = NextLink as typeof native.Link
+export type { LinkProps } from './link.native'

@@ -1,5 +1,7 @@
-import type { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export const useNextAppDirRouter = ():
   | ReturnType<typeof useRouter>
-  | undefined => undefined
+  | undefined => {
+  return useRouter()
+}

@@ -1,6 +1,5 @@
-import { ImageContentPosition, ImageProps } from 'expo-image'
+import type { ImageContentPosition, ImageProps } from 'expo-image'
 import type NextImage from 'next/image'
-import type { ImageStyle } from 'react-native'
 
 export type AccessibilityProp<key extends string> = key extends `aria-${string}`
   ? key
@@ -25,29 +24,13 @@ export type SolitoImageProps = Pick<
   | 'referrerPolicy'
   | 'quality'
   | 'unoptimized'
+  | 'src'
+  | 'height'
+  | 'width'
+  | 'fill'
 > & {
-  style?: ImageStyle
-} & (
-    | {
-        src: string
-        height: number
-        width: number
-        fill?: false
-      }
-    | {
-        src: string
-        height?: number
-        width?: number
-        fill: true
-      }
-    | {
-        src: Exclude<NextImageProps['src'], string> | number
-        height?: number
-        width?: number
-        fill?: boolean
-      }
-  ) &
-  Pick<
+  style?: React.CSSProperties
+} & Pick<
     ImageProps,
     | 'onLayout'
     | 'contentFit'

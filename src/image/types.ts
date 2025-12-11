@@ -18,7 +18,7 @@ export type ImageConfigComplete = {
    * Default: `'/_next/image'`. You must set nextJsURL for this to work.
    */
   path?: string
-  loader?: (info: { src: string; width: number; quality: number }) => string
+  loader?: (info: { src: string; width: number; quality?: number }) => string
 }
 
 export type ImageConfig = ImageConfigComplete & {

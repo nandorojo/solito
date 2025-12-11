@@ -1,3 +1,2 @@
-import { Linking } from 'react-native'
-
-export const openURL = (url: string) => Linking.openURL(url)
+// noop, not supported on web
+export const openURL = (url: string) => {}

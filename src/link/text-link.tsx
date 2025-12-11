@@ -1,20 +1,5 @@
-'use client'
-import { TextProps, Text } from 'react-native'
+import NextLink from 'next/link'
+import type * as native from './text-link.native'
 
-import { LinkCore } from './core'
-import { LinkCoreProps } from './LinkCoreProps'
-
-type TextLinkProps = LinkCoreProps & { textProps?: TextProps }
-
-function TextLink({ textProps, ...props }: TextLinkProps) {
-  return (
-    <LinkCore
-      {...props}
-      Component={Text}
-      componentProps={{ selectable: false, ...textProps }}
-    />
-  )
-}
-
-export { TextLink }
-export type { TextLinkProps }
+export const TextLink = NextLink as typeof native.TextLink
+export type { TextLinkProps } from './text-link.native'

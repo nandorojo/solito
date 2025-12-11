@@ -12,12 +12,12 @@
     "@types/node": "20.2.5",
     "@types/react": "18.2.4",
     "moti": "^0.30.0",
-    "next": "^15.2.3",
+    "next": "16.0.0-beta.0",
     "react": "19.0.0-rc.1",
     "react-dom": "19.0.0-rc.1",
     "react-native-reanimated": "4.0.0-beta.2",
     "react-native-web": "^0.19.12",
-    "solito": "^4.4.0"
+    "solito": "next"
   },
   "devDependencies": {
     "react-native": "^0.78.0",
