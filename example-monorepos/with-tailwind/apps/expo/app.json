@@ -1,12 +1,17 @@
 {
   "expo": {
-    "name": "solito-nativewind",
-    "slug": "solito-nativewind",
+    "name": "solito-blank",
+    "slug": "solito-blank",
     "version": "1.0.0",
-    "scheme": "solito-nativewind",
+    "scheme": "solito-blank",
     "platforms": ["ios", "android"],
     "ios": {
-      "bundleIdentifier": "com.solito.nativewind"
+      "bundleIdentifier": "com.solito.blank"
+    },
+    "newArchEnabled": true,
+    "experiments": {
+      "reactCanary": true,
+      "reactCompiler": true
     }
   }
 }

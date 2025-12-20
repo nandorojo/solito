@@ -1,5 +1,10 @@
-import { SafeArea } from './safe-area'
+import { SafeArea } from 'app/provider/safe-area'
+import { NavigationProvider } from './navigation'
 
 export function Provider({ children }: { children: React.ReactNode }) {
-  return <SafeArea>{children}</SafeArea>
+  return (
+    <SafeArea>
+      <NavigationProvider>{children}</NavigationProvider>
+    </SafeArea>
+  )
 }
