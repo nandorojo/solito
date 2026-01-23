@@ -1,4 +1,5 @@
-import useNextParams from './use-next-params'
+import { Platform } from 'react-native'
+import { useRoute } from '../../params/use-route'
 
 type OrArray<Type> = Type | Type[]
 
@@ -20,5 +21,14 @@ export function useParams<
       ? Array<string | Type[Key]>
       : Type[Key] | string
   }
-  return useNextParams() as Returns
+
+  const route = useRoute()
+
+  if (!route) {
+    console.error(
+      `[useParams] route is undefined. Is your ${Platform.OS} app properly configured for React Navigation?`
+    )
+  }
+
+  return route?.params as Returns
 }
