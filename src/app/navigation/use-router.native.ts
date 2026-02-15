@@ -9,15 +9,13 @@ import {
 } from '../../router/replace-helpers'
 import { useLinkTo } from '../../router/use-link-to'
 import { useNavigation } from '../../router/use-navigation'
-import { useNextAppDirRouter } from './use-next-router'
+import type { useNextAppDirRouter } from './use-next-router'
 
 type NextRouterType = NonNullable<ReturnType<typeof useNextAppDirRouter>>
 
 export function useRouter() {
   const linkTo = useLinkTo()
   const navigation = useNavigation()
-
-  const nextRouter = useNextAppDirRouter()
 
   const linking = useContext(LinkingContext)
 

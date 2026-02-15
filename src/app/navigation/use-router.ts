@@ -1,15 +1,10 @@
 import { useMemo } from 'react'
 import { parseNextPath } from '../../router/parse-next-path'
-import { useLinkTo } from '../../router/use-link-to'
-import { useNavigation } from '../../router/use-navigation'
 import { useNextAppDirRouter } from './use-next-router'
 
 type NextRouterType = NonNullable<ReturnType<typeof useNextAppDirRouter>>
 
 export function useRouter() {
-  const linkTo = useLinkTo()
-  const navigation = useNavigation()
-
   const nextRouter = useNextAppDirRouter()
 
   return useMemo(
@@ -40,6 +35,6 @@ export function useRouter() {
       },
       parseNextPath,
     }),
-    [linkTo, navigation]
+    [nextRouter]
   )
 }
