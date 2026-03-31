@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "with-tailwind",
+    "slug": "with-tailwind",
+    "version": "1.0.0",
+    "scheme": "with-tailwind",
+    "platforms": ["ios", "android"],
+    "ios": {
+      "bundleIdentifier": "com.solito.blank"
+    },
+    "newArchEnabled": true,
+    "web": {
+      "bundler": "metro"
+    },
+    "experiments": {
+      "reactCanary": true
+    }
+  }
+}
