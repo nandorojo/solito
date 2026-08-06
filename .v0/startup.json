@@ -1,0 +1,22 @@
+{
+  "$schema": "https://v0.dev/schemas/startup.schema.json",
+  "version": 1,
+  "install": {
+    "cwd": "docs",
+    "command": [
+      "yarn",
+      "install"
+    ]
+  },
+  "start": {
+    "cwd": "docs",
+    "command": [
+      "yarn",
+      "start",
+      "--port",
+      "3000",
+      "--no-open"
+    ]
+  },
+  "port": 3000
+}
