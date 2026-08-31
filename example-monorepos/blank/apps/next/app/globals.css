@@ -25,6 +25,7 @@ html {
 }
 body {
   display: flex;
+  background-color: black;
   /* Allows you to scroll below the viewport; default value is visible */
   overflow-y: auto;
   overscroll-behavior-y: none;

@@ -12,22 +12,23 @@ export function HomeScreen() {
         alignItems: 'center',
         padding: 16,
         gap: 32,
+        backgroundColor: 'black',
       }}
     >
       <H1>Welcome to Solito.</H1>
       <View style={{ maxWidth: 600, gap: 16 }}>
-        <Text style={{ textAlign: 'center' }}>
+        <Text style={{ textAlign: 'center', color: 'white' }}>
           Here is a basic starter to show you how you can navigate from one
           screen to another. This screen uses the same code on Next.js and React
           Native.
         </Text>
-        <Text style={{ textAlign: 'center' }}>
+        <Text style={{ textAlign: 'center', color: 'white' }}>
           Solito is made by{' '}
           <TextLink
             href="https://twitter.com/fernandotherojo"
             target="_blank"
             rel="noreferrer"
-            style={{ color: 'blue' }}
+            style={{ color: '#4da3ff' }}
           >
             Fernando Rojo
           </TextLink>
@@ -40,7 +41,7 @@ export function HomeScreen() {
           style={{
             fontSize: 16,
             fontWeight: 'bold',
-            color: 'blue',
+            color: '#4da3ff',
           }}
         >
           Link
@@ -51,7 +52,11 @@ export function HomeScreen() {
 }
 
 const H1 = ({ children }: { children: React.ReactNode }) => {
-  return <Text style={{ fontWeight: '800', fontSize: 24 }}>{children}</Text>
+  return (
+    <Text style={{ fontWeight: '800', fontSize: 24, color: 'white' }}>
+      {children}
+    </Text>
+  )
 }
 
 const P = ({ children }: { children: React.ReactNode }) => {
