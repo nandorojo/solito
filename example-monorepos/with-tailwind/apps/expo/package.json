@@ -1,0 +1,43 @@
+{
+  "dependencies": {
+    "app": "*",
+    "expo": "^54.0.16",
+    "expo-image": "~3.0.10",
+    "expo-linear-gradient": "~15.0.7",
+    "expo-linking": "~8.0.8",
+    "expo-splash-screen": "~31.0.10",
+    "expo-status-bar": "~3.0.8",
+    "moti": "^0.30.0",
+    "nativewind": "^4.2.3",
+    "react-native": "0.81.4",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-worklets": "0.5.1",
+    "tailwindcss": "^3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@types/react": "~19.1.10",
+    "babel-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
+    "react-compiler-runtime": "19.0.0-beta-3229e95-20250315",
+    "typescript": "~5.9.2"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
+  },
+  "main": "index.js",
+  "version": "1.0.0",
+  "private": true,
+  "name": "expo-app",
+  "expo": {
+    "install": {
+      "exclude": [
+        "react"
+      ]
+    }
+  }
+}
